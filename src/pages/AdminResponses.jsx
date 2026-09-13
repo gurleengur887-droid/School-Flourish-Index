@@ -23,6 +23,71 @@ import {
 import { supabase } from "../lib/supabase";
 import "../styles/admin_dashboard.css";
 import SEO from "../components/SEO";
+const STATE_TO_REGION = {
+  // NORTH
+  Punjab: "North",
+  Haryana: "North",
+  "Himachal Pradesh": "North",
+  "Jammu & Kashmir": "North",
+  Ladakh: "North",
+  Delhi: "North",
+  Chandigarh: "North",
+  Uttarakhand: "North",
+  "Uttar Pradesh": "North",
+  Rajasthan: "North",
+
+  // WEST
+  Maharashtra: "West",
+  Gujarat: "West",
+  Goa: "West",
+  "Dadra and Nagar Haveli and Daman and Diu": "West",
+  "Dadra & Nagar Haveli and Daman & Diu": "West",
+
+  // CENTRAL
+  "Madhya Pradesh": "Central",
+  Chhattisgarh: "Central",
+
+  // EAST
+  Bihar: "East",
+  Jharkhand: "East",
+  Odisha: "East",
+  "West Bengal": "East",
+
+  // SOUTH
+  "Andhra Pradesh": "South",
+  Telangana: "South",
+  Karnataka: "South",
+  Kerala: "South",
+  "Tamil Nadu": "South",
+  Puducherry: "South",
+  Lakshadweep: "South",
+  "Andaman and Nicobar Islands": "East",
+
+  // NORTHEAST
+  Assam: "Northeast",
+  "Arunachal Pradesh": "Northeast",
+  Manipur: "Northeast",
+  Meghalaya: "Northeast",
+  Mizoram: "Northeast",
+  Nagaland: "Northeast",
+  Sikkim: "Northeast",
+  Tripura: "Northeast",
+};
+function getRegion(school) {
+  if (!school) return "Unmapped";
+
+  if (
+    school.country &&
+    school.country.toLowerCase() !== "india"
+  ) {
+    return "International";
+  }
+
+  return (
+    STATE_TO_REGION[school.state] ||
+    "Unmapped"
+  );
+}
 function AdminResponses() {
   const [responses, setResponses] = useState([]);
   const [schools, setSchools] = useState([]);
@@ -106,72 +171,7 @@ function AdminResponses() {
  * -------------------------------------------------------
  */
 
-const STATE_TO_REGION = {
-  // NORTH
-  Punjab: "North",
-  Haryana: "North",
-  "Himachal Pradesh": "North",
-  "Jammu & Kashmir": "North",
-  Ladakh: "North",
-  Delhi: "North",
-  Chandigarh: "North",
-  Uttarakhand: "North",
-  "Uttar Pradesh": "North",
-  Rajasthan: "North",
 
-  // WEST
-  Maharashtra: "West",
-  Gujarat: "West",
-  Goa: "West",
-  "Dadra and Nagar Haveli and Daman and Diu": "West",
-  "Dadra & Nagar Haveli and Daman & Diu": "West",
-
-  // CENTRAL
-  "Madhya Pradesh": "Central",
-  Chhattisgarh: "Central",
-
-  // EAST
-  Bihar: "East",
-  Jharkhand: "East",
-  Odisha: "East",
-  "West Bengal": "East",
-
-  // SOUTH
-  "Andhra Pradesh": "South",
-  Telangana: "South",
-  Karnataka: "South",
-  Kerala: "South",
-  "Tamil Nadu": "South",
-  Puducherry: "South",
-  Lakshadweep: "South",
-  "Andaman and Nicobar Islands": "East",
-
-  // NORTHEAST
-  Assam: "Northeast",
-  "Arunachal Pradesh": "Northeast",
-  Manipur: "Northeast",
-  Meghalaya: "Northeast",
-  Mizoram: "Northeast",
-  Nagaland: "Northeast",
-  Sikkim: "Northeast",
-  Tripura: "Northeast",
-};
-
-function getRegion(school) {
-  if (!school) return "Unmapped";
-
-  if (
-    school.country &&
-    school.country.toLowerCase() !== "india"
-  ) {
-    return "International";
-  }
-
-  return (
-    STATE_TO_REGION[school.state] ||
-    "Unmapped"
-  );
-}
 
   /*
    * -------------------------------------------------------
@@ -343,7 +343,7 @@ function getRegion(school) {
         (item) => item.count
       ),
       1
-    );
+    ); 
 
   /*
    * -------------------------------------------------------
