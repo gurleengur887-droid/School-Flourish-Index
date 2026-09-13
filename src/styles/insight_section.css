@@ -1,0 +1,1393 @@
+/* =========================================
+   SFI INSIGHT SECTION
+========================================= */
+
+.sfi-insight {
+  position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  background: #f5f1e8;
+
+  color: #163b2c;
+
+  padding: 92px 0 85px;
+}
+
+
+/* =========================================
+   INNER
+========================================= */
+
+.sfi-insight-inner {
+  position: relative;
+
+  z-index: 5;
+
+  width: min(
+    1360px,
+    calc(100% - 100px)
+  );
+
+  margin: 0 auto;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.sfi-insight-header {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.25fr)
+    minmax(300px, 0.75fr);
+
+  align-items: end;
+
+  gap: 70px;
+
+  margin-bottom: 58px;
+}
+
+
+/* =========================================
+   KICKER
+========================================= */
+
+.sfi-insight-kicker {
+  display: flex;
+
+  align-items: center;
+
+  gap: 17px;
+
+  margin-bottom: 23px;
+
+  font-family: var(--font-mono);
+
+  font-size: 9px;
+
+  letter-spacing: 3.2px;
+
+  color:
+    rgba(
+      22,
+      59,
+      44,
+      0.72
+    );
+}
+
+.sfi-insight-kicker span {
+  width: 37px;
+  height: 1px;
+
+  background:
+    rgba(
+      22,
+      59,
+      44,
+      0.65
+    );
+}
+
+
+/* =========================================
+   HEADING
+========================================= */
+
+.sfi-insight-heading h2 {
+  margin: 0;
+
+  font-family: var(--font-serif);
+
+  font-size: clamp(
+    55px,
+    6vw,
+    84px
+  );
+
+  font-weight: 400;
+
+  line-height: 0.91;
+
+  letter-spacing: -3.5px;
+
+  color: #153c2d;
+}
+
+.sfi-insight-heading h2 em {
+  font-style: italic;
+
+  color: #c97f61;
+}
+
+
+/* =========================================
+   INTRO
+========================================= */
+
+.sfi-insight-intro {
+  max-width: 470px;
+
+  margin: 0 0 7px;
+
+  font-family: var(--font-serif);
+
+  font-size: 18px;
+
+  line-height: 1.55;
+
+  color:
+    rgba(
+      35,
+      67,
+      54,
+      0.7
+    );
+}
+
+
+/* =========================================
+   HANDWRITTEN NOTE
+========================================= */
+
+.sfi-insight-note {
+  position: absolute;
+
+  z-index: 2;
+
+  right: 7%;
+
+  top: 62px;
+
+  font-family:
+    "Comic Sans MS",
+    "Bradley Hand",
+    cursive;
+
+  font-size: 16px;
+
+  line-height: 1.45;
+
+  transform:
+    rotate(-4deg);
+
+  color:
+    rgba(
+      109,
+      133,
+      105,
+      0.42
+    );
+}
+
+
+/* =========================================
+   PROCESS CARDS
+========================================= */
+
+.sfi-insight-cards {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 23px;
+
+  align-items: start;
+}
+
+
+/* =========================================
+   CARD BASE
+========================================= */
+
+.sfi-insight-card {
+  position: relative;
+
+  min-width: 0;
+
+  min-height: 325px;
+
+  box-sizing: border-box;
+
+  padding: 28px 34px 31px;
+
+  overflow: hidden;
+
+  border: 1px solid
+    rgba(
+      22,
+      59,
+      44,
+      0.1
+    );
+
+  box-shadow:
+    0 18px 40px
+    rgba(
+      43,
+      63,
+      52,
+      0.055
+    );
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+
+/* individual shapes */
+
+.sfi-insight-card-listen {
+  border-radius:
+    25px 42px 7px 42px;
+
+  background:
+    #edf0e4;
+}
+
+.sfi-insight-card-notice {
+  border-radius:
+    42px 7px 42px 7px;
+
+  background:
+    #f4e9dd;
+
+  transform:
+    translateY(18px);
+}
+
+.sfi-insight-card-respond {
+  border-radius:
+    7px 42px 25px 42px;
+
+  background:
+    #e8eee4;
+}
+
+
+/* hover */
+
+.sfi-insight-card:hover {
+  transform:
+    translateY(-6px);
+
+  box-shadow:
+    0 24px 50px
+    rgba(
+      43,
+      63,
+      52,
+      0.1
+    );
+}
+
+.sfi-insight-card-notice:hover {
+  transform:
+    translateY(12px);
+}
+
+
+/* =========================================
+   CARD TOP
+========================================= */
+
+.sfi-insight-card-top {
+  position: relative;
+
+  z-index: 4;
+
+  display: flex;
+
+  align-items: flex-start;
+
+  justify-content: space-between;
+}
+
+.sfi-insight-number {
+  font-family: var(--font-mono);
+
+  font-size: 9px;
+
+  letter-spacing: 2.5px;
+
+  color:
+    rgba(
+      22,
+      59,
+      44,
+      0.72
+    );
+}
+
+
+/* =========================================
+   ICON
+========================================= */
+
+.sfi-insight-icon {
+  width: 57px;
+  height: 57px;
+
+  display: grid;
+
+  place-items: center;
+
+  flex-shrink: 0;
+
+  margin-top: -2px;
+
+  border-radius: 50%;
+
+  color: #214936;
+
+  background:
+    rgba(
+      205,
+      217,
+      196,
+      0.75
+    );
+}
+
+.sfi-insight-card-notice
+.sfi-insight-icon {
+  color: #79513e;
+
+  background:
+    rgba(
+      224,
+      184,
+      157,
+      0.55
+    );
+}
+
+.sfi-insight-card-respond
+.sfi-insight-icon {
+  color: #345b45;
+
+  background:
+    rgba(
+      197,
+      213,
+      197,
+      0.78
+    );
+}
+
+
+/* =========================================
+   CARD CONTENT
+========================================= */
+
+.sfi-insight-card-content {
+  position: relative;
+
+  z-index: 4;
+
+  margin-top: 35px;
+}
+
+.sfi-insight-card-content h3 {
+  max-width: 410px;
+
+  margin: 0;
+
+  font-family: var(--font-serif);
+
+  font-size: clamp(
+    28px,
+    2.4vw,
+    39px
+  );
+
+  font-weight: 400;
+
+  line-height: 1.02;
+
+  letter-spacing: -1.25px;
+
+  color: #173c2d;
+}
+
+.sfi-insight-card-content p {
+  max-width: 390px;
+
+  margin: 20px 0 0;
+
+  font-family: var(--font-sans);
+
+  font-size: 14px;
+
+  line-height: 1.65;
+
+  color:
+    rgba(
+      31,
+      63,
+      50,
+      0.68
+    );
+}
+
+
+/* =========================================
+   CARD ARROW
+========================================= */
+
+.sfi-insight-arrow {
+  position: absolute;
+
+  z-index: 6;
+
+  left: 34px;
+  bottom: 28px;
+
+  width: 46px;
+  height: 46px;
+
+  display: grid;
+
+  place-items: center;
+
+  padding: 0;
+
+  border: 1px solid
+    rgba(
+      22,
+      59,
+      44,
+      0.55
+    );
+
+  border-radius: 50%;
+
+  background: transparent;
+
+  color: #173c2d;
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.sfi-insight-arrow:hover {
+  background: #173c2d;
+
+  color: #f5f1e8;
+
+  transform:
+    rotate(8deg);
+}
+
+
+/* =========================================
+   CARD DECORATIONS
+========================================= */
+
+.sfi-card-leaf {
+  position: absolute;
+
+  right: 23px;
+  bottom: -5px;
+
+  width: 85px;
+  height: 120px;
+
+  border-left: 1px solid
+    rgba(
+      68,
+      103,
+      78,
+      0.3
+    );
+
+  transform:
+    rotate(25deg);
+}
+
+.sfi-card-leaf::before,
+.sfi-card-leaf::after {
+  content: "";
+
+  position: absolute;
+
+  width: 30px;
+  height: 53px;
+
+  border-radius:
+    100% 0 100% 0;
+
+  background:
+    rgba(
+      104,
+      139,
+      108,
+      0.2
+    );
+}
+
+.sfi-card-leaf::before {
+  left: -2px;
+  top: 35px;
+
+  transform:
+    rotate(-35deg);
+}
+
+.sfi-card-leaf::after {
+  left: 24px;
+  top: 0;
+
+  transform:
+    rotate(13deg);
+}
+
+
+/* =========================================
+   FLOWING LINE
+========================================= */
+
+.sfi-card-flow {
+  position: absolute;
+
+  right: -5px;
+  bottom: -5px;
+
+  width: 75%;
+
+  height: 120px;
+
+  opacity: 0.55;
+}
+
+.sfi-card-flow path {
+  fill: none;
+
+  stroke:
+    rgba(
+      198,
+      123,
+      91,
+      0.7
+    );
+
+  stroke-width: 1;
+}
+
+
+/* =========================================
+   RESPOND ARC
+========================================= */
+
+.sfi-card-arc {
+  position: absolute;
+
+  right: -90px;
+  bottom: -100px;
+
+  width: 270px;
+  height: 270px;
+
+  border: 1px solid
+    rgba(
+      86,
+      119,
+      92,
+      0.3
+    );
+
+  border-radius: 50%;
+}
+
+.sfi-card-arc::after {
+  content: "";
+
+  position: absolute;
+
+  right: 45px;
+  bottom: 48px;
+
+  width: 115px;
+  height: 115px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(
+      126,
+      153,
+      127,
+      0.1
+    );
+}
+
+
+/* =========================================
+   INTERPRETATION
+========================================= */
+
+.sfi-interpretation {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns:
+    115px
+    minmax(330px, 0.95fr)
+    minmax(300px, 1fr);
+
+  align-items: center;
+
+  gap: 38px;
+
+  margin-top: 90px;
+
+  padding: 48px 55px;
+
+  overflow: hidden;
+
+  border: 1px solid
+    rgba(
+      82,
+      103,
+      83,
+      0.27
+    );
+
+  border-radius:
+    37px 7px 37px 7px;
+
+  background:
+    rgba(
+      249,
+      246,
+      237,
+      0.75
+    );
+}
+
+
+/* vertical divider */
+
+.sfi-interpretation-heading {
+  position: relative;
+
+  padding-left: 42px;
+}
+
+.sfi-interpretation-heading::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  width: 1px;
+  height: 100%;
+
+  background:
+    rgba(
+      45,
+      76,
+      61,
+      0.18
+    );
+}
+
+
+/* =========================================
+   SEAL
+========================================= */
+
+.sfi-interpretation-seal {
+  display: grid;
+
+  place-items: center;
+}
+
+.sfi-interpretation-seal-ring {
+  position: relative;
+
+  width: 100px;
+  height: 100px;
+
+  display: grid;
+
+  place-items: center;
+
+  border-radius: 50%;
+
+  color: #204c38;
+
+  background:
+    rgba(
+      234,
+      231,
+      216,
+      0.9
+    );
+
+  border: 1px solid
+    rgba(
+      67,
+      102,
+      78,
+      0.35
+    );
+}
+
+.sfi-interpretation-seal-ring::before {
+  content: "";
+
+  position: absolute;
+
+  inset: -11px;
+
+  border: 1px dashed
+    rgba(
+      193,
+      132,
+      97,
+      0.45
+    );
+
+  border-radius: 50%;
+}
+
+
+/* =========================================
+   INTERPRETATION TITLE
+========================================= */
+
+.sfi-interpretation-heading > span {
+  display: block;
+
+  margin-bottom: 17px;
+
+  font-family: var(--font-mono);
+
+  font-size: 9px;
+
+  letter-spacing: 2.4px;
+
+  color:
+    rgba(
+      29,
+      67,
+      51,
+      0.62
+    );
+}
+
+.sfi-interpretation-heading h3 {
+  margin: 0;
+
+  font-family: var(--font-serif);
+
+  font-size: clamp(
+    45px,
+    4.5vw,
+    68px
+  );
+
+  font-weight: 400;
+
+  line-height: 0.93;
+
+  letter-spacing: -2.5px;
+
+  color: #163c2d;
+}
+
+.sfi-interpretation-heading h3 em {
+  font-style: italic;
+
+  color: #c77f61;
+}
+
+
+/* =========================================
+   INTERPRETATION COPY
+========================================= */
+
+.sfi-interpretation-copy {
+  max-width: 490px;
+}
+
+.sfi-interpretation-copy p {
+  margin: 0;
+
+  font-family: var(--font-sans);
+
+  font-size: 14px;
+
+  line-height: 1.75;
+
+  color:
+    rgba(
+      31,
+      60,
+      48,
+      0.7
+    );
+}
+
+.sfi-interpretation-caption {
+  display: flex;
+
+  align-items: center;
+
+  gap: 13px;
+
+  margin-top: 24px;
+
+  font-family: var(--font-mono);
+
+  font-size: 8px;
+
+  letter-spacing: 2.5px;
+
+  color:
+    rgba(
+      31,
+      66,
+      51,
+      0.62
+    );
+}
+
+.sfi-interpretation-caption span {
+  width: 35px;
+  height: 1px;
+
+  background:
+    rgba(
+      40,
+      79,
+      60,
+      0.55
+    );
+}
+
+
+/* =========================================
+   INTERPRETATION DECORATION
+========================================= */
+
+.sfi-interpretation-circle {
+  position: absolute;
+
+  right: -100px;
+  bottom: -180px;
+
+  width: 370px;
+  height: 370px;
+
+  border-radius: 50%;
+
+  border: 1px solid
+    rgba(
+      91,
+      121,
+      96,
+      0.16
+    );
+
+  pointer-events: none;
+}
+
+.sfi-interpretation-circle::after {
+  content: "";
+
+  position: absolute;
+
+  right: 65px;
+  bottom: 70px;
+
+  width: 180px;
+  height: 180px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(
+      111,
+      143,
+      116,
+      0.08
+    );
+}
+
+
+/* =========================================
+   BOTTOM FLOWING LINE
+========================================= */
+
+.sfi-insight-bottom-line {
+  position: relative;
+
+  width: 100%;
+
+  height: 85px;
+
+  margin-top: 8px;
+}
+
+.sfi-insight-bottom-line svg {
+  position: absolute;
+
+  left: -5%;
+
+  width: 110%;
+  height: 100%;
+}
+
+.sfi-insight-bottom-line path {
+  fill: none;
+
+  stroke:
+    rgba(
+      191,
+      154,
+      116,
+      0.45
+    );
+
+  stroke-width: 1;
+}
+
+.sfi-insight-bottom-line circle {
+  fill: #c47d5e;
+}
+
+
+/* =========================================
+   BOTTOM MARK
+========================================= */
+
+.sfi-insight-bottom-mark {
+  position: absolute;
+
+  right: 0;
+
+  bottom: 38px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+.sfi-insight-bottom-mark span {
+  width: 35px;
+  height: 1px;
+
+  background:
+    rgba(
+      38,
+      74,
+      57,
+      0.45
+    );
+}
+
+.sfi-insight-bottom-mark p {
+  margin: 0;
+
+  font-family: var(--font-mono);
+
+  font-size: 8px;
+
+  line-height: 1.6;
+
+  letter-spacing: 2.3px;
+
+  color:
+    rgba(
+      37,
+      72,
+      56,
+      0.6
+    );
+}
+
+
+/* =========================================
+   BACKGROUND ORBIT
+========================================= */
+
+.sfi-insight-orbit {
+  position: absolute;
+
+  width: 450px;
+  height: 450px;
+
+  left: -280px;
+  bottom: -300px;
+
+  border-radius: 50%;
+
+  border: 1px solid
+    rgba(
+      78,
+      112,
+      86,
+      0.1
+    );
+}
+
+
+/* =========================================
+   BACKGROUND LEAVES
+========================================= */
+
+.sfi-insight-leaf {
+  position: absolute;
+
+  z-index: 1;
+
+  width: 38px;
+  height: 72px;
+
+  border-radius:
+    100% 0 100% 0;
+
+  background:
+    rgba(
+      103,
+      137,
+      105,
+      0.12
+    );
+}
+
+.sfi-leaf-one {
+  left: 3%;
+
+  top: 55px;
+
+  transform:
+    rotate(-25deg);
+}
+
+.sfi-leaf-two {
+  left: 7%;
+
+  top: 105px;
+
+  transform:
+    rotate(34deg);
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1050px) {
+
+  .sfi-insight-inner {
+    width: calc(100% - 60px);
+  }
+
+  .sfi-insight-header {
+    gap: 40px;
+  }
+
+  .sfi-insight-heading h2 {
+    font-size: 62px;
+  }
+
+  .sfi-insight-card {
+    min-height: 310px;
+
+    padding-left: 27px;
+    padding-right: 27px;
+  }
+
+  .sfi-insight-card-content h3 {
+    font-size: 29px;
+  }
+
+  .sfi-interpretation {
+    grid-template-columns:
+      90px
+      1fr
+      1fr;
+
+    gap: 25px;
+
+    padding: 40px;
+  }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+  .sfi-insight {
+    padding: 65px 0 70px;
+  }
+
+  .sfi-insight-inner {
+    width: calc(100% - 32px);
+  }
+
+
+  /* HEADER */
+
+  .sfi-insight-header {
+    display: block;
+
+    margin-bottom: 38px;
+  }
+
+  .sfi-insight-kicker {
+    margin-bottom: 18px;
+
+    font-size: 8px;
+
+    letter-spacing: 2.4px;
+  }
+
+  .sfi-insight-heading h2 {
+    font-size: 49px;
+
+    line-height: 0.94;
+
+    letter-spacing: -2px;
+  }
+
+  .sfi-insight-intro {
+    max-width: 330px;
+
+    margin-top: 21px;
+
+    font-size: 15px;
+
+    line-height: 1.55;
+  }
+
+  .sfi-insight-note {
+    display: none;
+  }
+
+
+  /* CARDS */
+
+  .sfi-insight-cards {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 14px;
+  }
+
+  .sfi-insight-card,
+  .sfi-insight-card-notice,
+  .sfi-insight-card-respond {
+
+    width: 100%;
+
+    min-height: 265px;
+
+    padding: 25px 24px 28px;
+
+    transform: none;
+  }
+
+  .sfi-insight-card:hover,
+  .sfi-insight-card-notice:hover {
+
+    transform:
+      translateY(-3px);
+  }
+
+  .sfi-insight-card-content {
+    margin-top: 30px;
+  }
+
+  .sfi-insight-card-content h3 {
+    font-size: 29px;
+
+    line-height: 1.03;
+
+    letter-spacing: -0.8px;
+  }
+
+  .sfi-insight-card-content p {
+    max-width: 300px;
+
+    margin-top: 16px;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+  }
+
+  .sfi-insight-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .sfi-insight-arrow {
+    left: 24px;
+    bottom: 23px;
+
+    width: 42px;
+    height: 42px;
+  }
+
+
+  /* INTERPRETATION */
+
+  .sfi-interpretation {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 27px;
+
+    margin-top: 62px;
+
+    padding: 35px 25px 38px;
+
+    border-radius:
+      28px 6px 28px 6px;
+  }
+
+  .sfi-interpretation-seal-ring {
+    width: 70px;
+    height: 70px;
+  }
+
+  .sfi-interpretation-seal-ring svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  .sfi-interpretation-heading {
+    padding-left: 0;
+  }
+
+  .sfi-interpretation-heading::before {
+    display: none;
+  }
+
+  .sfi-interpretation-heading > span {
+    margin-bottom: 15px;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+  }
+
+  .sfi-interpretation-heading h3 {
+    font-size: 49px;
+
+    line-height: 0.95;
+
+    letter-spacing: -1.8px;
+  }
+
+  .sfi-interpretation-copy {
+    max-width: 100%;
+  }
+
+  .sfi-interpretation-copy p {
+    font-size: 14px;
+
+    line-height: 1.7;
+  }
+
+  .sfi-interpretation-caption {
+    margin-top: 20px;
+
+    font-size: 7px;
+  }
+
+
+  /* BOTTOM */
+
+  .sfi-insight-bottom-line {
+    height: 60px;
+
+    margin-top: 5px;
+  }
+
+  .sfi-insight-bottom-mark {
+    display: none;
+  }
+
+  .sfi-insight-leaf {
+    opacity: 0.7;
+  }
+
+  .sfi-leaf-one {
+    left: -15px;
+    top: 25px;
+  }
+
+  .sfi-leaf-two {
+    left: 2px;
+    top: 75px;
+  }
+
+}
+
+
+/* =========================================
+   SMALL PHONES
+========================================= */
+
+@media (max-width: 380px) {
+
+  .sfi-insight-heading h2 {
+    font-size: 44px;
+  }
+
+  .sfi-insight-card,
+  .sfi-insight-card-notice,
+  .sfi-insight-card-respond {
+    min-height: 250px;
+
+    padding:
+      23px 21px 25px;
+  }
+
+  .sfi-insight-card-content h3 {
+    font-size: 27px;
+  }
+
+  .sfi-interpretation {
+    padding:
+      31px 21px 34px;
+  }
+
+  .sfi-interpretation-heading h3 {
+    font-size: 44px;
+  }
+
+}

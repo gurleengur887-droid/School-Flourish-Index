@@ -1,0 +1,2121 @@
+/* =========================================================
+   SFI — PERSPECTIVES SHOWCASE
+   Editorial / asymmetric / responsive
+========================================================= */
+
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+.perspectives-showcase {
+  position: relative;
+  overflow: hidden;
+
+  padding: 130px 0 145px;
+
+  background: var(--color-white);
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.perspectives-showcase-container {
+  position: relative;
+
+  width: min(
+    var(--container),
+    calc(100% - 80px)
+  );
+
+  margin: 0 auto;
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.perspectives-intro {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.08fr)
+    minmax(300px, 0.55fr);
+
+  align-items: end;
+
+  gap: 90px;
+
+  margin-bottom: 45px;
+}
+
+.perspectives-intro-left {
+  min-width: 0;
+}
+
+.perspectives-label {
+  display: flex;
+  align-items: center;
+
+  gap: 13px;
+
+  margin-bottom: 25px;
+
+  font-family: var(--font-mono);
+
+  font-size: 11px;
+  font-weight: 500;
+
+  letter-spacing: 2px;
+
+  color: var(--color-text-soft);
+}
+
+.perspectives-label-line {
+  width: 36px;
+  height: 1px;
+
+  background: var(--color-terracotta);
+}
+
+.perspectives-title {
+  margin: 0;
+
+  font-family: var(--font-serif);
+
+  font-size: clamp(
+    62px,
+    6.4vw,
+    94px
+  );
+
+  font-weight: 500;
+
+  line-height: 0.94;
+
+  letter-spacing: -4px;
+
+  color: var(--color-green-dark);
+
+  animation:
+    perspectivesTitleIn
+    0.9s
+    cubic-bezier(.22, 1, .36, 1)
+    both;
+}
+
+.perspectives-title em {
+  font-style: normal;
+
+  color: var(--color-terracotta);
+}
+
+.perspectives-intro-right {
+  padding-bottom: 5px;
+}
+
+.perspectives-intro-right p {
+  max-width: 470px;
+
+  margin: 0;
+
+  font-size: 18px;
+
+  line-height: 1.65;
+
+  color: var(--color-text-soft);
+}
+
+.perspectives-intro-note {
+  display: flex;
+  align-items: center;
+
+  margin-top: 22px;
+
+  font-family: var(--font-mono);
+
+  font-size: 11px;
+  font-weight: 500;
+
+  letter-spacing: 1.7px;
+
+  color: var(--color-green);
+}
+
+.intro-note-dot {
+  width: 7px;
+  height: 7px;
+
+  margin-right: 10px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: var(--color-green);
+}
+
+
+/* =========================================================
+   DECORATIVE CONNECTOR
+========================================================= */
+
+.perspectives-connector {
+  position: relative;
+
+  width: 53%;
+  height: 42px;
+
+  margin-left: 6%;
+  margin-bottom: 8px;
+}
+
+.perspectives-connector::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  top: 20px;
+
+  width: 100%;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--color-terracotta),
+      var(--color-border),
+      transparent
+    );
+
+  opacity: 0.55;
+
+  transform: rotate(-1.5deg);
+}
+
+.connector-dot {
+  position: absolute;
+
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+}
+
+.connector-dot-one {
+  left: -3px;
+  top: 17px;
+
+  background: var(--color-terracotta);
+}
+
+.connector-dot-two {
+  left: 52%;
+  top: 11px;
+
+  background: var(--color-ochre);
+}
+
+.connector-dot-three {
+  right: 0;
+  top: 19px;
+
+  background: var(--color-green);
+}
+
+
+/* =========================================================
+   DESKTOP CARD LAYOUT
+========================================================= */
+
+.perspectives-layout {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(14, minmax(0, 1fr));
+
+  grid-template-rows:
+    500px
+    500px;
+
+  column-gap: 18px;
+
+  row-gap: 55px;
+
+  align-items: stretch;
+}
+
+
+/* =========================================================
+   CARD BASE
+========================================================= */
+
+.perspective-card {
+  position: relative;
+
+  width: 100%;
+  height: 500px;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 30px;
+
+  border-radius: 24px;
+
+  isolation: isolate;
+
+  animation:
+    perspectiveCardIn
+    0.85s
+    cubic-bezier(.22, 1, .36, 1)
+    var(--card-delay)
+    both;
+
+  transition:
+    transform 0.45s
+    cubic-bezier(.22, 1, .36, 1),
+    box-shadow 0.45s ease;
+}
+
+
+/* =========================================================
+   ASYMMETRIC DESKTOP POSITIONS
+========================================================= */
+
+.parent-card {
+  grid-column: 1 / span 6;
+  grid-row: 1;
+
+  margin-top: 12px;
+}
+
+.teacher-card {
+  grid-column: 8 / span 6;
+  grid-row: 1;
+
+  margin-top: -18px;
+}
+
+.student-card {
+  grid-column: 2 / span 6;
+  grid-row: 2;
+
+  margin-top: 8px;
+}
+
+.leader-card {
+  grid-column: 9 / span 6;
+  grid-row: 2;
+
+  margin-top: -52px;
+}
+
+
+/* =========================================================
+   DESKTOP HOVER
+========================================================= */
+
+.parent-card:hover {
+  transform:
+    translateY(-7px)
+    rotate(-0.3deg);
+}
+
+.teacher-card:hover {
+  transform:
+    translateY(-7px)
+    rotate(0.3deg);
+}
+
+.student-card:hover {
+  transform:
+    translateY(-7px)
+    rotate(-0.3deg);
+}
+
+.leader-card:hover {
+  transform:
+    translateY(-7px)
+    rotate(0.3deg);
+}
+
+
+/* =========================================================
+   CARD COLORS
+========================================================= */
+
+.parent-card {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(197, 104, 70, 0.115),
+      rgba(197, 104, 70, 0.055)
+    );
+
+  border:
+    1px solid
+    rgba(197, 104, 70, 0.22);
+}
+
+.teacher-card {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(202, 156, 53, 0.12),
+      rgba(202, 156, 53, 0.055)
+    );
+
+  border:
+    1px solid
+    rgba(202, 156, 53, 0.22);
+}
+
+.student-card {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(78, 128, 145, 0.115),
+      rgba(78, 128, 145, 0.05)
+    );
+
+  border:
+    1px solid
+    rgba(78, 128, 145, 0.21);
+}
+
+.leader-card {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(72, 117, 96, 0.12),
+      rgba(72, 117, 96, 0.05)
+    );
+
+  border:
+    1px solid
+    rgba(72, 117, 96, 0.21);
+}
+
+
+/* =========================================================
+   ORGANIC BACKGROUND SHAPE
+========================================================= */
+
+.perspective-organic-shape {
+  position: absolute;
+
+  z-index: -2;
+
+  width: 300px;
+  height: 300px;
+
+  right: -125px;
+  top: -125px;
+
+  border-radius:
+    48% 52% 63% 37%
+    /
+    42% 43% 57% 58%;
+
+  background:
+    rgba(255, 255, 255, 0.48);
+
+  filter: blur(2px);
+
+  transition:
+    transform 0.8s
+    cubic-bezier(.22, 1, .36, 1);
+}
+
+.perspective-card:hover
+.perspective-organic-shape {
+  transform:
+    translate(-25px, 30px)
+    rotate(10deg)
+    scale(1.08);
+}
+
+
+/* =========================================================
+   ORBIT DOT
+========================================================= */
+
+.perspective-orbit-dot {
+  position: absolute;
+
+  width: 8px;
+  height: 8px;
+
+  right: 62px;
+  top: 112px;
+
+  border-radius: 50%;
+
+  opacity: 0.55;
+
+  animation:
+    orbitDotFloat
+    5s
+    ease-in-out
+    infinite;
+}
+
+.parent-card .perspective-orbit-dot {
+  background: var(--color-terracotta);
+}
+
+.teacher-card .perspective-orbit-dot {
+  background: var(--color-ochre);
+}
+
+.student-card .perspective-orbit-dot {
+  background: var(--color-blue);
+}
+
+.leader-card .perspective-orbit-dot {
+  background: var(--color-green);
+}
+
+
+/* =========================================================
+   CARD HEADER
+========================================================= */
+
+.perspective-card-header {
+  position: relative;
+
+  z-index: 4;
+
+  display: flex;
+  align-items: center;
+
+  flex-shrink: 0;
+}
+
+.perspective-card-identity {
+  display: flex;
+  align-items: center;
+
+  gap: 13px;
+}
+
+.perspective-icon {
+  width: 47px;
+  height: 47px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 255, 255, 0.72);
+
+  box-shadow:
+    0 6px 18px
+    rgba(24, 53, 45, 0.045);
+
+  transition:
+    transform 0.35s ease;
+}
+
+.parent-card .perspective-icon {
+  color: var(--color-terracotta);
+}
+
+.teacher-card .perspective-icon {
+  color: var(--color-ochre);
+}
+
+.student-card .perspective-icon {
+  color: var(--color-blue);
+}
+
+.leader-card .perspective-icon {
+  color: var(--color-green);
+}
+
+.perspective-card:hover
+.perspective-icon {
+  transform:
+    rotate(-8deg)
+    scale(1.08);
+}
+
+.perspective-card-label {
+  display: block;
+
+  font-family: var(--font-mono);
+
+  font-size: 12px;
+  font-weight: 500;
+
+  letter-spacing: 2px;
+
+  color: var(--color-green-dark);
+}
+
+.perspective-card-eyebrow {
+  display: block;
+
+  margin-top: 5px;
+
+  font-size: 11px;
+
+  line-height: 1.4;
+
+  color: var(--color-text-muted);
+}
+
+
+/* =========================================================
+   DESKTOP VISUAL
+========================================================= */
+
+.perspective-visual {
+  position: absolute;
+
+  z-index: 1;
+
+  pointer-events: none;
+}
+
+.parent-card .perspective-visual {
+  right: 50px;
+  top: 120px;
+}
+
+.parent-card .visual-frame {
+  width: 150px;
+  height: 195px;
+
+  transform: rotate(5deg);
+}
+
+.teacher-card .perspective-visual {
+  right: 50px;
+  top: 120px;
+}
+
+.teacher-card .visual-frame {
+  width: 135px;
+  height: 180px;
+
+  transform: rotate(-4deg);
+}
+
+.student-card .perspective-visual {
+  right: 55px;
+  top: 120px;
+}
+
+.student-card .visual-frame {
+  width: 155px;
+  height: 155px;
+
+  border-radius: 50%;
+
+  transform: rotate(4deg);
+}
+
+.leader-card .perspective-visual {
+  right: 48px;
+  top: 120px;
+}
+
+.leader-card .visual-frame {
+  width: 170px;
+  height: 135px;
+
+  transform: rotate(-5deg);
+}
+
+
+/* =========================================================
+   VISUAL FRAME
+========================================================= */
+
+.visual-frame {
+  position: relative;
+
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius:
+    47% 53% 46% 54%
+    /
+    52% 43% 57% 48%;
+
+  background:
+    rgba(255, 255, 255, 0.48);
+
+  border:
+    1px solid
+    rgba(24, 53, 45, 0.08);
+
+  box-shadow:
+    0 18px 38px
+    rgba(24, 53, 45, 0.055);
+
+  transition:
+    transform 0.7s
+    cubic-bezier(.22, 1, .36, 1),
+    box-shadow 0.7s ease;
+}
+
+.perspective-card:hover
+.visual-frame {
+  box-shadow:
+    0 25px 50px
+    rgba(24, 53, 45, 0.09);
+}
+
+.visual-inner {
+  position: absolute;
+
+  inset: 11px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  border-radius: inherit;
+
+  background:
+    rgba(255, 255, 255, 0.58);
+}
+
+.visual-inner::before {
+  content: "";
+
+  position: absolute;
+
+  width: 90px;
+  height: 90px;
+
+  border-radius: 50%;
+
+  opacity: 0.30;
+}
+
+.parent-card .visual-inner::before {
+  background: var(--color-terracotta);
+}
+
+.teacher-card .visual-inner::before {
+  background: var(--color-ochre);
+}
+
+.student-card .visual-inner::before {
+  background: var(--color-blue);
+}
+
+.leader-card .visual-inner::before {
+  background: var(--color-green);
+}
+
+.visual-inner::after {
+  content: "";
+
+  position: absolute;
+
+  width: 55px;
+  height: 55px;
+
+  right: 20px;
+  bottom: 18px;
+
+  border-radius:
+    50% 50% 42% 58%;
+
+  border:
+    1px solid
+    rgba(24, 53, 45, 0.10);
+}
+
+.visual-word {
+  position: relative;
+
+  z-index: 2;
+
+  font-family: var(--font-mono);
+
+  font-size: 10px;
+
+  letter-spacing: 2px;
+
+  color: var(--color-green-dark);
+
+  opacity: 0.6;
+}
+
+
+/* =========================================================
+   DESKTOP CONTENT
+========================================================= */
+
+.perspective-card-content {
+  position: relative;
+  z-index: 4;
+
+  margin-top: 42px;
+  margin-bottom: 24px;
+
+  width: 100%;
+  max-width: 430px;
+}
+
+.perspective-card-title {
+  max-width: 430px;
+
+  margin: 0;
+
+  font-family: var(--font-serif);
+
+  font-size:
+    clamp(
+      42px,
+      3.5vw,
+      56px
+    );
+
+  font-weight: 500;
+
+  line-height: 0.96;
+
+  letter-spacing: -2.7px;
+
+  color: var(--color-green-dark);
+}
+
+.perspective-card-points {
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+
+  max-width: 430px;
+
+  margin: 20px 0 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.perspective-card-points li {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 9px;
+
+  font-size: 15px;
+
+  line-height: 1.45;
+
+  color: var(--color-text-soft);
+}
+
+.point-bubble {
+  width: 7px;
+  height: 7px;
+
+  flex: 0 0 7px;
+
+  margin-top: 7px;
+
+  border-radius: 50%;
+}
+
+.parent-card .point-bubble {
+  background: var(--color-terracotta);
+}
+
+.teacher-card .point-bubble {
+  background: var(--color-ochre);
+}
+
+.student-card .point-bubble {
+  background: var(--color-blue);
+}
+
+.leader-card .point-bubble {
+  background: var(--color-green);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.perspective-card-footer {
+  position: relative;
+
+  z-index: 5;
+
+  display: flex;
+
+  align-items: flex-end;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding-top: 17px;
+
+  border-top:
+    1px solid
+    rgba(24, 53, 45, 0.10);
+
+  flex-shrink: 0;
+}
+
+
+/* =========================================================
+   FOCUS TAGS
+========================================================= */
+
+.focus-label {
+  display: block;
+
+  margin-bottom: 10px;
+
+  font-family: var(--font-mono);
+
+  font-size: 9px;
+  font-weight: 500;
+
+  letter-spacing: 1.6px;
+
+  color: var(--color-text-muted);
+}
+
+.focus-items {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 7px;
+}
+
+.focus-items span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: auto;
+
+  padding: 7px 11px;
+
+  border:
+    1px solid
+    rgba(24, 53, 45, 0.10);
+
+  border-radius: 999px;
+
+  background:
+    rgba(255, 255, 255, 0.52);
+
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.parent-card .focus-items span {
+  color: var(--color-terracotta);
+
+  border-color:
+    rgba(197, 104, 70, 0.20);
+
+  background:
+    rgba(197, 104, 70, 0.08);
+}
+
+.teacher-card .focus-items span {
+  color: var(--color-ochre);
+
+  border-color:
+    rgba(202, 156, 53, 0.22);
+
+  background:
+    rgba(202, 156, 53, 0.09);
+}
+
+.student-card .focus-items span {
+  color: var(--color-blue);
+
+  border-color:
+    rgba(78, 128, 145, 0.20);
+
+  background:
+    rgba(78, 128, 145, 0.08);
+}
+
+.leader-card .focus-items span {
+  color: var(--color-green);
+
+  border-color:
+    rgba(72, 117, 96, 0.20);
+
+  background:
+    rgba(72, 117, 96, 0.08);
+}
+
+
+/* =========================================================
+   CTA
+========================================================= */
+
+.perspective-fill-button {
+  flex-shrink: 0;
+
+  min-width: 150px;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 16px;
+
+  padding: 12px 14px;
+
+  border: 0;
+
+  border-radius: 3px;
+
+  cursor: pointer;
+
+  font-family: var(--font-sans);
+
+  font-size: 13px;
+  font-weight: 500;
+
+  animation:
+    perspectiveCtaAttention
+    5s
+    ease-in-out
+    infinite;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.parent-card .perspective-fill-button {
+  background: var(--color-terracotta);
+  color: white;
+}
+
+.teacher-card .perspective-fill-button {
+  background: var(--color-ochre);
+  color: var(--color-green-dark);
+}
+
+.student-card .perspective-fill-button {
+  background: var(--color-blue);
+  color: white;
+}
+
+.leader-card .perspective-fill-button {
+  background: var(--color-green);
+  color: white;
+}
+
+.perspective-fill-button:hover {
+  animation-play-state: paused;
+
+  transform:
+    translateY(-4px)
+    scale(1.025);
+
+  box-shadow:
+    0 14px 28px
+    rgba(24, 53, 45, 0.15);
+}
+
+.perspective-fill-button svg {
+  transition:
+    transform 0.3s ease;
+}
+
+.perspective-fill-button:hover svg {
+  transform:
+    translate(3px, -3px);
+}
+
+
+/* =========================================================
+   OUTER DECORATIONS
+========================================================= */
+
+.layout-decoration {
+  position: absolute;
+
+  pointer-events: none;
+
+  z-index: 0;
+}
+
+.layout-decoration-one {
+  left: -115px;
+  top: 115px;
+
+  width: 125px;
+  height: 125px;
+
+  border:
+    1px solid
+    rgba(197, 104, 70, 0.18);
+
+  border-radius: 50%;
+}
+
+.layout-decoration-one::before {
+  content: "";
+
+  position: absolute;
+
+  width: 6px;
+  height: 6px;
+
+  right: 13px;
+  top: 22px;
+
+  border-radius: 50%;
+
+  background:
+    var(--color-terracotta);
+}
+
+.layout-decoration-two {
+  right: -115px;
+  top: 20px;
+
+  width: 145px;
+  height: 145px;
+
+  border:
+    1px solid
+    rgba(72, 117, 96, 0.16);
+
+  border-radius:
+    48% 52% 58% 42%;
+}
+
+.layout-decoration-two::before {
+  content: "";
+
+  position: absolute;
+
+  width: 7px;
+  height: 7px;
+
+  left: 18px;
+  bottom: 23px;
+
+  border-radius: 50%;
+
+  background:
+    var(--color-green);
+}
+
+.layout-decoration-three {
+  left: -70px;
+  bottom: 65px;
+
+  width: 200px;
+  height: 50px;
+}
+
+.layout-decoration-three::before {
+  content: "";
+
+  position: absolute;
+
+  width: 160px;
+  height: 1px;
+
+  left: 0;
+  top: 22px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--color-border)
+    );
+
+  transform:
+    rotate(-4deg);
+}
+
+.layout-decoration-three span {
+  position: absolute;
+
+  right: 28px;
+  top: 13px;
+
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background:
+    var(--color-ochre);
+}
+
+
+/* =========================================================
+   CLOSING
+========================================================= */
+
+.perspectives-closing {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 18px;
+
+  margin-top: 75px;
+}
+
+.closing-line {
+  width: 55px;
+  height: 1px;
+
+  background: var(--color-border);
+}
+
+.perspectives-closing p {
+  margin: 0;
+
+  font-family: var(--font-serif);
+
+  font-size: 18px;
+
+  font-style: italic;
+
+  color: var(--color-text-soft);
+}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes perspectivesTitleIn {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(28px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+@keyframes perspectiveCardIn {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+@keyframes orbitDotFloat {
+
+  0%,
+  100% {
+    transform:
+      translate(0, 0);
+  }
+
+  50% {
+    transform:
+      translate(-7px, 9px);
+  }
+}
+
+@keyframes perspectiveCtaAttention {
+
+  0%,
+  72%,
+  100% {
+    transform:
+      translateY(0);
+
+    box-shadow:
+      0 7px 18px
+      rgba(24, 53, 45, 0.07);
+  }
+
+  77% {
+    transform:
+      translateY(-2px);
+
+    box-shadow:
+      0 11px 24px
+      rgba(24, 53, 45, 0.13);
+  }
+
+  82% {
+    transform:
+      translateY(0);
+
+    box-shadow:
+      0 7px 18px
+      rgba(24, 53, 45, 0.07);
+  }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1050px) {
+
+  .perspectives-showcase {
+    padding: 105px 0 115px;
+  }
+
+  .perspectives-showcase-container {
+    width:
+      calc(100% - 48px);
+  }
+
+  .perspectives-intro {
+    grid-template-columns: 1fr;
+
+    gap: 28px;
+
+    margin-bottom: 38px;
+  }
+
+  .perspectives-intro-right {
+    padding-bottom: 0;
+  }
+
+  .perspectives-intro-right p {
+    max-width: 650px;
+  }
+
+  .perspectives-layout {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    grid-template-rows:
+      auto
+      auto;
+
+    gap: 22px;
+  }
+
+  .perspective-card {
+    height: auto;
+
+    min-height: 520px;
+  }
+
+  .parent-card,
+  .teacher-card,
+  .student-card,
+  .leader-card {
+    grid-column: auto;
+    grid-row: auto;
+
+    margin-top: 0;
+  }
+
+  .teacher-card {
+    margin-top: 20px;
+  }
+
+  .student-card {
+    margin-top: -6px;
+  }
+
+  .leader-card {
+    margin-top: 14px;
+  }
+
+  .layout-decoration {
+    display: none;
+  }
+
+  .perspective-card-title {
+    font-size:
+      clamp(
+        38px,
+        5vw,
+        50px
+      );
+  }
+
+  .perspective-card-points li {
+    font-size: 14px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+  .perspectives-showcase {
+    padding: 65px 0 75px;
+  }
+
+  .perspectives-showcase-container {
+    width:
+      calc(100% - 28px);
+  }
+
+
+  /* -------------------------------------------------------
+     INTRO
+  ------------------------------------------------------- */
+
+  .perspectives-intro {
+    display: block;
+
+    margin-bottom: 35px;
+  }
+
+  .perspectives-label {
+    gap: 10px;
+
+    margin-bottom: 19px;
+
+    font-size: 9px;
+
+    letter-spacing: 1.6px;
+  }
+
+  .perspectives-label-line {
+    width: 28px;
+  }
+
+  .perspectives-title {
+    font-size:
+      clamp(
+        43px,
+        12.2vw,
+        60px
+      );
+
+    line-height: 0.94;
+
+    letter-spacing: -2.3px;
+  }
+
+  .perspectives-intro-right {
+    margin-top: 23px;
+  }
+
+  .perspectives-intro-right p {
+    max-width: 100%;
+
+    font-size: 14.5px;
+
+    line-height: 1.58;
+  }
+
+  .perspectives-intro-note {
+    margin-top: 18px;
+
+    font-size: 8.5px;
+
+    letter-spacing: 1.2px;
+  }
+
+
+  /* -------------------------------------------------------
+     CONNECTOR
+  ------------------------------------------------------- */
+
+  .perspectives-connector {
+    display: none;
+  }
+
+
+  /* -------------------------------------------------------
+     CARD STACK
+  ------------------------------------------------------- */
+
+  .perspectives-layout {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+
+    width: 100%;
+  }
+
+
+  /* -------------------------------------------------------
+     CARD
+  ------------------------------------------------------- */
+
+  .perspective-card {
+    position: relative;
+
+    width: 100% !important;
+    max-width: 100% !important;
+
+    height: auto !important;
+
+    min-height: 0 !important;
+
+    box-sizing: border-box;
+
+    padding: 24px !important;
+
+    margin: 0 !important;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: stretch;
+  }
+
+
+  /* -------------------------------------------------------
+     HEADER
+  ------------------------------------------------------- */
+
+  .perspective-card-header {
+    position: relative;
+
+    z-index: 5;
+
+    width: 100%;
+
+    flex-shrink: 0;
+  }
+
+  .perspective-card-identity {
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    width: 100%;
+  }
+
+  .perspective-icon {
+    width: 44px;
+    height: 44px;
+
+    flex: 0 0 44px;
+  }
+
+  .perspective-card-label {
+    font-size: 10.5px;
+
+    letter-spacing: 1.45px;
+  }
+
+  .perspective-card-eyebrow {
+    margin-top: 3px;
+
+    font-size: 8.7px;
+
+    line-height: 1.35;
+  }
+
+
+  /* -------------------------------------------------------
+     MOBILE VISUAL
+     
+     IMPORTANT:
+     It is absolutely positioned.
+     Therefore it DOES NOT create vertical space.
+  ------------------------------------------------------- */
+
+  .perspective-visual {
+    position: absolute !important;
+
+    z-index: 1;
+
+    right: 17px !important;
+    top: 72px !important;
+
+    width: auto !important;
+
+    margin: 0 !important;
+
+    opacity: 0.58;
+
+    pointer-events: none;
+  }
+
+  .parent-card .perspective-visual,
+  .teacher-card .perspective-visual,
+  .student-card .perspective-visual,
+  .leader-card .perspective-visual {
+    right: 17px !important;
+    top: 72px !important;
+  }
+
+
+  /* Parent visual */
+
+  .parent-card .visual-frame {
+    width: 104px;
+    height: 135px;
+
+    transform: rotate(5deg);
+  }
+
+
+  /* Teacher visual */
+
+  .teacher-card .visual-frame {
+    width: 98px;
+    height: 128px;
+
+    transform: rotate(-4deg);
+  }
+
+
+  /* Student visual */
+
+  .student-card .visual-frame {
+    width: 108px;
+    height: 108px;
+
+    transform: rotate(4deg);
+  }
+
+
+  /* Leader visual */
+
+  .leader-card .visual-frame {
+    width: 118px;
+    height: 94px;
+
+    transform: rotate(-5deg);
+  }
+
+
+  /* -------------------------------------------------------
+     DECORATIVE SHAPE
+  ------------------------------------------------------- */
+
+  .perspective-organic-shape {
+    width: 220px;
+    height: 220px;
+
+    right: -105px;
+    top: -105px;
+
+    opacity: 0.65;
+  }
+
+  .perspective-orbit-dot {
+    width: 7px;
+    height: 7px;
+
+    right: 34px;
+    top: 91px;
+  }
+
+
+  /* -------------------------------------------------------
+     CONTENT
+     
+     Controlled gap after header.
+     NOT huge padding.
+  ------------------------------------------------------- */
+
+  .perspective-card-content {
+    margin-top: 28px !important;
+    margin-bottom: 23px !important;
+    padding: 0 !important;
+  }
+
+  .perspective-card-title {
+    width: 100%;
+
+    max-width: 100%;
+
+    margin: 0;
+
+    font-size:
+      clamp(
+        38px,
+        10.5vw,
+        48px
+      );
+
+    line-height: 0.95;
+
+    letter-spacing: -1.8px;
+  }
+
+
+  /* -------------------------------------------------------
+     QUESTIONS
+  ------------------------------------------------------- */
+
+  .perspective-card-points {
+    width: 100%;
+
+    max-width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 9px;
+
+    margin: 18px 0 0;
+
+    padding: 0;
+
+    list-style: none;
+  }
+
+  .perspective-card-points li {
+    width: 100%;
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 9px;
+
+    font-size: 13.5px;
+
+    line-height: 1.48;
+  }
+
+  .point-bubble {
+    width: 7px;
+    height: 7px;
+
+    flex: 0 0 7px;
+
+    margin-top: 6px;
+  }
+
+
+  /* -------------------------------------------------------
+     FOOTER
+  ------------------------------------------------------- */
+
+  .perspective-card-footer {
+    position: relative;
+
+    z-index: 5;
+
+    width: 100% !important;
+
+    max-width: none !important;
+
+    box-sizing: border-box;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+    justify-content: flex-start;
+
+    gap: 16px;
+
+    padding-top: 17px;
+
+    margin: 0;
+
+    flex-shrink: 0;
+
+    border-top:
+      1px solid
+      rgba(24, 53, 45, 0.10);
+  }
+
+
+  /* -------------------------------------------------------
+     FOCUS
+  ------------------------------------------------------- */
+
+  .perspective-focus {
+    width: 100% !important;
+
+    max-width: none !important;
+  }
+
+  .focus-label {
+    display: block;
+
+    margin-bottom: 9px;
+
+    font-size: 8.5px;
+
+    letter-spacing: 1.45px;
+  }
+
+  .focus-items {
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: row;
+
+    flex-wrap: wrap;
+
+    align-items: center;
+
+    gap: 7px;
+  }
+
+  .focus-items span {
+    width: auto;
+
+    flex: 0 0 auto;
+
+    padding: 6px 10px;
+
+    font-size: 9.5px;
+
+    line-height: 1.2;
+
+    white-space: nowrap;
+  }
+
+
+  /* -------------------------------------------------------
+     BUTTON
+  ------------------------------------------------------- */
+
+  .perspective-fill-button {
+    width: 100% !important;
+
+    max-width: none !important;
+
+    min-width: 0 !important;
+
+    min-height: 48px;
+
+    box-sizing: border-box;
+
+    padding: 13px 15px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    font-size: 13px;
+
+    white-space: nowrap;
+
+    flex-shrink: 0;
+  }
+
+  .perspective-fill-button span {
+    white-space: nowrap;
+  }
+
+  .perspective-fill-button svg {
+    flex-shrink: 0;
+  }
+
+
+  /* -------------------------------------------------------
+     DECORATIONS
+  ------------------------------------------------------- */
+
+  .layout-decoration {
+    display: none;
+  }
+
+
+  /* -------------------------------------------------------
+     CLOSING
+  ------------------------------------------------------- */
+
+  .perspectives-closing {
+    margin-top: 48px;
+
+    gap: 10px;
+  }
+
+  .perspectives-closing p {
+    max-width: 230px;
+
+    font-size: 15px;
+
+    line-height: 1.35;
+
+    text-align: center;
+  }
+
+  .closing-line {
+    width: 30px;
+  }
+
+
+  /* -------------------------------------------------------
+     MOBILE HOVER
+  ------------------------------------------------------- */
+
+  .parent-card:hover,
+  .teacher-card:hover,
+  .student-card:hover,
+  .leader-card:hover {
+    transform:
+      translateY(-3px);
+  }
+}
+
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width: 420px) {
+
+  .perspectives-showcase {
+    padding: 55px 0 65px;
+  }
+
+  .perspectives-showcase-container {
+    width:
+      calc(100% - 22px);
+  }
+
+  .perspective-card {
+    padding: 21px !important;
+
+    border-radius: 18px;
+  }
+
+  .perspective-card-identity {
+    gap: 10px;
+  }
+
+  .perspective-icon {
+    width: 42px;
+    height: 42px;
+
+    flex-basis: 42px;
+  }
+
+  .perspective-card-label {
+    font-size: 10px;
+
+    letter-spacing: 1.35px;
+  }
+
+  .perspective-card-eyebrow {
+    font-size: 8.3px;
+  }
+
+
+  /* Visual */
+
+  .perspective-visual {
+    right: 14px !important;
+    top: 68px !important;
+  }
+
+  .parent-card .perspective-visual,
+  .teacher-card .perspective-visual,
+  .student-card .perspective-visual,
+  .leader-card .perspective-visual {
+    right: 14px !important;
+    top: 68px !important;
+  }
+
+  .parent-card .visual-frame {
+    width: 94px;
+    height: 122px;
+  }
+
+  .teacher-card .visual-frame {
+    width: 89px;
+    height: 116px;
+  }
+
+  .student-card .visual-frame {
+    width: 98px;
+    height: 98px;
+  }
+
+  .leader-card .visual-frame {
+    width: 108px;
+    height: 86px;
+  }
+
+
+  /* Content */
+
+  .perspective-card-content {
+    margin-top: 24px !important;
+    margin-bottom: 21px !important;
+  }
+
+  .perspective-card-title {
+    font-size:
+      clamp(
+        35px,
+        10.8vw,
+        44px
+      );
+
+    letter-spacing: -1.6px;
+  }
+
+  .perspective-card-points {
+    margin-top: 16px;
+
+    gap: 8px;
+  }
+
+  .perspective-card-points li {
+    font-size: 13px;
+
+    line-height: 1.46;
+  }
+
+
+  /* Footer */
+
+  .perspective-card-footer {
+    gap: 14px;
+
+    padding-top: 16px;
+  }
+
+  .focus-label {
+    margin-bottom: 8px;
+
+    font-size: 8px;
+
+    letter-spacing: 1.35px;
+  }
+
+  .focus-items {
+    gap: 6px;
+  }
+
+  .focus-items span {
+    padding: 6px 9px;
+
+    font-size: 9px;
+  }
+
+  .perspective-fill-button {
+    min-height: 47px;
+
+    padding: 13px 14px;
+
+    font-size: 12.5px;
+  }
+
+  .perspectives-intro-note {
+    align-items: flex-start;
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .perspectives-title,
+  .perspective-card,
+  .perspective-orbit-dot,
+  .perspective-fill-button {
+    animation: none;
+  }
+
+  .perspective-card,
+  .perspective-card *,
+  .perspective-organic-shape,
+  .visual-frame {
+    transition: none;
+  }
+}
+
+
+
+
+/* =========================================================
+   DESKTOP DECORATIVE VISUALS
+   Keep them to the upper-right — away from text
+========================================================= */
+
+.parent-card .perspective-visual {
+  right: 22px;
+  top: 82px;
+}
+
+.teacher-card .perspective-visual {
+  right: 22px;
+  top: 82px;
+}
+
+.student-card .perspective-visual {
+  right: 24px;
+  top: 82px;
+}
+
+.leader-card .perspective-visual {
+  right: 22px;
+  top: 82px;
+}

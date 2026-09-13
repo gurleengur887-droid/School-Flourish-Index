@@ -1,0 +1,36 @@
+:root {
+  /* Backgrounds */
+  --color-bg: #f8f6ef;
+  --color-bg-soft: #f1eee5;
+  --color-white: #fffdf8;
+
+  /* Primary */
+  --color-green: #4c705b;
+  --color-green-dark: #24372f;
+
+  /* Accent */
+  --color-terracotta: #bd6549;
+  --color-ochre: #cf9a32;
+  --color-blue: #487483;
+
+  /* Text */
+  --color-text: #24372f;
+  --color-text-soft: #52615b;
+  --color-text-muted: #6f7872;
+
+  /* Borders */
+  --color-border: #dcd6c9;
+  --color-border-dark: #c9c1b2;
+
+  /* Typography */
+  --font-serif: "Georgia", "Times New Roman", serif;
+  --font-sans: Arial, Helvetica, sans-serif;
+  --font-mono: "Courier New", monospace;
+
+  /* Layout */
+  --container: 1280px;
+  --page-padding: 40px;
+
+  /* Transitions */
+  --transition: 0.25s ease;
+}

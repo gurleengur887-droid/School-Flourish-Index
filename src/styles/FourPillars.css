@@ -1,0 +1,297 @@
+.four-pillars {
+  position: relative;
+  padding: 130px 6vw;
+  background: #f5f1e8;
+  overflow: hidden;
+}
+
+.four-pillars::before {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border: 1px solid rgba(39, 78, 58, 0.08);
+  border-radius: 50%;
+  top: -250px;
+  right: -180px;
+}
+
+.four-pillars::after {
+  content: "";
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  border: 1px solid rgba(39, 78, 58, 0.06);
+  border-radius: 50%;
+  bottom: -200px;
+  left: -160px;
+}
+
+.four-pillars-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1250px;
+  margin: 0 auto;
+}
+
+/* HEADER */
+
+.four-pillars-header {
+  max-width: 720px;
+  margin-bottom: 75px;
+}
+
+.four-pillars-eyebrow {
+  display: inline-block;
+  margin-bottom: 22px;
+
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: #a45f49;
+}
+
+.four-pillars-header h2 {
+  margin: 0;
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(48px, 6vw, 78px);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  color: #244936;
+}
+
+.four-pillars-header h2 em {
+  color: #a45f49;
+  font-style: italic;
+}
+
+.four-pillars-header p {
+  max-width: 570px;
+  margin-top: 28px;
+
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.75;
+  color: #5f665f;
+}
+
+
+/* GRID */
+
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-top: 1px solid rgba(36, 73, 54, 0.2);
+  border-left: 1px solid rgba(36, 73, 54, 0.2);
+}
+
+
+/* CARD */
+
+.pillar-card {
+  position: relative;
+  min-height: 330px;
+  padding: 38px 42px;
+
+  border-right: 1px solid rgba(36, 73, 54, 0.2);
+  border-bottom: 1px solid rgba(36, 73, 54, 0.2);
+
+  background: rgba(255, 255, 255, 0.18);
+
+  transition:
+    background 0.35s ease,
+    transform 0.35s ease;
+}
+
+.pillar-card:hover {
+  background: rgba(255, 255, 255, 0.5);
+  transform: translateY(-5px);
+}
+
+
+/* TOP */
+
+.pillar-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pillar-number {
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: #a45f49;
+}
+
+.pillar-symbol {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(36, 73, 54, 0.25);
+  border-radius: 50%;
+
+  font-family: Georgia, serif;
+  font-size: 18px;
+  font-style: italic;
+  color: #244936;
+
+  transition:
+    transform 0.35s ease,
+    background 0.35s ease;
+}
+
+.pillar-card:hover .pillar-symbol {
+  transform: rotate(8deg);
+  background: #e7e0d2;
+}
+
+
+/* CONTENT */
+
+.pillar-content {
+  margin-top: 60px;
+}
+
+.pillar-content h3 {
+  margin: 0;
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 32px;
+  font-weight: 400;
+  color: #244936;
+}
+
+.pillar-subtitle {
+  display: block;
+  margin-top: 8px;
+
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  color: #a45f49;
+}
+
+.pillar-content p {
+  max-width: 430px;
+  margin-top: 22px;
+
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.75;
+
+  color: #666c65;
+}
+
+
+/* BOTTOM LINE */
+
+.pillar-line {
+  position: absolute;
+  left: 42px;
+  bottom: 28px;
+
+  width: 35px;
+  height: 1px;
+
+  background: #a45f49;
+
+  transition: width 0.35s ease;
+}
+
+.pillar-card:hover .pillar-line {
+  width: 70px;
+}
+
+
+/* FINAL STATEMENT */
+
+.pillars-bottom {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+
+  margin-top: 65px;
+}
+
+.pillars-bottom-line {
+  flex: 1;
+  height: 1px;
+  background: rgba(36, 73, 54, 0.18);
+}
+
+.pillars-bottom p {
+  margin: 0;
+
+  white-space: nowrap;
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 18px;
+  font-style: italic;
+  color: #244936;
+}
+
+.pillars-bottom strong {
+  font-style: normal;
+  font-weight: 500;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+  .four-pillars {
+    padding: 90px 6vw;
+  }
+
+  .four-pillars-header {
+    margin-bottom: 50px;
+  }
+
+  .four-pillars-header h2 {
+    font-size: clamp(42px, 12vw, 60px);
+  }
+
+  .four-pillars-header p {
+    font-size: 15px;
+  }
+
+  .pillars-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pillar-card {
+    min-height: 300px;
+    padding: 30px;
+  }
+
+  .pillar-content {
+    margin-top: 45px;
+  }
+
+  .pillar-content h3 {
+    font-size: 28px;
+  }
+
+  .pillar-line {
+    left: 30px;
+  }
+
+  .pillars-bottom {
+    gap: 12px;
+  }
+
+  .pillars-bottom p {
+    font-size: 15px;
+    text-align: center;
+    white-space: normal;
+  }
+}

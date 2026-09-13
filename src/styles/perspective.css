@@ -1,0 +1,1407 @@
+/* ========================================
+   PERSPECTIVE PAGE
+======================================== */
+
+.perspective-page {
+  width: 100%;
+  min-height: 100vh;
+
+  background: var(--color-bg);
+  color: var(--color-green-dark);
+
+  overflow: hidden;
+}
+
+
+/* ========================================
+   CONTAINER
+======================================== */
+
+.perspective-container {
+  width: min(
+    var(--container),
+    calc(100% - 80px)
+  );
+
+  margin: 0 auto;
+}
+
+
+/* ========================================
+   TOP BAR
+======================================== */
+
+.perspective-topbar {
+  width: 100%;
+  padding: 25px 0 0;
+}
+
+.perspective-topbar-inner {
+  width: min(
+    var(--container),
+    calc(100% - 80px)
+  );
+
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.perspective-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+
+  padding: 0;
+
+  border: 0;
+  background: transparent;
+
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 1.5px;
+
+  color: var(--color-text-muted);
+
+  cursor: pointer;
+
+  transition: color var(--transition);
+}
+
+.perspective-back:hover {
+  color: var(--color-green-dark);
+}
+
+.perspective-progress {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 1.3px;
+
+  color: var(--color-text-muted);
+}
+
+.perspective-progress .active {
+  color: var(--color-green-dark);
+}
+
+.perspective-progress i {
+  width: 36px;
+  height: 1px;
+
+  background: var(--color-border-dark);
+}
+
+
+/* ========================================
+   HERO
+======================================== */
+
+.perspective-hero {
+  padding: 45px 0 35px;
+}
+
+.perspective-hero-grid {
+  min-height: 470px;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.05fr)
+    minmax(430px, 0.95fr);
+
+  gap: 45px;
+
+  align-items: center;
+}
+
+
+/* ========================================
+   HERO COPY
+======================================== */
+
+.perspective-hero-copy {
+  position: relative;
+  z-index: 2;
+
+  padding-bottom: 25px;
+}
+
+.perspective-label {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  margin-bottom: 28px;
+}
+
+.perspective-label > span {
+  width: 34px;
+  height: 1px;
+
+  background: var(--color-terracotta);
+}
+
+.perspective-label p {
+  margin: 0;
+
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 1.8px;
+
+  color: var(--color-text-soft);
+}
+
+.perspective-hero-copy h1 {
+  max-width: 780px;
+
+  margin: 0;
+
+  font-family: var(--font-serif);
+  font-weight: 500;
+
+  font-size: clamp(
+    58px,
+    6.3vw,
+    91px
+  );
+
+  line-height: 0.94;
+  letter-spacing: -4.2px;
+
+  color: var(--color-green-dark);
+}
+
+.perspective-hero-copy h1 em {
+  font-style: italic;
+  color: var(--color-terracotta);
+}
+
+.perspective-description {
+  max-width: 430px;
+
+  margin: 30px 0 0;
+
+  font-size: 16px;
+  line-height: 1.65;
+
+  color: var(--color-text-soft);
+}
+
+
+/* ========================================
+   ART AREA
+======================================== */
+
+.perspective-art {
+  position: relative;
+
+  min-height: 430px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* ========================================
+   BIG GREEN CIRCLE
+======================================== */
+
+.perspective-circle {
+  position: absolute;
+
+  width: 340px;
+  height: 340px;
+
+  right: 25px;
+  top: 50px;
+
+  border-radius: 50%;
+
+  background: var(--color-green-dark);
+
+  opacity: 0.96;
+}
+
+
+/* ========================================
+   BOTANICAL
+======================================== */
+
+.botanical {
+  position: absolute;
+
+  z-index: 2;
+
+  width: 180px;
+  height: 240px;
+}
+
+.botanical::before {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  bottom: 15px;
+
+  width: 1px;
+  height: 210px;
+
+  background: rgba(
+    50,
+    83,
+    65,
+    0.55
+  );
+
+  transform: rotate(-13deg);
+  transform-origin: bottom;
+}
+
+.botanical span {
+  position: absolute;
+
+  width: 47px;
+  height: 78px;
+
+  border-radius:
+    100% 0 100% 0;
+
+  background: rgba(
+    93,
+    128,
+    103,
+    0.55
+  );
+
+  transform: rotate(-38deg);
+}
+
+.botanical-one {
+  right: 205px;
+  top: 15px;
+
+  transform: rotate(-8deg);
+}
+
+.botanical-one span:nth-child(1) {
+  left: 35px;
+  top: 60px;
+}
+
+.botanical-one span:nth-child(2) {
+  left: 83px;
+  top: 17px;
+
+  transform: rotate(8deg);
+}
+
+.botanical-one span:nth-child(3) {
+  left: 2px;
+  top: 110px;
+
+  transform: rotate(-55deg);
+}
+
+.botanical-two {
+  right: 100px;
+  top: 0;
+
+  opacity: 0.3;
+
+  transform: rotate(15deg);
+}
+
+.botanical-two span:nth-child(1) {
+  left: 55px;
+  top: 35px;
+
+  transform: rotate(15deg);
+}
+
+.botanical-two span:nth-child(2) {
+  left: 7px;
+  top: 90px;
+
+  transform: rotate(-50deg);
+}
+
+
+/* ========================================
+   SCHOOL CARD
+======================================== */
+
+.perspective-school-card {
+  position: relative;
+  z-index: 5;
+
+  width: min(
+    570px,
+    90%
+  );
+
+  min-height: 128px;
+
+  padding: 25px 30px;
+
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  background: rgba(
+    255,
+    253,
+    248,
+    0.96
+  );
+
+  border: 1px solid var(--color-border-dark);
+
+  box-shadow:
+    0 18px 50px
+    rgba(
+      34,
+      55,
+      43,
+      0.08
+    );
+}
+
+.school-card-accent {
+  width: 2px;
+  height: 65px;
+
+  flex-shrink: 0;
+
+  background: var(--color-green);
+}
+
+.school-card-copy {
+  min-width: 0;
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+.school-card-copy > span {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 1.6px;
+
+  color: var(--color-text-muted);
+}
+
+.school-card-copy strong {
+  overflow: hidden;
+
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 500;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  color: var(--color-green-dark);
+}
+
+.school-card-copy small {
+  font-family: var(--font-mono);
+  font-size: 7px;
+  letter-spacing: 0.7px;
+
+  color: var(--color-text-muted);
+}
+
+.perspective-school-card > button {
+  padding: 0;
+
+  border: 0;
+  background: transparent;
+
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 1.2px;
+
+  color: var(--color-text-soft);
+
+  text-decoration: underline;
+  text-underline-offset: 4px;
+
+  cursor: pointer;
+
+  transition: color var(--transition);
+}
+
+.perspective-school-card > button:hover {
+  color: var(--color-terracotta);
+}
+
+
+/* ========================================
+   CHOICE SECTION
+======================================== */
+
+.perspective-choice {
+  padding: 20px 0 45px;
+}
+
+.choice-heading {
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 40px;
+
+  margin-bottom: 18px;
+}
+
+.choice-heading > div span {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 1.7px;
+
+  color: var(--color-text-muted);
+}
+
+.choice-heading p {
+  grid-column: 1 / -1;
+
+  text-align: center;
+
+  max-width: none;
+
+  margin: 0;
+
+  font-size: 13px;
+  line-height: 1.55;
+
+  color: var(--color-text-soft);
+}
+
+
+/* ========================================
+   SURVEY PERSPECTIVE CARDS
+======================================== */
+
+.survey-perspective-cards {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      4,
+      minmax(0, 1fr)
+    );
+
+  gap: 16px;
+
+  align-items: start;
+}
+
+
+/* ========================================
+   SURVEY PERSPECTIVE CARD
+======================================== */
+
+.survey-perspective-card {
+  position: relative;
+
+  min-height: 350px;
+
+  padding: 27px 25px 24px;
+
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  overflow: hidden;
+
+  border: 1px solid var(--color-border-dark);
+
+  background: rgba(
+    255,
+    253,
+    248,
+    0.35
+  );
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.survey-perspective-card:hover {
+  transform: translateY(-5px);
+
+  background: var(--color-white);
+
+  border-color: var(--color-green);
+}
+
+.survey-perspective-card-selected {
+  border-color: var(--color-green-dark);
+
+  background: var(--color-white);
+
+  transform: translateY(-3px);
+}
+
+
+/* ========================================
+   SELECTED CORNER
+======================================== */
+
+.survey-card-selected-mark {
+  position: absolute;
+
+  top: 0;
+  right: 0;
+
+  width: 70px;
+  height: 70px;
+
+  display: flex;
+
+  align-items: flex-start;
+  justify-content: flex-end;
+
+  padding: 12px;
+
+  box-sizing: border-box;
+
+  color: white;
+
+  background: var(--color-green);
+
+  clip-path:
+    polygon(
+      100% 0,
+      100% 100%,
+      0 0
+    );
+}
+
+
+/* ========================================
+   ICON
+======================================== */
+
+.survey-perspective-icon {
+  width: 82px;
+  height: 82px;
+
+  margin-bottom: 28px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+
+  color: var(--color-green-dark);
+
+  background: rgba(
+    72,
+    111,
+    88,
+    0.09
+  );
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
+}
+
+.survey-perspective-card:hover
+.survey-perspective-icon {
+  transform: scale(1.05);
+}
+
+
+/* ========================================
+   ROLE ICON COLORS
+======================================== */
+
+.survey-perspective-card-parent
+.survey-perspective-icon {
+  color: var(--color-green-dark);
+
+  background: rgba(
+    72,
+    111,
+    88,
+    0.1
+  );
+}
+
+.survey-perspective-card-teacher
+.survey-perspective-icon {
+  color: var(--color-terracotta);
+
+  background: rgba(
+    195,
+    103,
+    70,
+    0.11
+  );
+}
+
+.survey-perspective-card-student
+.survey-perspective-icon {
+  color: #427a7b;
+
+  background: rgba(
+    88,
+    153,
+    153,
+    0.12
+  );
+}
+
+.survey-perspective-card-leader
+.survey-perspective-icon {
+  color: #765a71;
+
+  background: rgba(
+    156,
+    111,
+    146,
+    0.12
+  );
+}
+
+
+/* ========================================
+   NUMBER
+======================================== */
+
+.survey-perspective-card-number {
+  margin-bottom: 7px;
+
+  font-family: var(--font-serif);
+  font-size: 42px;
+  line-height: 1;
+
+  color: var(--color-terracotta);
+}
+
+.survey-perspective-card-parent
+.survey-perspective-card-number,
+.survey-perspective-card-student
+.survey-perspective-card-number {
+  color: var(--color-green-dark);
+}
+
+
+/* ========================================
+   CONTENT
+======================================== */
+
+.survey-perspective-card-content {
+  position: relative;
+
+  z-index: 1;
+}
+
+.survey-perspective-card-content h2 {
+  margin: 0;
+
+  font-family: var(--font-serif);
+  font-size: 31px;
+  font-weight: 500;
+  line-height: 1;
+
+  letter-spacing: -1.2px;
+
+  color: var(--color-green-dark);
+
+  transition: color var(--transition);
+}
+
+.survey-perspective-card:hover
+.survey-perspective-card-content h2,
+.survey-perspective-card-selected
+.survey-perspective-card-content h2 {
+  color: var(--color-terracotta);
+}
+
+.survey-perspective-card-content p {
+  max-width: 230px;
+
+  margin: 13px 0 0;
+
+  font-size: 11px;
+  line-height: 1.6;
+
+  color: var(--color-text-soft);
+}
+
+
+/* ========================================
+   CARD ARROW
+======================================== */
+
+.survey-perspective-card-arrow {
+  position: absolute;
+
+  right: 23px;
+  bottom: 22px;
+
+  width: 40px;
+  height: 40px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid var(--color-border-dark);
+
+  border-radius: 50%;
+
+  color: var(--color-text-soft);
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.survey-perspective-card:hover
+.survey-perspective-card-arrow {
+  transform: translateX(5px);
+
+  border-color: var(--color-green);
+
+  color: var(--color-green);
+}
+
+.survey-perspective-card-selected
+.survey-perspective-card-arrow {
+  border-color: var(--color-green);
+
+  background: var(--color-green);
+
+  color: white;
+}
+
+
+/* ========================================
+   BOTTOM ACTION
+======================================== */
+
+.perspective-action-section {
+  border-top: 1px solid var(--color-border);
+
+  background: var(--color-bg);
+}
+
+.perspective-action-inner {
+  width: 100%;
+
+  min-height: 82px;
+
+  display: flex;
+
+  align-items: stretch;
+  justify-content: space-between;
+
+  border-top: 0;
+}
+
+.perspective-action-note {
+  padding-left: max(
+    40px,
+    calc(
+      (100vw - var(--container))
+      / 2
+    )
+  );
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.5px;
+
+  color: var(--color-text-muted);
+}
+
+.action-dot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: var(--color-border-dark);
+}
+
+.action-dot-active {
+  background: var(--color-green);
+}
+
+.perspective-main-button {
+  width: min(
+    390px,
+    35vw
+  );
+
+  min-height: 82px;
+
+  padding: 0 34px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  border: 0;
+
+  background: rgba(
+    72,
+    111,
+    88,
+    0.1
+  );
+
+  color: var(--color-text-muted);
+
+  font-size: 15px;
+
+  cursor: not-allowed;
+
+  transition:
+    background var(--transition),
+    transform var(--transition);
+}
+
+.perspective-main-button-active {
+  background: var(--color-green);
+
+  color: white;
+
+  cursor: pointer;
+}
+
+.perspective-main-button-active:hover {
+  background: var(--color-green-dark);
+}
+
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 1100px) {
+
+  .perspective-hero-grid {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(360px, 0.8fr);
+
+    gap: 30px;
+  }
+
+  .perspective-hero-copy h1 {
+    font-size:
+      clamp(
+        55px,
+        7vw,
+        78px
+      );
+  }
+
+  .perspective-circle {
+    width: 290px;
+    height: 290px;
+  }
+
+  .survey-perspective-cards {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+  .survey-perspective-card {
+    min-height: 320px;
+  }
+
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 700px) {
+
+  .perspective-container,
+  .perspective-topbar-inner {
+    width: calc(100% - 32px);
+  }
+
+  .perspective-topbar {
+    padding-top: 20px;
+  }
+
+  .perspective-hero {
+    padding: 40px 0 20px;
+  }
+
+  .perspective-hero-grid {
+    min-height: auto;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 15px;
+  }
+
+  .perspective-hero-copy {
+    width: 100%;
+
+    padding-bottom: 0;
+  }
+
+  .perspective-label {
+    margin-bottom: 22px;
+  }
+
+  .perspective-hero-copy h1 {
+    font-size:
+      clamp(
+        48px,
+        13vw,
+        68px
+      );
+
+    line-height: 0.95;
+
+    letter-spacing: -2.8px;
+  }
+
+  .perspective-description {
+    max-width: 340px;
+
+    margin-top: 24px;
+
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+
+  /* ART */
+
+  .perspective-art {
+    width: 100%;
+
+    min-height: 280px;
+
+    margin-top: 5px;
+  }
+
+  .perspective-circle {
+    width: 220px;
+    height: 220px;
+
+    right: 8%;
+    top: 25px;
+  }
+
+  .botanical {
+    transform: scale(0.7);
+  }
+
+  .botanical-one {
+    right: 42%;
+    top: -10px;
+  }
+
+  .botanical-two {
+    right: 12%;
+    top: -10px;
+  }
+
+  .perspective-school-card {
+    width: calc(100% - 15px);
+
+    min-height: 105px;
+
+    padding: 18px 17px;
+
+    gap: 12px;
+  }
+
+  .school-card-accent {
+    height: 50px;
+  }
+
+  .school-card-copy strong {
+    font-size: 16px;
+  }
+
+  .school-card-copy small {
+    font-size: 6.5px;
+  }
+
+  .perspective-school-card > button {
+    font-size: 7px;
+  }
+
+
+  /* CHOICE */
+
+  .perspective-choice {
+    padding: 20px 0 35px;
+  }
+
+  .choice-heading {
+    display: block;
+
+    margin-bottom: 16px;
+  }
+
+  .choice-heading p {
+    margin-top: 10px;
+
+    max-width: 300px;
+
+    font-size: 12px;
+  }
+
+
+  /* CARDS */
+
+  .survey-perspective-cards {
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+  }
+
+  .survey-perspective-card {
+    min-height: 205px;
+
+    padding: 20px;
+
+    display: grid;
+
+    grid-template-columns:
+      68px minmax(0, 1fr);
+
+    grid-template-rows:
+      auto auto;
+
+    gap: 10px 15px;
+  }
+
+  .survey-perspective-icon {
+    width: 62px;
+    height: 62px;
+
+    margin: 0;
+
+    grid-row: 1 / 3;
+  }
+
+  .survey-perspective-card-number {
+    margin: 0;
+
+    align-self: end;
+
+    font-size: 30px;
+  }
+
+  .survey-perspective-card-content {
+    align-self: start;
+  }
+
+  .survey-perspective-card-content h2 {
+    font-size: 28px;
+  }
+
+  .survey-perspective-card-content p {
+    max-width: 250px;
+
+    margin-top: 7px;
+
+    font-size: 10px;
+  }
+
+  .survey-perspective-card-arrow {
+    right: 18px;
+    bottom: 17px;
+
+    width: 35px;
+    height: 35px;
+  }
+
+  .survey-card-selected-mark {
+    width: 58px;
+    height: 58px;
+
+    padding: 9px;
+  }
+
+
+  /* BOTTOM */
+
+  .perspective-action-inner {
+    min-height: 70px;
+  }
+
+  .perspective-action-note {
+    padding-left: 16px;
+
+    max-width: 145px;
+
+    font-size: 7px;
+    line-height: 1.5;
+  }
+
+  .perspective-main-button {
+    width: 48%;
+
+    min-height: 70px;
+
+    padding: 0 15px;
+
+    font-size: 11px;
+  }
+
+}
+
+
+/* ========================================
+   SMALL PHONES
+======================================== */
+
+@media (max-width: 380px) {
+
+  .perspective-container,
+  .perspective-topbar-inner {
+    width: calc(100% - 24px);
+  }
+
+  .perspective-hero-copy h1 {
+    font-size: 45px;
+  }
+
+  .perspective-art {
+    min-height: 250px;
+  }
+
+  .perspective-circle {
+    width: 195px;
+    height: 195px;
+  }
+
+  .perspective-school-card {
+    width: 100%;
+  }
+
+  .survey-perspective-card {
+    min-height: 190px;
+
+    grid-template-columns:
+      58px minmax(0, 1fr);
+
+    padding: 17px;
+  }
+
+  .survey-perspective-icon {
+    width: 54px;
+    height: 54px;
+  }
+
+  .survey-perspective-card-content h2 {
+    font-size: 26px;
+  }
+
+  .perspective-main-button {
+    width: 52%;
+  }
+
+}
+
+
+/* ========================================
+   PRIVACY NOTE
+======================================== */
+
+.perspective-privacy {
+  padding: 28px 0 10px;
+
+  background: #f5f1e8;
+}
+
+.privacy-note {
+  display: flex;
+  align-items: center;
+
+  gap: 18px;
+
+  max-width: 760px;
+
+  margin: 0 auto;
+
+  padding: 20px 24px;
+
+  border: 1px solid
+    rgba(
+      36,
+      73,
+      54,
+      0.14
+    );
+
+  background: rgba(
+    255,
+    255,
+    255,
+    0.32
+  );
+}
+
+.privacy-icon {
+  position: relative;
+
+  width: 38px;
+  height: 38px;
+
+  flex: 0 0 38px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid
+    rgba(
+      36,
+      73,
+      54,
+      0.22
+    );
+
+  border-radius: 50%;
+}
+
+
+/* Minimal lock */
+
+.privacy-icon::before {
+  content: "";
+
+  position: absolute;
+
+  top: 11px;
+
+  width: 14px;
+  height: 12px;
+
+  border: 1.3px solid #244936;
+
+  border-radius: 2px;
+}
+
+.privacy-icon::after {
+  content: "";
+
+  position: absolute;
+
+  top: 7px;
+
+  width: 8px;
+  height: 9px;
+
+  border: 1.3px solid #244936;
+
+  border-bottom: 0;
+
+  border-radius:
+    8px 8px 0 0;
+}
+
+.privacy-copy {
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+.privacy-copy strong {
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 16px;
+  font-weight: 400;
+
+  color: #244936;
+}
+
+.privacy-copy p {
+  margin: 0;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 12px;
+  line-height: 1.6;
+
+  color: #6b7069;
+}
+
+
+/* ========================================
+   PRIVACY MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+
+  .perspective-privacy {
+    padding: 22px 0 5px;
+  }
+
+  .privacy-note {
+    gap: 14px;
+
+    padding: 17px 18px;
+  }
+
+  .privacy-icon {
+    width: 34px;
+    height: 34px;
+
+    flex-basis: 34px;
+  }
+
+  .privacy-copy strong {
+    font-size: 15px;
+  }
+
+  .privacy-copy p {
+    font-size: 11px;
+  }
+
+}

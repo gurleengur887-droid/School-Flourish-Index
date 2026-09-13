@@ -1,0 +1,2221 @@
+/* =========================================================
+   SFI — SURVEYS PAGE
+   Premium Editorial School Flourish UI
+========================================================= */
+
+.surveys-page {
+  position: relative;
+
+  width: 100%;
+  min-height: 100vh;
+
+  overflow: hidden;
+
+  background: var(--color-bg);
+  color: var(--color-green-dark);
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.survey-hero {
+  position: relative;
+
+  min-height: calc(100vh - 101px);
+
+  display: flex;
+  align-items: center;
+
+  overflow: hidden;
+
+  background: var(--color-bg);
+
+  border-bottom: 1px solid var(--color-border);
+}
+
+
+.survey-hero-container {
+  position: relative;
+  z-index: 5;
+
+  width: min(
+    var(--container),
+    calc(100% - 120px)
+  );
+
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.08fr)
+    minmax(500px, 0.92fr);
+
+  gap: 48px;
+
+  align-items: center;
+}
+
+
+/* =========================================================
+   LEFT HERO
+========================================================= */
+
+.survey-hero-left {
+  position: relative;
+
+  min-height: 590px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  box-sizing: border-box;
+
+  padding-top: 38px;
+
+  animation:
+    heroReveal
+    0.85s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    both;
+}
+
+
+@keyframes heroReveal {
+
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+
+/* =========================================================
+   SECTION LABEL
+========================================================= */
+
+.survey-section-label {
+  position: absolute;
+
+  top: 32px;
+  left: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 13px;
+
+  font-family: var(--font-mono);
+
+  font-size: 12px;
+
+  letter-spacing: 2.7px;
+
+  color: var(--color-text-soft);
+}
+
+
+.survey-label-line {
+  width: 47px;
+  height: 1px;
+
+  background: var(--color-terracotta);
+}
+
+
+/* =========================================================
+   HERO TITLE
+========================================================= */
+
+.survey-hero-title {
+  max-width: 700px;
+
+  margin: 0;
+
+  font-family: var(--font-serif);
+
+  font-weight: 500;
+
+  font-size:
+    clamp(62px, 6vw, 86px);
+
+  line-height: 0.94;
+
+  letter-spacing: -4px;
+
+  color: var(--color-green-dark);
+}
+
+
+.survey-hero-title span {
+  display: block;
+
+  color: var(--color-terracotta);
+
+  font-style: italic;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.survey-hero-description {
+  max-width: 535px;
+
+  margin: 33px 0 0;
+
+  font-family: var(--font-sans);
+
+  font-size: 17px;
+
+  line-height: 1.62;
+
+  color: var(--color-text-soft);
+}
+
+
+/* =========================================================
+   HERO META
+========================================================= */
+
+.survey-hero-note {
+  margin-top: 36px;
+
+  display: flex;
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 15px;
+
+  font-family: var(--font-mono);
+
+  font-size: 10px;
+
+  letter-spacing: 0.9px;
+
+  color: var(--color-text-muted);
+}
+
+
+.survey-hero-dot {
+  width: 9px;
+  height: 9px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: var(--color-green);
+}
+
+
+/* =========================================================
+   RIGHT SCHOOL SIDE
+========================================================= */
+
+.survey-school-side {
+  position: relative;
+
+  min-height: 640px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transform: translateX(8px);
+}
+
+
+/* =========================================================
+   BOTANICAL
+========================================================= */
+
+.school-botanical {
+  position: absolute;
+
+  z-index: 1;
+
+  left: -53px;
+  top: 80px;
+
+  width: 170px;
+  height: 390px;
+
+  pointer-events: none;
+
+  opacity: 0.72;
+}
+
+
+.botanical-stem {
+  position: absolute;
+
+  left: 92px;
+  top: 28px;
+
+  width: 1px;
+  height: 320px;
+
+  background:
+    rgba(75, 102, 82, 0.27);
+
+  transform: rotate(13deg);
+}
+
+
+.botanical-leaf {
+  position: absolute;
+
+  width: 82px;
+  height: 42px;
+
+  border-radius:
+    100% 0 100% 0;
+
+  background:
+    rgba(196, 205, 185, 0.36);
+
+  border:
+    1px solid
+    rgba(79, 103, 84, 0.10);
+}
+
+
+.botanical-leaf-one {
+  left: 48px;
+  top: 35px;
+
+  transform: rotate(72deg);
+}
+
+
+.botanical-leaf-two {
+  left: -3px;
+  top: 135px;
+
+  transform: rotate(22deg);
+}
+
+
+.botanical-leaf-three {
+  left: 62px;
+  top: 190px;
+
+  width: 67px;
+
+  transform: rotate(-31deg);
+}
+
+
+/* =========================================================
+   BACK CARD
+========================================================= */
+
+.school-card-back {
+  position: absolute;
+
+  z-index: 2;
+
+  width: 500px;
+  height: 600px;
+
+  border-radius: 16px;
+
+  background:
+    #d9e0d5;
+
+  transform:
+    translate(28px, 20px);
+
+  box-shadow:
+    0 25px 50px
+    rgba(37, 62, 50, 0.08);
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   CARD ANIMATION WRAPPER
+========================================================= */
+
+.school-card-flip {
+  position: relative;
+
+  z-index: 10;
+
+  width: 500px;
+  min-height: 600px;
+
+  perspective: 1400px;
+
+  transform-style: preserve-3d;
+
+  animation:
+    cardPageEnter
+    0.85s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    both;
+}
+
+
+@keyframes cardPageEnter {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(24px)
+      scale(0.975)
+      rotateY(-4deg);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1)
+      rotateY(0);
+  }
+
+}
+
+
+/* =========================================================
+   ADD SCHOOL FLIP
+========================================================= */
+
+.school-card-flip.is-add-school {
+  animation:
+    cardFlipToAdd
+    0.62s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    both;
+}
+
+
+@keyframes cardFlipToAdd {
+
+  from {
+    opacity: 0;
+
+    transform:
+      perspective(1400px)
+      rotateY(-88deg)
+      translateX(-20px)
+      scale(0.97);
+  }
+
+  55% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      perspective(1400px)
+      rotateY(0deg)
+      translateX(0)
+      scale(1);
+  }
+
+}
+
+
+/* =========================================================
+   RETURN FLIP
+========================================================= */
+
+.school-card-flip.is-school-selection {
+  animation:
+    cardFlipBack
+    0.62s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    both;
+}
+
+
+@keyframes cardFlipBack {
+
+  from {
+    opacity: 0;
+
+    transform:
+      perspective(1400px)
+      rotateY(88deg)
+      translateX(20px)
+      scale(0.97);
+  }
+
+  55% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      perspective(1400px)
+      rotateY(0deg)
+      translateX(0)
+      scale(1);
+  }
+
+}
+
+
+/* =========================================================
+   MAIN DARK CARD
+========================================================= */
+
+.school-selection-panel {
+  position: relative;
+
+  width: 100%;
+  min-height: 600px;
+
+  box-sizing: border-box;
+
+  padding:
+    40px 47px 34px;
+
+  /*
+     IMPORTANT:
+     Must remain visible so the dropdown directory
+     can extend outside the card.
+  */
+  overflow: visible;
+
+  border:
+    1px solid
+    rgba(215, 224, 209, 0.17);
+
+  border-radius: 16px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #183f32 0%,
+      #12382c 48%,
+      #0c3025 100%
+    );
+
+  color: #f7f2e9;
+
+  box-shadow:
+    0 35px 70px
+      rgba(28, 53, 43, 0.17),
+    0 10px 22px
+      rgba(28, 53, 43, 0.08);
+
+  transform-style: preserve-3d;
+}
+
+
+/* soft interior glow */
+
+.school-selection-panel::before {
+  content: "";
+
+  position: absolute;
+
+  width: 270px;
+  height: 270px;
+
+  right: -130px;
+  bottom: -140px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(121, 151, 130, 0.08);
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   TOP
+========================================================= */
+
+.school-panel-top {
+  position: relative;
+
+  z-index: 5;
+
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+
+  font-family: var(--font-mono);
+
+  font-size: 10px;
+
+  letter-spacing: 2.2px;
+
+  color:
+    rgba(246, 242, 232, 0.66);
+}
+
+
+.school-panel-mini-line {
+  width: 39px;
+  height: 1px;
+
+  background:
+    rgba(246, 242, 232, 0.40);
+}
+
+
+/* =========================================================
+   CARD MARK
+========================================================= */
+
+.school-card-mark {
+  position: absolute;
+
+  z-index: 3;
+
+  top: 75px;
+  right: 36px;
+
+  width: 68px;
+  height: 68px;
+
+  border:
+    1px solid
+    rgba(236, 238, 224, 0.18);
+
+  border-radius: 50%;
+}
+
+
+.school-card-mark::before {
+  content: "";
+
+  position: absolute;
+
+  width: 29px;
+  height: 47px;
+
+  left: 24px;
+  top: 13px;
+
+  border-radius:
+    100% 0 100% 0;
+
+  background:
+    rgba(197, 211, 194, 0.14);
+
+  transform:
+    rotate(29deg);
+}
+
+
+.school-card-mark span {
+  position: absolute;
+
+  left: 35px;
+  top: 15px;
+
+  width: 1px;
+  height: 45px;
+
+  background:
+    rgba(236, 238, 224, 0.15);
+
+  transform:
+    rotate(20deg);
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.school-panel-header {
+  position: relative;
+
+  z-index: 5;
+
+  margin-top: 38px;
+
+  max-width: 390px;
+}
+
+
+.school-panel-header h2 {
+  margin: 0;
+
+  font-family: var(--font-serif);
+
+  font-weight: 500;
+
+  font-size:
+    clamp(49px, 4.1vw, 62px);
+
+  line-height: 0.91;
+
+  letter-spacing: -3px;
+
+  color: #f6f1e8;
+}
+
+
+.school-panel-header h2 em {
+  font-style: italic;
+
+  color: #cf7959;
+}
+
+
+.school-panel-header p {
+  max-width: 370px;
+
+  margin: 21px 0 0;
+
+  font-family: var(--font-sans);
+
+  font-size: 14px;
+
+  line-height: 1.55;
+
+  color:
+    rgba(246, 241, 232, 0.68);
+}
+
+
+/* =========================================================
+   DROPDOWN WRAPPER
+========================================================= */
+
+.school-dropdown-wrapper {
+  position: relative;
+
+  z-index: 50;
+
+  margin-top: 27px;
+}
+
+
+/* =========================================================
+   DROPDOWN BUTTON
+========================================================= */
+
+.school-dropdown {
+  position: relative;
+
+  z-index: 5;
+
+  width: 100%;
+
+  min-height: 65px;
+
+  padding:
+    11px 16px;
+
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border:
+    1px solid
+    rgba(237, 239, 227, 0.30);
+
+  border-radius: 7px;
+
+  background:
+    rgba(255, 255, 255, 0.025);
+
+  color: #f6f1e8;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.25s ease,
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+
+.school-dropdown:hover,
+.school-dropdown-open {
+  border-color:
+    rgba(237, 239, 227, 0.62);
+
+  background:
+    rgba(255, 255, 255, 0.055);
+
+  transform:
+    translateY(-1px);
+}
+
+
+.school-dropdown-copy {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+
+.school-dropdown-copy span {
+  font-family: var(--font-mono);
+
+  font-size: 7px;
+
+  letter-spacing: 1.5px;
+
+  color:
+    rgba(246, 241, 232, 0.46);
+}
+
+
+.school-dropdown-copy strong {
+  display: block;
+
+  overflow: hidden;
+
+  font-family: var(--font-serif);
+
+  font-size: 20px;
+
+  font-weight: 500;
+
+  line-height: 1.15;
+
+  white-space: nowrap;
+
+  text-overflow: ellipsis;
+
+  color: #f6f1e8;
+}
+
+
+.school-dropdown-copy small {
+  font-family: var(--font-mono);
+
+  font-size: 6.5px;
+
+  letter-spacing: 0.6px;
+
+  color:
+    rgba(246, 241, 232, 0.43);
+}
+
+
+/* =========================================================
+   CHEVRON
+========================================================= */
+
+.school-chevron {
+  flex-shrink: 0;
+
+  margin-left: 15px;
+
+  color: #f6f1e8;
+
+  transition:
+    transform 0.25s ease;
+}
+
+
+.school-dropdown-open .school-chevron {
+  transform:
+    rotate(180deg);
+}
+
+
+/* =========================================================
+   SCHOOL DIRECTORY
+========================================================= */
+
+.school-dropdown-menu {
+  position: absolute;
+
+  z-index: 100;
+
+  /*
+     Anchor the directory directly to
+     the SELECT YOUR SCHOOL button.
+
+     The wrapper also contains the OR divider
+     and ADD SCHOOL button, so using top: 100%
+     would position the menu below the entire
+     wrapper. This keeps it attached to the
+     selector itself.
+  */
+  top: 73px;
+
+  left: 0;
+  right: 0;
+
+  overflow: hidden;
+
+  border:
+    1px solid
+    rgba(226, 232, 219, 0.28);
+
+  border-radius: 7px;
+
+  background:
+    #14392e;
+
+  box-shadow:
+    0 25px 50px
+    rgba(12, 35, 27, 0.32);
+
+  animation:
+    dropdownEnter
+    0.25s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    both;
+}
+
+
+@keyframes dropdownEnter {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(-8px)
+      scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+}
+
+
+/* =========================================================
+   DIRECTORY HEADER
+========================================================= */
+
+.school-menu-heading {
+  padding:
+    13px 16px 9px;
+
+  font-family: var(--font-mono);
+
+  font-size: 7px;
+
+  letter-spacing: 1.5px;
+
+  color:
+    rgba(246, 241, 232, 0.45);
+}
+
+
+/* =========================================================
+   SCHOOL OPTIONS
+========================================================= */
+
+.school-options {
+  max-height: 205px;
+
+  overflow-y: auto;
+
+  scrollbar-width: thin;
+
+  scrollbar-color:
+    rgba(230, 235, 224, 0.25)
+    transparent;
+}
+
+
+.school-option {
+  width: 100%;
+
+  min-height: 54px;
+
+  padding:
+    10px 16px;
+
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  border: none;
+
+  border-top:
+    1px solid
+    rgba(237, 239, 227, 0.08);
+
+  background: transparent;
+
+  color: #f6f1e8;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    padding-left 0.2s ease;
+}
+
+
+.school-option:hover {
+  background:
+    rgba(255, 255, 255, 0.055);
+
+  padding-left: 20px;
+}
+
+
+.school-option strong {
+  display: block;
+
+  overflow: hidden;
+
+  max-width: 380px;
+
+  font-family: var(--font-serif);
+
+  font-size: 15px;
+
+  font-weight: 500;
+
+  line-height: 1.15;
+
+  white-space: nowrap;
+
+  text-overflow: ellipsis;
+
+  color: #f6f1e8;
+}
+
+
+.school-option span {
+  display: block;
+
+  margin-top: 3px;
+
+  font-family: var(--font-mono);
+
+  font-size: 6px;
+
+  letter-spacing: 0.6px;
+
+  color:
+    rgba(246, 241, 232, 0.42);
+}
+
+
+.school-option svg {
+  flex-shrink: 0;
+
+  color: #c8d9c5;
+}
+
+
+.school-empty-state {
+  padding:
+    18px 16px;
+
+  font-family: var(--font-sans);
+
+  font-size: 12px;
+
+  color:
+    rgba(246, 241, 232, 0.50);
+}
+
+
+/* =========================================================
+   OR DIVIDER
+========================================================= */
+
+.school-add-divider {
+  position: relative;
+
+  z-index: 5;
+
+  margin-top: 17px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 13px;
+}
+
+
+.school-add-divider span {
+  flex: 1;
+
+  height: 1px;
+
+  background:
+    rgba(237, 239, 227, 0.16);
+}
+
+
+.school-add-divider em {
+  font-family: var(--font-mono);
+
+  font-size: 7px;
+
+  font-style: normal;
+
+  letter-spacing: 1.2px;
+
+  color:
+    rgba(246, 241, 232, 0.43);
+}
+
+
+/* =========================================================
+   ADD NEW SCHOOL
+========================================================= */
+
+.add-school-button {
+  position: relative;
+
+  z-index: 5;
+
+  width: 100%;
+
+  min-height: 54px;
+
+  margin-top: 11px;
+
+  padding:
+    9px 15px;
+
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+
+  gap: 11px;
+
+  border:
+    1px solid
+    rgba(237, 239, 227, 0.28);
+
+  border-radius: 6px;
+
+  background:
+    rgba(255, 255, 255, 0.025);
+
+  color: #f6f1e8;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+
+.add-school-button:hover {
+  background:
+    rgba(255, 255, 255, 0.065);
+
+  border-color:
+    rgba(237, 239, 227, 0.52);
+
+  transform:
+    translateY(-1px);
+}
+
+
+.add-school-plus {
+  width: 27px;
+  height: 27px;
+
+  flex-shrink: 0;
+
+  display: grid;
+  place-items: center;
+
+  border:
+    1px solid
+    rgba(237, 239, 227, 0.45);
+
+  border-radius: 50%;
+
+  color: #f6f1e8;
+
+  transition:
+    transform 0.25s ease;
+}
+
+
+.add-school-button:hover .add-school-plus {
+  transform:
+    rotate(90deg);
+}
+
+
+.add-school-copy {
+  flex: 1;
+
+  font-family: var(--font-mono);
+
+  font-size: 7px;
+
+  letter-spacing: 0.6px;
+
+  line-height: 1.25;
+
+  color:
+    rgba(246, 241, 232, 0.45);
+}
+
+
+.add-school-copy strong {
+  display: block;
+
+  margin-top: 3px;
+
+  font-family: var(--font-sans);
+
+  font-size: 12px;
+
+  font-weight: 500;
+
+  letter-spacing: 0;
+
+  color: #f6f1e8;
+}
+
+
+.add-school-button > svg {
+  flex-shrink: 0;
+
+  color: #cf7959;
+
+  transition:
+    transform 0.25s ease;
+}
+
+
+.add-school-button:hover > svg {
+  transform:
+    translateX(4px);
+}
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.school-error {
+  position: relative;
+
+  z-index: 5;
+
+  margin:
+    9px 0 0;
+
+  font-family: var(--font-sans);
+
+  font-size: 10px;
+
+  line-height: 1.5;
+
+  color: #df9a7d;
+}
+
+
+/* =========================================================
+   PANEL FOOTER
+========================================================= */
+
+.school-panel-footer {
+  position: relative;
+
+  z-index: 5;
+
+  margin-top: 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  font-family: var(--font-mono);
+
+  font-size: 6.5px;
+
+  line-height: 1.5;
+
+  letter-spacing: 0.6px;
+
+  color:
+    rgba(246, 241, 232, 0.39);
+}
+
+
+.school-confirmed {
+  display: flex;
+  align-items: center;
+
+  gap: 5px;
+
+  white-space: nowrap;
+
+  color: #c8d8c4;
+}
+
+
+/* =========================================================
+   CONTINUE
+========================================================= */
+
+.school-continue-button {
+  position: relative;
+
+  z-index: 5;
+
+  width: 100%;
+
+  height: 44px;
+
+  margin-top: 14px;
+
+  padding:
+    0 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border: none;
+
+  border-radius: 5px;
+
+  background:
+    #f4efe6;
+
+  color:
+    #14392e;
+
+  font-family: var(--font-sans);
+
+  font-size: 12px;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease;
+}
+
+
+.school-continue-button:hover {
+  background:
+    #fffaf1;
+
+  transform:
+    translateY(-2px);
+}
+
+
+.school-continue-button svg {
+  transition:
+    transform 0.25s ease;
+}
+
+
+.school-continue-button:hover svg {
+  transform:
+    translateX(4px);
+}
+
+
+/* =========================================================
+   ADD SCHOOL PANEL
+========================================================= */
+
+.add-school-panel {
+  padding:
+    38px 47px 34px;
+}
+
+
+/* =========================================================
+   BACK BUTTON
+========================================================= */
+
+.school-back {
+  position: relative;
+
+  z-index: 5;
+
+  padding: 0;
+
+  display: inline-flex;
+  align-items: center;
+
+  gap: 7px;
+
+  border: none;
+
+  background: transparent;
+
+  color:
+    rgba(246, 241, 232, 0.50);
+
+  font-family: var(--font-mono);
+
+  font-size: 14px;
+
+  letter-spacing: 1px;
+
+  cursor: pointer;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.school-back:hover {
+  color: #f6f1e8;
+
+  transform:
+    translateX(-3px);
+}
+
+
+/* =========================================================
+   ADD SCHOOL HEADING
+========================================================= */
+
+.add-school-heading {
+  position: relative;
+
+  z-index: 5;
+
+  margin-top: 31px;
+}
+
+
+.add-school-heading > span {
+  font-family: var(--font-mono);
+
+  font-size: 7px;
+
+  letter-spacing: 1.5px;
+
+  color: #cf7959;
+}
+
+
+.add-school-heading h2 {
+  margin:
+    13px 0 0;
+
+  font-family: var(--font-serif);
+
+  font-weight: 500;
+
+  font-size:
+    clamp(46px, 4vw, 59px);
+
+  line-height: 0.92;
+
+  letter-spacing: -2.7px;
+
+  color: #f6f1e8;
+}
+
+
+.add-school-heading h2 em {
+  font-style: italic;
+
+  color: #cf7959;
+}
+
+
+.add-school-heading p {
+  max-width: 330px;
+
+  margin:
+    17px 0 0;
+
+  font-family: var(--font-sans);
+
+  font-size: 12px;
+
+  line-height: 1.55;
+
+  color:
+    rgba(246, 241, 232, 0.55);
+}
+
+
+/* =========================================================
+   ADD SCHOOL FORM
+========================================================= */
+
+.add-school-form {
+  position: relative;
+
+  z-index: 5;
+
+  margin-top: 25px;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 13px;
+}
+
+
+.add-school-form label {
+  display: block;
+}
+
+
+.add-school-form label span {
+  display: block;
+
+  margin-bottom: 6px;
+
+  font-family: var(--font-mono);
+
+  font-size: 7px;
+
+  letter-spacing: 1px;
+
+  color:
+    rgba(246, 241, 232, 0.44);
+}
+
+
+.add-school-form input {
+  width: 100%;
+
+  height: 40px;
+
+  box-sizing: border-box;
+
+  padding:
+    0 11px;
+
+  border:
+    1px solid
+    rgba(237, 239, 227, 0.25);
+
+  border-radius: 4px;
+
+  outline: none;
+
+  background:
+    rgba(255, 255, 255, 0.035);
+
+  font-family: var(--font-sans);
+
+  font-size: 11px;
+
+  color: #f6f1e8;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+
+.add-school-form input::placeholder {
+  color:
+    rgba(246, 241, 232, 0.32);
+
+  opacity: 1;
+}
+
+
+.add-school-form input:focus {
+  border-color:
+    rgba(207, 121, 89, 0.72);
+
+  background:
+    rgba(255, 255, 255, 0.06);
+}
+
+
+.add-school-full {
+  grid-column:
+    1 / -1;
+}
+
+
+/* =========================================================
+   ADD SCHOOL SUBMIT
+========================================================= */
+
+.add-school-submit {
+  position: relative;
+
+  z-index: 5;
+
+  width: 100%;
+
+  min-height: 44px;
+
+  margin-top: 18px;
+
+  padding:
+    0 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border: none;
+
+  border-radius: 5px;
+
+  background:
+    #f4efe6;
+
+  color:
+    #14392e;
+
+  font-family: var(--font-sans);
+
+  font-size: 12px;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease;
+}
+
+
+.add-school-submit:hover {
+  background:
+    #fffaf1;
+
+  transform:
+    translateY(-2px);
+}
+
+
+.add-school-submit:disabled {
+  cursor: wait;
+
+  opacity: 0.7;
+
+  transform: none;
+}
+
+
+/* =========================================================
+   BOTTOM ORBIT
+========================================================= */
+
+.survey-bottom-orbit {
+  position: absolute;
+
+  z-index: 2;
+
+  left: 9%;
+  right: -4%;
+
+  bottom: -8px;
+
+  height: 120px;
+
+  border-top:
+    1px solid
+    rgba(203, 116, 83, 0.34);
+
+  border-radius:
+    50% 50% 0 0 /
+    100% 100% 0 0;
+
+  transform:
+    rotate(1deg);
+
+  pointer-events: none;
+}
+
+
+.survey-orbit-dot {
+  position: absolute;
+
+  left: 33%;
+
+  top: -5px;
+
+  width: 9px;
+  height: 9px;
+
+  border-radius: 50%;
+
+  background:
+    var(--color-terracotta);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1150px) {
+
+  .survey-hero-container {
+    width:
+      calc(100% - 70px);
+
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(450px, 0.9fr);
+
+    gap: 35px;
+  }
+
+
+  .survey-hero-title {
+    font-size:
+      clamp(55px, 6vw, 78px);
+  }
+
+
+  .school-card-flip,
+  .school-card-back {
+    width: 455px;
+  }
+
+
+  .school-card-back {
+    height: 585px;
+  }
+
+
+  .school-selection-panel {
+    min-height: 585px;
+
+    padding:
+      38px 39px 32px;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .survey-hero {
+    min-height: auto;
+
+    padding:
+      75px 0 100px;
+  }
+
+
+  .survey-hero-container {
+    width:
+      calc(100% - 55px);
+
+    grid-template-columns:
+      1fr;
+
+    gap: 60px;
+  }
+
+
+  .survey-hero-left {
+    min-height: auto;
+
+    padding-top: 45px;
+  }
+
+
+  .survey-section-label {
+    top: 0;
+  }
+
+
+  .survey-hero-title {
+    max-width: 720px;
+
+    font-size:
+      clamp(58px, 8vw, 78px);
+  }
+
+
+  .survey-school-side {
+    min-height: 620px;
+
+    transform: none;
+  }
+
+
+  .school-card-flip,
+  .school-card-back {
+    width:
+      min(500px, 90%);
+  }
+
+
+  .school-card-back {
+    height: 600px;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 760px) {
+ .school-dropdown-menu {
+    top: 71px;
+  }
+  .survey-hero {
+    padding:
+      50px 0 85px;
+  }
+
+
+  .survey-hero-container {
+    width:
+      calc(100% - 30px);
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 55px;
+  }
+
+
+  /* LEFT */
+
+  .survey-hero-left {
+    min-height: auto;
+
+    display: block;
+
+    padding-top: 43px;
+  }
+
+
+  .survey-section-label {
+    font-size: 8px;
+
+    letter-spacing: 1.8px;
+  }
+
+
+  .survey-label-line {
+    width: 30px;
+  }
+
+
+  .survey-hero-title {
+    font-size:
+      clamp(46px, 13vw, 64px);
+
+    line-height: 0.95;
+
+    letter-spacing: -2.5px;
+  }
+
+
+  .survey-hero-description {
+    max-width: 100%;
+
+    margin-top: 26px;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+  }
+
+
+  .survey-hero-note {
+    margin-top: 27px;
+
+    gap: 10px;
+
+    font-size: 7px;
+
+    line-height: 1.7;
+  }
+
+
+  /* CARD */
+
+  .survey-school-side {
+    width: 100%;
+
+    min-height: 575px;
+  }
+
+
+  .school-card-flip {
+    width:
+      calc(100% - 12px);
+
+    min-height: 565px;
+  }
+
+
+  .school-card-back {
+    width:
+      calc(100% - 12px);
+
+    height: 565px;
+
+    transform:
+      translate(16px, 15px);
+  }
+
+
+  .school-selection-panel {
+    min-height: 565px;
+
+    padding:
+      30px 23px 26px;
+
+    border-radius: 13px;
+  }
+
+
+  .school-botanical {
+    left: -34px;
+
+    top: 55px;
+
+    transform:
+      scale(0.75);
+
+    transform-origin:
+      left top;
+  }
+
+
+  .school-card-mark {
+    top: 60px;
+    right: 21px;
+
+    width: 56px;
+    height: 56px;
+  }
+
+
+  .school-card-mark::before {
+    width: 24px;
+    height: 38px;
+
+    left: 19px;
+    top: 10px;
+  }
+
+
+  .school-card-mark span {
+    left: 28px;
+
+    height: 36px;
+  }
+
+
+  .school-panel-header {
+    margin-top: 35px;
+
+    padding-right: 25px;
+  }
+
+
+  .school-panel-header h2 {
+    font-size:
+      clamp(39px, 11vw, 52px);
+
+    letter-spacing:
+      -2.2px;
+  }
+
+
+  .school-panel-header p {
+    margin-top: 17px;
+
+    font-size: 12px;
+  }
+
+
+  .school-dropdown-wrapper {
+    margin-top: 25px;
+  }
+
+
+  .school-dropdown {
+    min-height: 63px;
+  }
+
+
+  .school-dropdown-copy strong {
+    font-size: 18px;
+  }
+
+
+  .school-dropdown-copy small {
+    font-size: 6px;
+  }
+
+
+  .school-options {
+    max-height: 210px;
+  }
+
+
+  .school-option {
+    min-height: 52px;
+
+    padding:
+      10px 13px;
+  }
+
+
+  .school-option strong {
+    max-width:
+      calc(100vw - 95px);
+
+    font-size: 14px;
+  }
+
+
+  .school-option span {
+    font-size: 5.8px;
+  }
+
+
+  .school-menu-heading {
+    padding-left: 13px;
+  }
+
+
+  .school-add-divider {
+    margin-top: 15px;
+  }
+
+
+  .add-school-button {
+    min-height: 52px;
+
+    padding:
+      8px 13px;
+  }
+
+
+  .school-panel-footer {
+    display: block;
+
+    margin-top: 13px;
+
+    line-height: 1.6;
+  }
+
+
+  .school-confirmed {
+    margin-top: 6px;
+  }
+
+
+  /* ADD SCHOOL */
+
+  .add-school-panel {
+    padding:
+      29px 23px 26px;
+  }
+
+
+  .add-school-heading {
+    margin-top: 28px;
+  }
+
+
+  .add-school-heading h2 {
+    font-size:
+      40px;
+
+    letter-spacing:
+      -2px;
+  }
+
+
+  .add-school-heading p {
+    font-size:
+      11px;
+  }
+
+
+  .add-school-form {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    margin-top: 23px;
+  }
+
+
+  .add-school-full {
+    width: 100%;
+  }
+
+
+  .add-school-submit {
+    margin-top:
+      16px;
+  }
+
+
+  /* ORBIT */
+
+  .survey-bottom-orbit {
+    left: -20%;
+
+    right: -20%;
+
+    bottom: 12px;
+
+    height: 75px;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width: 400px) {
+ .school-dropdown-menu {
+    top: 71px;
+  }
+  .survey-hero-container {
+    width:
+      calc(100% - 22px);
+  }
+
+
+  .survey-hero-title {
+    font-size:
+      44px;
+
+    letter-spacing:
+      -2px;
+  }
+
+
+  .survey-hero-description {
+    font-size:
+      14px;
+  }
+
+
+  .school-card-flip {
+    width:
+      calc(100% - 8px);
+  }
+
+
+  .school-card-back {
+    width:
+      calc(100% - 8px);
+  }
+
+
+  .school-selection-panel {
+    padding:
+      26px 19px 23px;
+  }
+
+
+  .school-panel-header h2 {
+    font-size:
+      37px;
+  }
+
+
+  .school-dropdown-copy strong {
+    font-size:
+      17px;
+  }
+
+
+  .add-school-panel {
+    padding:
+      26px 19px 23px;
+  }
+
+
+  .add-school-heading h2 {
+    font-size:
+      36px;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .survey-hero-left,
+  .school-card-flip,
+  .school-dropdown-menu {
+    animation: none;
+  }
+
+
+  .school-dropdown,
+  .school-continue-button,
+  .add-school-submit,
+  .add-school-button,
+  .school-option,
+  .school-back {
+    transition: none;
+  }
+
+}

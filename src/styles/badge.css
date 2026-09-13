@@ -1,0 +1,357 @@
+.badge-page {
+  min-height: 100vh;
+  padding: 20px 24px 80px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: #f7faf9;
+}
+
+.badge-container {
+  width: 100%;
+  max-width: 900px;
+}
+
+/* =========================
+   INTRO
+========================= */
+
+.badge-intro {
+  max-width: 560px;
+  margin: 70px auto;
+  text-align: center;
+}
+
+.badge-eyebrow {
+  display: inline-block;
+  margin-bottom: 16px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  color: #17606b;
+}
+
+.badge-intro h1,
+.badge-heading h1 {
+  margin: 0;
+  font-size: clamp(36px, 6vw, 60px);
+  line-height: 1.05;
+  color: #123f46;
+  font-weight: 700;
+}
+
+.badge-intro p,
+.badge-heading p {
+  max-width: 560px;
+  margin: 20px auto 0;
+  color: #647579;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.badge-form {
+  margin-top: 38px;
+  text-align: left;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 15px 45px rgba(18, 63, 70, 0.08);
+}
+
+.badge-form label {
+  display: block;
+  margin-bottom: 9px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #29494f;
+}
+
+.badge-form input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 15px 16px;
+  border: 1px solid #d7e2e3;
+  border-radius: 12px;
+  outline: none;
+  font-size: 15px;
+  color: #173f45;
+  background: #fbfdfd;
+  transition: 0.2s ease;
+}
+
+.badge-form input:focus {
+  border-color: #17b9c5;
+  box-shadow: 0 0 0 3px rgba(23, 185, 197, 0.1);
+}
+
+.badge-form button {
+  width: 100%;
+  margin-top: 15px;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 12px;
+  background: #17b9c5;
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.badge-form button:hover {
+  transform: translateY(-2px);
+}
+
+.badge-form button:disabled {
+  opacity: 0.65;
+  cursor: wait;
+  transform: none;
+}
+
+/* =========================
+   ERROR
+========================= */
+
+.badge-error {
+  margin-top: 18px;
+  padding: 13px 16px;
+  border-radius: 10px;
+  background: #fff1f1;
+  border: 1px solid #ffd5d5;
+  color: #b42318;
+  font-size: 14px;
+}
+
+/* =========================
+   RESULT
+========================= */
+
+.badge-result {
+  text-align: center;
+}
+
+.badge-heading {
+  margin: 30px auto 35px;
+}
+
+.badge-heading p {
+  margin-top: 14px;
+}
+
+/* =========================
+   BADGE PREVIEW
+========================= */
+
+.badge-preview-wrapper {
+  width: min(100%, 540px);
+  margin: 0 auto;
+  padding: 16px;
+  background: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(18, 63, 70, 0.12);
+}
+
+.badge-preview {
+  position: relative;
+  width: 100%;
+  line-height: 0;
+}
+
+.badge-preview img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.badge-name {
+  position: absolute;
+
+  /*
+    This places the name in the blank
+    white section below the blue ribbon.
+  */
+  left: 50%;
+  top: 50.4%;
+
+  transform: translate(-50%, -50%);
+
+  width: 78%;
+
+  color: #111111;
+  font-family: Arial, sans-serif;
+  font-size: clamp(17px, 4vw, 30px);
+  font-weight: 700;
+  line-height: 1.15;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.badge-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+
+.download-badge-btn,
+.back-badge-btn {
+  border-radius: 12px;
+  padding: 14px 24px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.download-badge-btn {
+  border: none;
+  background: #123f46;
+  color: white;
+}
+
+.download-badge-btn:hover {
+  transform: translateY(-2px);
+}
+
+.back-badge-btn {
+  background: transparent;
+  border: 1px solid #cbd9da;
+  color: #29494f;
+}
+
+.back-badge-btn:hover {
+  border-color: #123f46;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+  .badge-page {
+    padding: 100px 16px 50px;
+  }
+
+  .badge-intro {
+    margin: 35px auto;
+  }
+
+  .badge-form {
+    padding: 22px;
+  }
+
+  .badge-preview-wrapper {
+    padding: 8px;
+    border-radius: 16px;
+  }
+
+  .badge-name {
+    font-size: clamp(14px, 4vw, 22px);
+  }
+
+  .badge-actions {
+    flex-direction: column;
+  }
+
+  .download-badge-btn,
+  .back-badge-btn {
+    width: 100%;
+  }
+}
+/* =========================
+   SOCIAL / FLAUNT BADGE
+========================= */
+
+.badge-social {
+  max-width: 600px;
+  margin: 55px auto 20px;
+  padding: 35px 30px;
+  text-align: center;
+  border-top: 1px solid #dce7e6;
+}
+
+.badge-social-eyebrow {
+  display: inline-block;
+  margin-bottom: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  color: #17606b;
+}
+
+.badge-social h2 {
+  margin: 0;
+  color: #123f46;
+  font-size: clamp(24px, 4vw, 32px);
+  line-height: 1.2;
+}
+
+.badge-social p {
+  max-width: 500px;
+  margin: 12px auto 0;
+  color: #647579;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.badge-social-links {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.badge-social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+  padding: 12px 20px;
+  border: 1px solid #cbd9da;
+  border-radius: 10px;
+  color: #123f46;
+  background: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+  transition: 0.25s ease;
+}
+
+.badge-social-link:hover {
+  transform: translateY(-2px);
+  border-color: #123f46;
+  background: #f5faf9;
+}
+
+.badge-social .badge-tag-text {
+  margin-top: 18px;
+  font-size: 13px;
+  color: #829093;
+}
+
+@media (max-width: 600px) {
+  .badge-social {
+    margin-top: 45px;
+    padding: 30px 18px;
+  }
+
+  .badge-social-links {
+    flex-direction: column;
+  }
+
+  .badge-social-link {
+    width: 100%;
+  }
+}
