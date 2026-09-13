@@ -23,49 +23,49 @@ function AdminSchoolDetails() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    async function loadSchoolDetails() {
+      setLoading(true);
+
+      const [schoolResult, responsesResult] =
+        await Promise.all([
+          supabase
+            .from("schools")
+            .select("id, name, city, state, country")
+            .eq("id", schoolId)
+            .single(),
+
+          supabase
+            .from("survey_responses")
+            .select(
+              "id, role, submitted_at, response_data"
+            )
+            .eq("school_id", schoolId)
+            .order("submitted_at", {
+              ascending: false,
+            }),
+        ]);
+
+      if (schoolResult.error) {
+        console.error(
+          "Error loading school:",
+          schoolResult.error
+        );
+      }
+
+      if (responsesResult.error) {
+        console.error(
+          "Error loading responses:",
+          responsesResult.error
+        );
+      }
+
+      setSchool(schoolResult.data || null);
+      setResponses(responsesResult.data || []);
+      setLoading(false);
+    }
+
     loadSchoolDetails();
   }, [schoolId]);
-
-  async function loadSchoolDetails() {
-    setLoading(true);
-
-    const [schoolResult, responsesResult] =
-      await Promise.all([
-        supabase
-          .from("schools")
-          .select("id, name, city, state, country")
-          .eq("id", schoolId)
-          .single(),
-
-        supabase
-          .from("survey_responses")
-          .select(
-            "id, role, submitted_at, response_data"
-          )
-          .eq("school_id", schoolId)
-          .order("submitted_at", {
-            ascending: false,
-          }),
-      ]);
-
-    if (schoolResult.error) {
-      console.error(
-        "Error loading school:",
-        schoolResult.error
-      );
-    }
-
-    if (responsesResult.error) {
-      console.error(
-        "Error loading responses:",
-        responsesResult.error
-      );
-    }
-
-    setSchool(schoolResult.data || null);
-    setResponses(responsesResult.data || []);
-    setLoading(false);
-  }
 
   const parentResponses = responses.filter(
     (response) => response.role === "parent"

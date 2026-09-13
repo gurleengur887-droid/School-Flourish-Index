@@ -164,54 +164,54 @@ function AdminPerspectiveResponses() {
   const RoleIcon = roleConfig.icon;
 
   useEffect(() => {
+    async function loadData() {
+      setLoading(true);
+
+      const [
+        schoolResult,
+        responsesResult,
+      ] = await Promise.all([
+        supabase
+          .from("schools")
+          .select(
+            "id, name, city, state, country"
+          )
+          .eq("id", schoolId)
+          .single(),
+
+        supabase
+          .from("survey_responses")
+          .select(
+            "id, school_id, role, submitted_at, response_data, created_at"
+          )
+          .eq("school_id", schoolId)
+          .eq("role", role)
+          .order("submitted_at", {
+            ascending: false,
+          }),
+      ]);
+
+      if (schoolResult.error) {
+        console.error(
+          "Error loading school:",
+          schoolResult.error
+        );
+      }
+
+      if (responsesResult.error) {
+        console.error(
+          "Error loading responses:",
+          responsesResult.error
+        );
+      }
+
+      setSchool(schoolResult.data || null);
+      setResponses(responsesResult.data || []);
+      setLoading(false);
+    }
+
     loadData();
   }, [schoolId, role]);
-
-  async function loadData() {
-    setLoading(true);
-
-    const [
-      schoolResult,
-      responsesResult,
-    ] = await Promise.all([
-      supabase
-        .from("schools")
-        .select(
-          "id, name, city, state, country"
-        )
-        .eq("id", schoolId)
-        .single(),
-
-      supabase
-        .from("survey_responses")
-        .select(
-          "id, school_id, role, submitted_at, response_data, created_at"
-        )
-        .eq("school_id", schoolId)
-        .eq("role", role)
-        .order("submitted_at", {
-          ascending: false,
-        }),
-    ]);
-
-    if (schoolResult.error) {
-      console.error(
-        "Error loading school:",
-        schoolResult.error
-      );
-    }
-
-    if (responsesResult.error) {
-      console.error(
-        "Error loading responses:",
-        responsesResult.error
-      );
-    }
-
-    setSchool(schoolResult.data || null);
-    setResponses(responsesResult.data || []);
-    setLoading(false);
-  }
 
   const filteredResponses = useMemo(() => {
     const query = search

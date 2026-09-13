@@ -8,10 +8,8 @@ import PerspectivesShowcase from "../components/PerspectivesShowcase";
 import Testimonials from "../components/Testimonials";
 import SEO from "../components/SEO";
 const Home = () => {
-  const handlePerspectiveStart = (role) => {
-  sessionStorage.setItem("sfi_pending_role", role);
-  window.location.href = "/surveys";
-};
+ 
+
   return (
     <>
       <SEO

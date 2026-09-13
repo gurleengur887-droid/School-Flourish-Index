@@ -21,52 +21,52 @@ function AdminIndividualResponse() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  useEffect(() => {
+   useEffect(() => {
+    async function loadResponse() {
+      setLoading(true);
+      setError("");
+
+      const [responseResult, schoolResult] = await Promise.all([
+        supabase
+          .from("survey_responses")
+          .select(
+            "id, school_id, role, submitted_at, response_data, created_at"
+          )
+          .eq("id", responseId)
+          .eq("school_id", schoolId)
+          .single(),
+
+        supabase
+          .from("schools")
+          .select("id, name, city, state, country")
+          .eq("id", schoolId)
+          .single(),
+      ]);
+
+      if (responseResult.error) {
+        console.error(
+          "Error loading individual response:",
+          responseResult.error
+        );
+
+        setError("We couldn't load this survey response.");
+      }
+
+      if (schoolResult.error) {
+        console.error(
+          "Error loading school:",
+          schoolResult.error
+        );
+      }
+
+      setResponse(responseResult.data || null);
+      setSchool(schoolResult.data || null);
+
+      setLoading(false);
+    }
+
     loadResponse();
   }, [schoolId, responseId]);
-
-  async function loadResponse() {
-    setLoading(true);
-    setError("");
-
-    const [responseResult, schoolResult] = await Promise.all([
-      supabase
-        .from("survey_responses")
-        .select(
-          "id, school_id, role, submitted_at, response_data, created_at"
-        )
-        .eq("id", responseId)
-        .eq("school_id", schoolId)
-        .single(),
-
-      supabase
-        .from("schools")
-        .select("id, name, city, state, country")
-        .eq("id", schoolId)
-        .single(),
-    ]);
-
-    if (responseResult.error) {
-      console.error(
-        "Error loading individual response:",
-        responseResult.error
-      );
-
-      setError("We couldn't load this survey response.");
-    }
-
-    if (schoolResult.error) {
-      console.error(
-        "Error loading school:",
-        schoolResult.error
-      );
-    }
-
-    setResponse(responseResult.data || null);
-    setSchool(schoolResult.data || null);
-
-    setLoading(false);
-  }
 
   function getRoleLabel(role) {
     const labels = {

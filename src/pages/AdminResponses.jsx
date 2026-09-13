@@ -335,7 +335,7 @@ function getRegion(school) {
     });
 
     return data;
-  }, [filteredResponses]);
+   }, [filteredResponses]);
 
   const highestPerspectiveCount =
     Math.max(

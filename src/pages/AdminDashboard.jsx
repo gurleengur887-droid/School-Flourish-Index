@@ -212,27 +212,7 @@ const schoolsWithResponses =
      HELPERS
   ===================================================== */
 
-  function formatDate(date) {
-    if (!date) return "—";
 
-    return new Date(date).toLocaleDateString(
-      "en-IN",
-      {
-        day: "numeric",
-        month: "short",
-        year: "numeric",
-      }
-    );
-  }
-
-  function formatPerspective(role) {
-    if (role === "parent") return "Parent";
-    if (role === "teacher") return "Teacher";
-    if (role === "student") return "Student";
-    if (role === "leader") return "Leadership";
-
-    return "Unknown";
-  }
 
   /* =====================================================
      RENDER
