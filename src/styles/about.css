@@ -4465,3 +4465,402 @@
     font-size: 13px;
   }
 }
+
+/* =========================================================
+   ABOUT PAGE — INCREASE ALL SMALL / MICRO TEXT
+   ========================================================= */
+
+/* HERO MICRO TEXT */
+.about-hero-label,
+.about-hero-count {
+  font-size: 14px !important;
+  letter-spacing: 2.5px;
+}
+
+.about-hero-kicker {
+  font-size: 14px !important;
+  letter-spacing: 2.5px;
+}
+
+.about-vertical-note span {
+  font-size: 14px !important;
+  letter-spacing: 2px;
+}
+
+.about-info-label {
+  font-size: 14px !important;
+  letter-spacing: 2.3px;
+}
+
+
+/* HERO BOTTOM TEXT */
+.about-hero-cue span {
+  font-size: 14px !important;
+  letter-spacing: 2px;
+}
+
+.about-hero-voices {
+  font-size: 14px !important;
+  letter-spacing: 2px;
+}
+
+.about-hero-index {
+  font-size: 14px !important;
+  letter-spacing: 2px;
+}
+
+
+/* FOUR VOICES SECTION */
+.voices-label {
+  font-size: 15px !important;
+  letter-spacing: 2.2px;
+}
+
+
+/* VOICE CARD TOP LABELS
+   01 / PARENT
+   02 / TEACHER
+   etc.
+*/
+.voice-card-top {
+  font-size: 14px !important;
+  letter-spacing: 2px;
+}
+
+
+/* CARD SMALL CATEGORY
+   HOME / CLASSROOM / WITHIN / THE CHAIR
+*/
+.voice-card-word {
+  font-size: 14px !important;
+  letter-spacing: 2.5px;
+}
+
+
+/* CENTER CIRCLE
+   ONE SHARED / MANY EXPERIENCES
+*/
+.voice-center-small {
+  font-size: 14px !important;
+  letter-spacing: 1.8px;
+}
+
+
+/* CLOSING TEXT
+   FOUR PERSPECTIVES / ONE FULLER PICTURE
+*/
+.voices-closing {
+  font-size: 14px !important;
+  letter-spacing: 2.2px;
+}
+
+
+/* =========================================================
+   MOBILE — KEEP THEM READABLE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+  .about-hero-label,
+  .about-hero-count {
+    font-size: 10px !important;
+    letter-spacing: 1.8px;
+  }
+
+  .about-hero-kicker {
+    font-size: 10px !important;
+    letter-spacing: 1.8px;
+  }
+
+  .about-vertical-note span {
+    font-size: 9px !important;
+  }
+
+  .about-info-label {
+    font-size: 9px !important;
+    letter-spacing: 1.8px;
+  }
+
+  .about-hero-cue span {
+    font-size: 9px !important;
+    letter-spacing: 1.5px;
+  }
+
+  .about-hero-voices {
+    font-size: 9px !important;
+    letter-spacing: 1.5px;
+  }
+
+  .about-hero-index {
+    font-size: 9px !important;
+    letter-spacing: 1.5px;
+  }
+
+  .voices-label {
+    font-size: 10px !important;
+    letter-spacing: 1.8px;
+  }
+
+  .voice-card-top {
+    font-size: 10px !important;
+    letter-spacing: 1.7px;
+  }
+
+  .voice-card-word {
+    font-size: 10px !important;
+    letter-spacing: 1.8px;
+  }
+
+  .voice-center-small {
+    font-size: 8px !important;
+    letter-spacing: 1.3px;
+  }
+
+  .voices-closing {
+    font-size: 10px !important;
+    letter-spacing: 1.5px;
+  }
+}
+
+/* =========================================================
+   FINAL ABOUT PAGE MICRO-TEXT FIX
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   HERO BOTTOM — PARENT / TEACHER / STUDENT / LEADER
+--------------------------------------------------------- */
+
+.about-hero-voices,
+.about-hero-voices span {
+  font-size: 12px !important;
+  letter-spacing: 2.2px !important;
+  line-height: 1.4 !important;
+}
+
+
+/* LOOK BEYOND THE OBVIOUS */
+.about-hero-cue span {
+  font-size: 12px !important;
+  line-height: 1.5 !important;
+  letter-spacing: 2px !important;
+}
+
+
+/* SCHOOL FLOURISH INDEX — RIGHT SIDE */
+.about-hero-index {
+  font-size: 12px !important;
+  letter-spacing: 2.2px !important;
+}
+
+
+/* ---------------------------------------------------------
+   TOP HERO MICRO LABELS
+--------------------------------------------------------- */
+
+.about-hero-label,
+.about-hero-count {
+  font-size: 12px !important;
+  letter-spacing: 2.5px !important;
+}
+
+.about-hero-kicker {
+  font-size: 12px !important;
+  letter-spacing: 2.3px !important;
+}
+
+
+/* ---------------------------------------------------------
+   FOUR VOICES CARD LABELS
+--------------------------------------------------------- */
+
+/* 01 / PARENT
+   02 / TEACHER
+   03 / STUDENT
+   04 / LEADER
+*/
+.voice-card-top {
+  position: relative;
+  z-index: 30;
+
+  font-size: 12px !important;
+  letter-spacing: 2px !important;
+}
+
+
+/* HOME / CLASSROOM / WITHIN / THE CHAIR */
+.voice-card-word {
+  position: relative;
+  z-index: 30;
+
+  font-size: 12px !important;
+  letter-spacing: 2.5px !important;
+}
+
+
+/* IMPORTANT:
+   Keep the STUDENT label above the center circle */
+.voice-card-top span {
+  position: relative;
+  z-index: 31;
+}
+
+
+/* ---------------------------------------------------------
+   CENTER CIRCLE TEXT
+--------------------------------------------------------- */
+
+.voice-center {
+  z-index: 40;
+}
+
+.voice-center-small {
+  font-size: 11px !important;
+  letter-spacing: 2px !important;
+  line-height: 1.6 !important;
+}
+
+.voice-center strong {
+  font-size: 34px !important;
+  letter-spacing: -0.5px !important;
+}
+
+
+/* ---------------------------------------------------------
+   FOUR PERSPECTIVES / ONE FULLER PICTURE
+--------------------------------------------------------- */
+
+.voices-closing {
+  font-size: 13px !important;
+  letter-spacing: 2.4px !important;
+}
+
+
+/* ---------------------------------------------------------
+   "HOW THE INDEX WORKS"
+--------------------------------------------------------- */
+
+/* This is the section label above the next section */
+.about-index-label,
+.index-section-label,
+.how-index-works {
+  font-size: 12px !important;
+  letter-spacing: 2.5px !important;
+}
+
+
+/* ---------------------------------------------------------
+   "FROM VOICES TO INSIGHT"
+--------------------------------------------------------- */
+
+.about-process-label,
+.process-label,
+.from-voices-label {
+  font-size: 15px !important;
+  letter-spacing: 2.5px !important;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+  .about-hero-voices,
+  .about-hero-voices span {
+    font-size: 10px !important;
+    letter-spacing: 1.7px !important;
+  }
+
+  .about-hero-cue span {
+    font-size: 10px !important;
+    letter-spacing: 1.6px !important;
+  }
+
+  .about-hero-index {
+    font-size: 10px !important;
+    letter-spacing: 1.7px !important;
+  }
+
+  .about-hero-label,
+  .about-hero-count,
+  .about-hero-kicker {
+    font-size: 10px !important;
+    letter-spacing: 1.8px !important;
+  }
+
+  .voice-card-top {
+    font-size: 10px !important;
+    letter-spacing: 1.7px !important;
+  }
+
+  .voice-card-word {
+    font-size: 10px !important;
+    letter-spacing: 1.8px !important;
+  }
+
+  .voice-center-small {
+    font-size: 8px !important;
+    letter-spacing: 1.4px !important;
+  }
+
+  .voice-center strong {
+    font-size: 23px !important;
+  }
+
+  .voices-closing {
+    font-size: 10px !important;
+    letter-spacing: 1.7px !important;
+  }
+
+  .about-index-label,
+  .index-section-label,
+  .how-index-works,
+  .about-process-label,
+  .process-label,
+  .from-voices-label {
+    font-size: 10px !important;
+    letter-spacing: 1.8px !important;
+  }
+}
+
+
+
+
+.about-hero-voices {
+  font-size: 14px !important;
+  letter-spacing: 2.2px !important;
+}
+
+.about-hero-voices span {
+  font-size: 14px !important;
+}
+
+
+/* Keep STUDENT label above the center circle */
+.voice-card-student {
+  position: relative;
+  z-index: 10;
+}
+
+.voice-card-student .voice-card-top {
+  position: relative;
+  z-index: 20;
+}
+
+
+/* CENTER CIRCLE */
+.voice-center-circle {
+  text-align: center;
+}
+
+.voice-center-small {
+  font-size: 11px !important;
+  letter-spacing: 2px !important;
+  line-height: 1.5 !important;
+}
+
+.voice-center-circle strong {
+  font-size: 34px !important;
+  line-height: 1 !important;
+}

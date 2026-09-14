@@ -141,14 +141,7 @@ const About = () => {
 
             {/* Vertical editorial words */}
 
-            <div
-              className="about-vertical-note"
-              aria-hidden="true"
-            >
-              <span>PEOPLE</span>
-              <span>PLACES</span>
-              <span>POSSIBILITIES</span>
-            </div>
+           
 
 
             <div className="about-hero-title-wrap">

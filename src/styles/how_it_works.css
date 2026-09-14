@@ -557,3 +557,32 @@
   }
 
 }
+
+/* =========================================
+   FINAL TYPOGRAPHY VISIBILITY FIX
+========================================= */
+
+/* HOW THE INDEX WORKS */
+.how-sfi-label {
+  font-size: 14px !important;
+  letter-spacing: 2.5px !important;
+}
+
+/* FROM VOICES TO INSIGHT */
+.how-sfi-eyebrow {
+  font-size: 14px !important;
+  letter-spacing: 2.5px !important;
+}
+
+/* CIRCLE TEXT */
+.circle-small {
+  font-size: 14px !important;
+  letter-spacing: 2px !important;
+  line-height: 1.5 !important;
+}
+
+.circle-main {
+  font-size: 14px !important;
+  letter-spacing: 2px !important;
+  line-height: 1.6 !important;
+}

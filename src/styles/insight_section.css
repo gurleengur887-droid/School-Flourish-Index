@@ -69,7 +69,7 @@
 
   font-family: var(--font-mono);
 
-  font-size: 9px;
+  font-size: 14px;
 
   letter-spacing: 3.2px;
 
@@ -316,7 +316,7 @@
 .sfi-insight-number {
   font-family: var(--font-mono);
 
-  font-size: 9px;
+  font-size: 14px;
 
   letter-spacing: 2.5px;
 
@@ -781,7 +781,7 @@
 
   font-family: var(--font-mono);
 
-  font-size: 9px;
+  font-size: 14px;
 
   letter-spacing: 2.4px;
 
@@ -858,7 +858,7 @@
 
   font-family: var(--font-mono);
 
-  font-size: 8px;
+  font-size: 14px;
 
   letter-spacing: 2.5px;
 
@@ -1012,7 +1012,7 @@
 
   font-family: var(--font-mono);
 
-  font-size: 8px;
+  font-size: 11px;
 
   line-height: 1.6;
 
@@ -1165,7 +1165,7 @@
   .sfi-insight-kicker {
     margin-bottom: 18px;
 
-    font-size: 8px;
+    font-size: 10px;
 
     letter-spacing: 2.4px;
   }
@@ -1192,7 +1192,9 @@
     display: none;
   }
 
-
+  .sfi-insight-number {
+    font-size: 10px;
+  }
   /* CARDS */
 
   .sfi-insight-cards {
@@ -1299,7 +1301,7 @@
   .sfi-interpretation-heading > span {
     margin-bottom: 15px;
 
-    font-size: 8px;
+    font-size: 10px;
 
     letter-spacing: 2px;
   }
@@ -1325,7 +1327,7 @@
   .sfi-interpretation-caption {
     margin-top: 20px;
 
-    font-size: 7px;
+    font-size: 9px;
   }
 
 

@@ -952,3 +952,273 @@
 .public-cta-start-button:active {
   transform: translateY(0);
 }
+
+
+/* =========================================================
+   SFI — MICRO TEXT SIZE OVERRIDE
+   Increase all small / eyebrow / label text
+   Desktop + Mobile
+========================================================= */
+
+/* ---------- GLOBAL MICRO / EYEBROW TEXT ---------- */
+
+.public-eyebrow,
+.public-card-eyebrow {
+  font-size: 13px !important;
+  letter-spacing: 0.18em !important;
+}
+
+
+/* ---------- HERO EYEBROW ---------- */
+
+.public-dashboard-hero .public-eyebrow {
+  font-size: 14px !important;
+  letter-spacing: 2px !important;
+}
+
+
+/* ---------- HERO PARTICIPATION TEXT ---------- */
+
+.public-dashboard-hero-actions > span {
+  font-size: 14px !important;
+}
+
+
+/* ---------- YOUR INSIGHTS ---------- */
+
+.public-my-insights-status span {
+  font-size: 11px !important;
+  letter-spacing: 0.15em !important;
+}
+
+
+/* ---------- COLLECTIVE PICTURE CARD LABELS ---------- */
+
+.public-pulse-content > span {
+  font-size: 12px !important;
+  letter-spacing: 0.15em !important;
+}
+
+
+/* ---------- FEATURED REGION LABEL ---------- */
+
+.public-featured-stat-label {
+  font-size: 12px !important;
+  letter-spacing: 0.15em !important;
+}
+
+
+/* ---------- FEATURED REGION RESPONSE COUNT ---------- */
+
+.public-featured-stat-main span {
+  font-size: 14px !important;
+}
+
+
+/* ---------- REGION / CITY CARD LABELS ---------- */
+
+.public-data-card-title > div > span {
+  font-size: 12px !important;
+  letter-spacing: 0.16em !important;
+}
+
+
+/* ---------- REGION BAR TEXT ---------- */
+
+.public-bar-meta {
+  font-size: 14px !important;
+}
+
+.public-bar-meta strong {
+  font-size: 14px !important;
+}
+
+
+/* ---------- CITY LIST ---------- */
+
+.public-city-rank {
+  font-size: 14px !important;
+}
+
+.public-city-meta strong {
+  font-size: 14px !important;
+}
+
+.public-city-meta span {
+  font-size: 13px !important;
+}
+
+
+/* ---------- NO DATA TEXT ---------- */
+
+.public-no-data {
+  font-size: 14px !important;
+}
+
+
+/* ---------- PERSPECTIVE CARDS ---------- */
+
+.public-perspective-top {
+  font-size: 14px !important;
+}
+
+.public-perspective-bottom {
+  font-size: 13px !important;
+}
+
+
+/* ---------- PRIVACY ---------- */
+
+.public-privacy-note strong {
+  font-size: 19px !important;
+}
+
+.public-privacy-note p {
+  font-size: 15px !important;
+}
+
+
+/* ---------- CTA EYEBROW ---------- */
+
+.public-dashboard-cta .public-eyebrow {
+  font-size: 14px !important;
+  letter-spacing: 2px !important;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 640px) {
+
+  /* Global eyebrow / micro labels */
+  .public-eyebrow,
+  .public-card-eyebrow {
+    font-size: 12px !important;
+    letter-spacing: 0.16em !important;
+  }
+
+
+  /* Hero */
+  .public-dashboard-hero .public-eyebrow {
+    font-size: 12px !important;
+    letter-spacing: 1.7px !important;
+  }
+
+  .public-dashboard-hero-actions > span {
+    font-size: 13px !important;
+  }
+
+
+  /* Your Insights */
+  .public-my-insights-status span {
+    font-size: 10px !important;
+  }
+
+
+  /* Collective cards */
+  .public-pulse-content > span {
+    font-size: 11px !important;
+    letter-spacing: 0.14em !important;
+  }
+
+
+  /* Featured region */
+  .public-featured-stat-label {
+    font-size: 11px !important;
+    letter-spacing: 0.14em !important;
+  }
+
+  .public-featured-stat-main span {
+    font-size: 13px !important;
+  }
+
+
+  /* Data card labels */
+  .public-data-card-title > div > span {
+    font-size: 11px !important;
+    letter-spacing: 0.14em !important;
+  }
+
+
+  /* Region */
+  .public-bar-meta,
+  .public-bar-meta strong {
+    font-size: 13px !important;
+  }
+
+
+  /* Cities */
+  .public-city-rank {
+    font-size: 13px !important;
+  }
+
+  .public-city-meta strong {
+    font-size: 13px !important;
+  }
+
+  .public-city-meta span {
+    font-size: 12px !important;
+  }
+
+
+  /* No data */
+  .public-no-data {
+    font-size: 13px !important;
+  }
+
+
+  /* Perspectives */
+  .public-perspective-top {
+    font-size: 13px !important;
+  }
+
+  .public-perspective-bottom {
+    font-size: 12px !important;
+  }
+
+
+  /* Privacy */
+  .public-privacy-note strong {
+    font-size: 17px !important;
+  }
+
+  .public-privacy-note p {
+    font-size: 14px !important;
+  }
+
+
+  /* CTA */
+  .public-dashboard-cta .public-eyebrow {
+    font-size: 12px !important;
+    letter-spacing: 1.7px !important;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+  .public-eyebrow,
+  .public-card-eyebrow {
+    font-size: 11px !important;
+  }
+
+  .public-dashboard-hero .public-eyebrow {
+    font-size: 11px !important;
+  }
+
+  .public-pulse-content > span,
+  .public-data-card-title > div > span,
+  .public-featured-stat-label {
+    font-size: 10px !important;
+  }
+
+  .public-perspective-bottom {
+    font-size: 11px !important;
+  }
+}

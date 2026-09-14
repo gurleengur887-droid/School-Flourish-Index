@@ -45,7 +45,7 @@ const CreatorSection = () => {
 
           <blockquote className="creator-quote">
             “Before we ask how a school is doing,
-            perhaps we should ask how the people
+             we should ask how the people
             inside it are doing.”
           </blockquote>
 

@@ -60,7 +60,7 @@
   background: transparent;
 
   font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: 14px;
   letter-spacing: 1.5px;
 
   color: var(--color-text-muted);
@@ -80,7 +80,7 @@
   gap: 10px;
 
   font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: 14px;
   letter-spacing: 1.3px;
 
   color: var(--color-text-muted);
@@ -151,7 +151,7 @@
   margin: 0;
 
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 14px;
   letter-spacing: 1.8px;
 
   color: var(--color-text-soft);
@@ -397,7 +397,7 @@
 
 .school-card-copy > span {
   font-family: var(--font-mono);
-  font-size: 8px;
+  font-size: 14px;
   letter-spacing: 1.6px;
 
   color: var(--color-text-muted);
@@ -407,7 +407,7 @@
   overflow: hidden;
 
   font-family: var(--font-serif);
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 500;
 
   white-space: nowrap;
@@ -418,7 +418,7 @@
 
 .school-card-copy small {
   font-family: var(--font-mono);
-  font-size: 7px;
+  font-size: 13px;
   letter-spacing: 0.7px;
 
   color: var(--color-text-muted);
@@ -431,7 +431,7 @@
   background: transparent;
 
   font-family: var(--font-mono);
-  font-size: 8px;
+  font-size: 14px;
   letter-spacing: 1.2px;
 
   color: var(--color-text-soft);
@@ -470,7 +470,7 @@
 
 .choice-heading > div span {
   font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: 14px;
   letter-spacing: 1.7px;
 
   color: var(--color-text-muted);
@@ -485,7 +485,7 @@
 
   margin: 0;
 
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.55;
 
   color: var(--color-text-soft);
@@ -748,7 +748,7 @@
 
   margin: 13px 0 0;
 
-  font-size: 11px;
+  font-size: 14px;
   line-height: 1.6;
 
   color: var(--color-text-soft);
@@ -841,7 +841,7 @@
   gap: 10px;
 
   font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: 14px;
   letter-spacing: 0.5px;
 
   color: var(--color-text-muted);
@@ -1404,4 +1404,727 @@
     font-size: 11px;
   }
 
+}
+
+
+/* ========================================
+   MOBILE TYPOGRAPHY OVERRIDES
+======================================== */
+
+@media (max-width: 700px) {
+
+  /* BACK TO SCHOOL */
+  .perspective-back {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+  }
+
+  /* 02 · YOUR PERSPECTIVE */
+  .perspective-label p {
+    font-size: 11px;
+    letter-spacing: 1.6px;
+  }
+
+  /* 02 — 04 */
+  .perspective-progress {
+    font-size: 10px;
+    letter-spacing: 1.2px;
+  }
+
+
+  /* ========================================
+     SCHOOL CARD
+  ======================================== */
+
+  /* SURVEY FOR */
+  .school-card-copy > span {
+    font-size: 9px;
+    letter-spacing: 1.4px;
+  }
+
+  /* SCHOOL NAME */
+  .school-card-copy strong {
+    font-size: 18px;
+  }
+
+  /* CITY · STATE · COUNTRY */
+  .school-card-copy small {
+    font-size: 8px;
+    letter-spacing: 0.6px;
+  }
+
+  /* CHANGE */
+  .perspective-school-card > button {
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+
+
+  /* ========================================
+     CHOOSE YOUR VOICE
+  ======================================== */
+
+  .choice-heading > div span {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+  }
+
+  .choice-heading p {
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+
+  /* ========================================
+     PERSPECTIVE CARDS
+  ======================================== */
+
+  /* Parent / Teacher / Student / Leader */
+  .survey-perspective-card-content h2 {
+    font-size: 29px;
+  }
+
+  /* Card descriptions */
+  .survey-perspective-card-content p {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+
+  /* ========================================
+     BOTTOM ACTION
+  ======================================== */
+
+  /* Select a perspective to continue */
+  .perspective-action-note {
+    font-size: 9px;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+  }
+
+  /* Continue to survey */
+  .perspective-main-button {
+    font-size: 12px;
+  }
+
+}
+
+/* =========================================================
+   YOUR VOICE NOTE — REDESIGNED
+========================================================= */
+
+.perspective-privacy {
+  position: relative;
+  padding: 85px 0 90px;
+  background: #f7f5ee;
+  border-top: 1px solid rgba(48, 70, 61, 0.12);
+  border-bottom: 1px solid rgba(48, 70, 61, 0.12);
+  overflow: hidden;
+}
+
+.privacy-note {
+  position: relative;
+}
+
+
+/* =========================================================
+   LABEL
+========================================================= */
+
+.privacy-note-label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 38px;
+}
+
+.privacy-note-label span {
+  width: 38px;
+  height: 1px;
+  background: #c56846;
+  flex-shrink: 0;
+}
+
+.privacy-note-label p {
+  margin: 0;
+
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 2.4px;
+  color: #748079;
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
+
+.privacy-note-content {
+  display: grid;
+  grid-template-columns: 0.85fr 1fr;
+  gap: 100px;
+  align-items: start;
+}
+
+
+/* =========================================================
+   HEADING
+========================================================= */
+
+.privacy-note-content h2 {
+  margin: 0;
+
+  font-family: var(--font-serif);
+  font-size: clamp(48px, 5vw, 72px);
+  font-weight: 500;
+  line-height: 0.94;
+  letter-spacing: -3px;
+
+  color: #18352d;
+}
+
+.privacy-note-content h2 em {
+  color: #c56846;
+  font-style: italic;
+}
+
+
+/* =========================================================
+   COPY
+========================================================= */
+
+.privacy-note-copy {
+  max-width: 570px;
+  padding-top: 5px;
+}
+
+.privacy-note-copy p {
+  margin: 0;
+
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.7;
+  color: #61756c;
+}
+
+
+/* INTRO */
+
+.privacy-note-copy .privacy-note-intro {
+  margin-bottom: 25px;
+
+  font-size: 18px;
+  line-height: 1.65;
+  color: #30473e;
+}
+
+
+/* EMPHASIS */
+
+.privacy-note-copy .privacy-note-emphasis {
+  margin-bottom: 25px;
+
+  font-family: var(--font-serif);
+  font-size: 23px;
+  line-height: 1.35;
+  color: #18352d;
+}
+
+
+/* =========================================================
+   DECORATIVE CIRCLE
+========================================================= */
+
+.perspective-privacy::after {
+  content: "";
+
+  position: absolute;
+  width: 360px;
+  height: 360px;
+
+  right: -180px;
+  bottom: -240px;
+
+  border: 1px solid rgba(48, 70, 61, 0.10);
+  border-radius: 50%;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .perspective-privacy {
+    padding: 70px 0 75px;
+  }
+
+  .privacy-note-content {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .privacy-note-copy {
+    max-width: 650px;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .perspective-privacy {
+    padding: 60px 0 65px;
+  }
+
+  .privacy-note-label {
+    gap: 11px;
+    margin-bottom: 30px;
+  }
+
+  .privacy-note-label span {
+    width: 27px;
+  }
+
+  .privacy-note-label p {
+    font-size: 10px;
+    letter-spacing: 1.8px;
+  }
+
+
+  .privacy-note-content {
+    gap: 30px;
+  }
+
+
+  .privacy-note-content h2 {
+    font-size: clamp(43px, 13vw, 60px);
+    line-height: 0.96;
+    letter-spacing: -2px;
+  }
+
+
+  .privacy-note-copy {
+    padding-top: 0;
+  }
+
+
+  .privacy-note-copy p {
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+
+  .privacy-note-copy .privacy-note-intro {
+    font-size: 17px;
+    line-height: 1.6;
+    margin-bottom: 22px;
+  }
+
+
+  .privacy-note-copy .privacy-note-emphasis {
+    font-size: 20px;
+    line-height: 1.3;
+    margin-bottom: 22px;
+  }
+
+
+  .perspective-privacy::after {
+    width: 260px;
+    height: 260px;
+    right: -150px;
+    bottom: -180px;
+  }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+  .privacy-note-content h2 {
+    font-size: 42px;
+  }
+
+  .privacy-note-copy .privacy-note-intro {
+    font-size: 16px;
+  }
+
+  .privacy-note-copy .privacy-note-emphasis {
+    font-size: 19px;
+  }
+
+}
+/* =========================================================
+   FINAL OVERRIDE — YOUR VOICE SECTION
+   Remove old privacy-note layout interference
+========================================================= */
+
+.perspective-privacy {
+  width: 100%;
+  padding: 85px 0 90px !important;
+  background: #f7f5ee;
+  border-top: 1px solid rgba(48, 70, 61, 0.12);
+  border-bottom: 1px solid rgba(48, 70, 61, 0.12);
+  overflow: hidden;
+}
+
+
+/* MAIN CONTAINER — FULL WIDTH */
+
+.perspective-privacy .perspective-container {
+  width: min(var(--container), calc(100% - 80px)) !important;
+  max-width: none !important;
+  margin: 0 auto !important;
+}
+
+
+/* RESET OLD PRIVACY LAYOUT */
+
+.perspective-privacy .privacy-note {
+  width: 100% !important;
+  max-width: none !important;
+
+  display: block !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  border: none !important;
+  background: transparent !important;
+}
+
+
+/* =========================================================
+   LABEL
+========================================================= */
+
+.perspective-privacy .privacy-note-label {
+  display: flex !important;
+  align-items: center !important;
+
+  width: fit-content !important;
+
+  gap: 14px !important;
+
+  margin: 0 0 42px !important;
+  padding: 0 !important;
+}
+
+.perspective-privacy .privacy-note-label span {
+  display: block !important;
+
+  width: 42px !important;
+  height: 1px !important;
+
+  background: #c56846 !important;
+
+  flex-shrink: 0 !important;
+}
+
+.perspective-privacy .privacy-note-label p {
+  margin: 0 !important;
+
+  font-family: var(--font-mono) !important;
+  font-size: 12px !important;
+  line-height: 1.2 !important;
+
+  letter-spacing: 2.5px !important;
+
+  color: #718079 !important;
+}
+
+
+/* =========================================================
+   CONTENT — TWO LARGE COLUMNS
+========================================================= */
+
+.perspective-privacy .privacy-note-content {
+  width: 100% !important;
+
+  display: grid !important;
+  grid-template-columns: minmax(420px, 0.9fr) minmax(420px, 1fr) !important;
+
+  gap: 100px !important;
+
+  align-items: start !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+
+/* =========================================================
+   HEADING
+========================================================= */
+
+.perspective-privacy .privacy-note-content h2 {
+  width: 100% !important;
+  max-width: 650px !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  font-family: var(--font-serif) !important;
+  font-size: clamp(58px, 6vw, 88px) !important;
+
+  font-weight: 500 !important;
+  line-height: 0.92 !important;
+
+  letter-spacing: -4px !important;
+
+  color: #18352d !important;
+}
+
+.perspective-privacy .privacy-note-content h2 em {
+  color: #c56846 !important;
+  font-style: italic !important;
+}
+
+
+/* =========================================================
+   RIGHT COPY
+========================================================= */
+
+.perspective-privacy .privacy-note-copy {
+  width: 100% !important;
+  max-width: 600px !important;
+
+  margin: 0 !important;
+  padding: 5px 0 0 !important;
+}
+
+
+/* NORMAL TEXT */
+
+.perspective-privacy .privacy-note-copy p {
+  width: 100% !important;
+  max-width: 600px !important;
+
+  margin: 0 !important;
+
+  font-family: var(--font-sans) !important;
+  font-size: 18px !important;
+  line-height: 1.65 !important;
+
+  color: #60756c !important;
+}
+
+
+/* FIRST PARAGRAPH */
+
+.perspective-privacy .privacy-note-copy .privacy-note-intro {
+  margin-bottom: 28px !important;
+
+  font-size: 20px !important;
+  line-height: 1.6 !important;
+
+  color: #30473e !important;
+}
+
+
+/* EMPHASIS */
+
+.perspective-privacy .privacy-note-copy .privacy-note-emphasis {
+  margin-bottom: 28px !important;
+
+  font-family: var(--font-serif) !important;
+  font-size: 27px !important;
+  line-height: 1.3 !important;
+
+  color: #18352d !important;
+}
+
+
+/* =========================================================
+   DECORATION
+========================================================= */
+
+.perspective-privacy::after {
+  content: "";
+
+  position: absolute;
+
+  width: 420px;
+  height: 420px;
+
+  right: -220px;
+  bottom: -280px;
+
+  border: 1px solid rgba(48, 70, 61, 0.10);
+  border-radius: 50%;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .perspective-privacy {
+    padding: 70px 0 75px !important;
+  }
+
+  .perspective-privacy .perspective-container {
+    width: calc(100% - 48px) !important;
+  }
+
+  .perspective-privacy .privacy-note-content {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+
+  .perspective-privacy .privacy-note-content h2 {
+    max-width: 700px !important;
+  }
+
+  .perspective-privacy .privacy-note-copy {
+    max-width: 700px !important;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .perspective-privacy {
+    padding: 60px 0 70px !important;
+  }
+
+  .perspective-privacy .perspective-container {
+    width: calc(100% - 32px) !important;
+  }
+
+
+  /* LABEL */
+
+  .perspective-privacy .privacy-note-label {
+    gap: 10px !important;
+    margin-bottom: 30px !important;
+  }
+
+  .perspective-privacy .privacy-note-label span {
+    width: 28px !important;
+  }
+
+  .perspective-privacy .privacy-note-label p {
+    font-size: 10px !important;
+    letter-spacing: 1.8px !important;
+  }
+
+
+  /* CONTENT */
+
+  .perspective-privacy .privacy-note-content {
+    display: flex !important;
+    flex-direction: column !important;
+
+    gap: 30px !important;
+  }
+
+
+  /* HEADING */
+
+  .perspective-privacy .privacy-note-content h2 {
+    max-width: 100% !important;
+
+    font-size: clamp(52px, 15vw, 70px) !important;
+    line-height: 0.94 !important;
+    letter-spacing: -2.8px !important;
+  }
+
+
+  /* COPY */
+
+  .perspective-privacy .privacy-note-copy {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .perspective-privacy .privacy-note-copy p {
+    max-width: 100% !important;
+
+    font-size: 16px !important;
+    line-height: 1.65 !important;
+  }
+
+  .perspective-privacy .privacy-note-copy .privacy-note-intro {
+    font-size: 18px !important;
+    line-height: 1.6 !important;
+
+    margin-bottom: 22px !important;
+  }
+
+  .perspective-privacy .privacy-note-copy .privacy-note-emphasis {
+    font-size: 22px !important;
+    line-height: 1.35 !important;
+
+    margin-bottom: 22px !important;
+  }
+
+
+  /* DECORATION */
+
+  .perspective-privacy::after {
+    width: 280px;
+    height: 280px;
+
+    right: -170px;
+    bottom: -190px;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+  .perspective-privacy .privacy-note-content h2 {
+    font-size: 48px !important;
+    letter-spacing: -2.2px !important;
+  }
+
+  .perspective-privacy .privacy-note-copy .privacy-note-intro {
+    font-size: 17px !important;
+  }
+
+  .perspective-privacy .privacy-note-copy .privacy-note-emphasis {
+    font-size: 21px !important;
+  }
+
+}
+
+/* Increase YOUR VOICE MATTERS */
+.perspective-privacy .privacy-note-label p {
+  font-size: 15px !important;
+  letter-spacing: 2.8px !important;
+  line-height: 1.3 !important;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .perspective-privacy .privacy-note-label p {
+    font-size: 12px !important;
+    letter-spacing: 2px !important;
+  }
 }

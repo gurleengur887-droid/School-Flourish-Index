@@ -248,38 +248,58 @@ const Perspective = () => {
       </section>
 
 
-      {/* ========================================
-          PRIVACY NOTE
-      ======================================== */}
+     {/* ========================================
+    YOUR VOICE NOTE
+======================================== */}
 
-      <section className="perspective-privacy">
+<section className="perspective-privacy">
 
-        <div className="perspective-container">
+  <div className="perspective-container">
 
-          <div className="privacy-note">
+    <div className="privacy-note">
 
-            <span className="privacy-icon">
-              <span></span>
-            </span>
+      {/* LEFT LABEL */}
+      <div className="privacy-note-label">
+        <span></span>
+        <p>YOUR VOICE MATTERS</p>
+      </div>
 
-            <div className="privacy-copy">
 
-              <strong>
-                Your voice matters. Your identity stays private.
-              </strong>
+      {/* MAIN CONTENT */}
+      <div className="privacy-note-content">
 
-              <p>
-                Your responses are kept anonymous and help us understand
-                the flourishing of your school community.
-              </p>
+        <h2>
+          Say what you
+          <br />
+          <em>really feel.</em>
+        </h2>
 
-            </div>
+        <div className="privacy-note-copy">
 
-          </div>
+          <p className="privacy-note-intro">
+            This is a safe, anonymous space to share
+            your honest experience of school life.
+          </p>
+
+          <p className="privacy-note-emphasis">
+            No names. No judgement. Just your voice.
+          </p>
+
+          <p>
+            Your feedback helps build a healthier,
+            happier and more flourishing school
+            ecosystem.
+          </p>
 
         </div>
 
-      </section>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
 
 
       {/* ========================================

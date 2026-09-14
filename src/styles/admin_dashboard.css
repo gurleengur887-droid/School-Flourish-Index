@@ -3744,3 +3744,203 @@
   }
 
 }
+
+/* =========================================================
+   MICRO TEXT SIZE OVERRIDE
+   Increase all small / eyebrow / label text
+========================================================= */
+
+/* Main micro labels */
+.admin-eyebrow,
+.admin-panel-label,
+.admin-live-label,
+.admin-view-filter > span,
+.admin-region-placeholder span,
+.admin-school-table-header,
+.admin-school-status,
+.admin-sidebar-footer span,
+.admin-sidebar-footer small {
+  font-size: 12px !important;
+  letter-spacing: 0.14em !important;
+}
+
+
+/* Small supporting text */
+.admin-stat small,
+.admin-perspective-row small,
+.admin-empty-state p,
+.admin-public-status p,
+.admin-school-info span,
+.admin-school-name span,
+.admin-school-last,
+.admin-detail-perspective small,
+.admin-response-info span,
+.admin-response-row time,
+.admin-results-placeholder p,
+.admin-state-response-info span,
+.admin-state-response-number span,
+.admin-participation-number span,
+.admin-participation-legend span,
+.admin-perspective-analytics-info span,
+.admin-new-trend-column small,
+.admin-new-latest-info span,
+.admin-results-school-name span,
+.admin-results-school-count span,
+.admin-results-school-perspectives small,
+.admin-results-school-status,
+.admin-settings-section-description,
+.admin-settings-message {
+  font-size: 12px !important;
+  line-height: 1.6 !important;
+}
+
+
+/* Small headings / labels that should feel more visible */
+.admin-stat span,
+.admin-perspective-row span,
+.admin-school-info strong,
+.admin-school-name strong,
+.admin-detail-perspective span,
+.admin-response-info strong,
+.admin-state-response-info strong,
+.admin-perspective-analytics-info strong,
+.admin-new-latest-info strong {
+  font-size: 14px !important;
+}
+
+
+/* Mono / uppercase micro labels */
+.admin-sidebar-footer span,
+.admin-panel-label,
+.admin-eyebrow,
+.admin-view-filter > span,
+.admin-school-table-header,
+.admin-school-status,
+.admin-region-placeholder span {
+  font-family: var(--font-mono) !important;
+  font-size: 12px !important;
+  letter-spacing: 0.16em !important;
+}
+
+
+/* School selector "VIEWING" */
+.admin-school-selector > div > span {
+  font-size: 11px !important;
+  letter-spacing: 0.16em !important;
+}
+
+
+/* Perspective circles / tiny indicators */
+.admin-school-perspectives span {
+  font-size: 10px !important;
+}
+
+
+/* Latest trend day/date labels */
+.admin-new-trend-column > span,
+.admin-new-trend-column small {
+  font-size: 11px !important;
+}
+
+
+/* Results latest dates */
+.admin-results-latest-date strong {
+  font-size: 11px !important;
+}
+
+.admin-results-latest-date span {
+  font-size: 10px !important;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+  .admin-eyebrow,
+  .admin-panel-label,
+  .admin-live-label,
+  .admin-view-filter > span,
+  .admin-region-placeholder span,
+  .admin-school-table-header,
+  .admin-school-status,
+  .admin-sidebar-footer span,
+  .admin-sidebar-footer small {
+    font-size: 11px !important;
+    letter-spacing: 0.13em !important;
+  }
+
+
+  .admin-stat small,
+  .admin-perspective-row small,
+  .admin-empty-state p,
+  .admin-public-status p,
+  .admin-school-info span,
+  .admin-school-name span,
+  .admin-school-last,
+  .admin-detail-perspective small,
+  .admin-response-info span,
+  .admin-response-row time,
+  .admin-results-placeholder p,
+  .admin-state-response-info span,
+  .admin-state-response-number span,
+  .admin-participation-number span,
+  .admin-participation-legend span,
+  .admin-perspective-analytics-info span,
+  .admin-new-trend-column small,
+  .admin-new-latest-info span,
+  .admin-results-school-name span,
+  .admin-results-school-count span,
+  .admin-results-school-perspectives small,
+  .admin-results-school-status,
+  .admin-settings-section-description,
+  .admin-settings-message {
+    font-size: 11px !important;
+    line-height: 1.55 !important;
+  }
+
+
+  .admin-stat span,
+  .admin-perspective-row span,
+  .admin-school-info strong,
+  .admin-school-name strong,
+  .admin-detail-perspective span,
+  .admin-response-info strong,
+  .admin-state-response-info strong,
+  .admin-perspective-analytics-info strong,
+  .admin-new-latest-info strong {
+    font-size: 13px !important;
+  }
+
+
+  .admin-school-selector > div > span {
+    font-size: 10px !important;
+    letter-spacing: 0.14em !important;
+  }
+
+
+  .admin-school-perspectives span {
+    font-size: 9px !important;
+  }
+
+
+  .admin-new-trend-column > span {
+    font-size: 10px !important;
+  }
+
+
+  .admin-new-trend-column small {
+    font-size: 10px !important;
+  }
+
+
+  .admin-results-latest-date strong {
+    font-size: 10px !important;
+  }
+
+  .admin-results-latest-date span {
+    font-size: 9px !important;
+  }
+}

@@ -804,7 +804,7 @@ const Surveys = () => {
           className="survey-bottom-orbit"
           aria-hidden="true"
         >
-          <span className="survey-orbit-dot"></span>
+         
         </div>
 
       </section>

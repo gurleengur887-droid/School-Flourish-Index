@@ -23,7 +23,7 @@
   margin-bottom: 55px;
 
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 14px;
   letter-spacing: 2px;
   color: #60776d;
 }
@@ -47,7 +47,7 @@
   margin: 0 0 20px;
 
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 14px;
   letter-spacing: 2px;
   color: #8a9a91;
 }
@@ -78,7 +78,7 @@
   margin: 0 0 22px;
 
   font-family: var(--font-sans);
-  font-size: 17px;
+  font-size: 18px;
   line-height: 1.7;
   color: #61756c;
 }
@@ -110,7 +110,7 @@
   margin-bottom: 16px;
 
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 14px;
   letter-spacing: 2px;
   color: #8a9a91;
 }
@@ -182,7 +182,7 @@
 
 .contact-card-text span {
   font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: 14px;
   letter-spacing: 1.7px;
   color: #89968f;
 }
@@ -224,7 +224,7 @@
   margin: 0;
 
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.6;
   color: #89968f;
 }
