@@ -94,7 +94,7 @@ const Navbar = () => {
 
           <nav className="mobile-menu-links">
 
-            <a href="#surveys" onClick={closeMenu}>
+            <a href="/surveys" onClick={closeMenu}>
               <span>Surveys</span>
               <ArrowUpRight size={20} strokeWidth={1.4} />
             </a>
