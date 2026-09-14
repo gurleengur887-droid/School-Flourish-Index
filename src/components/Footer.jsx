@@ -108,12 +108,12 @@ const Footer = () => {
               </a>
 
 
-              <a href="mailto:your@email.com">
+              <a href="mailto:info@schoolflourishindex.in">
 
                 <FaEnvelope />
 
                 <span>
-                  your@email.com
+                  info@schoolflourishindex.in
                 </span>
 
                 <ArrowUpRight

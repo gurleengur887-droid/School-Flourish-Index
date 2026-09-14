@@ -7,7 +7,7 @@ const SEO = ({
   url = "/",
   noIndex = false,
 }) => {
-  const siteUrl = "https://YOUR-DOMAIN.com";
+  const siteUrl = "https://schoolflourishindex.in";
   const canonicalUrl = `${siteUrl}${url}`;
   const imageUrl = `${siteUrl}/og-image.png`;
 

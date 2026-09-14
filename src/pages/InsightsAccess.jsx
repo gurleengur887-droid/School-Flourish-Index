@@ -75,7 +75,7 @@ const InsightsAccess = () => {
             </a>
 
             <a
-              href="mailto:YOUR_EMAIL@example.com"
+              href="mailto:info@schoolflourishindex.in"
               className="insights-contact-card"
             >
               <div className="contact-card-icon">
