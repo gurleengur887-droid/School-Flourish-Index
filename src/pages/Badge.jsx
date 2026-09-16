@@ -16,7 +16,7 @@ const Badge = () => {
   const [badgeData, setBadgeData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-
+const [downloadMessage, setDownloadMessage] = useState("");
   const badgeRef = useRef(null);
 
   /*
@@ -197,10 +197,16 @@ const Badge = () => {
           "-"
         )}-SFI-Badge.png`;
 
-      link.href =
-        canvas.toDataURL("image/png");
+     link.href =
+  canvas.toDataURL("image/png");
 
-      link.click();
+link.click();
+
+setDownloadMessage("Your SFI badge has been downloaded successfully!");
+
+setTimeout(() => {
+  setDownloadMessage("");
+}, 4000);
     };
 
     image.onerror = () => {
@@ -358,7 +364,11 @@ const Badge = () => {
               </button>
 
             </div>
-
+{downloadMessage && (
+  <div className="badge-download-success">
+    {downloadMessage}
+  </div>
+)}
             {/* =================================================
                 SOCIAL
             ================================================= */}

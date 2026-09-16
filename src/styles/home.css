@@ -421,17 +421,18 @@
 
 
   /* ----------------------------------------
+
      TITLE
   ---------------------------------------- */
 
   .hero-title {
     width: 100%;
     max-width: 100%;
-
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: clamp(48px, 13vw, 66px);
     line-height: 0.94;
     letter-spacing: -2.8px;
-
+    font-weight: bold;
     overflow-wrap: normal;
     word-break: normal;
   }

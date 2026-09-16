@@ -993,7 +993,7 @@
   }
 
   .badge-name {
-    font-size: 11px;
+    font-size: 15px;
   }
 }
 
@@ -1010,5 +1010,43 @@
     animation: none !important;
 
     transition: none !important;
+  }
+}
+
+.badge-download-success {
+  width: fit-content;
+  max-width: 90%;
+  margin: 18px auto 0;
+  padding: 11px 18px;
+
+  border: 1px solid rgba(72, 117, 96, 0.25);
+  background: rgba(72, 117, 96, 0.08);
+  color: var(--color-green-dark);
+
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+
+  animation: badgeDownloadMessage 0.35s ease-out;
+}
+
+@keyframes badgeDownloadMessage {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .badge-download-success {
+    max-width: 100%;
+    font-size: 13px;
+    padding: 10px 15px;
   }
 }
