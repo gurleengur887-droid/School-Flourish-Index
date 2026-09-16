@@ -16,8 +16,8 @@ const Hero = () => {
           </div>
 
           <h1 className="hero-title">
-            How well is your school helping
-            <span>children flourish?</span>
+            How well is your school
+            <span>helping children flourish?</span>
           </h1>
 
           <p className="hero-description">
@@ -43,23 +43,25 @@ const Hero = () => {
           <div className="hero-note">
             <span className="hero-dot"></span>
 
-            <span>
-              Perspective-based
-            </span>
+            <span>Perspective-based</span>
 
             <span>·</span>
 
-            <span>
-              Not a clinical measure
-            </span>
+            <span>Not a clinical measure</span>
 
             <span>·</span>
 
-            <span>
-              Built for reflection
-            </span>
+            <span>Built for reflection</span>
           </div>
 
+        </div>
+
+        {/* FRESHLY STAMPED */}
+        <div className="hero-stamp" aria-hidden="true">
+          <img
+            src="/voice_stamp.png"
+            alt=""
+          />
         </div>
 
       </div>

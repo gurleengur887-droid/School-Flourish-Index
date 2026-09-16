@@ -8,7 +8,7 @@
   display: flex;
   align-items: center;
   overflow: hidden;
-
+  
   background:
     radial-gradient(
       circle at 78% 18%,
@@ -80,11 +80,11 @@
   margin-bottom: 34px;
 
   font-family: var(--font-mono);
-  font-size: 15px;
-  font-weight: 500;
+  font-size: 20px;
+  font-weight: bolder;
   letter-spacing: 2.2px;
 
-  color: var(--color-text-soft);
+  color: #bd6549;
 
   animation: heroFadeUp 0.7s ease-out both;
 }
@@ -102,12 +102,12 @@
 /* TITLE */
 
 .hero-title {
-  max-width: 950px;
+  max-width: 900px;
 
-  font-family: var(--font-serif);
-  font-weight: 500;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: 70;
 
-  font-size: clamp(62px, 7vw, 98px);
+  font-size: clamp(62px, 6vw, 98px);
   line-height: 0.95;
   letter-spacing: -4.5px;
 
@@ -129,7 +129,7 @@
 
 .hero-description {
   max-width: 720px;
-
+ font-family:Verdana, Geneva, Tahoma, sans-serif;
   margin-top: 44px;
 
   font-size: 19px;
@@ -226,10 +226,10 @@
   align-items: center;
   gap: 10px;
 
-  font-size: 15px;
-  font-weight: 500;
+  font-size: 20px;
+  font-weight: bolder;
 
-  color: var(--color-text);
+  color: #30473E;
 
   transition:
     color 0.25s ease,
@@ -251,12 +251,13 @@
 
   margin-top: 45px;
 
-  font-family: var(--font-mono);
-  font-size: 14px;
+  font-family: IBM Plex Mono;
+  font-size: 20px;
+  font-weight: 800;
   letter-spacing: 0.45px;
   line-height: 1.7;
 
-  color: var(--color-text-muted);
+  color: #bd6549;
 
   animation: heroFadeUp 0.8s ease-out 0.65s both;
 }
@@ -1364,6 +1365,211 @@
   .perspective-cta,
   .perspective-cta-arrow {
     transition: none;
+  }
+
+}
+
+/* =========================================================
+   HERO — FRESHLY STAMPED EFFECT
+========================================================= */
+
+.hero-stamp {
+  position: absolute;
+
+  right: -32px;
+  top: 15%;
+
+  width: clamp(320px, 30vw, 500px);
+
+  z-index: 3;
+  pointer-events: none;
+
+  transform-origin: center center;
+
+  opacity: 0;
+
+  animation:
+    freshlyStamped
+    1.05s
+    cubic-bezier(.22, 1, .36, 1)
+    0.75s
+    forwards;
+}
+
+.hero-stamp img {
+  display: block;
+  width: 100%;
+  height: auto;
+
+  transform: rotate(-5deg);
+
+  filter:
+    drop-shadow(0 12px 8px rgba(90, 25, 15, 0.08));
+
+  mix-blend-mode: multiply;
+}
+
+
+/* =========================================================
+   THE ACTUAL STAMP IMPACT
+========================================================= */
+
+@keyframes freshlyStamped {
+
+  /* Before the stamp hits */
+  0% {
+    opacity: 0;
+
+    transform:
+      translateY(-85px)
+      rotate(-13deg)
+      scale(1.35);
+
+    filter: blur(4px);
+  }
+
+  /* Coming down */
+  38% {
+    opacity: 0.85;
+
+    transform:
+      translateY(-18px)
+      rotate(-7deg)
+      scale(1.08);
+
+    filter: blur(1px);
+  }
+
+  /* HARD IMPACT */
+  52% {
+    opacity: 1;
+
+    transform:
+      translateY(8px)
+      rotate(2deg)
+      scale(0.91);
+
+    filter: blur(0);
+  }
+
+  /* Tiny bounce after impact */
+  67% {
+    transform:
+      translateY(-3px)
+      rotate(-1deg)
+      scale(1.035);
+  }
+
+  /* Settling */
+  82% {
+    transform:
+      translateY(1px)
+      rotate(0.5deg)
+      scale(0.985);
+  }
+
+  /* Final stamped position */
+  100% {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      rotate(-5deg)
+      scale(1);
+
+    filter: blur(0);
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .hero-stamp {
+    position: relative;
+
+    right: auto;
+    top: auto;
+
+    width: min(280px, 65vw);
+
+    margin:
+      -10px
+      auto
+      25px;
+
+    transform-origin: center;
+
+    animation:
+      freshlyStampedMobile
+      1s
+      cubic-bezier(.22, 1, .36, 1)
+      0.7s
+      forwards;
+  }
+
+}
+
+
+@keyframes freshlyStampedMobile {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translateY(-45px)
+      rotate(-12deg)
+      scale(1.35);
+
+    filter: blur(4px);
+  }
+
+  45% {
+    opacity: 0.9;
+
+    transform:
+      translateY(7px)
+      rotate(3deg)
+      scale(0.9);
+
+    filter: blur(0);
+  }
+
+  65% {
+    transform:
+      translateY(-3px)
+      rotate(-2deg)
+      scale(1.04);
+  }
+
+  100% {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      rotate(-5deg)
+      scale(1);
+
+    filter: blur(0);
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .hero-stamp {
+    animation: none !important;
+
+    opacity: 1;
+    transform: rotate(-5deg);
+    filter: none;
   }
 
 }

@@ -1,6 +1,15 @@
 import React, { useRef, useState } from "react";
 import "../styles/badge.css";
 import { supabase } from "../lib/supabase";
+import { FaInstagram, FaLinkedinIn } from "react-icons/fa";
+/*
+ * =========================================================
+ * TEACHER + LEADER BADGE
+ * =========================================================
+ */
+
+const TEACHER_LEADER_BADGE =
+  "/assets/teacher_leader_badge.jpeg";
 
 const Badge = () => {
   const [email, setEmail] = useState("");
@@ -9,6 +18,12 @@ const Badge = () => {
   const [error, setError] = useState("");
 
   const badgeRef = useRef(null);
+
+  /*
+   * =========================================================
+   * FIND BADGE
+   * =========================================================
+   */
 
   const findBadge = async (e) => {
     e.preventDefault();
@@ -27,22 +42,31 @@ const Badge = () => {
 
     try {
       const { data, error: functionError } =
-        await supabase.functions.invoke("badge-lookup", {
-          body: {
-            email: cleanEmail,
-          },
-        });
+        await supabase.functions.invoke(
+          "badge-lookup",
+          {
+            body: {
+              email: cleanEmail,
+            },
+          }
+        );
 
       if (functionError) {
-        console.error("Badge function error:", functionError);
+        console.error(
+          "Badge function error:",
+          functionError
+        );
+
         throw new Error(
-          functionError.message || "Failed to fetch badge."
+          functionError.message ||
+            "Failed to fetch your badge."
         );
       }
 
       if (!data?.success) {
         throw new Error(
-          data?.message || "We couldn't find your SFI response."
+          data?.message ||
+            "We couldn't find your SFI response."
         );
       }
 
@@ -52,69 +76,160 @@ const Badge = () => {
         );
       }
 
-      setBadgeData(data.badge);
+      /*
+       * The Edge Function already returns:
+       * badge.role
+       *
+       * This page is currently ONLY for:
+       * - teacher
+       * - leader
+       */
+
+      const role = data.badge.role
+        ?.toString()
+        .trim()
+        .toLowerCase();
+
+      if (!role) {
+        throw new Error(
+          "We couldn't identify your survey role."
+        );
+      }
+
+      if (
+        role !== "teacher" &&
+        role !== "leader"
+      ) {
+        throw new Error(
+          "This badge is currently available for teachers and school leaders. A badge for your survey type will be available soon."
+        );
+      }
+
+      setBadgeData({
+        ...data.badge,
+        role,
+      });
+
     } catch (err) {
-      console.error("Badge lookup error:", err);
+      console.error(
+        "Badge lookup error:",
+        err
+      );
 
       setError(
-        err.message || "Something went wrong. Please try again."
+        err.message ||
+          "Something went wrong. Please try again."
       );
+
     } finally {
       setLoading(false);
     }
   };
+
+  /*
+   * =========================================================
+   * DOWNLOAD BADGE
+   * =========================================================
+   */
 
   const downloadBadge = () => {
     if (!badgeData) return;
 
     const image = new Image();
 
-    image.src = "/assets/sfi_badge.png";
+    image.src = TEACHER_LEADER_BADGE;
 
     image.onload = () => {
-      const canvas = document.createElement("canvas");
-      const ctx = canvas.getContext("2d");
+      const canvas =
+        document.createElement("canvas");
+
+      const ctx =
+        canvas.getContext("2d");
 
       canvas.width = image.naturalWidth;
       canvas.height = image.naturalHeight;
 
-      // Draw original badge template
-      ctx.drawImage(image, 0, 0);
+      /*
+       * Draw the new Teacher / Leader badge
+       */
 
-      // Name styling
+      ctx.drawImage(
+        image,
+        0,
+        0
+      );
+
+      /*
+       * =====================================================
+       * NAME
+       * =====================================================
+       *
+       * We will fine-tune the position after checking
+       * exactly where the name looks best on the new badge.
+       */
+
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
-      ctx.fillStyle = "#111111";
-      ctx.font = "700 48px Arial, sans-serif";
 
-      // Draw respondent's name
+      ctx.fillStyle = "#ffffff";
+
+      ctx.font =
+        "700 42px Arial, sans-serif";
+
       ctx.fillText(
         badgeData.name.toUpperCase(),
         canvas.width / 2,
-        680
+        535
       );
 
-      // Create download
-      const link = document.createElement("a");
+      /*
+       * =====================================================
+       * CREATE DOWNLOAD
+       * =====================================================
+       */
 
-      link.download = `${badgeData.name.replace(
-        /[^a-z0-9]/gi,
-        "-"
-      )}-SFI-Badge.png`;
+      const link =
+        document.createElement("a");
 
-      link.href = canvas.toDataURL("image/png");
+      link.download =
+        `${badgeData.name.replace(
+          /[^a-z0-9]/gi,
+          "-"
+        )}-SFI-Badge.png`;
+
+      link.href =
+        canvas.toDataURL("image/png");
 
       link.click();
     };
 
     image.onerror = () => {
-      setError("Unable to load the badge template.");
+      setError(
+        "Unable to load the Teacher/Leader badge template."
+      );
     };
+  };
+
+  /*
+   * =========================================================
+   * RESET
+   * =========================================================
+   */
+
+  const searchAgain = () => {
+    setBadgeData(null);
+    setEmail("");
+    setError("");
   };
 
   return (
     <main className="badge-page">
+
       <section className="badge-container">
+
+        {/* =================================================
+            EMAIL / INTRO
+        ================================================= */}
 
         {!badgeData && (
           <div className="badge-intro">
@@ -123,17 +238,21 @@ const Badge = () => {
               SCHOOL FLOURISH INDEX
             </span>
 
-            <h1>Get Your SFI Badge</h1>
+            <h1>
+              Get Your SFI Badge
+            </h1>
 
             <p>
-              Enter the email address you used while completing
-              the SFI survey to access your personalized badge.
+              Enter the email address you used while
+              completing the SFI teacher or leader survey
+              to access your personalized badge.
             </p>
 
             <form
               onSubmit={findBadge}
               className="badge-form"
             >
+
               <label htmlFor="badge-email">
                 Email Address
               </label>
@@ -143,7 +262,9 @@ const Badge = () => {
                 type="email"
                 placeholder="Enter your email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) =>
+                  setEmail(e.target.value)
+                }
                 autoComplete="email"
               />
 
@@ -155,6 +276,7 @@ const Badge = () => {
                   ? "Finding Your Badge..."
                   : "See My Badge"}
               </button>
+
             </form>
 
             {error && (
@@ -165,6 +287,10 @@ const Badge = () => {
 
           </div>
         )}
+
+        {/* =================================================
+            BADGE RESULT
+        ================================================= */}
 
         {badgeData && (
           <div className="badge-result">
@@ -181,11 +307,15 @@ const Badge = () => {
               </h1>
 
               <p>
-                Your SFI Survey 2026 participation badge is
-                ready to download.
+                Your SFI Survey 2026 participation
+                badge is ready to download.
               </p>
 
             </div>
+
+            {/* =================================================
+                BADGE PREVIEW
+            ================================================= */}
 
             <div className="badge-preview-wrapper">
 
@@ -193,17 +323,23 @@ const Badge = () => {
                 className="badge-preview"
                 ref={badgeRef}
               >
+
                 <img
-                  src="/assets/sfi_badge.png"
-                  alt="SFI Survey Participant Badge"
+                  src={TEACHER_LEADER_BADGE}
+                  alt="SFI Teacher and Leader Participation Badge"
                 />
 
                 <div className="badge-name">
                   {badgeData.name}
                 </div>
+
               </div>
 
             </div>
+
+            {/* =================================================
+                ACTIONS
+            ================================================= */}
 
             <div className="badge-actions">
 
@@ -216,56 +352,67 @@ const Badge = () => {
 
               <button
                 className="back-badge-btn"
-                onClick={() => {
-                  setBadgeData(null);
-                  setEmail("");
-                  setError("");
-                }}
+                onClick={searchAgain}
               >
                 Search Again
               </button>
 
             </div>
-<div className="badge-social">
-  <span className="badge-social-eyebrow">
-    FLAUNT YOUR BADGE
-  </span>
 
-  <h2>Share your SFI journey ✨</h2>
+            {/* =================================================
+                SOCIAL
+            ================================================= */}
 
-  <p>
-    Proud to be part of the School Flourish Index?
-    Share your badge and let your network know.
-  </p>
+            <div className="badge-social">
 
-  <div className="badge-social-links">
-    <a
-      href="https://www.instagram.com/skillsphereflourish?igsi=NHhudWV0amNiMjl3"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="badge-social-link"
-    >
-      Instagram
-    </a>
+              <span className="badge-social-eyebrow">
+                FLAUNT YOUR BADGE
+              </span>
 
-    <a
-      href="YOUR_LINKEDIN_LINK"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="badge-social-link"
-    >
-      LinkedIn
-    </a>
-  </div>
+              <h2>
+                Share your SFI journey 
+              </h2>
 
-  <p className="badge-tag-text">
-    Tag us when you share your badge 💚
-  </p>
+              <p>
+                Proud to be part of the School Flourish
+                Index? Share your badge and let your
+                network know.
+              </p>
+
+          <div className="badge-social-links">
+
+  <a
+    href="https://www.instagram.com/skillsphereflourish?igsi=NHhudWV0amNiMjl3"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="badge-social-icon"
+    aria-label="Instagram"
+  >
+    <FaInstagram />
+  </a>
+
+  <a
+    href="YOUR_LINKEDIN_LINK"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="badge-social-icon"
+    aria-label="LinkedIn"
+  >
+    <FaLinkedinIn />
+  </a>
+
 </div>
+              <p className="badge-tag-text">
+                Tag us when you share your badge 💚
+              </p>
+
+            </div>
+
           </div>
         )}
 
       </section>
+
     </main>
   );
 };
