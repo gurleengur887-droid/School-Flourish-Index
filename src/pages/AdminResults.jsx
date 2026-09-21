@@ -66,8 +66,8 @@ function AdminResults() {
   const [loading, setLoading] =
     useState(true);
 
-  const [error, setError] =
-    useState("");
+ const [, setError] =
+  useState("");
 
   const [selectedState, setSelectedState] =
     useState("all");

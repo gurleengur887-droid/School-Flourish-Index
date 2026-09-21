@@ -988,16 +988,16 @@
     overflow: hidden;
   }
 
-  .teacher-report {
-    width: 1055px;
-    height: 1491px;
+.teacher-report {
+  width: 1055px;
+  height: 1491px;
 
-    transform-origin: top left;
+  --sfi-report-scale: calc(100vw / 1055px);
 
-    transform: scale(
-      calc(100vw / 1055px)
-    );
-  }
+  transform-origin: top left;
+
+  transform: scale(var(--sfi-report-scale));
+}
 }
 
 
@@ -1021,12 +1021,12 @@
   }
 
   .teacher-report {
-    transform-origin: top left;
+  --sfi-report-scale: calc(100vw / 1055px);
 
-    transform: scale(
-      calc(100vw / 1055px)
-    );
-  }
+  transform-origin: top left;
+
+  transform: scale(var(--sfi-report-scale));
+}
 }
 /* =========================================================
    REPORT WRAPPER

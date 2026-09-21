@@ -107,12 +107,7 @@ function normalizeKey(value) {
     .toLowerCase();
 }
 
-const NORMALIZED_PARENT_QUESTIONS = Object.fromEntries(
-  Object.entries(PARENT_QUESTIONS).map(([id, key]) => [
-    normalizeKey(key),
-    id,
-  ])
-);
+
 
 function getResponseValue(response, candidates) {
   if (!response || typeof response !== "object") {

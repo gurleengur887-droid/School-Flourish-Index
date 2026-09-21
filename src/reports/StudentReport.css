@@ -1061,14 +1061,11 @@
     overflow: hidden;
   }
 
-  .student-report {
-    transform:
-      scale(
-        calc(
-          100vw / 1055px
-        )
-      );
-  }
+ .student-report {
+  --sfi-report-scale: calc(100vw / 1055px);
+
+  transform: scale(var(--sfi-report-scale));
+}
 }
 
 @media screen and (max-width: 600px) {
@@ -1089,15 +1086,12 @@
   }
 
   .student-report {
-    transform-origin: top left;
+  --sfi-report-scale: calc(100vw / 1055px);
 
-    transform:
-      scale(
-        calc(
-          100vw / 1055px
-        )
-      );
-  }
+  transform-origin: top left;
+
+  transform: scale(var(--sfi-report-scale));
+}
 }
 
 

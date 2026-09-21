@@ -383,29 +383,7 @@ function getIndicators(questionScores) {
     );
 }
 
-function getTop5StrengthIndicators(
-  indicators
-) {
-  return indicators
-    .slice()
-    .sort(
-      (a, b) =>
-        b.score - a.score
-    )
-    .slice(0, 5);
-}
 
-function getTop5ImprovementIndicators(
-  indicators
-) {
-  return indicators
-    .slice()
-    .sort(
-      (a, b) =>
-        a.score - b.score
-    )
-    .slice(0, 5);
-}
 
 function generateObservations({
   overallScore,
