@@ -992,7 +992,7 @@
   width: 1055px;
   height: 1491px;
 
-  --sfi-report-scale: calc(100vw / 1055px);
+  --sfi-report-scale: calc(100vw / 1055);
 
   transform-origin: top left;
 
@@ -1021,7 +1021,7 @@
   }
 
   .teacher-report {
-  --sfi-report-scale: calc(100vw / 1055px);
+  --sfi-report-scale: calc(100vw / 1055);
 
   transform-origin: top left;
 

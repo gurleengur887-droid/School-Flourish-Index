@@ -1062,7 +1062,7 @@
   }
 
  .student-report {
-  --sfi-report-scale: calc(100vw / 1055px);
+  --sfi-report-scale: calc(100vw / 1055);
 
   transform: scale(var(--sfi-report-scale));
 }
@@ -1086,7 +1086,7 @@
   }
 
   .student-report {
-  --sfi-report-scale: calc(100vw / 1055px);
+  --sfi-report-scale: calc(100vw / 1055);
 
   transform-origin: top left;
 
