@@ -511,3 +511,34 @@
 .dashboard svg {
   color: var(--color-green-dark);
 }
+/* ========================================
+   MOBILE MENU TEXT — SIZE + WEIGHT FIX
+======================================== */
+
+@media (max-width: 600px) {
+
+  /* Explore */
+  .mobile-menu-eyebrow {
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    color: var(--color-green-dark) !important;
+    letter-spacing: 2px;
+  }
+
+  /* SFI */
+  .mobile-menu-footer span:first-child {
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    color: var(--color-green-dark) !important;
+  }
+
+  /* School Flourish Index · Parent · Teacher · Student · Leader */
+  .mobile-menu-footer span:last-child {
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    color: var(--color-green-dark) !important;
+    letter-spacing: 1px;
+    opacity: 0.8 !important;
+  }
+
+}

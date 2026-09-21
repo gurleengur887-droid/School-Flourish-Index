@@ -532,3 +532,9 @@ font-weight: bolder;
   }
 
 }
+.footer-bottom span:last-child {
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: rgba(248, 246, 239, 0.75) !important;
+  letter-spacing: 1px;
+}
