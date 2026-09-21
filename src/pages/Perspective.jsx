@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import {
   ArrowRight,
   ArrowLeft,
-  Check,
   UsersRound,
   BookOpen,
   Backpack,
@@ -61,57 +60,66 @@ const Perspective = () => {
   const navigate = useNavigate();
 
   const [school, setSchool] = useState(null);
-  const [selectedRole, setSelectedRole] = useState(null);
 
-  useEffect(() => {
-    const storedSchool = sessionStorage.getItem(
-      "sfi_selected_school"
-    );
+ const [openingRole, setOpeningRole] = useState(null);
 
-    if (storedSchool) {
-      try {
-        setSchool(JSON.parse(storedSchool));
-      } catch {
-        sessionStorage.removeItem(
-          "sfi_selected_school"
-        );
-      }
-    }
+ useEffect(() => {
+  const storedSchool = sessionStorage.getItem(
+    "sfi_selected_school"
+  );
 
-    const storedRole = sessionStorage.getItem(
-      "sfi_selected_role"
-    );
-
-    if (
-      storedRole &&
-      roles.some((role) => role.id === storedRole)
-    ) {
-      setSelectedRole(storedRole);
-    }
-  }, []);
-
-  const handleContinue = () => {
-    if (!selectedRole) return;
-
-    // Save the selected perspective
-    sessionStorage.setItem(
-      "sfi_selected_role",
-      selectedRole
-    );
-
-    // Get the Google Form URL for the selected role
-    const surveyUrl = surveyLinks[selectedRole];
-
-    if (!surveyUrl) {
-      console.log(
-        `Google Form for "${selectedRole}" is not connected yet.`
+  if (storedSchool) {
+    try {
+      setSchool(JSON.parse(storedSchool));
+    } catch {
+      sessionStorage.removeItem(
+        "sfi_selected_school"
       );
-      return;
     }
+  }
+}, []);
+useEffect(() => {
+  if (window.location.hash === "#choose-your-voice") {
+    setTimeout(() => {
+      const section = document.getElementById(
+        "choose-your-voice"
+      );
 
-    // Open the selected role's Google Form
+      if (section) {
+        section.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    }, 150);
+  }
+}, []);
+ const handleRoleClick = (role) => {
+  // Show visual feedback immediately
+  setOpeningRole(role);
+
+  // Save the selected perspective
+  sessionStorage.setItem(
+    "sfi_selected_role",
+    role
+  );
+
+  // Get the Google Form URL
+  const surveyUrl = surveyLinks[role];
+
+  if (!surveyUrl) {
+    console.log(
+      `Google Form for "${role}" is not connected yet.`
+    );
+    setOpeningRole(null);
+    return;
+  }
+
+  // Small delay so the green arrow is actually visible
+  setTimeout(() => {
     window.location.href = surveyUrl;
-  };
+  }, 250);
+};
 
   return (
     <main className="perspective-page">
@@ -140,11 +148,7 @@ const Perspective = () => {
             <span>BACK TO SCHOOL</span>
           </button>
 
-          <div className="perspective-progress">
-            <span className="active">02</span>
-            <i></i>
-            <span>04</span>
-          </div>
+         
 
         </div>
       </div>
@@ -166,7 +170,7 @@ const Perspective = () => {
 
               <div className="perspective-label">
                 <span></span>
-                <p>02 · YOUR PERSPECTIVE</p>
+                <p> YOUR PERSPECTIVE</p>
               </div>
 
               <h1>
@@ -306,8 +310,10 @@ const Perspective = () => {
           CHOOSE VOICE
       ======================================== */}
 
-      <section className="perspective-choice">
-
+<section
+  className="perspective-choice"
+  id="choose-your-voice"
+>
         <div className="perspective-container">
 
           <div className="choice-heading">
@@ -328,37 +334,21 @@ const Perspective = () => {
 
           <div className="survey-perspective-cards">
 
-            {roles.map((role) => {
+          {roles.map((role) => {
 
-              const selected =
-                selectedRole === role.id;
-
-              const Icon = role.icon;
+  const Icon = role.icon;
 
               return (
                 <button
                   key={role.id}
                   type="button"
-                  className={`survey-perspective-card survey-perspective-card-${role.tone} ${
-                    selected
-                      ? "survey-perspective-card-selected"
-                      : ""
-                  }`}
-                  onClick={() =>
-                    setSelectedRole(role.id)
+                className={`survey-perspective-card survey-perspective-card-${role.tone}`}
+                 onClick={() => handleRoleClick(role.id)
                   }
                 >
 
-                  {/* SELECTED CORNER */}
+                  
 
-                  {selected && (
-                    <span className="survey-card-selected-mark">
-                      <Check
-                        size={18}
-                        strokeWidth={1.5}
-                      />
-                    </span>
-                  )}
 
 
                   {/* ICON */}
@@ -397,21 +387,18 @@ const Perspective = () => {
 
                   {/* ARROW */}
 
-                  <span className="survey-perspective-card-arrow">
-
-                    {selected ? (
-                      <Check
-                        size={19}
-                        strokeWidth={1.4}
-                      />
-                    ) : (
-                      <ArrowRight
-                        size={19}
-                        strokeWidth={1.25}
-                      />
-                    )}
-
-                  </span>
+                <span
+  className={`survey-perspective-card-arrow ${
+    openingRole === role.id
+      ? "survey-perspective-card-arrow-opening"
+      : ""
+  }`}
+>
+  <ArrowRight
+    size={19}
+    strokeWidth={1.25}
+  />
+</span>
 
                 </button>
               );
@@ -424,54 +411,10 @@ const Perspective = () => {
       </section>
 
 
-      {/* ========================================
-          CONTINUE
-      ======================================== */}
+     
+      
 
-      <section className="perspective-action-section">
-
-        <div className="perspective-action-inner">
-
-          <div className="perspective-action-note">
-
-            <span
-              className={
-                selectedRole
-                  ? "action-dot action-dot-active"
-                  : "action-dot"
-              }
-            ></span>
-
-            <span>
-              {selectedRole
-                ? "Perspective selected"
-                : "Select a perspective to continue"}
-            </span>
-
-          </div>
-
-
-          <button
-            type="button"
-            className={`perspective-main-button ${
-              selectedRole
-                ? "perspective-main-button-active"
-                : ""
-            }`}
-            disabled={!selectedRole}
-            onClick={handleContinue}
-          >
-            <span>Continue to survey</span>
-
-            <ArrowRight
-              size={21}
-              strokeWidth={1.25}
-            />
-          </button>
-
-        </div>
-
-      </section>
+   
 
     </main>
   );

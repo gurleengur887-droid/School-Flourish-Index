@@ -8,6 +8,7 @@ import {
   UserRound,
   GraduationCap,
   BriefcaseBusiness,
+    FileText,
 } from "lucide-react";
 import { useParams, useNavigate } from "react-router-dom";
 import { supabase } from "../lib/supabase";
@@ -248,7 +249,15 @@ function AdminSchoolDetails() {
           >
             <span>Results</span>
           </button>
-
+  <button
+  className="admin-nav-item"
+  onClick={() =>
+    (window.location.href = "/admin/reports")
+  }
+>
+  <FileText size={18} />
+  <span>Insights / Reports</span>
+</button>
           <div className="admin-nav-divider" />
 
           <button

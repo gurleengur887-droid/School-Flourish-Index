@@ -1,0 +1,669 @@
+/* =========================================================
+   PUBLIC STRENGTHS
+   WHERE SCHOOLS ARE STRONGEST
+========================================================= */
+
+.public-strengths-section {
+  padding: 100px 0;
+  border-top: 1px solid #ddd8cc;
+  background: #f7f5ee;
+}
+
+
+/* =========================================================
+   DESKTOP COMPOSITION
+   LEFT = 42%
+   RIGHT = 58%
+========================================================= */
+
+.public-strengths-layout {
+  display: grid;
+
+  grid-template-columns: minmax(0, 0.42fr) minmax(0, 0.58fr);
+
+  gap: 64px;
+
+  align-items: center;
+
+  width: 100%;
+}
+
+
+/* =========================================================
+   LEFT CONTENT
+========================================================= */
+
+.public-strengths-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  width: 100%;
+}
+
+
+/* ---------------------------------------------------------
+   EYEBROW
+--------------------------------------------------------- */
+
+.public-strengths-heading .public-card-eyebrow {
+  color:#b95632;
+
+  font-size: 24px !important;
+  font-weight: 900 !important;
+
+  letter-spacing: 0.19em;
+
+  line-height: 1.4;
+}
+
+
+/* ---------------------------------------------------------
+   MAIN HEADING
+--------------------------------------------------------- */
+
+.public-strengths-heading h2 {
+  margin: 20px 0 28px;
+
+  max-width: 560px;
+
+  font-family:
+    'Franklin Gothic Medium',
+    'Arial Narrow',
+    Arial,
+    sans-serif;
+
+  /*
+     BIGGER THAN BEFORE.
+     This is intentionally one of the
+     dominant visual elements of the section.
+  */
+
+  font-size: clamp(54px, 5.1vw, 78px);
+
+  line-height: 0.94;
+
+  font-weight: 700;
+
+  letter-spacing: -0.055em;
+
+  color: #18352d;
+}
+
+.public-strengths-heading h2 em {
+  color: #b95632;
+
+  font-style: normal;
+}
+
+
+/* ---------------------------------------------------------
+   LEFT DESCRIPTION
+--------------------------------------------------------- */
+
+.public-strengths-heading > p {
+  max-width: 455px;
+
+  margin: 0;
+
+    color: var(--color-green-dark);
+
+
+  font-family:
+    Verdana,
+    Geneva,
+    Tahoma,
+    sans-serif;
+
+  font-size: 17px;
+
+  font-weight: 500;
+
+  line-height: 1.65;
+}
+
+
+/* =========================================================
+   RIGHT CARD
+   WIDE + SHORT
+========================================================= */
+
+.public-strengths-card {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  background: #fffdf8;
+
+  border: 1px solid #ddd8cc;
+
+  border-radius: 20px;
+
+  /*
+     Less vertical padding.
+     More horizontal breathing room.
+  */
+
+  padding: 27px 36px 20px;
+
+  box-shadow:
+    0 18px 45px rgba(24, 53, 45, 0.045);
+}
+
+
+/* =========================================================
+   CARD INTRO
+========================================================= */
+
+.public-strengths-intro {
+  display: flex;
+
+  align-items: flex-start;
+
+  justify-content: space-between;
+
+  gap: 35px;
+
+  padding-bottom: 16px;
+
+  border-bottom: 1px solid #e5e0d6;
+}
+
+.public-strengths-intro > span {
+  flex-shrink: 0;
+
+  padding-top: 2px;
+
+  color: #d18468;
+
+  font-size: 15px;
+
+  letter-spacing: 0.18em;
+
+  font-weight: 800;
+}
+
+.public-strengths-intro p {
+  max-width: 380px;
+
+  margin: 0;
+
+    color: var(--color-green-dark);
+
+
+ font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+  font-size: 15px;
+font-weight: 500;
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   DIMENSION LIST
+========================================================= */
+
+.public-strengths-list {
+  padding-top: 0;
+}
+
+
+/* =========================================================
+   EACH ROW
+========================================================= */
+
+.public-strength-row {
+  padding: 14px 0 15px;
+
+  border-bottom: 1px solid #ebe7df;
+}
+
+.public-strength-row:last-child {
+  border-bottom: none;
+}
+
+
+/* =========================================================
+   LABEL + PERCENTAGE
+========================================================= */
+
+.public-strength-meta {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 25px;
+
+  margin-bottom: 8px;
+}
+
+.public-strength-name {
+  display: flex;
+
+  align-items: center;
+
+  gap: 13px;
+
+  min-width: 0;
+
+  color: #18352d;
+
+  font-size: 15px;
+
+  font-weight: 700;
+
+  line-height: 1.25;
+}
+
+.public-strength-index {
+  width: 25px;
+
+  flex-shrink: 0;
+
+  color: #999990;
+
+  font-family: Georgia, serif;
+
+  font-size: 11px;
+
+  font-weight: 400;
+}
+
+.public-strength-meta strong {
+  flex-shrink: 0;
+
+  color: #18352d;
+
+  font-family: Georgia, serif;
+
+  font-size: 25px;
+
+  line-height: 1;
+
+  font-weight: 400;
+}
+
+
+/* =========================================================
+   PROGRESS TRACK
+========================================================= */
+
+.public-strength-track {
+  width: 100%;
+
+  height: 8px;
+
+  overflow: hidden;
+
+  background: #e8e4db;
+
+  border-radius: 999px;
+}
+
+
+/* =========================================================
+   PROGRESS FILL
+========================================================= */
+
+.public-strength-fill {
+  width: 0;
+
+  height: 100%;
+
+  border-radius: inherit;
+
+  transform-origin: left center;
+
+  transition:
+    width 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.public-strengths-section.is-visible
+  .public-strength-fill {
+  width: var(--strength-width);
+}
+
+
+/* =========================================================
+   STAGGERED ANIMATION
+========================================================= */
+
+.public-strength-row:nth-child(1)
+  .public-strength-fill {
+  transition-delay: 0.05s;
+}
+
+.public-strength-row:nth-child(2)
+  .public-strength-fill {
+  transition-delay: 0.12s;
+}
+
+.public-strength-row:nth-child(3)
+  .public-strength-fill {
+  transition-delay: 0.19s;
+}
+
+.public-strength-row:nth-child(4)
+  .public-strength-fill {
+  transition-delay: 0.26s;
+}
+
+.public-strength-row:nth-child(5)
+  .public-strength-fill {
+  transition-delay: 0.33s;
+}
+
+.public-strength-row:nth-child(6)
+  .public-strength-fill {
+  transition-delay: 0.40s;
+}
+
+.public-strength-row:nth-child(7)
+  .public-strength-fill {
+  transition-delay: 0.47s;
+}
+
+
+/* =========================================================
+   INDIVIDUAL BAR COLORS
+========================================================= */
+
+.public-strength-fill-1 {
+  background: #7d2809;
+}
+
+.public-strength-fill-2 {
+  background: #12a987;
+}
+
+.public-strength-fill-3 {
+  background: #c59026;
+}
+
+.public-strength-fill-4 {
+  background: #148ad3;
+}
+
+.public-strength-fill-5 {
+  background: #936297;
+}
+
+.public-strength-fill-6 {
+  background: #3c7f25;
+}
+
+.public-strength-fill-7 {
+  background: #b95632;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.public-strengths-footer {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 25px;
+
+  margin-top: 0;
+
+  padding-top: 15px;
+
+  border-top: 1px solid #e5e0d6;
+
+  color: #29483e;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.015em;
+
+  line-height: 1.3;
+}
+
+.public-strengths-footer span:last-child {
+  color: #18352d;
+
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   LARGE LAPTOP
+========================================================= */
+
+@media (max-width: 1200px) {
+
+  .public-strengths-layout {
+    grid-template-columns:
+      minmax(0, 0.40fr)
+      minmax(0, 0.60fr);
+
+    gap: 48px;
+  }
+
+  .public-strengths-heading h2 {
+    font-size: clamp(50px, 5.3vw, 68px);
+  }
+
+  .public-strengths-card {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 950px) {
+
+  .public-strengths-layout {
+    grid-template-columns:
+      minmax(0, 0.38fr)
+      minmax(0, 0.62fr);
+
+    gap: 35px;
+  }
+
+  .public-strengths-heading h2 {
+    font-size: clamp(46px, 5.8vw, 60px);
+  }
+
+  .public-strengths-heading > p {
+    font-size: 15px;
+  }
+
+  .public-strengths-card {
+    padding: 24px 25px 19px;
+  }
+
+  .public-strength-name {
+    font-size: 14px;
+  }
+
+  .public-strength-meta strong {
+    font-size: 23px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE / STACKED
+========================================================= */
+
+@media (max-width: 800px) {
+
+  .public-strengths-section {
+    padding: 80px 0;
+  }
+
+  /*
+     Desktop two-column layout disappears.
+
+     Mobile:
+     Heading
+        ↓
+     Card
+  */
+
+  .public-strengths-layout {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 38px;
+  }
+
+  .public-strengths-heading {
+    width: 100%;
+  }
+
+  .public-strengths-heading .public-card-eyebrow {
+    font-size: 12px;
+  }
+
+  .public-strengths-heading h2 {
+    margin: 16px 0 20px;
+
+    max-width: 100%;
+
+    font-size: 52px;
+
+    line-height: 0.96;
+  }
+
+  .public-strengths-heading > p {
+    max-width: 100%;
+
+    font-size: 15px;
+  }
+
+  .public-strengths-card {
+    width: 100%;
+
+    padding: 30px 28px 23px;
+  }
+
+  .public-strengths-intro {
+    display: block;
+  }
+
+  .public-strengths-intro p {
+    max-width: 100%;
+
+    margin-top: 12px;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 640px) {
+
+  .public-strengths-section {
+    padding: 70px 0;
+  }
+
+  .public-strengths-heading .public-card-eyebrow {
+    font-size: 10px;
+
+    letter-spacing: 0.17em;
+  }
+
+  .public-strengths-heading h2 {
+    font-size: 42px;
+
+    letter-spacing: -0.035em;
+  }
+
+  .public-strengths-heading > p {
+    font-size: 14px;
+
+    line-height: 1.7;
+  }
+
+  .public-strengths-card {
+    padding: 27px 20px 22px;
+
+    border-radius: 14px;
+  }
+
+  .public-strengths-intro > span {
+    font-size: 10px;
+  }
+
+  .public-strengths-intro p {
+    font-size: 12px;
+
+    line-height: 1.6;
+  }
+
+  .public-strength-row {
+    padding: 22px 0 24px;
+  }
+
+  .public-strength-meta {
+    gap: 15px;
+
+    margin-bottom: 10px;
+  }
+
+  .public-strength-name {
+    gap: 9px;
+
+    font-size: 13px;
+
+    line-height: 1.35;
+  }
+
+  .public-strength-index {
+    width: 22px;
+
+    font-size: 10px;
+  }
+
+  .public-strength-meta strong {
+    font-size: 19px;
+  }
+
+  .public-strength-track {
+    height: 7px;
+  }
+
+  .public-strengths-footer {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 7px;
+
+    font-size: 11px;
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .public-strength-fill {
+    transition: none;
+  }
+
+}

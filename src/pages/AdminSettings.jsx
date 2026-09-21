@@ -12,6 +12,7 @@ import {
   Users,
   Save,
   Sparkles,
+    FileText,
 } from "lucide-react";
 
 import SEO from "../components/SEO";
@@ -562,6 +563,15 @@ function AdminSidebar({ navigate }) {
           <BarChart3 size={18} />
           <span>Results</span>
         </button>
+<button
+  className="admin-nav-item"
+  onClick={() =>
+    (window.location.href = "/admin/reports")
+  }
+>
+  <FileText size={18} />
+  <span>Insights / Reports</span>
+</button>
 
 
         <div className="admin-nav-divider" />

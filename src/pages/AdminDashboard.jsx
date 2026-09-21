@@ -13,6 +13,8 @@ import {
   GraduationCap,
   UserRound,
   ArrowUpRight,
+    FileText,
+    Inbox,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../lib/supabase";
@@ -208,11 +210,7 @@ const schoolsWithResponses =
       .slice(0, 6);
   }, [filteredResponses, schools]);
 
-  /* =====================================================
-     HELPERS
-  ===================================================== */
-
-
+ 
 
   /* =====================================================
      RENDER
@@ -239,7 +237,7 @@ const schoolsWithResponses =
 
           <div>
             <span>School Flourish</span>
-            <strong>INDEX</strong>
+            <strong>Index</strong>
           </div>
         </div>
 
@@ -282,7 +280,27 @@ const schoolsWithResponses =
             <BarChart3 size={18} />
             <span>Results</span>
           </button>
+<button
+  className="admin-nav-item"
+  onClick={() =>
+    (window.location.href = "/admin/reports")
+  }
+>
+  <FileText size={18} />
+  <span>Insights / Reports</span>
+</button>
+<button
+  className="admin-nav-item"
+  onClick={() =>
+    navigate("/admin/requested-insights")
+  }
+>
+  <Inbox size={18} />
 
+  <span>
+    Requested Insights
+  </span>
+</button>
           <div className="admin-nav-divider" />
 
           <button
@@ -315,7 +333,7 @@ const schoolsWithResponses =
             className="admin-logout-button"
             onClick={handleLogout}
           >
-            <LogOut size={16} />
+            <LogOut size={30} />
             <span>Log out</span>
           </button>
 

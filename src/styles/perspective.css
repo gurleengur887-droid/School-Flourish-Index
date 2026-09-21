@@ -60,10 +60,11 @@
   background: transparent;
 
   font-family: var(--font-mono);
-  font-size: 14px;
+  font-size: 18px;
   letter-spacing: 1.5px;
-
-  color: var(--color-text-muted);
+  font-weight: bolder;
+  
+  color: var(--color-green-dark);
 
   cursor: pointer;
 
@@ -71,31 +72,10 @@
 }
 
 .perspective-back:hover {
-  color: var(--color-green-dark);
+  color:#748079;
 }
 
-.perspective-progress {
-  display: flex;
-  align-items: center;
-  gap: 10px;
 
-  font-family: var(--font-mono);
-  font-size: 14px;
-  letter-spacing: 1.3px;
-
-  color: var(--color-text-muted);
-}
-
-.perspective-progress .active {
-  color: var(--color-green-dark);
-}
-
-.perspective-progress i {
-  width: 36px;
-  height: 1px;
-
-  background: var(--color-border-dark);
-}
 
 
 /* ========================================
@@ -151,10 +131,10 @@
   margin: 0;
 
   font-family: var(--font-mono);
-  font-size: 14px;
+  font-size: 18px;
   letter-spacing: 1.8px;
-
-  color: var(--color-text-soft);
+ font-weight: bolder;
+  color:#c56846;
 }
 
 .perspective-hero-copy h1 {
@@ -162,8 +142,8 @@
 
   margin: 0;
 
-  font-family: var(--font-serif);
-  font-weight: 500;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: bolder;
 
   font-size: clamp(
     58px,
@@ -187,9 +167,9 @@
 
   margin: 30px 0 0;
 
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.65;
-
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: var(--color-text-soft);
 }
 
@@ -399,8 +379,8 @@
   font-family: var(--font-mono);
   font-size: 14px;
   letter-spacing: 1.6px;
-
-  color: var(--color-text-muted);
+  font-weight: bolder;
+  color: #d18468;
 }
 
 .school-card-copy strong {
@@ -418,10 +398,10 @@
 
 .school-card-copy small {
   font-family: var(--font-mono);
-  font-size: 13px;
+  font-size: 14px;
   letter-spacing: 0.7px;
-
-  color: var(--color-text-muted);
+  font-weight: bolder;
+  color: var(--color-green-dark);
 }
 
 .perspective-school-card > button {
@@ -434,7 +414,8 @@
   font-size: 14px;
   letter-spacing: 1.2px;
 
-  color: var(--color-text-soft);
+   font-weight: bolder;
+  color: var(--color-green-dark);
 
   text-decoration: underline;
   text-underline-offset: 4px;
@@ -470,10 +451,10 @@
 
 .choice-heading > div span {
   font-family: var(--font-mono);
-  font-size: 14px;
+  font-size: 20px;
   letter-spacing: 1.7px;
-
-  color: var(--color-text-muted);
+ font-weight: bold;
+  color: #d18468;
 }
 
 .choice-heading p {
@@ -484,10 +465,10 @@
   max-width: none;
 
   margin: 0;
-
-  font-size: 15px;
+font-weight: bolder;
+  font-size: 18px;
   line-height: 1.55;
-
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   color: var(--color-text-soft);
 }
 
@@ -724,9 +705,9 @@
 .survey-perspective-card-content h2 {
   margin: 0;
 
-  font-family: var(--font-serif);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 31px;
-  font-weight: 500;
+  font-weight: bolder;
   line-height: 1;
 
   letter-spacing: -1.2px;
@@ -748,9 +729,9 @@
 
   margin: 13px 0 0;
 
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.6;
-
+font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: var(--color-text-soft);
 }
 
@@ -1549,9 +1530,10 @@
   margin: 0;
 
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 14px;
+font-weight: bolder;
   letter-spacing: 2.4px;
-  color: #748079;
+  color:#d18468;
 }
 
 
@@ -1836,12 +1818,12 @@
   margin: 0 !important;
 
   font-family: var(--font-mono) !important;
-  font-size: 12px !important;
+  font-size: 18px !important;
   line-height: 1.2 !important;
-
+  font-weight: bolder;
   letter-spacing: 2.5px !important;
 
-  color: #718079 !important;
+  color: #d18468 !important;
 }
 
 
@@ -1875,10 +1857,10 @@
   margin: 0 !important;
   padding: 0 !important;
 
-  font-family: var(--font-serif) !important;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif !important;
   font-size: clamp(58px, 6vw, 88px) !important;
 
-  font-weight: 500 !important;
+  font-weight: bolder !important;
   line-height: 0.92 !important;
 
   letter-spacing: -4px !important;
@@ -1913,7 +1895,7 @@
 
   margin: 0 !important;
 
-  font-family: var(--font-sans) !important;
+  font-family: Verdana, Geneva, Tahoma, sans-serif !important;
   font-size: 18px !important;
   line-height: 1.65 !important;
 
@@ -1938,10 +1920,10 @@
 .perspective-privacy .privacy-note-copy .privacy-note-emphasis {
   margin-bottom: 28px !important;
 
-  font-family: var(--font-serif) !important;
+  font-family: Verdana, Geneva, Tahoma, sans-serif !important;
   font-size: 27px !important;
   line-height: 1.3 !important;
-
+  font-weight: bolder;
   color: #18352d !important;
 }
 
@@ -2127,4 +2109,13 @@
     font-size: 12px !important;
     letter-spacing: 2px !important;
   }
+}
+
+.survey-perspective-card-arrow-opening {
+  color: #ffffff;
+  background: #3f765f;
+  transform: translateX(4px);
+}
+#choose-your-voice {
+  scroll-margin-top: 30px;
 }

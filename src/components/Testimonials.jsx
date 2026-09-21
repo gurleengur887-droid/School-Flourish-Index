@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   ArrowLeft,
   ArrowRight,
@@ -107,6 +107,38 @@ const testimonials = [
     quote: "Small changes in how we listen can change an entire school.",
     icon: Sprout,
   },
+  {
+  id: 13,
+  type: "parent",
+  label: "PARENT VOICE",
+  name: "Meera Kapoor",
+  quote: "I understand my child's needs better when their voice is truly heard.",
+  icon: Heart,
+},
+{
+  id: 14,
+  type: "teacher",
+  label: "TEACHER VOICE",
+  name: "Karan Sharma",
+  quote: "Listening to different perspectives has made our classrooms more connected.",
+  icon: BookOpen,
+},
+{
+  id: 15,
+  type: "student",
+  label: "STUDENT VOICE",
+  name: "Simran Gill",
+  quote: "Being asked what I think makes me feel like I belong here.",
+  icon: Backpack,
+},
+{
+  id: 16,
+  type: "leader",
+  label: "LEADER VOICE",
+  name: "Harpreet Singh",
+  quote: "When every voice is included, better ideas emerge across the school.",
+  icon: Sprout,
+},
 ];
 
 const filters = [
@@ -120,7 +152,22 @@ const filters = [
 const Testimonials = () => {
   const [activeFilter, setActiveFilter] = useState("all");
   const [current, setCurrent] = useState(0);
+const [isMobile, setIsMobile] = useState(
+  () => window.innerWidth <= 700
+);
 
+useEffect(() => {
+  const handleResize = () => {
+    setIsMobile(window.innerWidth <= 700);
+  };
+
+  handleResize();
+  window.addEventListener("resize", handleResize);
+
+  return () => {
+    window.removeEventListener("resize", handleResize);
+  };
+}, []);
   const filteredTestimonials =
     activeFilter === "all"
       ? testimonials
@@ -128,7 +175,7 @@ const Testimonials = () => {
           (item) => item.type === activeFilter
         );
 
-  const visibleCards = 4;
+const visibleCards = isMobile ? 1 : 4;
 
   const totalPages = Math.max(
     1,
@@ -287,7 +334,11 @@ const Testimonials = () => {
 
           {/* Cards */}
 
-          <div className="sfi-testimonials-grid">
+       <div
+  className={`sfi-testimonials-grid ${
+    activeFilter !== "all" ? "sfi-filtered-grid" : ""
+  }`}
+>
 
             {displayedTestimonials.map(
               (testimonial, index) => {

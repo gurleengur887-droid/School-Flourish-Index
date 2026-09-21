@@ -13,6 +13,7 @@ import {
   GraduationCap,
   BriefcaseBusiness,
   Search,
+    FileText,
 } from "lucide-react";
 import {
   useNavigate,
@@ -360,7 +361,15 @@ function AdminPerspectiveResponses() {
           >
             <span>Results</span>
           </button>
-
+  <button
+  className="admin-nav-item"
+  onClick={() =>
+    (window.location.href = "/admin/reports")
+  }
+>
+  <FileText size={18} />
+  <span>Insights / Reports</span>
+</button>
           <div className="admin-nav-divider" />
 
           <button

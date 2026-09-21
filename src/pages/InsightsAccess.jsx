@@ -50,7 +50,6 @@ const InsightsAccess = () => {
             <span>LET'S CONNECT</span>
             <h2>
               Your insights are
-              <br />
               worth exploring.
             </h2>
           </div>

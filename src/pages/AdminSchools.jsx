@@ -7,6 +7,7 @@ import {
   Eye,
   Settings,
   Search,
+    FileText,
 } from "lucide-react";
 import { supabase } from "../lib/supabase";
 import "../styles/admin_dashboard.css";
@@ -252,6 +253,15 @@ function AdminSchools() {
             <BarChart3 size={18} />
             <span>Results</span>
           </button>
+<button
+  className="admin-nav-item"
+  onClick={() =>
+    (window.location.href = "/admin/reports")
+  }
+>
+  <FileText size={18} />
+  <span>Insights / Reports</span>
+</button>
 
           <div className="admin-nav-divider" />
 

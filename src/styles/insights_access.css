@@ -23,9 +23,10 @@
   margin-bottom: 55px;
 
   font-family: var(--font-mono);
-  font-size: 14px;
+  font-size: 18px;
+  font-weight: bolder;
   letter-spacing: 2px;
-  color: #60776d;
+  color:#d18468;
 }
 
 .insights-access-label span {
@@ -47,17 +48,19 @@
   margin: 0 0 20px;
 
   font-family: var(--font-mono);
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: bolder;
   letter-spacing: 2px;
-  color: #8a9a91;
+    color: var(--color-green-dark);
+
 }
 
 .insights-access-heading h1 {
   max-width: 760px;
   margin: 0;
 
-  font-family: var(--font-serif);
-  font-weight: 500;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: bolder;
   font-size: clamp(58px, 7vw, 94px);
   line-height: 0.94;
   letter-spacing: -4px;
@@ -77,10 +80,11 @@
 .insights-access-copy p {
   margin: 0 0 22px;
 
-  font-family: var(--font-sans);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 18px;
   line-height: 1.7;
-  color: #61756c;
+    color: var(--color-green-dark);
+
 }
 
 .insights-access-copy p:last-child {
@@ -112,18 +116,20 @@
   font-family: var(--font-mono);
   font-size: 14px;
   letter-spacing: 2px;
-  color: #8a9a91;
+    color: var(--color-green-dark);
+
+  font-weight: bolder;
 }
 
 .insights-access-contact-intro h2 {
   margin: 0;
 
-  font-family: var(--font-serif);
-  font-size: clamp(34px, 3.2vw, 48px);
-  font-weight: 500;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 65px;
+  font-weight: bolder;
   line-height: 1;
   letter-spacing: -1.8px;
-  color: #20352d;
+  color: #364d44;
 }
 
 /* CONTACT CARDS */
@@ -182,9 +188,11 @@
 
 .contact-card-text span {
   font-family: var(--font-mono);
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: bolder;
   letter-spacing: 1.7px;
-  color: #89968f;
+    color: var(--color-green-dark);
+
 }
 
 .contact-card-text strong {
@@ -223,10 +231,12 @@
 .insights-access-note p {
   margin: 0;
 
-  font-family: var(--font-sans);
-  font-size: 14px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 16px;
+  font-weight: bolder;
   line-height: 1.6;
-  color: #89968f;
+    color: var(--color-green-dark);
+
 }
 
 /* TABLET */

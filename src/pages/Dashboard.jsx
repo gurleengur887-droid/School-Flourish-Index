@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../lib/supabase";
+import PublicStrengthsSection from "../components/PublicStrengthsSection";
 import "../styles/dashboard.css";
 import SEO from "../components/SEO";
 
@@ -28,6 +29,7 @@ const DEFAULT_INSIGHTS = {
   regions: [],
   cities: [],
   perspectives: [],
+  public_dimensions: [],
 };
 
 export default function Dashboard() {
@@ -94,25 +96,30 @@ export default function Dashboard() {
           insightsResult.error
         );
       } else if (insightsResult.data) {
-        setInsights({
-          total_responses:
-            insightsResult.data.total_responses ?? 0,
+       setInsights({
+  total_responses:
+    insightsResult.data.total_responses ?? 0,
 
-          regions:
-            Array.isArray(insightsResult.data.regions)
-              ? insightsResult.data.regions
-              : [],
+  regions:
+    Array.isArray(insightsResult.data.regions)
+      ? insightsResult.data.regions
+      : [],
 
-          cities:
-            Array.isArray(insightsResult.data.cities)
-              ? insightsResult.data.cities
-              : [],
+  cities:
+    Array.isArray(insightsResult.data.cities)
+      ? insightsResult.data.cities
+      : [],
 
-          perspectives:
-            Array.isArray(insightsResult.data.perspectives)
-              ? insightsResult.data.perspectives
-              : [],
-        });
+  perspectives:
+    Array.isArray(insightsResult.data.perspectives)
+      ? insightsResult.data.perspectives
+      : [],
+
+  public_dimensions:
+    Array.isArray(insightsResult.data.public_dimensions)
+      ? insightsResult.data.public_dimensions
+      : [],
+});
       }
     } catch (error) {
       console.error(
@@ -208,9 +215,9 @@ export default function Dashboard() {
           </div>
 
           <h1>
-            A living picture of
+            A Clear picture of how
             <br />
-            <em>collective flourishing.</em>
+            <em>schools are flourishing.</em>
           </h1>
 
           <p>
@@ -337,7 +344,7 @@ export default function Dashboard() {
                   <div className="public-pulse-content">
 
                     <span>
-                      COMMUNITY RESPONSES
+                      TOTAL RESPONSES
                     </span>
 
                     <strong>
@@ -465,7 +472,15 @@ export default function Dashboard() {
 
         </section>
       )}
+{/* =========================================
+    WHERE SCHOOLS ARE STRONGEST
+========================================= */}
 
+{settings.show_collective_insights && (
+  <PublicStrengthsSection
+    dimensions={insights.public_dimensions}
+  />
+)}
 
       {/* =========================================
           WHERE VOICES ARE COMING FROM
@@ -703,6 +718,7 @@ export default function Dashboard() {
           </div>
 
         </section>
+        
       )}
 
 

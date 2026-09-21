@@ -12,6 +12,7 @@ import {
   ArrowUpRight,
   CheckCircle2,
   Clock3,
+    FileText,
 } from "lucide-react";
 import {
   ResponsiveContainer,
@@ -820,7 +821,15 @@ const REGION_COLORS = [
             <BarChart3 size={18} />
             <span>Results</span>
           </button>
-
+<button
+  className="admin-nav-item"
+  onClick={() =>
+    (window.location.href = "/admin/reports")
+  }
+>
+  <FileText size={18} />
+  <span>Insights / Reports</span>
+</button>
           <div className="admin-nav-divider" />
 
           <button

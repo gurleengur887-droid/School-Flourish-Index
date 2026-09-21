@@ -178,7 +178,7 @@ const Footer = () => {
       <div className="footer-bottom">
 
         <span>
-          © 2025 SFI
+          © 2026 SFI
         </span>
 
         <span>

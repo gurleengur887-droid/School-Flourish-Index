@@ -1,0 +1,1043 @@
+/* =========================================================
+   TEACHER REPORT
+   Fixed A4-like canvas
+========================================================= */
+
+.teacher-report {
+  --dark-green: #075f57;
+  --deep-green: #005f57;
+  --text: #063d59;
+  --light-green: #eaf8f5;
+  --border: #c8e0dc;
+
+  width: 1055px;
+  height: 1491px;
+
+  box-sizing: border-box;
+
+  position: relative;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 8% 4%,
+      rgba(181, 235, 217, 0.45),
+      transparent 15%
+    ),
+    radial-gradient(
+      circle at 92% 95%,
+      rgba(190, 240, 224, 0.35),
+      transparent 20%
+    ),
+    #ffffff;
+
+  color: var(--text);
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-weight: 600;
+}
+
+.teacher-report *,
+.teacher-report *::before,
+.teacher-report *::after {
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   HEADER — REFERENCE MATCH
+========================================================= */
+
+.tr-header {
+  position: relative;
+
+  height: 265px;
+
+  padding: 28px 25px 0;
+
+  display: flex;
+  align-items: flex-start;
+
+  overflow: hidden;
+
+  background: transparent;
+}
+
+/* soft green watercolor behind logo */
+
+.tr-header-watercolor {
+  position: absolute;
+
+  left: -90px;
+  top: -80px;
+
+  width: 370px;
+  height: 300px;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(156, 229, 207, 0.48) 0%,
+      rgba(196, 240, 225, 0.28) 35%,
+      transparent 72%
+    );
+
+  filter: blur(5px);
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.tr-logo-placeholder {
+  width: 185px;
+  height: 170px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+  z-index: 3;
+}
+
+.tr-logo-circle {
+  width: 145px;
+  height: 145px;
+
+  border-radius: 50%;
+
+  border: 2px solid #c4e7df;
+
+  background:
+    radial-gradient(
+      circle at 40% 35%,
+      rgba(255,255,255,0.95),
+      rgba(232,248,244,0.72)
+    );
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #08645d;
+
+  font-size: 17px;
+
+  font-weight: 700;
+
+  letter-spacing: 2px;
+}
+
+
+/* =========================================================
+   VERTICAL LINE
+========================================================= */
+
+.tr-header-divider {
+  width: 3px;
+  height: 155px;
+
+  margin-top: 8px;
+  margin-right: 27px;
+
+  background: #14675f;
+
+  flex-shrink: 0;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.tr-title-block {
+  width: 555px;
+
+  padding-top: 3px;
+
+  position: relative;
+
+  z-index: 3;
+}
+
+.tr-title-block h1 {
+  margin: 0;
+
+  color: #005e58;
+
+  font-size: 42px;
+
+  line-height: 0.98;
+
+  letter-spacing: -1px;
+
+  font-weight: 900;
+
+  white-space: nowrap;
+}
+
+.tr-subtitle {
+  margin-top: 12px;
+
+  color: #123e60;
+
+  font-size: 19px;
+
+  line-height: 1;
+
+  letter-spacing: 5px;
+
+  font-weight: 500;
+
+  white-space: nowrap;
+}
+
+.tr-title-block p {
+  margin: 7px 0 0;
+
+  color: #286b68;
+
+  font-size: 15px;
+
+  line-height: 1.2;
+
+  font-style: italic;
+
+  font-weight: 500;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   TOP RIGHT CARD
+========================================================= */
+
+.tr-header-message {
+  width: 230px;
+  height: 120px;
+
+  flex-shrink: 0;
+
+  margin-left: auto;
+  margin-top: 4px;
+
+  border-radius: 14px;
+
+  background: #eef9eb;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  position: relative;
+  z-index: 3;
+}
+
+.tr-header-message-image {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: contain;
+  object-position: center;
+}
+/* =========================================================
+   RESPONDENT INFORMATION BAR
+========================================================= */
+
+.tr-info {
+  height: 68px;
+
+  margin: 0 25px;
+
+  padding: 0 14px;
+
+  border-radius: 11px;
+
+  background: #eaf8f7;
+
+  display: grid;
+
+  grid-template-columns:
+    1.25fr
+    1.25fr
+    0.72fr;
+
+  gap: 25px;
+
+  align-items: center;
+
+  position: relative;
+
+  z-index: 10;
+}
+
+.tr-info-field {
+  position: relative;
+
+  height: 52px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  min-width: 0;
+}
+
+.tr-info-label {
+  flex-shrink: 0;
+
+  font-size: 17px;
+
+  font-weight: 500;
+
+  color: #153e58;
+}
+
+.tr-info-field strong {
+  min-width: 0;
+
+  max-width: none;
+
+  overflow: visible;
+
+  text-overflow: clip;
+
+  white-space: nowrap;
+
+  font-size: 15px;
+
+  font-weight: 800;
+
+  color: #123e58;
+}
+
+.tr-info-line {
+  position: absolute;
+
+  left: 0;
+  right: 0;
+
+  bottom: 3px;
+
+  height: 1.5px;
+
+  background: #183f59;
+}
+.tr-school-value {
+  font-size: 14px !important;
+}
+/* =========================================================
+   SUMMARY
+========================================================= */
+
+.tr-summary {
+  height: 142px;
+
+  margin: 12px 25px 0;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    1fr
+    1fr;
+
+  gap: 14px;
+}
+
+.tr-summary-card {
+  border-radius: 12px;
+
+  display: flex;
+
+  align-items: center;
+
+  padding: 20px 25px;
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+.respondents-card {
+  background: #e8f7f5;
+}
+
+.strength-card {
+  background: #fff8e8;
+}
+
+.focus-card {
+  background: #fff0f0;
+}
+
+.tr-icon {
+  width: 100px;
+  height: 100px;
+
+  color: #11675f;
+
+  flex-shrink: 0;
+}
+
+.tr-summary-icon {
+  width: 86px;
+  height: 86px;
+
+  flex-shrink: 0;
+}
+
+.tr-summary-icon.star {
+  color: #dfa31b;
+}
+
+.tr-summary-icon.target {
+  color: #ce2734;
+}
+
+.tr-summary-content {
+  margin-left: 18px;
+}
+
+.tr-summary-content h3 {
+  margin: 0;
+
+  font-size: 21px;
+
+  line-height: 1.02;
+
+  color: #0b3e59;
+
+  font-weight: 900;
+}
+
+.tr-summary-number {
+  margin-top: 7px;
+
+  font-size: 42px;
+
+  line-height: 0.95;
+
+  color: #0c3e5c;
+
+  font-weight: 900;
+}
+
+.tr-summary-content em {
+  display: block;
+
+  margin-top: 5px;
+
+  font-size: 15px;
+
+  color: #123d58;
+
+  font-weight: 500;
+}
+
+/* =========================================================
+   MAIN GRID
+========================================================= */
+
+.tr-main {
+  margin: 14px 25px 0;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    1fr;
+
+  gap: 14px;
+
+  align-items: start;
+}
+
+.tr-panel {
+  border: 1px solid #bcdad5;
+
+  border-radius: 12px;
+
+  overflow: hidden;
+
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.tr-panel-title {
+  height: 50px;
+
+  background: var(--dark-green);
+
+  color: white;
+
+  padding: 10px 15px;
+
+  display: flex;
+
+  align-items: center;
+
+  font-size: 22px;
+
+  line-height: 1;
+
+  font-weight: 900;
+
+  letter-spacing: 0.2px;
+}
+
+/* =========================================================
+   PARAMETER TABLE
+========================================================= */
+
+.parameter-panel {
+  min-height: 860px;
+}
+
+.tr-table-header {
+  height: 65px;
+
+  display: grid;
+
+  grid-template-columns:
+    1.55fr
+    0.65fr
+    0.75fr;
+
+  background: #eef8f6;
+
+  border-bottom: 1px solid var(--border);
+
+  font-size: 17px;
+
+  font-weight: 900;
+
+  text-align: center;
+
+  align-items: center;
+}
+
+.tr-parameter-list {
+  width: 100%;
+}
+
+.tr-parameter-row {
+  min-height: 68px;
+
+  display: grid;
+
+  grid-template-columns:
+    1.55fr
+    0.65fr
+    0.75fr;
+
+  border-bottom: 1px solid #d4e5e2;
+
+  align-items: center;
+}
+
+.tr-parameter-row:last-child {
+  border-bottom: none;
+}
+
+.tr-parameter-name {
+  padding: 10px 15px;
+
+  font-size: 16px;
+
+  line-height: 1.13;
+
+  color: #073e5a;
+
+  font-weight: 700;
+}
+
+.tr-parameter-score {
+  height: 100%;
+
+  border-left: 1px solid #d4e5e2;
+  border-right: 1px solid #d4e5e2;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  font-size: 19px;
+
+  font-weight: 900;
+
+  color: #073e5a;
+}
+
+.tr-performance-cell {
+  padding: 8px 9px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.tr-performance {
+  width: 100%;
+
+  min-height: 40px;
+
+  border-radius: 9px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  padding: 5px 4px;
+
+  font-size: 13px;
+
+  font-weight: 900;
+}
+
+.tr-performance.excellent {
+  background: #dff4df;
+  color: #087044;
+}
+
+.tr-performance.good {
+  background: #fff0bb;
+  color: #765300;
+}
+
+.tr-performance.attention {
+  background: #ffd9d9;
+  color: #a51f2a;
+}
+
+.tr-performance.critical {
+  background: #efcaca;
+  color: #8f1720;
+}
+
+/* =========================================================
+   RIGHT COLUMN
+========================================================= */
+
+.tr-right-column {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 14px;
+}
+
+/* =========================================================
+   BAR CHART
+========================================================= */
+
+.chart-panel {
+  min-height: 535px;
+}
+
+.tr-chart {
+  padding: 20px 18px 14px;
+}
+
+.tr-chart-row {
+  min-height: 39px;
+
+  display: grid;
+
+  grid-template-columns: 190px 1fr;
+
+  align-items: center;
+
+  gap: 10px;
+}
+
+.tr-chart-label {
+  text-align: right;
+
+  font-size: 13px;
+
+  line-height: 1.08;
+
+  color: #123d58;
+
+  font-weight: 700;
+}
+
+.tr-bar-area {
+  display: grid;
+
+  grid-template-columns: 1fr 42px;
+
+  gap: 8px;
+
+  align-items: center;
+}
+
+.tr-bar-track {
+  height: 22px;
+
+  border-radius: 3px;
+
+  background: #edf1f1;
+
+  overflow: hidden;
+
+  position: relative;
+}
+
+.tr-bar-fill {
+  height: 100%;
+
+  border-radius: 2px;
+
+  transition: width 0.3s ease;
+}
+
+.tr-chart-score {
+  font-size: 12px;
+
+  color: #123d58;
+
+  font-weight: 900;
+
+  text-align: left;
+}
+
+.tr-chart-axis {
+  margin-left: 200px;
+
+  margin-right: 42px;
+
+  margin-top: 5px;
+
+  padding-top: 5px;
+
+  border-top: 1px solid #173f59;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  font-size: 12px;
+
+  color: #173f59;
+
+  font-weight: 700;
+}
+
+/* =========================================================
+   OBSERVATIONS
+========================================================= */
+
+.observations-panel {
+  min-height: 285px;
+}
+
+.tr-observation-body {
+  min-height: 235px;
+
+  background: #e9f8f6;
+
+  padding: 20px;
+
+  display: grid;
+
+  grid-template-columns: 90px 1fr;
+
+  gap: 15px;
+}
+
+.tr-search-circle {
+  width: 75px;
+  height: 75px;
+
+  border-radius: 50%;
+
+  background: #d5f1ec;
+
+  color: #087167;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.tr-search-icon {
+  width: 45px;
+  height: 45px;
+}
+
+.tr-observation-list {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.tr-observation {
+  min-height: 52px;
+
+  display: grid;
+
+  grid-template-columns: 20px 1fr;
+
+  gap: 5px;
+
+  align-items: center;
+
+  border-bottom: 1px solid #8bb4ae;
+}
+
+.tr-observation:last-child {
+  border-bottom: none;
+}
+
+.tr-bullet {
+  color: #00695f;
+
+  font-size: 26px;
+
+  line-height: 1;
+}
+
+.tr-observation p {
+  margin: 0;
+
+  font-size: 14px;
+
+  line-height: 1.25;
+
+  color: #123d58;
+
+  font-weight: 600;
+}
+
+/* =========================================================
+   CLEAN CONTACT FOOTER
+========================================================= */
+
+.tr-footer {
+  position: absolute;
+  left: 25px;
+  right: 25px;
+  bottom: 18px;
+
+  height: 78px;
+
+  display: flex;
+  align-items: flex-end;
+
+  border-top: 1.5px solid #0b625b;
+
+  padding: 18px 8px 0;
+
+  background: transparent;
+
+  z-index: 20;
+}
+
+.tr-footer-contact {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns:
+    1fr
+    auto
+    1fr
+    auto
+    1fr
+    auto
+    1fr;
+
+  align-items: center;
+}
+
+.tr-footer-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  color: #123e58;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 15px;
+  font-weight: 500;
+
+  white-space: nowrap;
+}
+
+.tr-footer-icon {
+  width: 18px;
+  height: 18px;
+
+  flex-shrink: 0;
+
+  color: #075f57;
+  stroke-width: 1.8;
+}
+
+.tr-footer-separator {
+  width: 1px;
+  height: 24px;
+
+  background: #a8c4bf;
+}
+
+/* Remove all old footer decoration */
+.tr-bottom-leaves,
+.tr-footer-left,
+.tr-footer-right,
+.tr-footer::after {
+  display: none !important;
+}
+/* =========================================================
+   TOP RIGHT HEADER ART — REMOVED
+========================================================= */
+
+.tr-header-message,
+.tr-header-message-image {
+  display: none !important;
+}
+
+/* =========================================================
+   PRINT / PDF
+========================================================= */
+
+@media print {
+  .teacher-report {
+    margin: 0;
+
+    width: 1055px;
+    height: 1491px;
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE REPORT VIEWER
+========================================================= */
+
+.teacher-report-wrapper {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  position: relative;
+}
+
+
+/* -----------------------------------------
+   DESKTOP
+----------------------------------------- */
+
+.teacher-report {
+  width: 1055px;
+  height: 1491px;
+  flex: 0 0 1055px;
+
+  transform: none;
+  transform-origin: top left;
+}
+
+
+/* -----------------------------------------
+   MOBILE / TABLET
+----------------------------------------- */
+
+@media screen and (max-width: 1055px) {
+
+  .teacher-report-wrapper {
+    width: 100vw;
+    max-width: 100vw;
+
+    display: block;
+
+    /* scaled report height */
+    height: calc(100vw * 1491 / 1055);
+
+    overflow: hidden;
+  }
+
+  .teacher-report {
+    width: 1055px;
+    height: 1491px;
+
+    transform-origin: top left;
+
+    transform: scale(
+      calc(100vw / 1055px)
+    );
+  }
+}
+
+
+/* -----------------------------------------
+   VERY SMALL PHONES
+----------------------------------------- */
+
+@media screen and (max-width: 600px) {
+
+  .teacher-report-wrapper {
+    width: 100vw;
+    max-width: 100vw;
+
+    margin: 0;
+    padding: 0;
+
+    display: block;
+    overflow: hidden;
+
+    height: calc(100vw * 1491 / 1055);
+  }
+
+  .teacher-report {
+    transform-origin: top left;
+
+    transform: scale(
+      calc(100vw / 1055px)
+    );
+  }
+}
+/* =========================================================
+   REPORT WRAPPER
+   Keep the wrapper inside its parent on desktop/export.
+   The mobile media query above still makes it viewport-sized.
+========================================================= */
+
+.teacher-report-wrapper {
+  width: 100%;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+

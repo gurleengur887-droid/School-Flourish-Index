@@ -99,7 +99,7 @@ const CreatorSection = () => {
           <div className="creator-signature">
 
   <img
-    src="/signature.png"
+    src="/signature_eshu.png"
     alt="Eshu Madaan signature"
     className="creator-signature-image"
   />

@@ -115,12 +115,12 @@
   gap: 13px;
 
   font-family: var(--font-mono);
-
-  font-size: 14px;
-
+font-weight: bolder;
+  font-size: 16px;
+ 
   letter-spacing: 2.7px;
 
-  color: var(--color-text-soft);
+  color: #d18468;
 }
 
 
@@ -141,9 +141,9 @@
 
   margin: 0;
 
-  font-family: var(--font-serif);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 
-  font-weight: 500;
+  font-weight: bolder;
 
   font-size:
     clamp(62px, 6vw, 86px);
@@ -174,13 +174,14 @@
 
   margin: 33px 0 0;
 
-  font-family: var(--font-sans);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 
   font-size: 17px;
 
   line-height: 1.62;
 
-  color: var(--color-text-soft);
+    color: var(--color-green-dark);
+
 }
 
 
@@ -200,11 +201,10 @@
 
   font-family: var(--font-mono);
 
-  font-size: 14px;
-
+  font-size: 15px;
+font-weight: bolder;
   letter-spacing: 0.9px;
-
-  color: var(--color-text-muted);
+  color: #d18468;
 }
 
 
@@ -563,12 +563,12 @@
 
   font-family: var(--font-mono);
 
-  font-size: 12px;
+  font-size: 14px;
+font-weight: bolder;
 
   letter-spacing: 2.2px;
 
-  color:
-    rgba(246, 242, 232, 0.66);
+  color:#d18468;
 }
 
 
@@ -661,9 +661,9 @@
 .school-panel-header h2 {
   margin: 0;
 
-  font-family: var(--font-serif);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 
-  font-weight: 500;
+  font-weight: bolder;
 
   font-size:
     clamp(49px, 4.1vw, 62px);
@@ -688,7 +688,7 @@
 
   margin: 21px 0 0;
 
-  font-family: var(--font-sans);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 
   font-size: 14px;
 
@@ -782,12 +782,13 @@
 .school-dropdown-copy span {
   font-family: var(--font-mono);
 
-  font-size: 10px;
+  font-size: 12px;
 
   letter-spacing: 1.5px;
 
   color:
-    rgba(246, 241, 232, 0.46);
+    #bd6549;
+    font-weight: bolder;
 }
 
 
@@ -815,12 +816,12 @@
 .school-dropdown-copy small {
   font-family: var(--font-mono);
 
-  font-size: 10px;
+  font-size: 12px;
 
   letter-spacing: 0.6px;
 
   color:
-    rgba(246, 241, 232, 0.43);
+    #d18468;
 }
 
 
@@ -924,12 +925,12 @@
 
   font-family: var(--font-mono);
 
-  font-size: 10px;
-
+  font-size: 12px;
+  font-weight: bolder;
   letter-spacing: 1.5px;
 
   color:
-    rgba(246, 241, 232, 0.45);
+    #d18468;
 }
 
 
@@ -1270,9 +1271,9 @@
 
   gap: 15px;
 
-  font-family: var(--font-mono);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 
-  font-size: 12px;
+  font-size: 16px;
 
   line-height: 1.5;
 
@@ -1395,8 +1396,8 @@
 
   font-family: var(--font-mono);
 
-  font-size: 14px;
-
+  font-size: 16px;
+font-weight: bolder;
   letter-spacing: 1px;
 
   cursor: pointer;
@@ -1431,8 +1432,8 @@
 .add-school-heading > span {
   font-family: var(--font-mono);
 
-  font-size: 12px;
-
+  font-size: 16px;
+  font-weight: bolder;
   letter-spacing: 1.5px;
 
   color: #cf7959;
@@ -1443,7 +1444,7 @@
   margin:
     13px 0 0;
 
-  font-family: var(--font-serif);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 
   font-weight: 500;
 
@@ -1471,9 +1472,9 @@
   margin:
     17px 0 0;
 
-  font-family: var(--font-sans);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 
-  font-size: 12px;
+  font-size: 14px;
 
   line-height: 1.55;
 
@@ -1514,10 +1515,10 @@
 
   font-family: var(--font-mono);
 
-  font-size: 12px;
+  font-size: 14px;
 
   letter-spacing: 1px;
-
+font-weight: bolder;
   color:
     rgba(246, 241, 232, 0.44);
 }
@@ -1546,7 +1547,7 @@
 
   font-family: var(--font-sans);
 
-  font-size: 11px;
+  font-size: 13px;
 
   color: #f6f1e8;
 
@@ -2218,4 +2219,333 @@
     transition: none;
   }
 
+}
+
+/* =========================================================
+   SCHOOL SELECTOR — TEXT EMPHASIS
+========================================================= */
+
+.school-dropdown-copy span {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1.6px;
+  color: #bd6549;
+}
+
+.school-dropdown-copy strong {
+  font-weight: 700;
+}
+
+/* =========================================================
+   SCHOOL SEARCH
+========================================================= */
+
+.school-search-wrapper {
+  position: relative;
+  margin: 0 14px 10px;
+}
+
+.school-search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(246, 241, 232, 0.55);
+  pointer-events: none;
+}
+
+.school-search-input {
+  width: 100%;
+  height: 38px;
+  box-sizing: border-box;
+
+  padding: 0 12px 0 37px;
+
+  border: 1px solid rgba(237, 239, 227, 0.20);
+  border-radius: 6px;
+
+  outline: none;
+
+  background: rgba(255, 255, 255, 0.045);
+
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+
+  color: #f6f1e8;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.school-search-input::placeholder {
+  color: rgba(246, 241, 232, 0.42);
+}
+
+.school-search-input:focus {
+  border-color: rgba(207, 121, 89, 0.65);
+
+  background: rgba(255, 255, 255, 0.07);
+}
+
+
+
+/* =========================================================
+   ADD SCHOOL TEXT
+========================================================= */
+
+.add-school-question {
+  display: block;
+
+  margin-bottom: 4px;
+
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 800;
+
+  letter-spacing: 0.7px;
+
+  color: #bd6549;
+}
+
+.add-school-copy strong {
+  display: block;
+
+  margin-top: 0;
+
+  font-family: var(--font-sans);
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  letter-spacing: 0;
+
+  color: #f6f1e8;
+}
+
+
+
+
+
+
+/* =========================================================
+   OTHER INSTITUTION
+========================================================= */
+
+.other-institution-button {
+  width: 100%;
+
+  margin-top: 12px;
+  padding: 15px 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border: 1px solid rgba(48, 71, 62, 0.18);
+  border-radius: 2px;
+
+  background: rgba(255, 255, 255, 0.32);
+
+  color: var(--color-green-dark);
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.other-institution-button:hover {
+  background: rgba(72, 117, 96, 0.06);
+
+  border-color: rgba(72, 117, 96, 0.35);
+
+  transform: translateY(-2px);
+}
+
+.other-institution-copy {
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+.other-institution-question {
+  font-size: 12px;
+
+  color: var(--color-text-soft);
+}
+
+.other-institution-copy strong {
+  font-size: 14px;
+
+  font-weight: 700;
+
+  color: var(--color-green-dark);
+}
+
+.other-institution-button svg {
+  flex-shrink: 0;
+
+  transition:
+    transform 0.25s ease;
+}
+
+.other-institution-button:hover svg {
+  transform: translateX(4px);
+}
+/* =========================================================
+   SEARCH EMPTY STATE — MAKE IT CLEAR + VISIBLE
+========================================================= */
+
+.school-empty-state {
+  padding: 20px 18px !important;
+
+  display: flex !important;
+  flex-direction: column;
+  gap: 7px;
+
+  background: rgba(255, 255, 255, 0.035) !important;
+
+  color: #ffffff !important;
+
+  opacity: 1 !important;
+
+  font-size: 15px !important;
+  font-weight: 500 !important;
+
+  line-height: 1.55 !important;
+
+  text-align: left;
+}
+
+.school-empty-state strong {
+  display: block;
+
+  color: #ffffff !important;
+
+  font-size: 16px !important;
+  font-weight: 700 !important;
+}
+
+.school-empty-state span {
+  display: block;
+
+  color: rgba(255, 255, 255, 0.78) !important;
+
+  font-size: 14px !important;
+  font-weight: 500 !important;
+
+  line-height: 1.5 !important;
+}
+
+
+/* =========================================================
+   OTHER INSTITUTION — VISIBLE + PREMIUM
+========================================================= */
+
+.other-institution-button {
+  width: 100% !important;
+
+  margin-top: 12px !important;
+
+  min-height: 72px;
+
+  padding: 14px 18px !important;
+
+  display: flex !important;
+
+  align-items: center;
+  justify-content: space-between;
+
+  background: rgba(255, 255, 255, 0.06) !important;
+
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+
+  border-radius: 2px;
+
+  color: #ffffff !important;
+
+  opacity: 1 !important;
+
+  cursor: pointer;
+
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+
+.other-institution-button:hover {
+  background: rgba(255, 255, 255, 0.11) !important;
+
+  border-color: rgba(255, 255, 255, 0.60) !important;
+
+  transform: translateY(-2px);
+}
+
+
+.other-institution-copy {
+  display: flex !important;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  gap: 5px;
+}
+
+
+.other-institution-question {
+  display: block;
+
+  color: rgba(255, 255, 255, 0.72) !important;
+
+  font-family: var(--font-mono);
+
+  font-size: 11px !important;
+
+  font-weight: 700 !important;
+
+  letter-spacing: 1.2px;
+
+  text-transform: uppercase;
+}
+
+
+.other-institution-copy strong {
+  display: block;
+
+  color: #ffffff !important;
+
+  font-size: 17px !important;
+
+  font-weight: 700 !important;
+
+  line-height: 1.25;
+}
+
+
+.other-institution-button svg {
+  flex-shrink: 0;
+
+  color: var(--color-terracotta) !important;
+
+  opacity: 1 !important;
+
+  transition:
+    transform 0.3s ease;
+}
+
+
+.other-institution-button:hover svg {
+  transform: translateX(5px);
 }

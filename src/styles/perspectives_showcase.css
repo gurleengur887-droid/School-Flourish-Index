@@ -1,26 +1,16 @@
 /* =========================================================
    SFI — PERSPECTIVES SHOWCASE
-   Editorial / asymmetric / responsive
-========================================================= */
-
-
-/* =========================================================
-   SECTION
+   Premium editorial / colorful / organic
 ========================================================= */
 
 .perspectives-showcase {
   position: relative;
   overflow: hidden;
 
-  padding: 130px 0 145px;
+  padding: 120px 0 130px;
 
   background: var(--color-white);
 }
-
-
-/* =========================================================
-   CONTAINER
-========================================================= */
 
 .perspectives-showcase-container {
   position: relative;
@@ -49,7 +39,7 @@
 
   gap: 90px;
 
-  margin-bottom: 45px;
+  margin-bottom: 38px;
 }
 
 .perspectives-intro-left {
@@ -62,21 +52,24 @@
 
   gap: 13px;
 
-  margin-bottom: 25px;
+  margin-bottom: 22px;
 
   font-family: var(--font-mono);
 
-  font-size: 11px;
-  font-weight: 500;
+  font-size: 18px;
+
+  font-weight: bolder;
 
   letter-spacing: 2px;
 
-  color: var(--color-text-soft);
+  color: #bd6549;
 }
 
 .perspectives-label-line {
   width: 36px;
   height: 1px;
+
+  flex-shrink: 0;
 
   background: var(--color-terracotta);
 }
@@ -84,13 +77,18 @@
 .perspectives-title {
   margin: 0;
 
-  font-family: var(--font-serif);
+  font-family:
+    'Franklin Gothic Medium',
+    'Arial Narrow',
+    Arial,
+    sans-serif;
 
-  font-size: clamp(
-    62px,
-    6.4vw,
-    94px
-  );
+  font-size:
+    clamp(
+      62px,
+      6.4vw,
+      94px
+    );
 
   font-weight: 500;
 
@@ -122,7 +120,13 @@
 
   margin: 0;
 
-  font-size: 18px;
+  font-family:
+    Verdana,
+    Geneva,
+    Tahoma,
+    sans-serif;
+
+  font-size: 19px;
 
   line-height: 1.65;
 
@@ -137,12 +141,13 @@
 
   font-family: var(--font-mono);
 
-  font-size: 11px;
-  font-weight: 500;
+  font-size: 15px;
+
+  font-weight: bolder;
 
   letter-spacing: 1.7px;
 
-  color: var(--color-green);
+  color: #bd6549;
 }
 
 .intro-note-dot {
@@ -170,7 +175,7 @@
   height: 42px;
 
   margin-left: 6%;
-  margin-bottom: 8px;
+  margin-bottom: 2px;
 }
 
 .perspectives-connector::before {
@@ -229,7 +234,11 @@
 
 
 /* =========================================================
-   DESKTOP CARD LAYOUT
+   MAIN CARD LAYOUT
+
+   IMPORTANT:
+   Four cards form a clean 2 × 2 grid.
+   The inner corners create the central opening.
 ========================================================= */
 
 .perspectives-layout {
@@ -238,19 +247,16 @@
   display: grid;
 
   grid-template-columns:
-    repeat(14, minmax(0, 1fr));
+    repeat(2, minmax(0, 1fr));
 
   grid-template-rows:
-    500px
-    500px;
+    repeat(2, 400px);
 
-  column-gap: 18px;
-
-  row-gap: 55px;
+  column-gap: 16px;
+  row-gap: 14px;
 
   align-items: stretch;
 }
-
 
 /* =========================================================
    CARD BASE
@@ -260,7 +266,7 @@
   position: relative;
 
   width: 100%;
-  height: 500px;
+  height: 400px;
 
   box-sizing: border-box;
 
@@ -269,11 +275,11 @@
   display: flex;
   flex-direction: column;
 
-  padding: 30px;
-
-  border-radius: 24px;
+  padding: 28px 42px;
 
   isolation: isolate;
+
+  border: 1px solid transparent;
 
   animation:
     perspectiveCardIn
@@ -290,121 +296,271 @@
 
 
 /* =========================================================
-   ASYMMETRIC DESKTOP POSITIONS
+   CENTRAL CURVED OPENING
 ========================================================= */
 
 .parent-card {
-  grid-column: 1 / span 6;
+  grid-column: 1;
   grid-row: 1;
 
-  margin-top: 12px;
+  border-radius:
+    28px
+    28px
+    115px
+    28px;
 }
 
 .teacher-card {
-  grid-column: 8 / span 6;
+  grid-column: 2;
   grid-row: 1;
 
-  margin-top: -18px;
+  border-radius:
+    28px
+    28px
+    28px
+    115px;
 }
 
 .student-card {
-  grid-column: 2 / span 6;
+  grid-column: 1;
   grid-row: 2;
 
-  margin-top: 8px;
+  border-radius:
+    28px
+    115px
+    28px
+    28px;
 }
 
 .leader-card {
-  grid-column: 9 / span 6;
+  grid-column: 2;
   grid-row: 2;
 
-  margin-top: -52px;
-}
-
-
-/* =========================================================
-   DESKTOP HOVER
-========================================================= */
-
-.parent-card:hover {
-  transform:
-    translateY(-7px)
-    rotate(-0.3deg);
-}
-
-.teacher-card:hover {
-  transform:
-    translateY(-7px)
-    rotate(0.3deg);
-}
-
-.student-card:hover {
-  transform:
-    translateY(-7px)
-    rotate(-0.3deg);
-}
-
-.leader-card:hover {
-  transform:
-    translateY(-7px)
-    rotate(0.3deg);
+  border-radius:
+    115px
+    28px
+    28px
+    28px;
 }
 
 
 /* =========================================================
    CARD COLORS
+
+   Soft + rich.
+   NOT neon.
+   NOT muddy.
 ========================================================= */
 
 .parent-card {
   background:
     linear-gradient(
-      145deg,
-      rgba(197, 104, 70, 0.115),
-      rgba(197, 104, 70, 0.055)
+      135deg,
+      #f9ddd3 0%,
+      #f6d1c5 55%,
+      #f2c8bb 100%
     );
 
-  border:
-    1px solid
-    rgba(197, 104, 70, 0.22);
+  border-color:
+    rgba(189, 101, 73, 0.25);
+
+  color: var(--color-green-dark);
+
+  box-shadow:
+    0 12px 35px
+    rgba(189, 101, 73, 0.08);
 }
 
 .teacher-card {
   background:
     linear-gradient(
-      145deg,
-      rgba(202, 156, 53, 0.12),
-      rgba(202, 156, 53, 0.055)
+      135deg,
+      #fbefc9 0%,
+      #f8e5ae 55%,
+      #f4dda0 100%
     );
 
-  border:
-    1px solid
-    rgba(202, 156, 53, 0.22);
+  border-color:
+    rgba(205, 145, 25, 0.25);
+
+  color: var(--color-green-dark);
+
+  box-shadow:
+    0 12px 35px
+    rgba(205, 145, 25, 0.08);
 }
 
 .student-card {
   background:
     linear-gradient(
-      145deg,
-      rgba(78, 128, 145, 0.115),
-      rgba(78, 128, 145, 0.05)
+      135deg,
+      #dceff3 0%,
+      #d1ebf0 55%,
+      #c5e4ea 100%
     );
 
-  border:
-    1px solid
-    rgba(78, 128, 145, 0.21);
+  border-color:
+    rgba(54, 124, 145, 0.25);
+
+  color: var(--color-green-dark);
+
+  box-shadow:
+    0 12px 35px
+    rgba(54, 124, 145, 0.08);
 }
 
 .leader-card {
   background:
     linear-gradient(
-      145deg,
-      rgba(72, 117, 96, 0.12),
-      rgba(72, 117, 96, 0.05)
+      135deg,
+      #e0ecdc 0%,
+      #d6e6d1 55%,
+      #cadfc5 100%
+    );
+
+  border-color:
+    rgba(61, 108, 83, 0.24);
+
+  color: var(--color-green-dark);
+
+  box-shadow:
+    0 12px 35px
+    rgba(61, 108, 83, 0.08);
+}
+
+
+/* =========================================================
+   CARD HOVER
+========================================================= */
+
+.parent-card:hover {
+  transform:
+    translateY(-6px)
+    rotate(-0.25deg);
+
+  box-shadow:
+    0 22px 48px
+    rgba(189, 101, 73, 0.14);
+}
+
+.teacher-card:hover {
+  transform:
+    translateY(-6px)
+    rotate(0.25deg);
+
+  box-shadow:
+    0 22px 48px
+    rgba(205, 145, 25, 0.14);
+}
+
+.student-card:hover {
+  transform:
+    translateY(-6px)
+    rotate(-0.25deg);
+
+  box-shadow:
+    0 22px 48px
+    rgba(54, 124, 145, 0.14);
+}
+
+.leader-card:hover {
+  transform:
+    translateY(-6px)
+    rotate(0.25deg);
+
+  box-shadow:
+    0 22px 48px
+    rgba(61, 108, 83, 0.14);
+}
+
+
+/* =========================================================
+   CENTER MESSAGE
+
+   Sits exactly over the meeting point of the four cards.
+========================================================= */
+
+.perspectives-layout::before {
+  content:
+    "Your voice\A"
+    "matters.";
+
+  white-space: pre;
+
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  z-index: 30;
+
+  width: 180px;
+  height: 180px;
+
+  transform:
+    translate(-50%, -50%);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      #fffef9,
+      #faf6ed 70%
     );
 
   border:
     1px solid
-    rgba(72, 117, 96, 0.21);
+    rgba(189, 101, 73, 0.22);
+
+  box-shadow:
+    0 14px 35px
+    rgba(40, 61, 53, 0.10),
+    0 0 0 10px
+    rgba(255, 255, 255, 0.30);
+
+  text-align: center;
+
+  font-family:
+    var(--font-serif);
+
+  font-size: 29px;
+
+  font-weight: 600;
+
+  line-height: 0.95;
+
+  letter-spacing: -1px;
+
+  color: var(--color-green-dark);
+}
+
+.perspectives-layout::after {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  z-index: 31;
+
+  width: 52px;
+  height: 2px;
+
+  transform:
+    translate(-50%, 38px);
+
+  background:
+    var(--color-terracotta);
+
+  border-radius: 50%;
 }
 
 
@@ -417,11 +573,11 @@
 
   z-index: -2;
 
-  width: 300px;
-  height: 300px;
+  width: 280px;
+  height: 280px;
 
-  right: -125px;
-  top: -125px;
+  right: -110px;
+  top: -115px;
 
   border-radius:
     48% 52% 63% 37%
@@ -429,9 +585,9 @@
     42% 43% 57% 58%;
 
   background:
-    rgba(255, 255, 255, 0.48);
+    rgba(255, 255, 255, 0.43);
 
-  filter: blur(2px);
+  filter: blur(1px);
 
   transition:
     transform 0.8s
@@ -441,9 +597,9 @@
 .perspective-card:hover
 .perspective-organic-shape {
   transform:
-    translate(-25px, 30px)
-    rotate(10deg)
-    scale(1.08);
+    translate(-20px, 24px)
+    rotate(8deg)
+    scale(1.06);
 }
 
 
@@ -454,15 +610,15 @@
 .perspective-orbit-dot {
   position: absolute;
 
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
 
-  right: 62px;
-  top: 112px;
+  right: 54px;
+  top: 78px;
 
   border-radius: 50%;
 
-  opacity: 0.55;
+  opacity: 0.75;
 
   animation:
     orbitDotFloat
@@ -495,7 +651,7 @@
 .perspective-card-header {
   position: relative;
 
-  z-index: 4;
+  z-index: 5;
 
   display: flex;
   align-items: center;
@@ -511,8 +667,8 @@
 }
 
 .perspective-icon {
-  width: 47px;
-  height: 47px;
+  width: 48px;
+  height: 48px;
 
   flex-shrink: 0;
 
@@ -527,7 +683,7 @@
 
   box-shadow:
     0 6px 18px
-    rgba(24, 53, 45, 0.045);
+    rgba(24, 53, 45, 0.055);
 
   transition:
     transform 0.35s ease;
@@ -552,8 +708,8 @@
 .perspective-card:hover
 .perspective-icon {
   transform:
-    rotate(-8deg)
-    scale(1.08);
+    rotate(-7deg)
+    scale(1.07);
 }
 
 .perspective-card-label {
@@ -562,7 +718,8 @@
   font-family: var(--font-mono);
 
   font-size: 12px;
-  font-weight: 500;
+
+  font-weight: 600;
 
   letter-spacing: 2px;
 
@@ -574,16 +731,22 @@
 
   margin-top: 5px;
 
-  font-size: 11px;
+  font-family:
+    Verdana,
+    Geneva,
+    Tahoma,
+    sans-serif;
 
+  font-size: 13px;
+  font-weight: bolder;
   line-height: 1.4;
 
-  color: var(--color-text-muted);
+  color: var(--color-text-soft);
 }
 
 
 /* =========================================================
-   DESKTOP VISUAL
+   VISUALS
 ========================================================= */
 
 .perspective-visual {
@@ -595,51 +758,51 @@
 }
 
 .parent-card .perspective-visual {
-  right: 50px;
-  top: 120px;
+  right: 28px;
+  top: 68px;
+}
+
+.teacher-card .perspective-visual {
+  right: 28px;
+  top: 68px;
+}
+
+.student-card .perspective-visual {
+  right: 30px;
+  top: 68px;
+}
+
+.leader-card .perspective-visual {
+  right: 28px;
+  top: 68px;
 }
 
 .parent-card .visual-frame {
-  width: 150px;
-  height: 195px;
+  width: 140px;
+  height: 180px;
 
   transform: rotate(5deg);
 }
 
-.teacher-card .perspective-visual {
-  right: 50px;
-  top: 120px;
-}
-
 .teacher-card .visual-frame {
-  width: 135px;
-  height: 180px;
+  width: 128px;
+  height: 168px;
 
   transform: rotate(-4deg);
 }
 
-.student-card .perspective-visual {
-  right: 55px;
-  top: 120px;
-}
-
 .student-card .visual-frame {
-  width: 155px;
-  height: 155px;
+  width: 145px;
+  height: 145px;
 
   border-radius: 50%;
 
   transform: rotate(4deg);
 }
 
-.leader-card .perspective-visual {
-  right: 48px;
-  top: 120px;
-}
-
 .leader-card .visual-frame {
-  width: 170px;
-  height: 135px;
+  width: 155px;
+  height: 125px;
 
   transform: rotate(-5deg);
 }
@@ -664,15 +827,15 @@
     52% 43% 57% 48%;
 
   background:
-    rgba(255, 255, 255, 0.48);
+    rgba(255, 255, 255, 0.35);
 
   border:
     1px solid
-    rgba(24, 53, 45, 0.08);
+    rgba(24, 53, 45, 0.07);
 
   box-shadow:
     0 18px 38px
-    rgba(24, 53, 45, 0.055);
+    rgba(24, 53, 45, 0.045);
 
   transition:
     transform 0.7s
@@ -684,13 +847,13 @@
 .visual-frame {
   box-shadow:
     0 25px 50px
-    rgba(24, 53, 45, 0.09);
+    rgba(24, 53, 45, 0.075);
 }
 
 .visual-inner {
   position: absolute;
 
-  inset: 11px;
+  inset: 10px;
 
   display: flex;
   align-items: center;
@@ -701,7 +864,7 @@
   border-radius: inherit;
 
   background:
-    rgba(255, 255, 255, 0.58);
+    rgba(255, 255, 255, 0.44);
 }
 
 .visual-inner::before {
@@ -709,12 +872,12 @@
 
   position: absolute;
 
-  width: 90px;
-  height: 90px;
+  width: 88px;
+  height: 88px;
 
   border-radius: 50%;
 
-  opacity: 0.30;
+  opacity: 0.25;
 }
 
 .parent-card .visual-inner::before {
@@ -741,8 +904,8 @@
   width: 55px;
   height: 55px;
 
-  right: 20px;
-  bottom: 18px;
+  right: 17px;
+  bottom: 16px;
 
   border-radius:
     50% 50% 42% 58%;
@@ -759,50 +922,53 @@
 
   font-family: var(--font-mono);
 
-  font-size: 10px;
+  font-size: 15px;
 
   letter-spacing: 2px;
 
   color: var(--color-green-dark);
-
-  opacity: 0.6;
+  font-weight: bolder;
+  opacity: 0.58;
 }
 
 
 /* =========================================================
-   DESKTOP CONTENT
+   CARD CONTENT
 ========================================================= */
 
 .perspective-card-content {
   position: relative;
-  z-index: 4;
 
-  margin-top: 42px;
-  margin-bottom: 24px;
+  z-index: 5;
+
+  margin-top: 38px;
+
+  margin-bottom: 18px;
 
   width: 100%;
-  max-width: 430px;
+
+  max-width: 470px;
 }
 
 .perspective-card-title {
-  max-width: 430px;
+  max-width: 470px;
 
   margin: 0;
 
-  font-family: var(--font-serif);
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 
   font-size:
     clamp(
-      42px,
-      3.5vw,
-      56px
+      40px,
+      3.2vw,
+      52px
     );
 
   font-weight: 500;
 
   line-height: 0.96;
 
-  letter-spacing: -2.7px;
+  letter-spacing: -2.4px;
 
   color: var(--color-green-dark);
 }
@@ -811,11 +977,12 @@
   display: flex;
   flex-direction: column;
 
-  gap: 8px;
+  gap: 7px;
 
-  max-width: 430px;
+  max-width: 470px;
 
-  margin: 20px 0 0;
+  margin: 18px 0 0;
+
   padding: 0;
 
   list-style: none;
@@ -827,9 +994,15 @@
 
   gap: 9px;
 
-  font-size: 15px;
+  font-family:
+    Verdana,
+    Geneva,
+    Tahoma,
+    sans-serif;
 
-  line-height: 1.45;
+  font-size: 14px;
+
+  line-height: 1.42;
 
   color: var(--color-text-soft);
 }
@@ -840,7 +1013,7 @@
 
   flex: 0 0 7px;
 
-  margin-top: 7px;
+  margin-top: 6px;
 
   border-radius: 50%;
 }
@@ -869,7 +1042,7 @@
 .perspective-card-footer {
   position: relative;
 
-  z-index: 5;
+  z-index: 6;
 
   display: flex;
 
@@ -879,11 +1052,13 @@
 
   gap: 20px;
 
-  padding-top: 17px;
+  padding-top: 15px;
+
+  margin-top: auto;
 
   border-top:
     1px solid
-    rgba(24, 53, 45, 0.10);
+    rgba(24, 53, 45, 0.12);
 
   flex-shrink: 0;
 }
@@ -896,16 +1071,17 @@
 .focus-label {
   display: block;
 
-  margin-bottom: 10px;
+  margin-bottom: 9px;
 
   font-family: var(--font-mono);
 
-  font-size: 9px;
-  font-weight: 500;
+  font-size: 25px;
 
-  letter-spacing: 1.6px;
+  font-weight: 800;
 
-  color: var(--color-text-muted);
+  letter-spacing: 1.5px;
+
+  color:#bd6549;
 }
 
 .focus-items {
@@ -918,75 +1094,45 @@
 
 .focus-items span {
   display: inline-flex;
+
   align-items: center;
   justify-content: center;
 
   width: auto;
 
-  padding: 7px 11px;
+  padding: 6px 11px;
 
   border:
     1px solid
-    rgba(24, 53, 45, 0.10);
+    rgba(24, 53, 45, 0.12);
 
   border-radius: 999px;
 
   background:
-    rgba(255, 255, 255, 0.52);
+    rgba(255, 255, 255, 0.42);
 
-  font-size: 11px;
-  font-weight: 500;
-}
+  color: var(--color-green-dark);
 
-.parent-card .focus-items span {
-  color: var(--color-terracotta);
+  font-family:
+    Verdana,
+    Geneva,
+    Tahoma,
+    sans-serif;
 
-  border-color:
-    rgba(197, 104, 70, 0.20);
+  font-size: 10px;
 
-  background:
-    rgba(197, 104, 70, 0.08);
-}
-
-.teacher-card .focus-items span {
-  color: var(--color-ochre);
-
-  border-color:
-    rgba(202, 156, 53, 0.22);
-
-  background:
-    rgba(202, 156, 53, 0.09);
-}
-
-.student-card .focus-items span {
-  color: var(--color-blue);
-
-  border-color:
-    rgba(78, 128, 145, 0.20);
-
-  background:
-    rgba(78, 128, 145, 0.08);
-}
-
-.leader-card .focus-items span {
-  color: var(--color-green);
-
-  border-color:
-    rgba(72, 117, 96, 0.20);
-
-  background:
-    rgba(72, 117, 96, 0.08);
+  font-weight: 600;
 }
 
 
 /* =========================================================
-   CTA
+   CTA BUTTON
 ========================================================= */
 
 .perspective-fill-button {
   flex-shrink: 0;
 
-  min-width: 150px;
+  min-width: 155px;
 
   display: inline-flex;
 
@@ -994,20 +1140,21 @@
 
   justify-content: space-between;
 
-  gap: 16px;
+  gap: 15px;
 
   padding: 12px 14px;
 
   border: 0;
 
-  border-radius: 3px;
+  border-radius: 4px;
 
   cursor: pointer;
 
   font-family: var(--font-sans);
 
   font-size: 13px;
-  font-weight: 500;
+
+  font-weight: 600;
 
   animation:
     perspectiveCtaAttention
@@ -1021,35 +1168,39 @@
 }
 
 .parent-card .perspective-fill-button {
-  background: var(--color-terracotta);
-  color: white;
+  background: #bd6549;
+
+  color: #ffffff;
 }
 
 .teacher-card .perspective-fill-button {
-  background: var(--color-ochre);
-  color: var(--color-green-dark);
+  background: #d09319;
+
+  color: #ffffff;
 }
 
 .student-card .perspective-fill-button {
-  background: var(--color-blue);
-  color: white;
+  background: #347d91;
+
+  color: #ffffff;
 }
 
 .leader-card .perspective-fill-button {
-  background: var(--color-green);
-  color: white;
+  background: #3f7158;
+
+  color: #ffffff;
 }
 
 .perspective-fill-button:hover {
   animation-play-state: paused;
 
   transform:
-    translateY(-4px)
-    scale(1.025);
+    translateY(-3px)
+    scale(1.02);
 
   box-shadow:
-    0 14px 28px
-    rgba(24, 53, 45, 0.15);
+    0 12px 25px
+    rgba(24, 53, 45, 0.14);
 }
 
 .perspective-fill-button svg {
@@ -1077,7 +1228,7 @@
 
 .layout-decoration-one {
   left: -115px;
-  top: 115px;
+  top: 65px;
 
   width: 125px;
   height: 125px;
@@ -1117,8 +1268,7 @@
     1px solid
     rgba(72, 117, 96, 0.16);
 
-  border-radius:
-    48% 52% 58% 42%;
+  border-radius: 50%;
 }
 
 .layout-decoration-two::before {
@@ -1140,7 +1290,7 @@
 
 .layout-decoration-three {
   left: -70px;
-  bottom: 65px;
+  bottom: 45px;
 
   width: 200px;
   height: 50px;
@@ -1197,7 +1347,7 @@
 
   gap: 18px;
 
-  margin-top: 75px;
+  margin-top: 65px;
 }
 
 .closing-line {
@@ -1212,7 +1362,9 @@
 
   font-family: var(--font-serif);
 
-  font-size: 18px;
+  font-weight: bolder;
+
+  font-size: 20px;
 
   font-style: italic;
 
@@ -1312,7 +1464,7 @@
 @media (max-width: 1050px) {
 
   .perspectives-showcase {
-    padding: 105px 0 115px;
+    padding: 100px 0 110px;
   }
 
   .perspectives-showcase-container {
@@ -1325,7 +1477,7 @@
 
     gap: 28px;
 
-    margin-bottom: 38px;
+    margin-bottom: 35px;
   }
 
   .perspectives-intro-right {
@@ -1341,42 +1493,54 @@
       repeat(2, minmax(0, 1fr));
 
     grid-template-rows:
-      auto
-      auto;
+      repeat(2, 390px);
 
-    gap: 22px;
+    gap: 14px;
   }
 
   .perspective-card {
-    height: auto;
+    height: 390px;
 
-    min-height: 520px;
+    padding: 28px;
   }
 
   .parent-card,
   .teacher-card,
   .student-card,
   .leader-card {
-    grid-column: auto;
-    grid-row: auto;
-
     margin-top: 0;
   }
 
+  .parent-card {
+    border-radius:
+      25px
+      25px
+      95px
+      25px;
+  }
+
   .teacher-card {
-    margin-top: 20px;
+    border-radius:
+      25px
+      25px
+      25px
+      95px;
   }
 
   .student-card {
-    margin-top: -6px;
+    border-radius:
+      25px
+      95px
+      25px
+      25px;
   }
 
   .leader-card {
-    margin-top: 14px;
-  }
-
-  .layout-decoration {
-    display: none;
+    border-radius:
+      25px
+      25px
+      25px
+      95px;
   }
 
   .perspective-card-title {
@@ -1389,7 +1553,14 @@
   }
 
   .perspective-card-points li {
-    font-size: 14px;
+    font-size: 13px;
+  }
+
+  .perspectives-layout::before {
+    width: 155px;
+    height: 155px;
+
+    font-size: 25px;
   }
 }
 
@@ -1425,9 +1596,15 @@
 
     margin-bottom: 19px;
 
-    font-size: 9px;
+    font-family: var(--font-mono);
+
+    font-size: 10.5px;
+
+    font-weight: bolder;
 
     letter-spacing: 1.6px;
+
+    color: #bd6549;
   }
 
   .perspectives-label-line {
@@ -1435,6 +1612,12 @@
   }
 
   .perspectives-title {
+    font-family:
+      'Franklin Gothic Medium',
+      'Arial Narrow',
+      Arial,
+      sans-serif;
+
     font-size:
       clamp(
         43px,
@@ -1442,9 +1625,17 @@
         60px
       );
 
+    font-weight: 600;
+
     line-height: 0.94;
 
     letter-spacing: -2.3px;
+
+    color: var(--color-green-dark);
+  }
+
+  .perspectives-title em {
+    color: var(--color-terracotta);
   }
 
   .perspectives-intro-right {
@@ -1454,17 +1645,33 @@
   .perspectives-intro-right p {
     max-width: 100%;
 
+    font-family:
+      Verdana,
+      Geneva,
+      Tahoma,
+      sans-serif;
+
     font-size: 14.5px;
 
+    font-weight: 600;
+
     line-height: 1.58;
+
+    color: var(--color-text-soft);
   }
 
   .perspectives-intro-note {
     margin-top: 18px;
 
-    font-size: 8.5px;
+    font-family: var(--font-mono);
+
+    font-size: 9px;
+
+    font-weight: bolder;
 
     letter-spacing: 1.2px;
+
+    color: #bd6549;
   }
 
 
@@ -1491,6 +1698,11 @@
     width: 100%;
   }
 
+  .perspectives-layout::before,
+  .perspectives-layout::after {
+    display: none;
+  }
+
 
   /* -------------------------------------------------------
      CARD
@@ -1500,6 +1712,7 @@
     position: relative;
 
     width: 100% !important;
+
     max-width: 100% !important;
 
     height: auto !important;
@@ -1512,7 +1725,7 @@
 
     margin: 0 !important;
 
-    border-radius: 20px;
+    border-radius: 20px !important;
 
     overflow: hidden;
 
@@ -1556,26 +1769,38 @@
   }
 
   .perspective-card-label {
+    font-family: var(--font-mono);
+
     font-size: 10.5px;
 
+    font-weight: 700;
+
     letter-spacing: 1.45px;
+
+    color: var(--color-green-dark);
   }
 
   .perspective-card-eyebrow {
     margin-top: 3px;
 
+    font-family:
+      Verdana,
+      Geneva,
+      Tahoma,
+      sans-serif;
+
     font-size: 8.7px;
 
+    font-weight: 600;
+
     line-height: 1.35;
+
+    color: var(--color-text-soft);
   }
 
 
   /* -------------------------------------------------------
      MOBILE VISUAL
-     
-     IMPORTANT:
-     It is absolutely positioned.
-     Therefore it DOES NOT create vertical space.
   ------------------------------------------------------- */
 
   .perspective-visual {
@@ -1603,18 +1828,12 @@
     top: 72px !important;
   }
 
-
-  /* Parent visual */
-
   .parent-card .visual-frame {
     width: 104px;
     height: 135px;
 
     transform: rotate(5deg);
   }
-
-
-  /* Teacher visual */
 
   .teacher-card .visual-frame {
     width: 98px;
@@ -1623,18 +1842,12 @@
     transform: rotate(-4deg);
   }
 
-
-  /* Student visual */
-
   .student-card .visual-frame {
     width: 108px;
     height: 108px;
 
     transform: rotate(4deg);
   }
-
-
-  /* Leader visual */
 
   .leader-card .visual-frame {
     width: 118px;
@@ -1645,7 +1858,7 @@
 
 
   /* -------------------------------------------------------
-     DECORATIVE SHAPE
+     ORGANIC SHAPE
   ------------------------------------------------------- */
 
   .perspective-organic-shape {
@@ -1669,14 +1882,13 @@
 
   /* -------------------------------------------------------
      CONTENT
-     
-     Controlled gap after header.
-     NOT huge padding.
   ------------------------------------------------------- */
 
   .perspective-card-content {
     margin-top: 28px !important;
+
     margin-bottom: 23px !important;
+
     padding: 0 !important;
   }
 
@@ -1687,6 +1899,8 @@
 
     margin: 0;
 
+    font-family: var(--font-serif);
+
     font-size:
       clamp(
         38px,
@@ -1694,15 +1908,14 @@
         48px
       );
 
+    font-weight: 600;
+
     line-height: 0.95;
 
     letter-spacing: -1.8px;
+
+    color: var(--color-green-dark);
   }
-
-
-  /* -------------------------------------------------------
-     QUESTIONS
-  ------------------------------------------------------- */
 
   .perspective-card-points {
     width: 100%;
@@ -1731,18 +1944,19 @@
 
     gap: 9px;
 
+    font-family:
+      Verdana,
+      Geneva,
+      Tahoma,
+      sans-serif;
+
     font-size: 13.5px;
 
+    font-weight: 600;
+
     line-height: 1.48;
-  }
 
-  .point-bubble {
-    width: 7px;
-    height: 7px;
-
-    flex: 0 0 7px;
-
-    margin-top: 6px;
+    color: var(--color-text-soft);
   }
 
 
@@ -1779,7 +1993,7 @@
 
     border-top:
       1px solid
-      rgba(24, 53, 45, 0.10);
+      rgba(24, 53, 45, 0.12);
   }
 
 
@@ -1801,6 +2015,8 @@
     font-size: 8.5px;
 
     letter-spacing: 1.45px;
+
+    color: var(--color-text-muted);
   }
 
   .focus-items {
@@ -1829,6 +2045,11 @@
     line-height: 1.2;
 
     white-space: nowrap;
+
+    background:
+      rgba(255, 255, 255, 0.46);
+
+    color: var(--color-green-dark);
   }
 
 
@@ -1858,6 +2079,8 @@
     gap: 15px;
 
     font-size: 13px;
+
+    font-weight: 600;
 
     white-space: nowrap;
 
@@ -1939,7 +2162,7 @@
   .perspective-card {
     padding: 21px !important;
 
-    border-radius: 18px;
+    border-radius: 18px !important;
   }
 
   .perspective-card-identity {
@@ -1962,9 +2185,6 @@
   .perspective-card-eyebrow {
     font-size: 8.3px;
   }
-
-
-  /* Visual */
 
   .perspective-visual {
     right: 14px !important;
@@ -1999,11 +2219,9 @@
     height: 86px;
   }
 
-
-  /* Content */
-
   .perspective-card-content {
     margin-top: 24px !important;
+
     margin-bottom: 21px !important;
   }
 
@@ -2029,9 +2247,6 @@
 
     line-height: 1.46;
   }
-
-
-  /* Footer */
 
   .perspective-card-footer {
     gap: 14px;
@@ -2093,29 +2308,242 @@
 }
 
 
+/* =========================================================
+   FINAL DESKTOP VISUAL POSITION
+========================================================= */
+
+@media (min-width: 1051px) {
+
+  .parent-card .perspective-visual {
+    right: 28px;
+    top: 65px;
+  }
+
+  .teacher-card .perspective-visual {
+    right: 28px;
+    top: 65px;
+  }
+
+  .student-card .perspective-visual {
+    right: 30px;
+    top: 65px;
+  }
+
+  .leader-card .perspective-visual {
+    right: 28px;
+    top: 65px;
+  }
+}
 
 
 /* =========================================================
-   DESKTOP DECORATIVE VISUALS
-   Keep them to the upper-right — away from text
+   FINAL POLISH — SMALLER CENTER CIRCLE + REMOVE WHITE GLOW
 ========================================================= */
 
-.parent-card .perspective-visual {
-  right: 22px;
-  top: 82px;
+/* Smaller "Your voice matters" circle */
+.perspectives-layout::before {
+  width: 150px;
+  height: 150px;
+
+  font-size: 25px;
+
+  /* remove the outer white glow */
+  box-shadow:
+    0 12px 30px rgba(40, 61, 53, 0.10);
 }
 
-.teacher-card .perspective-visual {
-  right: 22px;
-  top: 82px;
+/* Keep the small terracotta line aligned with the smaller circle */
+.perspectives-layout::after {
+  width: 42px;
+  height: 2px;
+
+  transform:
+    translate(-50%, 32px);
 }
 
-.student-card .perspective-visual {
-  right: 24px;
-  top: 82px;
+
+/* =========================================================
+   REMOVE THE LARGE WHITE GLOW / WASH FROM ALL CARDS
+========================================================= */
+
+.perspective-organic-shape {
+  background: transparent !important;
+  opacity: 0 !important;
+  filter: none !important;
 }
 
-.leader-card .perspective-visual {
-  right: 22px;
-  top: 82px;
+
+/* =========================================================
+   MOBILE — KEEP CENTER CIRCLE SMALL
+========================================================= */
+
+@media (max-width: 700px) {
+
+  .perspectives-layout::before {
+    width: 120px;
+    height: 120px;
+
+    font-size: 21px;
+
+    box-shadow:
+      0 10px 24px rgba(40, 61, 53, 0.10);
+  }
+
+  .perspectives-layout::after {
+    width: 34px;
+
+    transform:
+      translate(-50%, 27px);
+  }
+
+}
+
+/* =========================================================
+   FINAL VISUAL POLISH
+========================================================= */
+
+
+/* ---------------------------------------------------------
+   1. TEACHER FOCUS TAGS — MOVE AWAY FROM CENTER CIRCLE
+--------------------------------------------------------- */
+
+@media (min-width: 701px) {
+
+  .teacher-card .perspective-focus {
+    transform: translateX(32px);
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   2. VISUAL WORDS — CARE / ENERGY / VOICE / TRUST
+--------------------------------------------------------- */
+
+.visual-word {
+  font-size: 17px !important;
+  letter-spacing: 2.5px !important;
+  font-weight: bolder !important;
+
+  opacity: 0.78 !important;
+
+  color: var(--color-green-dark);
+
+  text-shadow: none;
+}
+
+
+/* Give the visual itself slightly more presence */
+.visual-inner::before {
+  opacity: 0.30 !important;
+}
+
+
+/* ---------------------------------------------------------
+   3. MOBILE — REMOVE THESE VISUALS COMPLETELY
+--------------------------------------------------------- */
+
+@media (max-width: 700px) {
+
+  .perspective-visual {
+    display: none !important;
+  }
+
+}
+
+
+/* =========================================================
+   FINAL TYPOGRAPHY POLISH
+   CARD LABELS + FOCUS LABEL
+========================================================= */
+
+
+/* ---------------------------------------------------------
+   CARD VOICE TITLES
+   PARENT VOICE / TEACHER VOICE / STUDENT VOICE / LEADER VOICE
+--------------------------------------------------------- */
+
+.perspective-card-label {
+  font-family: var(--font-mono) !important;
+  font-size: 15px !important;
+  font-weight: 800 !important;
+  letter-spacing: 2.2px !important;
+  color: var(--color-green-dark) !important;
+}
+
+
+/* ---------------------------------------------------------
+   "FOR PARENTS & CAREGIVERS"
+   "FOR TEACHERS"
+   "FOR STUDENTS"
+   "FOR SCHOOL LEADERS"
+--------------------------------------------------------- */
+
+.perspective-card-eyebrow {
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  line-height: 1.4 !important;
+  color: var(--color-text-soft) !important;
+}
+
+
+/* ---------------------------------------------------------
+   THIS VOICE EXPLORES
+--------------------------------------------------------- */
+
+.focus-label {
+  font-family: var(--font-mono) !important;
+  font-size: 15px !important;
+  font-weight: 800 !important;
+  letter-spacing: 2px !important;
+  color: #bd6549 !important;
+}
+
+
+/* ---------------------------------------------------------
+   MOBILE
+--------------------------------------------------------- */
+
+@media (max-width: 700px) {
+
+  .perspective-card-label {
+    font-size: 13px !important;
+    font-weight: 800 !important;
+    letter-spacing: 1.7px !important;
+  }
+
+  .perspective-card-eyebrow {
+    font-size: 10px !important;
+    font-weight: 700 !important;
+  }
+
+  .focus-label {
+    font-size: 12px !important;
+    font-weight: 800 !important;
+    letter-spacing: 1.5px !important;
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   SMALL PHONES
+--------------------------------------------------------- */
+
+@media (max-width: 420px) {
+
+  .perspective-card-label {
+    font-size: 12px !important;
+    font-weight: 800 !important;
+  }
+
+  .perspective-card-eyebrow {
+    font-size: 9px !important;
+  }
+
+  .focus-label {
+    font-size: 11px !important;
+    font-weight: 800 !important;
+  }
+
 }

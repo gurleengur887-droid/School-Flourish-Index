@@ -13,7 +13,10 @@
   margin: 0 auto;
 }
 
+.public-dashboard-container p {
+    color: var(--color-green-dark) !important;
 
+}
 /* =========================================
    LOADING / DISABLED
 ========================================= */
@@ -23,7 +26,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
+  font-size: 18px;
   letter-spacing: 0.04em;
 }
 
@@ -112,9 +115,9 @@
   max-width: 1100px;
   margin: 0;
   color: var(--color-green-dark);
-  font-family: var(--font-serif);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: clamp(58px, 6.5vw, 92px);
-  font-weight: 500;
+  font-weight: bolder;
   line-height: 0.95;
   letter-spacing: -4px;
 }
@@ -131,7 +134,7 @@
   max-width: 820px;
   margin: 42px 0 0;
   color: var(--color-text-soft);
-  font-family: var(--font-sans);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 18px;
   line-height: 1.65;
 }
@@ -208,7 +211,7 @@
 .public-section-heading h2 {
   margin: 12px 0 0;
   max-width: 720px;
-  font-family: Georgia, serif;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: clamp(34px, 4vw, 52px);
   line-height: 1.05;
   font-weight: 400;
@@ -218,9 +221,11 @@
 .public-section-heading > p {
   max-width: 340px;
   margin: 0;
-  color: #6c7872;
+    color: var(--color-green-dark);
+
   line-height: 1.6;
-  font-size: 13px;
+  font-size: 16px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 
@@ -260,16 +265,18 @@
 
 .public-my-insights-content h2 {
   margin: 8px 0;
-  font-family: Georgia, serif;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 29px;
   font-weight: 400;
+  font-weight: bolder;
 }
 
 .public-my-insights-content p {
   margin: 0;
   color: #748079;
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.6;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .public-my-insights-status {
@@ -337,9 +344,9 @@
 
 .public-pulse-content > span {
   display: block;
-  font-size: 9px;
+  font-size: 20px;
   letter-spacing: 0.17em;
-  font-weight: 600;
+  font-weight: bolder;
   opacity: 0.72;
 }
 
@@ -354,8 +361,9 @@
 
 .public-pulse-content p {
   margin: 8px 0 0;
-  font-size: 12px;
+  font-size: 15px;
   color: #78837e;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .public-pulse-card-large .public-pulse-content p {
@@ -380,7 +388,7 @@
   align-items: center;
   gap: 9px;
   color: #6f7b75;
-  font-size: 9px;
+  font-size: 14px;
   letter-spacing: 0.16em;
   font-weight: 600;
 }
@@ -620,6 +628,9 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 12px;
+  font-size: 20px;
+  font-weight: bolder;
+
 }
 
 .public-perspective-card {
@@ -636,7 +647,7 @@
   display: flex;
   align-items: center;
   gap: 9px;
-  font-size: 13px;
+  font-size: 18px;
 }
 
 .public-perspective-dot {
@@ -752,7 +763,7 @@
 .public-dashboard-cta h2 {
   max-width: 850px;
   margin: 18px auto;
-  font-family: Georgia, serif;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: clamp(42px, 6vw, 72px);
   line-height: 1;
   font-weight: 400;
@@ -762,9 +773,10 @@
 .public-dashboard-cta p {
   max-width: 520px;
   color: #718078;
-  font-size: 14px;
+  font-size: 18px;
   line-height: 1.6;
   margin: 0 auto 28px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 
@@ -882,9 +894,9 @@
   color: #30473e;
 
   font-family: var(--font-sans);
-  font-size: 14px;
-  font-weight: 500;
-
+  font-size: 16px;
+  font-weight: 700;
+  
   cursor: pointer;
 
   transition:
@@ -964,16 +976,20 @@
 
 .public-eyebrow,
 .public-card-eyebrow {
-  font-size: 13px !important;
+  font-size: 18px !important;
   letter-spacing: 0.18em !important;
+  font-weight: bolder;
+  color: #d18468;
 }
 
 
 /* ---------- HERO EYEBROW ---------- */
 
 .public-dashboard-hero .public-eyebrow {
-  font-size: 14px !important;
+  font-size: 18px !important;
   letter-spacing: 2px !important;
+  font-weight: bolder;
+  color: #d18468;
 }
 
 
@@ -995,23 +1011,29 @@
 /* ---------- COLLECTIVE PICTURE CARD LABELS ---------- */
 
 .public-pulse-content > span {
-  font-size: 12px !important;
+  font-size: 20px !important;
   letter-spacing: 0.15em !important;
+  font-weight: bolder;
+    
+
 }
 
 
 /* ---------- FEATURED REGION LABEL ---------- */
 
 .public-featured-stat-label {
-  font-size: 12px !important;
+  font-size: 14px !important;
   letter-spacing: 0.15em !important;
+  font-weight: bolder;
+  color: #d18468;
 }
 
 
 /* ---------- FEATURED REGION RESPONSE COUNT ---------- */
 
 .public-featured-stat-main span {
-  font-size: 14px !important;
+  font-size: 18px !important;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 
@@ -1059,30 +1081,36 @@
 /* ---------- PERSPECTIVE CARDS ---------- */
 
 .public-perspective-top {
-  font-size: 14px !important;
+  font-size: 18px !important;
 }
 
 .public-perspective-bottom {
-  font-size: 13px !important;
+  font-size: 19px !important;
 }
 
 
 /* ---------- PRIVACY ---------- */
 
 .public-privacy-note strong {
-  font-size: 19px !important;
+  font-size: 38px !important;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: bolder;
 }
 
 .public-privacy-note p {
-  font-size: 15px !important;
+  font-size: 18px !important;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: var(--color-green-dark) !important;
+
 }
 
 
 /* ---------- CTA EYEBROW ---------- */
 
 .public-dashboard-cta .public-eyebrow {
-  font-size: 14px !important;
+  font-size: 18px !important;
   letter-spacing: 2px !important;
+  font-weight: bolder;
 }
 
 
@@ -1131,7 +1159,8 @@
   }
 
   .public-featured-stat-main span {
-    font-size: 13px !important;
+    font-size: 18px !important;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   }
 
 
@@ -1221,4 +1250,126 @@
   .public-perspective-bottom {
     font-size: 11px !important;
   }
+}
+
+/* =========================================================
+   PARTICIPATION BARS — INDIVIDUAL COLORS
+========================================================= */
+
+
+/* =========================================================
+   REGIONAL PARTICIPATION
+========================================================= */
+
+.public-bar-row:nth-child(1) .public-bar-fill {
+  background: #592410 !important;
+}
+
+.public-bar-row:nth-child(2) .public-bar-fill {
+  background: #135946 !important;
+}
+
+.public-bar-row:nth-child(3) .public-bar-fill {
+  background: #c59026 !important;
+}
+
+.public-bar-row:nth-child(4) .public-bar-fill {
+  background: #137dbe !important;
+}
+
+.public-bar-row:nth-child(5) .public-bar-fill {
+  background: #a820b2 !important;
+}
+
+.public-bar-row:nth-child(6) .public-bar-fill {
+  background: #10e488 !important;
+}
+
+.public-bar-row:nth-child(7) .public-bar-fill {
+  background: #b4400e !important;
+}
+
+.public-bar-row:nth-child(8) .public-bar-fill {
+  background: #205ea4 !important;
+}
+
+.public-bar-row:nth-child(9) .public-bar-fill {
+  background: #a46c38 !important;
+}
+
+.public-bar-row:nth-child(10) .public-bar-fill {
+  background: #3c7f25 !important;
+}
+
+
+/* =========================================================
+   CITY PARTICIPATION
+========================================================= */
+
+.public-city-row:nth-child(1) .public-city-fill {
+  background: #b95632 !important;
+}
+
+.public-city-row:nth-child(2) .public-city-fill {
+  background: #6eb9a5 !important;
+}
+
+.public-city-row:nth-child(3) .public-city-fill {
+  background: #c99836 !important;
+}
+
+.public-city-row:nth-child(4) .public-city-fill {
+  background: #639abd !important;
+}
+
+.public-city-row:nth-child(5) .public-city-fill {
+  background: #936297 !important;
+}
+
+.public-city-row:nth-child(6) .public-city-fill {
+  background: #54b78c !important;
+}
+
+.public-city-row:nth-child(7) .public-city-fill {
+  background: #cb4f1a !important;
+}
+
+.public-city-row:nth-child(8) .public-city-fill {
+  background: #6689b1 !important;
+}
+
+.public-city-row:nth-child(9) .public-city-fill {
+  background: #916134 !important;
+}
+
+.public-city-row:nth-child(10) .public-city-fill {
+  background: #59834b !important;
+}
+
+/* =========================================================
+   DIFFERENT VOICES — INDIVIDUAL PROGRESS BAR COLORS
+========================================================= */
+
+/* 01 — Teacher */
+.public-perspective-card:nth-child(1)
+.public-perspective-fill {
+  background: #7d2809 !important;
+}
+
+/* 02 — Parent */
+.public-perspective-card:nth-child(2)
+.public-perspective-fill {
+  background: #12dea8 !important;
+}
+
+/* 03 — Student */
+.public-perspective-card:nth-child(3)
+.public-perspective-fill {
+  background: #bb8210 !important;
+}
+
+/* 04 — Leader */
+.public-perspective-card:nth-child(4)
+.public-perspective-fill {
+  background: #148ad3 !important;
 }

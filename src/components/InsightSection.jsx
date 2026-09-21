@@ -301,17 +301,7 @@ const InsightSection = () => {
         </div>
 
 
-        <div className="sfi-insight-bottom-mark">
-          <span></span>
-
-          <p>
-            A BRIGHTER
-            <br />
-            TOMORROW,
-            <br />
-            TOGETHER.
-          </p>
-        </div>
+       
 
       </div>
 

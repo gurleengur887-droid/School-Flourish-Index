@@ -1,4 +1,9 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, {
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
+
 import {
   LayoutDashboard,
   School,
@@ -8,23 +13,81 @@ import {
   Settings,
   TrendingUp,
   Users,
-  CheckCircle2,
   Clock3,
   ArrowUpRight,
   Target,
+  Search,
+  RefreshCw,
+    FileText,
 } from "lucide-react";
-import { supabase } from "../lib/supabase";
-import "../styles/admin_dashboard.css";
-import SEO from "../components/SEO";
-function AdminResults() {
-  const [results, setResults] = useState([]);
-  const [schools, setSchools] = useState([]);
-  const [loading, setLoading] = useState(true);
 
-  const [selectedState, setSelectedState] = useState("all");
-  const [selectedCity, setSelectedCity] = useState("all");
+import { supabase } from "../lib/supabase";
+import { calculateSchoolResult } from "../reports/schoolResultsCalculator";
+
+import "../styles/admin_dashboard.css";
+import "../styles/admin_results.css";
+import SEO from "../components/SEO";
+
+/*
+ * =========================================================
+ * ADMIN RESULTS
+ * =========================================================
+ *
+ * Flow:
+ *
+ * Filters
+ *   ↓
+ * School search / school list
+ *   ↓
+ * Select one school
+ *   ↓
+ * Use all currently matching survey responses for that school
+ *   ↓
+ * Calculate the seven school-facing dimensions
+ *   ↓
+ * Display the school's live profile
+ *
+ * The live school profile is calculated directly from
+ * survey_responses so new responses immediately affect the
+ * Admin Results view.
+ * =========================================================
+ */
+
+function normalizeRole(role) {
+  return String(role || "")
+    .trim()
+    .toLowerCase();
+}
+
+function AdminResults() {
+  const [responses, setResponses] = useState([]);
+  const [schools, setSchools] = useState([]);
+
+  const [loading, setLoading] =
+    useState(true);
+
+  const [error, setError] =
+    useState("");
+
+  const [selectedState, setSelectedState] =
+    useState("all");
+
+  const [selectedCity, setSelectedCity] =
+    useState("all");
+
   const [selectedPerspective, setSelectedPerspective] =
     useState("all");
+
+  const [schoolSearch, setSchoolSearch] =
+    useState("");
+
+  const [selectedSchoolId, setSelectedSchoolId] =
+    useState(null);
+
+
+  /* =======================================================
+     LOAD DATA
+  ======================================================= */
 
   useEffect(() => {
     loadResults();
@@ -32,32 +95,39 @@ function AdminResults() {
 
   async function loadResults() {
     setLoading(true);
+    setError("");
 
-    const [resultsResult, schoolsResult] =
-      await Promise.all([
-        supabase
-          .from("survey_results")
-          .select(
-            "id, school_id, response_id, role, processed_at, created_at, result_data"
-          )
-          .order("processed_at", {
-            ascending: false,
-          }),
+    const [
+      responsesResult,
+      schoolsResult,
+    ] = await Promise.all([
+      supabase
+        .from("survey_responses")
+        .select(
+          "id, school_id, role, submitted_at, created_at, response_data"
+        )
+        .order("submitted_at", {
+          ascending: false,
+        }),
 
-        supabase
-          .from("schools")
-          .select(
-            "id, name, city, state, country"
-          )
-          .order("name", {
-            ascending: true,
-          }),
-      ]);
+      supabase
+        .from("schools")
+        .select(
+          "id, name, city, state, country"
+        )
+        .order("name", {
+          ascending: true,
+        }),
+    ]);
 
-    if (resultsResult.error) {
+    if (responsesResult.error) {
       console.error(
-        "Error loading results:",
-        resultsResult.error
+        "Error loading survey responses:",
+        responsesResult.error
+      );
+
+      setError(
+        "Unable to load survey responses. Please try again."
       );
     }
 
@@ -66,40 +136,69 @@ function AdminResults() {
         "Error loading schools:",
         schoolsResult.error
       );
+
+      setError(
+        "Unable to load schools. Please try again."
+      );
     }
 
-    setResults(resultsResult.data || []);
-    setSchools(schoolsResult.data || []);
+    setResponses(
+      responsesResult.data || []
+    );
+
+    setSchools(
+      schoolsResult.data || []
+    );
+
     setLoading(false);
   }
 
-  /* =====================================================
-     COMBINE RESULT + SCHOOL DATA
-  ===================================================== */
 
-  const resultData = useMemo(() => {
-    return results.map((result) => ({
-      ...result,
-      school: schools.find(
-        (school) =>
-          school.id === result.school_id
-      ),
-    }));
-  }, [results, schools]);
+  /* =======================================================
+     SCHOOL + RESPONSE DATA
+  ======================================================= */
 
-  /* =====================================================
+  const schoolMap = useMemo(() => {
+    return new Map(
+      schools.map((school) => [
+        school.id,
+        school,
+      ])
+    );
+  }, [schools]);
+
+
+  const responseData = useMemo(() => {
+    return responses.map(
+      (response) => ({
+        ...response,
+
+        school:
+          schoolMap.get(
+            response.school_id
+          ) || null,
+      })
+    );
+  }, [responses, schoolMap]);
+
+
+  /* =======================================================
      FILTER OPTIONS
-  ===================================================== */
+  ======================================================= */
 
   const states = useMemo(() => {
     return [
       ...new Set(
         schools
-          .map((school) => school.state)
+          .map(
+            (school) =>
+              school.state
+          )
           .filter(Boolean)
       ),
     ].sort();
   }, [schools]);
+
 
   const cities = useMemo(() => {
     const relevantSchools =
@@ -107,109 +206,344 @@ function AdminResults() {
         ? schools
         : schools.filter(
             (school) =>
-              school.state === selectedState
+              school.state ===
+              selectedState
           );
 
     return [
       ...new Set(
         relevantSchools
-          .map((school) => school.city)
+          .map(
+            (school) =>
+              school.city
+          )
           .filter(Boolean)
       ),
     ].sort();
-  }, [schools, selectedState]);
-
-  /* =====================================================
-     FILTER RESULTS
-  ===================================================== */
-
-  const filteredResults = useMemo(() => {
-    return resultData.filter((result) => {
-      const matchesState =
-        selectedState === "all" ||
-        result.school?.state === selectedState;
-
-      const matchesCity =
-        selectedCity === "all" ||
-        result.school?.city === selectedCity;
-
-      const matchesPerspective =
-        selectedPerspective === "all" ||
-        result.role === selectedPerspective;
-
-      return (
-        matchesState &&
-        matchesCity &&
-        matchesPerspective
-      );
-    });
   }, [
-    resultData,
+    schools,
     selectedState,
-    selectedCity,
-    selectedPerspective,
   ]);
 
-  /* =====================================================
-     OVERVIEW
-  ===================================================== */
 
-  const processedResults =
-    filteredResults.length;
+  /* =======================================================
+     LIVE RESPONSE FILTER
+  ======================================================= */
 
-  const schoolsWithResults = new Set(
-    filteredResults
-      .map((result) => result.school_id)
-      .filter(Boolean)
-  ).size;
+  const filteredResponses =
+    useMemo(() => {
+      return responseData.filter(
+        (response) => {
 
-  const publishedResults = null;
+          const matchesState =
+            selectedState === "all" ||
+            response.school?.state ===
+              selectedState;
 
-  /* =====================================================
-     PERSPECTIVES
-  ===================================================== */
+          const matchesCity =
+            selectedCity === "all" ||
+            response.school?.city ===
+              selectedCity;
 
-  const perspectiveData = useMemo(() => {
-    const data = [
-      {
-        key: "parent",
-        label: "Parent",
-        description: "Family perspective",
-        count: 0,
-      },
-      {
-        key: "teacher",
-        label: "Teacher",
-        description: "Teaching perspective",
-        count: 0,
-      },
-      {
-        key: "student",
-        label: "Student",
-        description: "Student perspective",
-        count: 0,
-      },
-      {
-        key: "leader",
-        label: "Leadership",
-        description: "Leadership perspective",
-        count: 0,
-      },
-    ];
+          const matchesPerspective =
+            selectedPerspective === "all" ||
+            normalizeRole(
+              response.role
+            ) ===
+              selectedPerspective;
 
-    filteredResults.forEach((result) => {
-      const item = data.find(
-        (entry) =>
-          entry.key === result.role
+          return (
+            matchesState &&
+            matchesCity &&
+            matchesPerspective
+          );
+        }
+      );
+    }, [
+      responseData,
+      selectedState,
+      selectedCity,
+      selectedPerspective,
+    ]);
+
+
+  /* =======================================================
+     SCHOOL PROFILES
+  ======================================================= */
+
+  const liveSchoolProfiles =
+    useMemo(() => {
+
+      /*
+       * Build the profile list from the schools table first,
+       * then attach the currently filtered responses.
+       *
+       * This means schools with zero responses still appear in
+       * Admin Results and can be selected; their seven dimensions
+       * simply show as unavailable until responses exist.
+       */
+      const eligibleSchools = schools.filter(
+        (school) => {
+          const matchesState =
+            selectedState === "all" ||
+            school.state === selectedState;
+
+          const matchesCity =
+            selectedCity === "all" ||
+            school.city === selectedCity;
+
+          return (
+            matchesState &&
+            matchesCity
+          );
+        }
       );
 
-      if (item) {
-        item.count += 1;
-      }
-    });
+      const responsesBySchool = new Map();
 
-    return data;
-  }, [filteredResults]);
+      filteredResponses.forEach((response) => {
+        if (!response.school_id) {
+          return;
+        }
+
+        if (
+          !responsesBySchool.has(
+            response.school_id
+          )
+        ) {
+          responsesBySchool.set(
+            response.school_id,
+            []
+          );
+        }
+
+        responsesBySchool
+          .get(response.school_id)
+          .push(response);
+      });
+
+      return eligibleSchools
+        .map((school) => {
+          const schoolResponses =
+            responsesBySchool.get(
+              school.id
+            ) || [];
+
+          const calculated =
+            calculateSchoolResult(
+              schoolResponses
+            );
+
+          return {
+            school,
+
+            responseCount:
+              schoolResponses.length,
+
+            perspectives:
+              [
+                ...new Set(
+                  schoolResponses
+                    .map((response) =>
+                      normalizeRole(
+                        response.role
+                      )
+                    )
+                    .filter(Boolean)
+                ),
+              ],
+
+            dimensions:
+              calculated.dimensions,
+
+            availableDimensionCount:
+              calculated.availableDimensionCount,
+
+            totalDimensionCount:
+              calculated.totalDimensionCount,
+
+            overallScore:
+              calculated.overallScore,
+          };
+        })
+        .sort(
+          (a, b) =>
+            String(
+              a.school?.name || ""
+            ).localeCompare(
+              String(
+                b.school?.name || ""
+              )
+            )
+        );
+
+    }, [
+      schools,
+      filteredResponses,
+      selectedState,
+      selectedCity,
+    ]);
+
+
+  /* =======================================================
+     SEARCH SCHOOL LIST
+  ======================================================= */
+
+  const visibleSchoolProfiles =
+    useMemo(() => {
+
+      const query =
+        schoolSearch
+          .trim()
+          .toLowerCase();
+
+      if (!query) {
+        return liveSchoolProfiles;
+      }
+
+      return liveSchoolProfiles.filter(
+        (item) => {
+
+          const school =
+            item.school;
+
+          const haystack = [
+            school?.name,
+            school?.city,
+            school?.state,
+            school?.country,
+          ]
+            .filter(Boolean)
+            .join(" ")
+            .toLowerCase();
+
+          return haystack.includes(
+            query
+          );
+        }
+      );
+
+    }, [
+      liveSchoolProfiles,
+      schoolSearch,
+    ]);
+
+
+  /* =======================================================
+     SELECTED SCHOOL
+  ======================================================= */
+
+  useEffect(() => {
+
+    if (!visibleSchoolProfiles.length) {
+      setSelectedSchoolId(null);
+      return;
+    }
+
+    const stillExists =
+      visibleSchoolProfiles.some(
+        (item) =>
+          item.school?.id ===
+          selectedSchoolId
+      );
+
+    if (!stillExists) {
+      setSelectedSchoolId(
+        visibleSchoolProfiles[0].school.id
+      );
+    }
+
+  }, [
+    visibleSchoolProfiles,
+    selectedSchoolId,
+  ]);
+
+
+  const selectedSchoolProfile =
+    liveSchoolProfiles.find(
+      (item) =>
+        item.school?.id ===
+        selectedSchoolId
+    ) || null;
+
+
+  /* =======================================================
+     OVERVIEW
+  ======================================================= */
+
+  const liveResponsesCount =
+    filteredResponses.length;
+
+  const schoolsWithLiveResults =
+    liveSchoolProfiles.filter(
+      (item) => item.responseCount > 0
+    ).length;
+
+
+  /* =======================================================
+     PERSPECTIVES
+  ======================================================= */
+
+  const perspectiveData =
+    useMemo(() => {
+
+      const data = [
+        {
+          key: "parent",
+          label: "Parent",
+          description:
+            "Family perspective",
+          count: 0,
+        },
+        {
+          key: "teacher",
+          label: "Teacher",
+          description:
+            "Teaching perspective",
+          count: 0,
+        },
+        {
+          key: "student",
+          label: "Student",
+          description:
+            "Student perspective",
+          count: 0,
+        },
+        {
+          key: "leader",
+          label: "Leadership",
+          description:
+            "Leadership perspective",
+          count: 0,
+        },
+      ];
+
+
+      filteredResponses.forEach(
+        (response) => {
+
+          const item =
+            data.find(
+              (entry) =>
+                entry.key ===
+                normalizeRole(
+                  response.role
+                )
+            );
+
+          if (item) {
+            item.count += 1;
+          }
+        }
+      );
+
+
+      return data;
+
+    }, [
+      filteredResponses,
+    ]);
+
 
   const maxPerspective =
     Math.max(
@@ -219,189 +553,200 @@ function AdminResults() {
       1
     );
 
-  /* =====================================================
-     SCHOOL RESULTS
-  ===================================================== */
 
-  const schoolResults = useMemo(() => {
-    const map = {};
-
-    filteredResults.forEach((result) => {
-      if (!result.school_id) return;
-
-      if (!map[result.school_id]) {
-        map[result.school_id] = {
-          school: result.school,
-          results: 0,
-          perspectives: new Set(),
-          latest: result.processed_at,
-        };
-      }
-
-      map[result.school_id].results += 1;
-
-      if (result.role) {
-        map[result.school_id].perspectives.add(
-          result.role
-        );
-      }
-
-      if (
-        new Date(result.processed_at || result.created_at) >
-        new Date(
-          map[result.school_id].latest || 0
-        )
-      ) {
-        map[result.school_id].latest =
-          result.processed_at || result.created_at;
-      }
-    });
-
-    return Object.values(map).sort(
-      (a, b) =>
-        b.results - a.results
-    );
-  }, [filteredResults]);
-
-  /* =====================================================
-     LATEST PROCESSED
-  ===================================================== */
-
-  const latestResults =
-    filteredResults.slice(0, 6);
-
-  /* =====================================================
+  /* =======================================================
      HELPERS
-  ===================================================== */
+  ======================================================= */
 
   function formatPerspective(role) {
-    if (role === "parent") return "Parent";
-    if (role === "teacher") return "Teacher";
-    if (role === "student") return "Student";
-    if (role === "leader") return "Leadership";
+    const normalized =
+      normalizeRole(role);
+
+    if (normalized === "parent") {
+      return "Parent";
+    }
+
+    if (normalized === "teacher") {
+      return "Teacher";
+    }
+
+    if (normalized === "student") {
+      return "Student";
+    }
+
+    if (normalized === "leader") {
+      return "Leadership";
+    }
 
     return "Unknown";
   }
 
-  function formatDate(date) {
-    if (!date) return "—";
 
-    return new Date(date).toLocaleDateString(
-      "en-IN",
-      {
-        day: "numeric",
-        month: "short",
-        year: "numeric",
-      }
-    );
-  }
-
-  function formatTime(date) {
-    if (!date) return "";
-
-    return new Date(date).toLocaleTimeString(
-      "en-IN",
-      {
-        hour: "numeric",
-        minute: "2-digit",
-      }
-    );
-  }
-
-  function openSchool(schoolId) {
-    if (!schoolId) return;
+  function openSchool(
+    schoolId
+  ) {
+    if (!schoolId) {
+      return;
+    }
 
     window.location.href =
       `/admin/schools/${schoolId}`;
   }
 
-  /* =====================================================
+
+  function selectSchool(
+    schoolId
+  ) {
+    setSelectedSchoolId(
+      schoolId
+    );
+
+    window.requestAnimationFrame(
+      () => {
+        const profile =
+          document.getElementById(
+            "selected-school-profile"
+          );
+
+        if (profile) {
+          profile.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }
+      }
+    );
+  }
+
+
+  /* =======================================================
      RENDER
-  ===================================================== */
+  ======================================================= */
 
   return (
     <div className="admin-dashboard">
-<SEO
-  title="Admin Results — School Flourish Index"
-  description="View School Flourish Index assessment results and administration data."
-  url="/admin/results"
-  noIndex
-/>
-      {/* =================================================
+
+      <SEO
+        title="Admin Results — School Flourish Index"
+        description="View school-level School Flourish Index results."
+        url="/admin/results"
+        noIndex
+      />
+
+
+      {/* ===================================================
           SIDEBAR
-      ================================================= */}
+      =================================================== */}
 
       <aside className="admin-sidebar">
 
         <div className="admin-brand">
+
           <div className="admin-brand-mark">
             S
           </div>
 
           <div>
-            <span>School Flourish</span>
-            <strong>INDEX</strong>
+            <span>
+              School Flourish
+            </span>
+
+            <strong>
+              INDEX
+            </strong>
           </div>
+
         </div>
+
 
         <nav className="admin-nav">
 
           <button
             className="admin-nav-item"
             onClick={() =>
-              (window.location.href =
-                "/admin")
+              (
+                window.location.href =
+                  "/admin"
+              )
             }
           >
             <LayoutDashboard size={18} />
             <span>Overview</span>
           </button>
 
+
           <button
             className="admin-nav-item"
             onClick={() =>
-              (window.location.href =
-                "/admin/schools")
+              (
+                window.location.href =
+                  "/admin/schools"
+              )
             }
           >
             <School size={18} />
             <span>Schools</span>
           </button>
 
+
           <button
             className="admin-nav-item"
             onClick={() =>
-              (window.location.href =
-                "/admin/responses")
+              (
+                window.location.href =
+                  "/admin/responses"
+              )
             }
           >
             <ClipboardList size={18} />
             <span>Responses</span>
           </button>
 
-          <button className="admin-nav-item active">
+
+          <button
+            className="admin-nav-item active"
+            onClick={() => {}}
+          >
             <BarChart3 size={18} />
             <span>Results</span>
           </button>
 
+<button
+  className="admin-nav-item"
+  onClick={() =>
+    (window.location.href = "/admin/reports")
+  }
+>
+  <FileText size={18} />
+  <span>Insights / Reports</span>
+</button>
+
           <div className="admin-nav-divider" />
+
 
           <button
             className="admin-nav-item"
             onClick={() =>
-              (window.location.href =
-                "/dashboard")
+              (
+                window.location.href =
+                  "/dashboard"
+              )
             }
           >
             <Eye size={18} />
-            <span>Public Dashboard</span>
+            <span>
+              Public Dashboard
+            </span>
           </button>
+
 
           <button
             className="admin-nav-item"
             onClick={() =>
-              (window.location.href =
-                "/admin/settings")
+              (
+                window.location.href =
+                  "/admin/settings"
+              )
             }
           >
             <Settings size={18} />
@@ -410,117 +755,69 @@ function AdminResults() {
 
         </nav>
 
+
         <div className="admin-sidebar-footer">
-          <span>SCHOOL FLOURISH INDEX</span>
-          <small>Administration</small>
+
+          <span>
+            SCHOOL FLOURISH INDEX
+          </span>
+
+          <small>
+            Administration
+          </small>
+
         </div>
 
       </aside>
 
 
-      {/* =================================================
+      {/* ===================================================
           MAIN
-      ================================================= */}
+      =================================================== */}
 
       <main className="admin-main">
 
         <header className="admin-header">
 
           <div>
+
             <p className="admin-eyebrow">
               ADMINISTRATION
             </p>
 
-            <h1>Results</h1>
+            <h1>
+              Results
+            </h1>
 
             <p className="admin-header-description">
-              Review processed SFI results and
-              school-level performance.
+              Explore each school's live
+              School Flourish Index profile.
             </p>
+
           </div>
 
 
-          <div className="admin-school-selector">
+          <div className="admin-results-header-actions">
 
-            <div className="admin-view-filter">
-
-              <span>VIEWING</span>
-
-              <select
-                value={selectedState}
-                onChange={(e) => {
-                  setSelectedState(
-                    e.target.value
-                  );
-                  setSelectedCity("all");
-                }}
-              >
-                <option value="all">
-                  All states
-                </option>
-
-                {states.map((state) => (
-                  <option
-                    key={state}
-                    value={state}
-                  >
-                    {state}
-                  </option>
-                ))}
-              </select>
-
-              <select
-                value={selectedCity}
-                onChange={(e) =>
-                  setSelectedCity(
-                    e.target.value
-                  )
+            <button
+              type="button"
+              className="admin-results-refresh"
+              onClick={loadResults}
+              disabled={loading}
+            >
+              <RefreshCw
+                size={16}
+                className={
+                  loading
+                    ? "is-spinning"
+                    : ""
                 }
-              >
-                <option value="all">
-                  All cities
-                </option>
+              />
 
-                {cities.map((city) => (
-                  <option
-                    key={city}
-                    value={city}
-                  >
-                    {city}
-                  </option>
-                ))}
-              </select>
-
-              <select
-                value={selectedPerspective}
-                onChange={(e) =>
-                  setSelectedPerspective(
-                    e.target.value
-                  )
-                }
-              >
-                <option value="all">
-                  All perspectives
-                </option>
-
-                <option value="parent">
-                  Parent
-                </option>
-
-                <option value="teacher">
-                  Teacher
-                </option>
-
-                <option value="student">
-                  Student
-                </option>
-
-                <option value="leader">
-                  Leadership
-                </option>
-              </select>
-
-            </div>
+              {loading
+                ? "Refreshing..."
+                : "Refresh"}
+            </button>
 
           </div>
 
@@ -530,19 +827,124 @@ function AdminResults() {
         <section className="admin-section">
 
           {/* =================================================
+              FILTERS
+          ================================================= */}
+
+          <div className="admin-results-filter-bar">
+
+            <div className="admin-results-filter-label">
+              VIEWING
+            </div>
+
+
+            <select
+              value={selectedState}
+              onChange={(e) => {
+                setSelectedState(
+                  e.target.value
+                );
+
+                setSelectedCity(
+                  "all"
+                );
+              }}
+              aria-label="Filter by state"
+            >
+              <option value="all">
+                All states
+              </option>
+
+              {states.map(
+                (state) => (
+                  <option
+                    key={state}
+                    value={state}
+                  >
+                    {state}
+                  </option>
+                )
+              )}
+
+            </select>
+
+
+            <select
+              value={selectedCity}
+              onChange={(e) =>
+                setSelectedCity(
+                  e.target.value
+                )
+              }
+              aria-label="Filter by city"
+            >
+              <option value="all">
+                All cities
+              </option>
+
+              {cities.map(
+                (city) => (
+                  <option
+                    key={city}
+                    value={city}
+                  >
+                    {city}
+                  </option>
+                )
+              )}
+
+            </select>
+
+
+            <select
+              value={selectedPerspective}
+              onChange={(e) =>
+                setSelectedPerspective(
+                  e.target.value
+                )
+              }
+              aria-label="Filter by perspective"
+            >
+              <option value="all">
+                All perspectives
+              </option>
+
+              <option value="parent">
+                Parent
+              </option>
+
+              <option value="teacher">
+                Teacher
+              </option>
+
+              <option value="student">
+                Student
+              </option>
+
+              <option value="leader">
+                Leadership
+              </option>
+
+            </select>
+
+          </div>
+
+
+          {/* =================================================
               OVERVIEW
           ================================================= */}
 
           <div className="admin-section-heading">
 
             <div>
+
               <p className="admin-eyebrow">
                 RESULTS OVERVIEW
               </p>
 
               <h2>
-                Processed SFI results
+                School results
               </h2>
+
             </div>
 
             <span className="admin-live-label">
@@ -555,116 +957,38 @@ function AdminResults() {
           <div className="admin-stats admin-results-stats">
 
             <div className="admin-stat">
-              <span>Processed results</span>
 
-              <strong>
-                {loading
-                  ? "—"
-                  : processedResults}
-              </strong>
-
-              <small>
-                Results generated by processing
-              </small>
-            </div>
-
-
-            <div className="admin-stat">
-              <span>Schools with results</span>
-
-              <strong>
-                {loading
-                  ? "—"
-                  : schoolsWithResults}
-              </strong>
-
-              <small>
-                Schools with processed data
-              </small>
-            </div>
-
-
-            <div className="admin-stat">
-              <span>Results ready</span>
-
-              <strong>
-                {loading
-                  ? "—"
-                  : processedResults}
-              </strong>
-
-              <small>
-                Available for review
-              </small>
-            </div>
-
-
-            <div className="admin-stat">
-              <span>Public results</span>
-
-             <strong>
-  {publishedResults ?? "—"}
-</strong>
-
-              <small>
-                Approved for public view
-              </small>
-            </div>
-
-          </div>
-
-
-          {/* =================================================
-              SFI PERFORMANCE
-          ================================================= */}
-
-          <div className="admin-results-feature">
-
-            <div className="admin-results-feature-copy">
-
-              <span className="admin-panel-label">
-                SFI PERFORMANCE
+              <span>
+                Live responses
               </span>
 
-              <h3>
-                School Flourish Index
-              </h3>
+              <strong>
+                {loading
+                  ? "—"
+                  : liveResponsesCount}
+              </strong>
 
-              <p>
-                The overall SFI score and performance
-                profile will appear here once the
-                approved scoring methodology has been
-                processed.
-              </p>
-
-              <div className="admin-results-status">
-
-                <Clock3 size={17} />
-
-                <div>
-                  <strong>
-                    Awaiting processed SFI data
-                  </strong>
-
-                  <span>
-                    No score is being displayed until
-                    the official methodology is applied.
-                  </span>
-                </div>
-
-              </div>
+              <small>
+                Currently contributing
+              </small>
 
             </div>
 
 
-            <div className="admin-results-score-placeholder">
+            <div className="admin-stat">
 
-              <span>OVERALL SFI</span>
+              <span>
+                Schools with results
+              </span>
 
-              <strong>—</strong>
+              <strong>
+                {loading
+                  ? "—"
+                  : schoolsWithLiveResults}
+              </strong>
 
               <small>
-                Score not available yet
+                Schools with response data
               </small>
 
             </div>
@@ -673,361 +997,200 @@ function AdminResults() {
 
 
           {/* =================================================
-              DIMENSIONS
+              SCHOOL SEARCH
           ================================================= */}
 
-          <div className="admin-panel admin-results-dimensions">
+          <div className="admin-panel admin-results-school-browser">
 
             <div className="admin-panel-header">
 
               <div>
-                <span className="admin-panel-label">
-                  SFI DIMENSIONS
-                </span>
 
-                <h3>
-                  Dimension performance
-                </h3>
-              </div>
-
-              <Target size={18} />
-
-            </div>
-
-
-            <div className="admin-results-empty">
-
-              <Target size={25} />
-
-              <strong>
-                Dimension results will appear here
-              </strong>
-
-              <p>
-                Once the SFI question-to-dimension
-                mapping and scoring methodology are
-                applied, performance across the
-                approved dimensions will populate
-                automatically.
-              </p>
-
-            </div>
-
-          </div>
-
-
-          {/* =================================================
-              PERSPECTIVES + LATEST
-          ================================================= */}
-
-          <div className="admin-response-new-grid">
-
-            {/* PERSPECTIVES */}
-
-            <div className="admin-panel">
-
-              <div className="admin-panel-header">
-
-                <div>
-                  <span className="admin-panel-label">
-                    PERSPECTIVE RESULTS
-                  </span>
-
-                  <h3>
-                    Processed by perspective
-                  </h3>
-                </div>
-
-                <Users size={18} />
-
-              </div>
-
-
-              <div className="admin-perspective-analytics">
-
-                {perspectiveData.map(
-                  (item) => (
-
-                    <div
-                      className="admin-perspective-analytics-row"
-                      key={item.key}
-                    >
-
-                      <div className="admin-perspective-analytics-info">
-
-                        <strong>
-                          {item.label}
-                        </strong>
-
-                        <span>
-                          {item.description}
-                        </span>
-
-                      </div>
-
-
-                      <div className="admin-perspective-analytics-bar-wrap">
-
-                        <span
-                          style={{
-                            width: `${
-                              (item.count /
-                                maxPerspective) *
-                              100
-                            }%`,
-                          }}
-                        />
-
-                      </div>
-
-
-                      <strong className="admin-perspective-analytics-count">
-                        {item.count}
-                      </strong>
-
-                    </div>
-
-                  )
-                )}
-
-              </div>
-
-            </div>
-
-
-            {/* LATEST PROCESSED */}
-
-            <div className="admin-panel">
-
-              <div className="admin-panel-header">
-
-                <div>
-                  <span className="admin-panel-label">
-                    RECENT PROCESSING
-                  </span>
-
-                  <h3>
-                    Latest results
-                  </h3>
-                </div>
-
-                <TrendingUp size={18} />
-
-              </div>
-
-
-              {latestResults.length === 0 ? (
-
-                <div className="admin-results-small-empty">
-
-                  <BarChart3 size={22} />
-
-                  <p>
-                    No processed results are available
-                    yet.
-                  </p>
-
-                </div>
-
-              ) : (
-
-                <div className="admin-results-latest-list">
-
-                  {latestResults.map(
-                    (result) => (
-
-                      <button
-                        className="admin-results-latest-row"
-                        key={result.id}
-                        onClick={() =>
-                          openSchool(
-                            result.school_id
-                          )
-                        }
-                      >
-
-                        <div className="admin-results-latest-icon">
-                          <BarChart3
-                            size={15}
-                          />
-                        </div>
-
-
-                        <div className="admin-results-latest-info">
-
-                          <strong>
-                            {result.school?.name ||
-                              "Unknown school"}
-                          </strong>
-
-                          <span>
-                            {formatPerspective(
-                              result.role
-                            )}
-                          </span>
-
-                        </div>
-
-
-                        <div className="admin-results-latest-date">
-
-                          <strong>
-                            {formatDate(
-                              result.processed_at ||
-                                result.created_at
-                            )}
-                          </strong>
-
-                          <span>
-                            {formatTime(
-                              result.processed_at ||
-                                result.created_at
-                            )}
-                          </span>
-
-                        </div>
-
-                        <ArrowUpRight
-                          size={15}
-                        />
-
-                      </button>
-
-                    )
-                  )}
-
-                </div>
-
-              )}
-
-            </div>
-
-          </div>
-
-
-          {/* =================================================
-              SCHOOL RESULTS
-          ================================================= */}
-
-          <div className="admin-panel admin-results-school-panel">
-
-            <div className="admin-panel-header">
-
-              <div>
                 <span className="admin-panel-label">
                   SCHOOL RESULTS
                 </span>
 
                 <h3>
-                  Results by school
+                  Find a school
                 </h3>
+
               </div>
 
               <span className="admin-panel-meta">
-                {schoolResults.length} schools
+                {liveSchoolProfiles.length} schools
               </span>
 
             </div>
 
 
-            {schoolResults.length === 0 ? (
+            <div className="admin-results-school-search">
 
-              <div className="admin-results-empty">
+              <Search size={18} />
 
-                <School size={25} />
+              <input
+                type="search"
+                value={schoolSearch}
+                onChange={(e) =>
+                  setSchoolSearch(
+                    e.target.value
+                  )
+                }
+                placeholder="Search school name, city or state..."
+                aria-label="Search schools"
+              />
+
+              {schoolSearch && (
+                <button
+                  type="button"
+                  className="admin-results-clear-search"
+                  onClick={() =>
+                    setSchoolSearch("")
+                  }
+                  aria-label="Clear school search"
+                >
+                  ×
+                </button>
+              )}
+
+            </div>
+
+
+            {visibleSchoolProfiles.length === 0 ? (
+
+              <div className="admin-results-school-empty">
+
+                <School size={24} />
 
                 <strong>
-                  No school results yet
+                  No matching school results
                 </strong>
 
                 <p>
-                  Processed school-level results
-                  will appear here automatically.
+                  Schools will appear here
+                  automatically when their
+                  responses are available.
                 </p>
 
               </div>
 
             ) : (
 
-              <div className="admin-results-school-list">
+              <div className="admin-results-school-browser-list">
 
-                {schoolResults.map(
-                  (item) => (
+                {visibleSchoolProfiles.map(
+                  (item) => {
 
-                    <button
-                      className="admin-results-school-row"
-                      key={item.school?.id}
-                      onClick={() =>
-                        openSchool(
+                    const isSelected =
+                      item.school?.id ===
+                      selectedSchoolId;
+
+                    return (
+                      <button
+                        type="button"
+                        key={
                           item.school?.id
-                        )
-                      }
-                    >
+                        }
+                        className={`admin-results-school-browser-row ${
+                          isSelected
+                            ? "is-selected"
+                            : ""
+                        }`}
+                        onClick={() =>
+                          selectSchool(
+                            item.school.id
+                          )
+                        }
+                      >
 
-                      <div className="admin-results-school-name">
+                        <div className="admin-results-school-browser-main">
 
-                        <School size={17} />
+                          <div className="admin-results-school-browser-icon">
+                            <School size={17} />
+                          </div>
 
-                        <div>
+                          <div>
+
+                            <strong>
+                              {item.school?.name ||
+                                "Unknown school"}
+                            </strong>
+
+                            <span>
+                              {[
+                                item.school?.city,
+                                item.school?.state,
+                              ]
+                                .filter(
+                                  Boolean
+                                )
+                                .join(
+                                  ", "
+                                ) ||
+                                "Location unavailable"}
+                            </span>
+
+                          </div>
+
+                        </div>
+
+
+                        <div className="admin-results-school-browser-meta">
+
                           <strong>
-                            {item.school?.name ||
-                              "Unknown school"}
+                            {item.responseCount}
                           </strong>
 
                           <span>
-                            {[
-                              item.school?.city,
-                              item.school?.state,
-                            ]
-                              .filter(Boolean)
-                              .join(", ")}
+                            response
+                            {item.responseCount !==
+                            1
+                              ? "s"
+                              : ""}
                           </span>
+
                         </div>
 
-                      </div>
+
+                        <div className="admin-results-school-browser-meta">
+
+                          <strong>
+                            {
+                              item.availableDimensionCount
+                            }/7
+                          </strong>
+
+                          <span>
+                            dimensions
+                          </span>
+
+                        </div>
 
 
-                      <div className="admin-results-school-count">
+                        <div className="admin-results-school-browser-perspectives">
 
-                        <strong>
-                          {item.results}
-                        </strong>
+                          {item.perspectives
+                            .map(
+                              (
+                                role
+                              ) =>
+                                formatPerspective(
+                                  role
+                                )
+                            )
+                            .join(
+                              " · "
+                            )}
 
-                        <span>
-                          processed
-                        </span>
-
-                      </div>
-
-
-                      <div className="admin-results-school-perspectives">
-
-                        <span>
-                          {item.perspectives.size}/4
-                        </span>
-
-                        <small>
-                          perspectives
-                        </small>
-
-                      </div>
+                        </div>
 
 
-                      <div className="admin-results-school-status">
-                        <CheckCircle2
-                          size={15}
+                        <ArrowUpRight
+                          size={16}
                         />
-                        Ready
-                      </div>
 
-
-                      <ArrowUpRight
-                        size={15}
-                      />
-
-                    </button>
-
-                  )
+                      </button>
+                    );
+                  }
                 )}
 
               </div>
@@ -1038,85 +1201,432 @@ function AdminResults() {
 
 
           {/* =================================================
+              SELECTED SCHOOL PROFILE
+          ================================================= */}
+
+          <div
+            id="selected-school-profile"
+            className="admin-panel admin-results-selected-school"
+          >
+
+            <div className="admin-panel-header">
+
+              <div>
+
+                <span className="admin-panel-label">
+                  SELECTED SCHOOL
+                </span>
+
+                <h3>
+                  {selectedSchoolProfile?.school?.name ||
+                    "No school selected"}
+                </h3>
+
+              </div>
+
+              {selectedSchoolProfile && (
+                <button
+                  type="button"
+                  className="admin-results-open-school"
+                  onClick={() =>
+                    openSchool(
+                      selectedSchoolProfile.school.id
+                    )
+                  }
+                >
+                  School details
+                  <ArrowUpRight
+                    size={15}
+                  />
+                </button>
+              )}
+
+            </div>
+
+
+            {!selectedSchoolProfile ? (
+
+              <div className="admin-results-school-empty">
+
+                <Target size={25} />
+
+                <strong>
+                  Select a school to view its results
+                </strong>
+
+                <p>
+                  Search above, then select a school.
+                  Its seven school-level dimensions
+                  will be calculated from the available
+                  survey responses.
+                </p>
+
+              </div>
+
+            ) : (
+
+              <>
+
+                <div className="admin-results-selected-school-summary">
+
+                  <div>
+
+                    <span>
+                      RESPONSES
+                    </span>
+
+                    <strong>
+                      {
+                        selectedSchoolProfile.responseCount
+                      }
+                    </strong>
+
+                  </div>
+
+
+                  <div>
+
+                    <span>
+                      PERSPECTIVES
+                    </span>
+
+                    <strong>
+                      {
+                        selectedSchoolProfile
+                          .perspectives
+                          .length
+                      }/4
+                    </strong>
+
+                  </div>
+
+
+                  <div>
+
+                    <span>
+                      DIMENSIONS AVAILABLE
+                    </span>
+
+                    <strong>
+                      {
+                        selectedSchoolProfile
+                          .availableDimensionCount
+                      }/7
+                    </strong>
+
+                  </div>
+
+                </div>
+
+
+                <div className="admin-results-school-method-note">
+
+                  <Clock3 size={16} />
+
+                  <span>
+                    This live profile updates from the
+                    school's currently available survey
+                    responses. Dimensions without a
+                    contributing response remain blank.
+                  </span>
+
+                </div>
+
+
+                <div className="admin-results-dimension-profile">
+
+                  <div className="admin-results-dimension-profile-header">
+
+                    <div>
+                      <span className="admin-panel-label">
+                        DIMENSION PROFILE
+                      </span>
+
+                      <h4>
+                        School Flourish Dimensions
+                      </h4>
+                    </div>
+
+                    <span className="admin-results-dimension-profile-scale">
+                      Average school response · 0–100%
+                    </span>
+
+                  </div>
+
+
+                  <div className="admin-results-dimension-list">
+
+                    {selectedSchoolProfile.dimensions.map(
+                      (dimension, index) => {
+
+                        const hasScore =
+                          typeof dimension.average ===
+                          "number";
+
+                        const width =
+                          hasScore
+                            ? Math.max(
+                                0,
+                                Math.min(
+                                  100,
+                                  dimension.percentage
+                                )
+                              )
+                            : 0;
+
+                        return (
+                          <div
+                            key={dimension.key}
+                            className="admin-results-dimension-row"
+                          >
+
+                            <div className="admin-results-dimension-row-top">
+
+                              <div className="admin-results-dimension-row-title">
+                                <span className="admin-results-dimension-index">
+                                  {String(index + 1).padStart(2, "0")}
+                                </span>
+
+                                <strong>
+                                  {dimension.name}
+                                </strong>
+                              </div>
+
+                              <div className="admin-results-dimension-row-score">
+                                {hasScore ? (
+                                  <>
+                                    <strong>
+                                      {dimension.percentage}%
+                                    </strong>
+
+                                    <span>
+                                      {dimension.average.toFixed(2)} / 5
+                                    </span>
+                                  </>
+                                ) : (
+                                  <span className="admin-results-dimension-no-data">
+                                    No data
+                                  </span>
+                                )}
+                              </div>
+
+                            </div>
+
+
+                            <div className="admin-results-dimension-track">
+                              <span
+                                className="admin-results-dimension-fill"
+                                style={{
+                                  width: `${width}%`,
+                                }}
+                              />
+                            </div>
+
+
+                            <div className="admin-results-dimension-row-footer">
+
+                              {hasScore ? (
+                                <>
+                                  <strong>
+                                    {dimension.performance}
+                                  </strong>
+
+                                  <span>
+                                    {dimension.responseCount}{" "}
+                                    contributing response
+                                    {dimension.responseCount !== 1 ? "s" : ""}
+                                  </span>
+
+                                  <span>
+                                    {dimension.contributingPerspectives
+                                      .map((role) => formatPerspective(role))
+                                      .join(" · ")}
+                                  </span>
+                                </>
+                              ) : (
+                                <span>
+                                  Waiting for a contributing perspective
+                                </span>
+                              )}
+
+                            </div>
+
+                          </div>
+                        );
+                      }
+                    )}
+
+                  </div>
+
+                </div>
+
+
+              </>
+
+            )}
+
+          </div>
+
+
+          {/* =================================================
+              PERSPECTIVES
+          ================================================= */}
+
+          <div className="admin-panel admin-results-perspective-panel">
+
+            <div className="admin-panel-header">
+
+              <div>
+                <span className="admin-panel-label">
+                  PERSPECTIVE RESULTS
+                </span>
+
+                <h3>
+                  Responses by perspective
+                </h3>
+              </div>
+
+              <Users size={18} />
+
+            </div>
+
+
+            <div className="admin-perspective-analytics">
+
+              {perspectiveData.map(
+                (item) => (
+                  <div
+                    className="admin-perspective-analytics-row"
+                    key={item.key}
+                  >
+
+                    <div className="admin-perspective-analytics-info">
+                      <strong>
+                        {item.label}
+                      </strong>
+
+                      <span>
+                        {item.description}
+                      </span>
+                    </div>
+
+                    <div className="admin-perspective-analytics-bar-wrap">
+                      <span
+                        style={{
+                          width: `${
+                            (item.count / maxPerspective) * 100
+                          }%`,
+                        }}
+                      />
+                    </div>
+
+                    <strong className="admin-perspective-analytics-count">
+                      {item.count}
+                    </strong>
+
+                  </div>
+                )
+              )}
+
+            </div>
+
+          </div>
+
+
+          {/* =================================================
               INSIGHTS
           ================================================= */}
 
-          <div className="admin-response-new-grid">
+          <div className="admin-panel admin-results-insights-panel">
 
-            <div className="admin-panel">
+            <div className="admin-panel-header">
 
-              <div className="admin-panel-header">
+              <div>
+                <span className="admin-panel-label">
+                  INSIGHTS
+                </span>
 
-                <div>
-                  <span className="admin-panel-label">
-                    INSIGHTS
-                  </span>
-
-                  <h3>
-                    Strengths & areas of attention
-                  </h3>
-                </div>
-
-                <TrendingUp size={18} />
-
+                <h3>
+                  Selected school profile
+                </h3>
               </div>
 
-
-              <div className="admin-results-insight-placeholder">
-
-                <strong>
-                  Insights will be generated from
-                  processed SFI results.
-                </strong>
-
-                <p>
-                  Strong areas and areas needing
-                  attention will appear here once
-                  the approved scoring and
-                  interpretation methodology is
-                  connected.
-                </p>
-
-              </div>
+              <TrendingUp size={18} />
 
             </div>
 
 
-            <div className="admin-panel">
+            {selectedSchoolProfile ? (
 
-              <div className="admin-panel-header">
+              <div className="admin-results-profile-insights">
 
                 <div>
-                  <span className="admin-panel-label">
-                    COMPARISON
-                  </span>
+                  <strong>
+                    Strongest available dimensions
+                  </strong>
 
-                  <h3>
-                    Trends & comparisons
-                  </h3>
+                  <p>
+                    {selectedSchoolProfile
+                      .dimensions
+                      .filter(
+                        (dimension) =>
+                          typeof dimension.average === "number"
+                      )
+                      .sort(
+                        (a, b) => b.average - a.average
+                      )
+                      .slice(0, 3)
+                      .map(
+                        (dimension) =>
+                          `${dimension.name} (${dimension.percentage}%)`
+                      )
+                      .join(" · ") ||
+                      "No dimension data available yet."}
+                  </p>
                 </div>
 
-                <TrendingUp size={18} />
+
+                <div>
+                  <strong>
+                    Areas needing attention
+                  </strong>
+
+                  <p>
+                    {selectedSchoolProfile
+                      .dimensions
+                      .filter(
+                        (dimension) =>
+                          typeof dimension.average === "number" &&
+                          dimension.average < 3.8
+                      )
+                      .sort(
+                        (a, b) => a.average - b.average
+                      )
+                      .slice(0, 3)
+                      .map(
+                        (dimension) =>
+                          `${dimension.name} (${dimension.percentage}%)`
+                      )
+                      .join(" · ") ||
+                      "No current attention areas in the available data."}
+                  </p>
+                </div>
 
               </div>
 
+            ) : (
 
               <div className="admin-results-insight-placeholder">
-
                 <strong>
-                  Comparison data is not available yet.
+                  Select a school to generate its profile.
                 </strong>
 
                 <p>
-                  Trends, survey-period comparisons
-                  and other comparisons will be shown
-                  only where the SFI methodology supports
-                  them.
+                  The insight summary will use the available school dimension data.
                 </p>
-
               </div>
 
-            </div>
+            )}
 
           </div>
 

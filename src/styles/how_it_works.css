@@ -37,9 +37,10 @@
 
 .how-sfi-label {
   font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: 16px;
   letter-spacing: 2px;
-  color: var(--color-text-muted);
+  color:#d18468;
+  font-weight: bolder;
 }
 
 
@@ -83,10 +84,10 @@
 
   max-width: 850px;
 
-  font-family: var(--font-serif);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: clamp(64px, 6.4vw, 94px);
 
-  font-weight: 400;
+  font-weight: bolder;
   line-height: 0.94;
 
   letter-spacing: -4px;
@@ -96,7 +97,7 @@
 
 .how-sfi-heading-area h2 em {
   font-style: italic;
-  color: var(--color-accent);
+  color: #d77c5a;
 }
 
 
@@ -124,8 +125,8 @@
 
   max-width: 360px;
 
-  font-family: var(--font-sans);
-  font-size: 16px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 17px;
   line-height: 1.65;
 
   color: var(--color-text-soft);
@@ -174,11 +175,11 @@
 
 .circle-small {
   font-family: var(--font-mono);
-  font-size: 8px;
-
+  font-size: 10px;
+font-weight: bolder;
   letter-spacing: 2px;
+  color: var(--color-green-dark);
 
-  color: var(--color-text-muted);
 }
 
 .circle-main {
@@ -190,7 +191,7 @@
   line-height: 1.7;
   letter-spacing: 2px;
 
-  color: var(--color-green-dark);
+  color: var(--color-text-soft);
 }
 
 
@@ -300,7 +301,7 @@
 .how-sfi-step h3 {
   margin: 25px 0 13px;
 
-  font-family: var(--font-serif);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 32px;
 
   font-weight: 400;
@@ -319,8 +320,8 @@
 
   max-width: 245px;
 
-  font-family: var(--font-sans);
-  font-size: 14px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 17px;
 
   line-height: 1.65;
 
@@ -564,14 +565,18 @@
 
 /* HOW THE INDEX WORKS */
 .how-sfi-label {
-  font-size: 14px !important;
+  font-size: 18px !important;
   letter-spacing: 2.5px !important;
+  font-weight: bolder;
 }
 
 /* FROM VOICES TO INSIGHT */
 .how-sfi-eyebrow {
-  font-size: 14px !important;
+  font-size: 16px !important;
   letter-spacing: 2.5px !important;
+    color:
+    var(--about-green-dark);
+    font-weight: bolder;
 }
 
 /* CIRCLE TEXT */
@@ -579,10 +584,12 @@
   font-size: 14px !important;
   letter-spacing: 2px !important;
   line-height: 1.5 !important;
+  
 }
 
 .circle-main {
   font-size: 14px !important;
   letter-spacing: 2px !important;
   line-height: 1.6 !important;
+  font-weight: bolder;
 }

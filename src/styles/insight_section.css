@@ -69,17 +69,11 @@
 
   font-family: var(--font-mono);
 
-  font-size: 14px;
-
+  font-size: 18px;
+ font-weight: bolder;
   letter-spacing: 3.2px;
 
-  color:
-    rgba(
-      22,
-      59,
-      44,
-      0.72
-    );
+ color: #d18468;
 }
 
 .sfi-insight-kicker span {
@@ -103,7 +97,7 @@
 .sfi-insight-heading h2 {
   margin: 0;
 
-  font-family: var(--font-serif);
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 
   font-size: clamp(
     55px,
@@ -111,7 +105,7 @@
     84px
   );
 
-  font-weight: 400;
+  font-weight: bolder;
 
   line-height: 0.91;
 
@@ -136,19 +130,14 @@
 
   margin: 0 0 7px;
 
-  font-family: var(--font-serif);
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
 
   font-size: 18px;
-
+font-weight: bolder;
   line-height: 1.55;
 
-  color:
-    rgba(
-      35,
-      67,
-      54,
-      0.7
-    );
+   color: var(--color-green-dark);
+
 }
 
 
@@ -314,10 +303,10 @@
 }
 
 .sfi-insight-number {
-  font-family: var(--font-mono);
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 
   font-size: 14px;
-
+   font-weight: bolder;
   letter-spacing: 2.5px;
 
   color:
@@ -403,7 +392,7 @@
 
   margin: 0;
 
-  font-family: var(--font-serif);
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 
   font-size: clamp(
     28px,
@@ -411,7 +400,7 @@
     39px
   );
 
-  font-weight: 400;
+  font-weight: bolder;
 
   line-height: 1.02;
 
@@ -425,19 +414,14 @@
 
   margin: 20px 0 0;
 
-  font-family: var(--font-sans);
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
 
-  font-size: 14px;
+  font-size: 18px;
 
   line-height: 1.65;
 
-  color:
-    rgba(
-      31,
-      63,
-      50,
-      0.68
-    );
+    color: var(--color-green-dark);
+font-weight: 500;
 }
 
 
@@ -781,23 +765,17 @@
 
   font-family: var(--font-mono);
 
-  font-size: 14px;
-
+  font-size: 18px;
+ font-weight: bolder;
   letter-spacing: 2.4px;
 
-  color:
-    rgba(
-      29,
-      67,
-      51,
-      0.62
-    );
+ color: #d18468;
 }
 
 .sfi-interpretation-heading h3 {
   margin: 0;
 
-  font-family: var(--font-serif);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 
   font-size: clamp(
     45px,
@@ -805,7 +783,7 @@
     68px
   );
 
-  font-weight: 400;
+  font-weight: bolder;
 
   line-height: 0.93;
 
@@ -832,19 +810,14 @@
 .sfi-interpretation-copy p {
   margin: 0;
 
-  font-family: var(--font-sans);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 
-  font-size: 14px;
+  font-size: 18px;
 
   line-height: 1.75;
 
-  color:
-    rgba(
-      31,
-      60,
-      48,
-      0.7
-    );
+   color: var(--color-green-dark);
+
 }
 
 .sfi-interpretation-caption {
@@ -858,17 +831,11 @@
 
   font-family: var(--font-mono);
 
-  font-size: 14px;
-
+  font-size: 16px;
+font-weight: bolder;
   letter-spacing: 2.5px;
 
-  color:
-    rgba(
-      31,
-      66,
-      51,
-      0.62
-    );
+  color: #d18468;
 }
 
 .sfi-interpretation-caption span {

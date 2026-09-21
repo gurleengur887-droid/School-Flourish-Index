@@ -95,8 +95,8 @@
 
   font-family: var(--font-mono);
 
-  font-size: 15px;
-  font-weight: 800;
+  font-size: 20px;
+  font-weight: 900;
 
   letter-spacing: 2.5px;
 
@@ -150,9 +150,10 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   margin: 25px auto 0;
  
-  color: var(--color-text-soft);
+    color: var(--color-green-dark);
 
-  font-size: 18px;
+
+  font-size: 22px;
 
   line-height: 1.7;
 }
@@ -859,7 +860,7 @@
 
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 
-  font-size: 15px;
+  font-size: 20px;
 
   font-weight: 750;
 
@@ -1049,4 +1050,913 @@
     font-size: 13px;
     padding: 10px 15px;
   }
+}
+
+
+/* Parent + Student badge name positioning */
+.badge-preview-parent-student .badge-name {
+  top: 31%;
+  left: 50.6%;
+}
+
+/* =========================================================
+   BADGE + INSIGHTS TWO COLUMN SECTION
+========================================================= */
+
+.badge-bottom-grid {
+  width: min(100%, 1000px);
+
+  margin: 65px auto 0;
+  padding-top: 38px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  gap: 55px;
+
+  border-top: 1px solid rgba(48, 71, 62, 0.15);
+
+  text-align: left;
+}
+
+
+/* =========================================================
+   SOCIAL SIDE
+========================================================= */
+
+.badge-bottom-grid .badge-social {
+  width: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  border-top: none;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   INSIGHTS SIDE
+========================================================= */
+
+.badge-insights {
+  width: 100%;
+
+  padding-left: 50px;
+
+  border-left: 1px solid rgba(48, 71, 62, 0.15);
+}
+
+
+.badge-insights-eyebrow {
+  display: inline-flex;
+  align-items: center;
+
+  margin-bottom: 20px;
+
+  font-family: var(--font-mono);
+
+  font-size: 19px;
+  font-weight: bolder;
+
+  letter-spacing: 2.2px;
+
+  color: var(--color-terracotta);
+
+  text-transform: uppercase;
+}
+
+
+.badge-insights-eyebrow::before {
+  content: "";
+
+  width: 28px;
+  height: 1px;
+
+  margin-right: 12px;
+
+  background: var(--color-terracotta);
+}
+
+
+/* =========================================================
+   INSIGHTS HEADING
+========================================================= */
+
+.badge-insights h2 {
+  margin: 0;
+
+  font-family: var(--font-serif);
+
+  font-size: clamp(38px, 4vw, 52px);
+
+  font-weight: 600;
+
+  line-height: 1;
+
+  letter-spacing: -2px;
+
+  color: var(--color-green-dark);
+}
+
+
+.badge-insights > p {
+  width: min(100%, 500px);
+
+  margin: 20px 0 0;
+
+    color: var(--color-green-dark);
+
+
+  font-size: 15px;
+  font-weight: 500;
+
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   INSIGHTS FORM
+========================================================= */
+
+.badge-insights-form {
+  width: 100%;
+
+  margin-top: 30px;
+
+  text-align: left;
+}
+
+
+.badge-insights-field {
+  width: 100%;
+
+  margin-bottom: 18px;
+}
+
+
+.badge-insights-field label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  font-family: var(--font-mono);
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  letter-spacing: 1.2px;
+
+  text-transform: uppercase;
+
+  color: var(--color-green-dark);
+}
+
+
+.badge-insights-field input,
+.badge-insights-field select {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  height: 54px;
+
+  padding: 0 16px;
+
+  border: 1px solid rgba(48, 71, 62, 0.24);
+
+  border-radius: 2px;
+
+  outline: none;
+
+  background: rgba(255, 255, 255, 0.5);
+
+  color: var(--color-green-dark);
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  transition:
+    border-color 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+
+.badge-insights-field input::placeholder {
+  color: rgba(48, 71, 62, 0.45);
+}
+
+
+.badge-insights-field input:focus,
+.badge-insights-field select:focus {
+  border-color: var(--color-green);
+
+  background: rgba(255, 255, 255, 0.8);
+
+  box-shadow:
+    0 0 0 3px rgba(72, 117, 96, 0.08);
+}
+
+
+/* =========================================================
+   INSIGHTS BUTTON
+========================================================= */
+
+.badge-insights-btn {
+  position: relative;
+
+  width: 100%;
+
+  min-height: 56px;
+
+  margin-top: 5px;
+
+  padding: 0 24px;
+
+  border: 1px solid #20201c;
+
+  border-radius: 2px;
+
+  background: #20201c;
+
+  color: #ffffff;
+
+  font-family: var(--font-mono);
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  letter-spacing: 1.2px;
+
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  overflow: hidden;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+
+.badge-insights-btn:hover {
+  background: var(--color-green-dark);
+
+  border-color: var(--color-green-dark);
+
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 12px 25px rgba(24, 53, 45, 0.15);
+}
+
+
+.badge-insights-btn:active {
+  transform:
+    translateY(-1px)
+    scale(0.985);
+}
+
+
+.badge-insights-btn:disabled {
+  opacity: 0.65;
+
+  cursor: wait;
+
+  transform: none;
+
+  box-shadow: none;
+}
+
+
+/* =========================================================
+   REQUEST STATUS
+========================================================= */
+
+.badge-insights-error,
+.badge-insights-success {
+  margin-top: 16px;
+
+  padding: 12px 15px;
+
+  font-size: 15px;
+
+  line-height: 1.5;
+}
+
+
+.badge-insights-error {
+  border-left: 2px solid var(--color-terracotta);
+
+  background: rgba(197, 104, 70, 0.07);
+
+  color: #8f4933;
+}
+
+
+.badge-insights-success {
+  border-left: 2px solid var(--color-green);
+
+  background: rgba(72, 117, 96, 0.08);
+
+  color: var(--color-green-dark);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 800px) {
+
+  .badge-bottom-grid {
+    grid-template-columns: 1fr;
+
+    gap: 55px;
+
+    margin-top: 55px;
+  }
+
+  .badge-insights {
+    padding-left: 0;
+
+    padding-top: 45px;
+
+    border-left: none;
+
+    border-top: 1px solid rgba(48, 71, 62, 0.15);
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .badge-insights h2 {
+    font-size: 38px;
+
+    letter-spacing: -1.5px;
+  }
+
+  .badge-insights > p {
+    font-size: 14px;
+  }
+
+}
+
+/* =========================================================
+   FINAL BADGE + INSIGHTS REFINEMENT
+========================================================= */
+
+
+/* =========================================================
+   TWO COLUMN BALANCE
+========================================================= */
+
+.badge-bottom-grid {
+  width: min(100%, 1080px);
+
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+
+  gap: 48px;
+}
+
+
+/* =========================================================
+   FLAUNT YOUR BADGE — LARGER + SLIGHTLY LEFT
+========================================================= */
+
+.badge-bottom-grid .badge-social {
+  width: 100%;
+
+  position: relative;
+
+  left: -18px;
+
+  padding: 4px 15px 0;
+
+  box-sizing: border-box;
+
+  text-align: center;
+}
+
+
+.badge-social-eyebrow {
+  font-size: 20px;
+
+  letter-spacing: 2.5px;
+
+  margin-bottom: 18px;
+}
+
+
+.badge-social h2 {
+  width: 100%;
+  max-width: 560px;
+
+  margin: 0 auto;
+
+  font-size: clamp(48px, 5vw, 60px);
+
+  line-height: 0.98;
+
+  letter-spacing: -2.8px;
+}
+
+
+.badge-social p {
+  width: min(100%, 540px);
+
+  margin: 22px auto 0;
+
+  font-size: 17px;
+
+  line-height: 1.7;
+
+  color: rgba(18, 61, 88, 0.90);
+}
+
+
+.badge-social-links {
+  gap: 16px;
+
+  margin-top: 32px;
+}
+
+
+.badge-social-icon {
+  width: 58px;
+  height: 58px;
+}
+
+
+.badge-social-icon svg {
+  width: 23px;
+  height: 23px;
+}
+
+
+/* =========================================================
+   TAG US — ATTRACTIVE HOVER BLINK
+========================================================= */
+
+.badge-tag-text {
+  display: inline-block;
+
+  margin-top: 28px !important;
+
+  font-size: 16px !important;
+
+  font-weight: 700;
+
+  color: var(--color-green-dark) !important;
+
+  cursor: default;
+
+  transition:
+    transform 0.25s ease,
+    color 0.25s ease,
+    text-shadow 0.25s ease;
+}
+
+
+.badge-tag-text:hover {
+  transform: translateY(-2px);
+
+  color: var(--color-green) !important;
+
+  animation: badgeTagBlink 0.8s ease-in-out infinite;
+
+  text-shadow:
+    0 0 7px rgba(72, 117, 96, 0.18);
+}
+
+
+@keyframes badgeTagBlink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.35;
+  }
+}
+
+
+/* =========================================================
+   RIGHT SECTION — DARKER DESCRIPTION
+========================================================= */
+
+.badge-insights > p {
+  width: min(100%, 520px);
+
+  margin-top: 22px;
+
+   color: var(--color-green-dark);
+
+
+  font-size: 17px;
+
+  font-weight: 700;
+
+  line-height: 1.75;
+}
+
+
+/* =========================================================
+   INSIGHTS LABELS — BIGGER + BOLDER
+========================================================= */
+
+.badge-insights-field label {
+  margin-bottom: 10px;
+
+  font-size: 14px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.45px;
+
+  color: var(--color-green-dark);
+}
+
+
+/* =========================================================
+   INPUT TEXT
+========================================================= */
+
+.badge-insights-field input,
+.badge-insights-field select {
+  height: 56px;
+
+  font-size: 15px;
+}
+
+
+/* =========================================================
+   REQUEST BUTTON
+   Same visual language as Download My Badge
+========================================================= */
+
+.badge-insights-btn {
+  position: relative;
+
+  min-height: 58px;
+
+  border: 1px solid var(--color-green);
+
+  background: var(--color-green);
+
+  color: #ffffff;
+
+  font-family:
+    'Franklin Gothic Medium',
+    'Arial Narrow',
+    Arial,
+    sans-serif;
+
+  font-size: 15px;
+
+  font-weight: 700;
+
+  letter-spacing: 1px;
+
+  text-transform: uppercase;
+
+  isolation: isolate;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 8px 20px rgba(24, 53, 45, 0.10);
+
+  transition:
+    transform 0.3s cubic-bezier(.22, 1, .36, 1),
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+
+/* same shine effect */
+
+.badge-insights-btn::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -110%;
+
+  width: 80%;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.16),
+      transparent
+    );
+
+  transform: skewX(-18deg);
+
+  transition: left 0.55s ease;
+
+  pointer-events: none;
+
+  z-index: -1;
+}
+
+
+.badge-insights-btn:hover {
+  background: var(--color-green-dark);
+
+  border-color: var(--color-green-dark);
+
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 15px 30px rgba(24, 53, 45, 0.18);
+}
+
+
+.badge-insights-btn:hover::before {
+  left: 130%;
+}
+
+
+.badge-insights-btn:active {
+  transform:
+    translateY(-1px)
+    scale(0.985);
+
+  box-shadow:
+    0 7px 15px rgba(24, 53, 45, 0.12);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 800px) {
+
+  .badge-bottom-grid {
+    grid-template-columns: 1fr;
+
+    gap: 50px;
+  }
+
+  .badge-bottom-grid .badge-social {
+    left: 0;
+
+    padding: 0;
+  }
+
+  .badge-insights {
+    padding-left: 0;
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .badge-social h2 {
+    font-size: 42px;
+
+    letter-spacing: -2px;
+  }
+
+  .badge-social p {
+    font-size: 15px;
+  }
+
+  .badge-insights > p {
+    font-size: 15px;
+  }
+
+}
+/* =========================================================
+   FINAL LEFT SECTION — LARGER + SHIFTED LEFT
+========================================================= */
+
+.badge-bottom-grid {
+  grid-template-columns: 1fr 1fr;
+  gap: 42px;
+  align-items: stretch;
+}
+
+
+/* =========================================================
+   MOVE WHOLE LEFT SECTION LEFT
+========================================================= */
+
+.badge-bottom-grid .badge-social {
+  position: relative;
+
+  left: -55px;
+
+  width: calc(100% + 75px);
+
+  min-height: 100%;
+
+  padding: 8px 20px 0;
+
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   FLAUNT YOUR BADGE
+========================================================= */
+
+.badge-social-eyebrow {
+  margin-bottom: 22px;
+
+  font-size: 23px;
+
+  font-weight: 800;
+
+  letter-spacing: 2.8px;
+}
+
+
+/* =========================================================
+   MAIN HEADING
+========================================================= */
+
+.badge-social h2 {
+  width: 100%;
+  max-width: 650px;
+
+  margin: 0 auto;
+
+  font-size: clamp(54px, 5.5vw, 68px);
+
+  font-weight: 700;
+
+  line-height: 0.96;
+
+  letter-spacing: -3px;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.badge-social p {
+  width: min(100%, 590px);
+
+  margin: 26px auto 0;
+
+  font-size: 19px;
+
+  font-weight: 600;
+
+  line-height: 1.75;
+
+  color: rgba(18, 61, 88, 0.94);
+}
+
+
+/* =========================================================
+   SOCIAL ICONS
+========================================================= */
+
+.badge-social-links {
+  margin-top: 38px;
+
+  gap: 20px;
+}
+
+
+.badge-social-icon {
+  width: 68px;
+  height: 68px;
+}
+
+
+.badge-social-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+
+/* =========================================================
+   TAG LINE — ALWAYS TWINKLING
+========================================================= */
+
+.badge-tag-text {
+  display: inline-block;
+
+  margin-top: 35px !important;
+
+  font-size: 19px !important;
+
+  font-weight: 800 !important;
+
+  line-height: 1.4;
+
+  color: var(--color-green-dark) !important;
+
+  animation: badgeTagTwinkle 1.7s ease-in-out infinite;
+
+  transform-origin: center;
+}
+
+
+@keyframes badgeTagTwinkle {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    text-shadow:
+      0 0 0 rgba(72, 117, 96, 0);
+  }
+
+  45% {
+    opacity: 0.72;
+    transform: scale(1.025);
+    text-shadow:
+      0 0 8px rgba(72, 117, 96, 0.18);
+  }
+
+  60% {
+    opacity: 1;
+    transform: scale(1.04);
+    text-shadow:
+      0 0 12px rgba(72, 117, 96, 0.28);
+  }
+}
+
+
+/* =========================================================
+   RIGHT SECTION — KEEP ITS FULL SIZE
+========================================================= */
+
+.badge-insights {
+  min-height: 100%;
+}
+
+
+/* =========================================================
+   MOBILE RESET
+========================================================= */
+
+@media (max-width: 800px) {
+
+  .badge-bottom-grid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .badge-bottom-grid .badge-social {
+    left: 0;
+
+    width: 100%;
+
+    min-height: auto;
+
+    padding: 0;
+  }
+
+  .badge-social h2 {
+    font-size: 48px;
+  }
+
+  .badge-social p {
+    font-size: 17px;
+  }
+
+  .badge-tag-text {
+    font-size: 17px !important;
+  }
+
+}
+
+/* =========================================================
+   BADGE NAME — LARGER
+========================================================= */
+
+.badge-name {
+  font-size: clamp(18px, 3.8vw, 30px) !important;
+  font-weight: 700 !important;
 }

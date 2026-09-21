@@ -127,9 +127,9 @@ const PerspectivesShowcase = () => {
             </div>
 
             <h2 className="perspectives-title">
-              Different people.
+              Four Perspectives.
               <br />
-              <em>A fuller picture.</em>
+              <em>One fuller picture.</em>
             </h2>
 
           </div>

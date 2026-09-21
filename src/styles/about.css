@@ -229,17 +229,12 @@
   font-family:
     var(--font-mono);
 
-  font-size: 10px;
-
+  font-size: 18px;
+font-weight: bolder;
   letter-spacing: 2.5px;
 
   color:
-    rgba(
-      38,
-      65,
-      57,
-      0.82
-    );
+   #d18468;
 }
 
 
@@ -341,7 +336,7 @@
   max-width: 700px;
 
   font-family:
-    var(--font-serif);
+    'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 
   font-size:
     clamp(
@@ -350,7 +345,7 @@
       137px
     );
 
-  font-weight: 400;
+  font-weight: bolder;
 
   line-height: 0.82;
 
@@ -587,17 +582,13 @@
   font-family:
     var(--font-mono);
 
-  font-size: 8px;
+  font-size: 12px;
 
   letter-spacing: 2px;
-
-  color:
-    rgba(
-      57,
-      77,
-      69,
-      0.70
-    );
+font-weight: bolder;
+  color: var(--color-green-dark)
+  
+    
 }
 
 
@@ -618,7 +609,7 @@
   max-width: 420px;
 
   font-family:
-    var(--font-serif);
+    'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 
   font-size:
     clamp(
@@ -652,9 +643,9 @@
   margin: 0;
 
   font-family:
-    var(--font-sans);
+    Verdana, Geneva, Tahoma, sans-serif;
 
-  font-size: 15px;
+  font-size: 18px;
 
   line-height: 1.7;
 
@@ -1368,19 +1359,14 @@
   font-family:
     var(--font-mono);
 
-  font-size: 8px;
+  font-size: 14px;
 
   line-height: 1.5;
 
   letter-spacing: 1.7px;
-
-  color:
-    rgba(
-      45,
-      68,
-      59,
-      0.82
-    );
+  font-weight: bolder;
+  font-weight: bolder;
+  color: var(--color-green-dark)
 }
 
 
@@ -1388,28 +1374,7 @@
    CENTER VOICES
 ========================================================= */
 
-.about-hero-voices {
-  display: flex;
 
-  align-items: center;
-
-  gap: 30px;
-
-  font-family:
-    var(--font-mono);
-
-  font-size: 8px;
-
-  letter-spacing: 1.8px;
-
-  color:
-    rgba(
-      52,
-      73,
-      64,
-      0.76
-    );
-}
 
 
 .about-hero-voices span {
@@ -1456,12 +1421,7 @@
   letter-spacing: 2px;
 
   color:
-    rgba(
-      52,
-      73,
-      64,
-      0.76
-    );
+   var(--about-green-soft);
 }
 
 
@@ -2236,24 +2196,12 @@
 }
 
 
-.about-hero-cue span {
-  font-size: 9px;
 
-  line-height: 1.55;
-
-  letter-spacing: 1.9px;
-}
 
 
 /* center */
 
-.about-hero-voices {
-  gap: 34px;
 
-  font-size: 9px;
-
-  letter-spacing: 2px;
-}
 
 
 .about-hero-voices span:not(:last-child)::after {
@@ -2267,9 +2215,10 @@
 /* right */
 
 .about-hero-index {
-  font-size: 9px;
-
+  font-size: 14px;
+color: var(--about-green-soft);
   letter-spacing: 2.2px;
+  font-weight: bolder;
 }
 
 
@@ -2279,8 +2228,8 @@
 
 .about-hero-label,
 .about-hero-count {
-  font-size: 10px;
-
+  font-size: 14px;
+font-weight: bolder;
   letter-spacing: 2.5px;
 }
 
@@ -2571,13 +2520,13 @@
   gap: 18px;
 }
 
-.about-hero-voices span,
-.about-hero-index {
-  font-family: var(--font-mono);
-  font-size: 8px;
-  letter-spacing: 1.3px;
+.about-hero-voices span{
 
-  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  letter-spacing: 1.3px;
+font-weight: bolder;
+  
 }
 
 
@@ -4475,6 +4424,7 @@
 .about-hero-count {
   font-size: 14px !important;
   letter-spacing: 2.5px;
+  font-weight: bolder;
 }
 
 .about-hero-kicker {
@@ -4493,20 +4443,15 @@
 }
 
 
-/* HERO BOTTOM TEXT */
-.about-hero-cue span {
-  font-size: 14px !important;
-  letter-spacing: 2px;
-}
 
-.about-hero-voices {
-  font-size: 14px !important;
-  letter-spacing: 2px;
-}
+
+
 
 .about-hero-index {
   font-size: 14px !important;
   letter-spacing: 2px;
+  color: var(--about-green-soft);
+  font-weight: bolder;
 }
 
 
@@ -4630,27 +4575,13 @@
    HERO BOTTOM — PARENT / TEACHER / STUDENT / LEADER
 --------------------------------------------------------- */
 
-.about-hero-voices,
-.about-hero-voices span {
-  font-size: 12px !important;
-  letter-spacing: 2.2px !important;
-  line-height: 1.4 !important;
-}
 
 
-/* LOOK BEYOND THE OBVIOUS */
-.about-hero-cue span {
-  font-size: 12px !important;
-  line-height: 1.5 !important;
-  letter-spacing: 2px !important;
-}
 
 
-/* SCHOOL FLOURISH INDEX — RIGHT SIDE */
-.about-hero-index {
-  font-size: 12px !important;
-  letter-spacing: 2.2px !important;
-}
+
+
+
 
 
 /* ---------------------------------------------------------
@@ -4659,13 +4590,15 @@
 
 .about-hero-label,
 .about-hero-count {
-  font-size: 12px !important;
+  font-size: 14px !important;
   letter-spacing: 2.5px !important;
+  font-weight: bolder;
 }
 
 .about-hero-kicker {
-  font-size: 12px !important;
+  font-size: 14px !important;
   letter-spacing: 2.3px !important;
+  font-weight: bolder;
 }
 
 
@@ -4827,14 +4760,7 @@
 
 
 
-.about-hero-voices {
-  font-size: 14px !important;
-  letter-spacing: 2.2px !important;
-}
 
-.about-hero-voices span {
-  font-size: 14px !important;
-}
 
 
 /* Keep STUDENT label above the center circle */
@@ -4863,4 +4789,22 @@
 .voice-center-circle strong {
   font-size: 34px !important;
   line-height: 1 !important;
+}
+
+
+.about-hero-voices {
+  display: flex;
+
+  align-items: center;
+
+  gap: 30px;
+
+  font-family:
+    var(--font-mono);
+
+  font-size: 25px !important;
+font-weight: bolder !important;
+  letter-spacing: 1.8px;
+color: var(--about-green-soft);
+
 }

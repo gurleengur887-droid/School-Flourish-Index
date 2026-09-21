@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import {
   ChevronDown,
   Plus,
   ArrowRight,
   ArrowLeft,
   Check,
+  Search,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import "../styles/surveys.css";
 import { supabase } from "../lib/supabase";
 import SEO from "../components/SEO";
@@ -24,6 +25,8 @@ const Surveys = () => {
   const [selectedSchool, setSelectedSchool] = useState(null);
   const [addingSchool, setAddingSchool] = useState(false);
   const [submittingSchool, setSubmittingSchool] = useState(false);
+
+const [schoolSearch, setSchoolSearch] = useState("");
 
   const [newSchool, setNewSchool] = useState({
     name: "",
@@ -114,7 +117,7 @@ const Surveys = () => {
       );
 
       setSubmittingSchool(false);
-      navigate("/perspective");
+     navigate("/perspective#choose-your-voice");
       return;
     }
 
@@ -163,7 +166,7 @@ const Surveys = () => {
             );
 
             setSubmittingSchool(false);
-            navigate("/perspective");
+            navigate("/perspective#choose-your-voice");
             return;
           }
         }
@@ -193,7 +196,7 @@ const Surveys = () => {
 
     setSubmittingSchool(false);
 
-    navigate("/perspective");
+    navigate("/perspective#choose-your-voice");
   };
 
   // =====================================
@@ -208,8 +211,42 @@ const Surveys = () => {
       JSON.stringify(selectedSchool)
     );
 
-    navigate("/perspective");
+    navigate("/perspective#choose-your-voice");
   };
+  const continueWithOtherInstitution = () => {
+  // Make sure a previously selected school is not carried forward.
+  sessionStorage.removeItem("sfi_selected_school");
+
+  // Clear any previously selected voice as well.
+  sessionStorage.removeItem("sfi_selected_role");
+
+  navigate("/perspective#choose-your-voice");
+};
+const searchTerm = schoolSearch.trim().toLowerCase();
+
+const filteredSchools = [...schools]
+  .filter((school) => {
+    const name = school.name?.trim().toLowerCase() || "";
+
+    return name.includes(searchTerm);
+  })
+  .sort((a, b) => {
+    const nameA = a.name?.trim().toLowerCase() || "";
+    const nameB = b.name?.trim().toLowerCase() || "";
+
+    if (!searchTerm) {
+      return nameA.localeCompare(nameB);
+    }
+
+    const aStarts = nameA.startsWith(searchTerm);
+    const bStarts = nameB.startsWith(searchTerm);
+
+    if (aStarts && !bStarts) return -1;
+    if (!aStarts && bStarts) return 1;
+
+    return nameA.localeCompare(nameB);
+  });
+
 
   return (
     <main className="surveys-page">
@@ -240,7 +277,7 @@ const Surveys = () => {
 
               <h1 className="survey-hero-title">
                 Your perspective
-                <span>helps shape the picture.</span>
+                <span>helps flourish the school.</span>
               </h1>
 
               <p className="survey-hero-description">
@@ -343,11 +380,11 @@ const Surveys = () => {
                   <div className="school-panel-header">
 
                     <h2>
-                      Every
+                      Your Voice
                       <br />
-                      perspective
+                      matters the
                       <br />
-                      has a <em>place.</em>
+                       <em>most</em>
                     </h2>
 
                     <p>
@@ -416,76 +453,106 @@ const Surveys = () => {
                     </button>
 
 
-                    {/* =====================================
-                        SCHOOL DIRECTORY
-                    ===================================== */}
+                   {schoolOpen && !schoolsLoading && (
 
-                    {schoolOpen && !schoolsLoading && (
+  <div className="school-dropdown-menu">
 
-                      <div className="school-dropdown-menu">
+    <div className="school-menu-heading">
+      SELECT YOUR SCHOOL
+    </div>
 
-                        <div className="school-menu-heading">
-                          SELECT YOUR SCHOOL
-                        </div>
+    {/* SEARCH */}
+    <div className="school-search-wrapper">
 
-                        <div className="school-options">
+      <Search
+        size={16}
+        strokeWidth={1.5}
+        className="school-search-icon"
+      />
 
-                          {schools.length > 0 ? (
+      <input
+        type="text"
+        className="school-search-input"
+        placeholder="Search your school..."
+        value={schoolSearch}
+        onChange={(e) => setSchoolSearch(e.target.value)}
+      />
 
-                            schools.map((school) => (
+    </div>
 
-                              <button
-                                key={school.id}
-                                type="button"
-                                className="school-option"
-                                onClick={() =>
-                                  selectSchool(school)
-                                }
-                              >
 
-                                <div>
+   
 
-                                  <strong>
-                                    {school.name}
-                                  </strong>
 
-                                  <span>
-                                    {school.city}
-                                    {" · "}
-                                    {school.state}
-                                    {" · "}
-                                    {school.country}
-                                  </span>
+    {/* SCHOOL LIST */}
+    <div className="school-options">
 
-                                </div>
+      {filteredSchools.length > 0 ? (
 
-                                {selectedSchool?.id ===
-                                  school.id && (
+        filteredSchools.map((school) => (
 
-                                  <Check
-                                    size={15}
-                                    strokeWidth={1.4}
-                                  />
+          <button
+            key={school.id}
+            type="button"
+            className="school-option"
+            onClick={() => {
+              selectSchool(school);
+              setSchoolSearch("");
+              
+            }}
+          >
 
-                                )}
+            <div>
 
-                              </button>
+              <strong>
+                {school.name}
+              </strong>
 
-                            ))
+              <span>
+                {school.city}
+                {" · "}
+                {school.state}
+                {" · "}
+                {school.country}
+              </span>
 
-                          ) : (
+            </div>
 
-                            <div className="school-empty-state">
-                              No schools have been added yet.
-                            </div>
+            {selectedSchool?.id === school.id && (
 
-                          )}
+              <Check
+                size={15}
+                strokeWidth={1.4}
+              />
 
-                        </div>
+            )}
 
-                      </div>
+          </button>
 
-                    )}
+        ))
+
+      ) : (
+
+       <div className="school-empty-state">
+  <strong>
+    We couldn't find your school.
+  </strong>
+
+  <span>
+    Try another search, add your school, or continue
+    with another institution.
+  </span>
+</div>
+
+      )}
+
+    </div>
+
+  </div>
+
+)}
+
+                 
 
                     {/* =====================================
                         OR DIVIDER
@@ -527,13 +594,15 @@ const Surveys = () => {
 
                       <span className="add-school-copy">
 
-                        Can't find your school?
+  <span className="add-school-question">
+    Can't find your school?
+  </span>
 
-                        <strong>
-                          Add a new school
-                        </strong>
+  <strong>
+    Add a new school
+  </strong>
 
-                      </span>
+</span>
 
                       <ArrowRight
                         size={16}
@@ -541,7 +610,26 @@ const Surveys = () => {
                       />
 
                     </button>
+<button
+  type="button"
+  className="other-institution-button"
+  onClick={continueWithOtherInstitution}
+>
+  <span className="other-institution-copy">
+    <span className="other-institution-question">
+      Not part of a listed school?
+    </span>
 
+    <strong>
+      Continue with another institution
+    </strong>
+  </span>
+
+  <ArrowRight
+    size={16}
+    strokeWidth={1.2}
+  />
+</button>
                   </div>
 
 

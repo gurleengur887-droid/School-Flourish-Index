@@ -1,0 +1,1029 @@
+/* =========================================================
+   SCHOOL FLOURISH INDEX
+   LEADER REPORT
+   Fixed A4-like canvas: 1055 × 1491
+========================================================= */
+
+.leader-report-wrapper {
+  width: 1055px;
+  min-width: 0;
+  max-width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.leader-report {
+  --lr-dark-green: #005f59;
+  --lr-deep-green: #0b625b;
+  --lr-text: #143f59;
+  --lr-border: #c7ddd9;
+  --lr-soft-green: #edf8f5;
+
+  width: 1055px;
+  height: 1491px;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 8% 3%,
+      rgba(104, 198, 234, 0.20),
+      transparent 18%
+    ),
+    radial-gradient(
+      circle at 96% 97%,
+      rgba(183, 226, 236, 0.30),
+      transparent 24%
+    ),
+    #ffffff;
+
+  color: var(--lr-text);
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 500;
+}
+
+.leader-report *,
+.leader-report *::before,
+.leader-report *::after {
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.lr-header {
+  position: relative;
+  height: 255px;
+  padding: 25px 25px 0;
+  display: flex;
+  align-items: flex-start;
+  overflow: hidden;
+}
+
+.lr-header-watercolor {
+  position: absolute;
+  left: -72px;
+  top: -72px;
+  width: 395px;
+  height: 320px;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(119, 210, 240, 0.34) 0%,
+      rgba(200, 235, 248, 0.20) 35%,
+      transparent 75%
+    );
+
+  filter: blur(6px);
+  pointer-events: none;
+}
+
+.lr-logo-area {
+  width: 190px;
+  height: 170px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+  z-index: 4;
+}
+
+.lr-logo-img {
+  width: 158px;
+  height: 158px;
+  object-fit: contain;
+  display: block;
+}
+
+.lr-logo-fallback {
+  width: 158px;
+  height: 158px;
+  border-radius: 50%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 7px;
+  background: radial-gradient(circle at 50% 35%, #1f8ab0, #0b405e 68%, #062f47 100%);
+  border: 5px solid rgba(255, 255, 255, 0.82);
+  box-shadow: 0 8px 22px rgba(31, 99, 119, 0.14);
+  color: #ffffff;
+}
+
+.lr-logo-fallback strong {
+  font-size: 30px;
+  letter-spacing: 2px;
+  line-height: 1;
+}
+
+.lr-logo-fallback span {
+  font-size: 9px;
+  letter-spacing: 2px;
+}
+
+.lr-logo-fallback-visible .lr-logo-fallback {
+  display: flex;
+}
+
+.lr-header-divider {
+  width: 2px;
+  height: 138px;
+  margin-top: 8px;
+  margin-right: 25px;
+
+  background: #206c79;
+  flex-shrink: 0;
+}
+
+.lr-title-block {
+  width: 455px;
+  padding-top: 24px;
+
+  position: relative;
+  z-index: 5;
+}
+
+.lr-title-block h1 {
+  margin: 0;
+
+  color: #0c5d58;
+
+  font-size: 31px;
+  line-height: 1.05;
+  font-weight: 900;
+  letter-spacing: -0.8px;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+.lr-subtitle {
+  margin-top: 10px;
+
+  color: #1e5556;
+
+  font-size: 20px;
+  line-height: 1.05;
+  letter-spacing: 4.6px;
+  font-weight: 500;
+}
+
+.lr-title-block p {
+  margin: 12px 0 0;
+
+  color: #20595a;
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  line-height: 1.05;
+  letter-spacing: 0.6px;
+  font-style: italic;
+}
+
+.lr-title-block p span {
+  display: inline-block;
+  margin: 0 6px;
+  font-style: normal;
+}
+
+.lr-header-art {
+  position: absolute;
+  right: 10px;
+  top: 0;
+  width: 300px;
+  height: 220px;
+  z-index: 3;
+}
+
+.lr-header-art-blob {
+  position: absolute;
+  right: -10px;
+  top: -18px;
+  width: 270px;
+  height: 225px;
+
+  border-radius: 51% 49% 43% 57% / 54% 42% 58% 46%;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(224, 241, 214, 0.97) 0%,
+      rgba(239, 248, 229, 0.82) 55%,
+      rgba(249, 252, 244, 0) 78%
+    );
+
+  transform: rotate(-4deg);
+}
+
+.lr-header-leaf {
+  position: absolute;
+  left: 40px;
+  top: 63px;
+  width: 122px;
+  height: 130px;
+}
+
+.lr-header-art-copy {
+  position: absolute;
+  right: 7px;
+  top: 70px;
+
+  display: flex;
+  flex-direction: column;
+
+  color: #164e50;
+
+  font-size: 22px;
+  line-height: 1.12;
+  font-weight: 800;
+}
+
+/* =========================================================
+   INFO BAR
+========================================================= */
+
+.lr-info {
+  height: 80px;
+  margin: -1px 25px 0;
+
+  border-radius: 11px;
+
+  background: linear-gradient(
+    90deg,
+    rgba(233, 246, 241, 0.94),
+    rgba(246, 250, 246, 0.95)
+  );
+
+  display: grid;
+  grid-template-columns: 1fr 1.15fr 0.72fr;
+  gap: 30px;
+
+  padding: 20px 16px 12px;
+
+  position: relative;
+  z-index: 4;
+}
+
+.lr-info-field {
+  min-width: 0;
+  position: relative;
+
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.lr-info-label {
+  flex-shrink: 0;
+  color: #153e58;
+
+  font-size: 18px;
+  line-height: 1.1;
+  font-weight: 500;
+}
+
+.lr-info-field strong {
+  min-width: 0;
+
+  color: #163f58;
+
+  font-size: 15px;
+  line-height: 1.2;
+  font-weight: 800;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lr-info-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 1px;
+
+  height: 1.5px;
+  background: #163f58;
+}
+
+.lr-date-field strong {
+  font-size: 14px;
+}
+
+/* =========================================================
+   SUMMARY
+========================================================= */
+
+.lr-summary {
+  height: 142px;
+
+  margin: 12px 25px 0;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 14px;
+}
+
+.lr-summary-card {
+  border-radius: 11px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 20px 25px;
+
+  position: relative;
+  overflow: hidden;
+}
+
+.lr-respondents-card {
+  background: #e9f7f4;
+}
+
+.lr-strength-card {
+  background: #fff8e8;
+}
+
+.lr-focus-card {
+  background: #fff0f2;
+}
+
+.lr-people-icon {
+  width: 94px;
+  height: 86px;
+  color: #09685f;
+  flex-shrink: 0;
+}
+
+.lr-summary-icon {
+  width: 86px;
+  height: 86px;
+  flex-shrink: 0;
+}
+
+.lr-star {
+  color: #e0a61e;
+}
+
+.lr-target {
+  color: #cf2735;
+}
+
+.lr-summary-content {
+  margin-left: 17px;
+}
+
+.lr-summary-content h3 {
+  margin: 0;
+
+  color: #133f5c;
+
+  font-size: 20px;
+  line-height: 1.02;
+  font-weight: 900;
+}
+
+.lr-summary-number {
+  margin-top: 8px;
+
+  min-height: 38px;
+
+  color: #143e5b;
+
+  font-size: 40px;
+  line-height: 0.92;
+  font-weight: 900;
+}
+
+.lr-summary-content em {
+  display: block;
+
+  margin-top: 5px;
+
+  color: #173e58;
+
+  font-size: 15px;
+  line-height: 1;
+
+  font-style: normal;
+  font-weight: 500;
+}
+
+/* =========================================================
+   MAIN GRID
+========================================================= */
+
+.lr-main {
+  margin: 14px 25px 0;
+
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 14px;
+
+  align-items: start;
+}
+
+.lr-panel {
+  border: 1px solid #c2ddd8;
+  border-radius: 10px;
+
+  overflow: hidden;
+
+  background: rgba(255, 255, 255, 0.97);
+}
+
+.lr-dimension-panel {
+  min-height: 735px;
+}
+
+.lr-panel-title {
+  min-height: 49px;
+
+  padding: 10px 16px;
+
+  display: flex;
+  align-items: center;
+
+  background: var(--lr-dark-green);
+
+  color: #ffffff;
+
+  font-size: 21px;
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: 0.1px;
+}
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.lr-table-header,
+.lr-dimension-row {
+  display: grid;
+
+  grid-template-columns:
+    0.20fr
+    1.42fr
+    0.54fr
+    0.70fr;
+}
+
+.lr-table-header {
+  height: 67px;
+
+  background: #eff9f7;
+
+  border-bottom: 1px solid var(--lr-border);
+
+  color: #153e58;
+
+  font-size: 16px;
+  line-height: 1.08;
+  font-weight: 900;
+
+  text-align: center;
+  align-items: center;
+}
+
+.lr-table-header > div:nth-child(2) {
+  text-align: left;
+  padding-left: 12px;
+}
+
+.lr-dimension-list {
+  width: 100%;
+}
+
+.lr-dimension-row {
+  min-height: 88px;
+
+  border-bottom: 1px solid #d6e7e4;
+
+  align-items: stretch;
+}
+
+.lr-dimension-row:last-child {
+  border-bottom: none;
+}
+
+.lr-dimension-index {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #173f59;
+
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.lr-dimension-name {
+  padding: 11px 10px;
+
+  display: flex;
+  align-items: center;
+
+  color: #123f5b;
+
+  font-size: 16px;
+  line-height: 1.12;
+  font-weight: 700;
+}
+
+.lr-dimension-score {
+  min-width: 0;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-left: 1px solid #d6e7e4;
+  border-right: 1px solid #d6e7e4;
+
+  color: #153e58;
+
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.lr-score-line {
+  position: absolute;
+
+  width: 59px;
+  left: 50%;
+  bottom: 22px;
+
+  transform: translateX(-50%);
+
+  height: 1.5px;
+  background: #426986;
+}
+
+.lr-performance-cell {
+  padding: 9px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lr-performance {
+  width: 100%;
+  min-height: 49px;
+
+  border-radius: 9px;
+
+  background: #f5f7f7;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #355667;
+
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.lr-performance.excellent {
+  background: #dff4df;
+  color: #087044;
+}
+
+.lr-performance.good {
+  background: #fff0bb;
+  color: #765300;
+}
+
+.lr-performance.attention {
+  background: #ffd9d9;
+  color: #a51f2a;
+}
+
+.lr-performance.critical {
+  background: #efcaca;
+  color: #8f1720;
+}
+
+/* =========================================================
+   CHART
+========================================================= */
+
+.lr-right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.lr-chart-panel {
+  min-height: 470px;
+}
+
+.lr-chart {
+  padding: 18px 17px 10px;
+}
+
+.lr-chart-row {
+  display: grid;
+  grid-template-columns: 162px 1fr;
+
+  min-height: 57px;
+
+  align-items: center;
+}
+
+.lr-chart-label {
+  padding-right: 13px;
+
+  color: #153e58;
+
+  font-size: 14px;
+  line-height: 1.11;
+  font-weight: 700;
+
+  text-align: right;
+}
+
+.lr-chart-bar-wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 44px;
+  gap: 11px;
+
+  align-items: center;
+}
+
+.lr-bar-track {
+  height: 32px;
+
+  border-radius: 2px;
+
+  background: #eef4f1;
+
+  overflow: hidden;
+}
+
+.lr-bar-fill {
+  display: block;
+  height: 100%;
+  border-radius: 2px 0 0 2px;
+}
+
+.lr-chart-score {
+  min-height: 28px;
+
+  display: flex;
+  align-items: center;
+
+  color: #214d59;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  border-bottom: 1px solid #57746f;
+}
+
+.lr-chart-axis {
+  display: grid;
+
+  grid-template-columns: repeat(5, 1fr);
+
+  margin-left: 162px;
+  margin-right: 43px;
+
+  color: #264d55;
+
+  font-size: 13px;
+  font-weight: 800;
+  text-align: center;
+}
+
+/* =========================================================
+   OBSERVATIONS
+========================================================= */
+
+.lr-observations-panel {
+  min-height: 224px;
+}
+
+.lr-observations-body {
+  min-height: 174px;
+
+  display: grid;
+
+  grid-template-columns: 105px 1fr;
+
+  gap: 12px;
+
+  padding: 18px 18px 14px;
+}
+
+.lr-observation-icon-wrap {
+  width: 82px;
+  height: 82px;
+
+  margin: 2px auto 0;
+
+  border-radius: 50%;
+
+  background: #dff4eb;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #0b605b;
+}
+
+.lr-search-icon {
+  width: 60px;
+  height: 60px;
+}
+
+.lr-observation-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  gap: 10px;
+}
+
+.lr-observation-item {
+  display: grid;
+
+  grid-template-columns: 10px 1fr;
+
+  gap: 10px;
+
+  align-items: start;
+}
+
+.lr-observation-dot {
+  width: 8px;
+  height: 8px;
+
+  margin-top: 5px;
+
+  border-radius: 50%;
+
+  background: #0a5e59;
+}
+
+.lr-observation-line {
+  min-height: 21px;
+
+  padding-bottom: 4px;
+
+  border-bottom: 1px solid #416a66;
+
+  color: #244e5a;
+
+  font-size: 12.5px;
+  line-height: 1.25;
+}
+
+/* =========================================================
+   BOTTOM DECORATION
+========================================================= */
+
+.lr-bottom-leaves {
+  position: absolute;
+
+  left: -4px;
+  bottom: -3px;
+
+  width: 250px;
+  height: 245px;
+
+  pointer-events: none;
+}
+
+.lr-bottom-message {
+  position: absolute;
+
+  left: 174px;
+  right: 27px;
+  bottom: 31px;
+
+  height: 205px;
+
+  pointer-events: none;
+}
+
+.lr-bottom-script {
+  position: absolute;
+
+  left: 0;
+  bottom: 17px;
+
+  color: #155f59;
+
+  font-family:
+    "Brush Script MT",
+    "Segoe Script",
+    cursive;
+
+  font-size: 39px;
+  line-height: 0.99;
+  font-style: italic;
+}
+
+.lr-bottom-line {
+  position: absolute;
+
+  left: 2px;
+  bottom: -1px;
+
+  width: 196px;
+  height: 5px;
+
+  border-bottom: 2px solid #195f5a;
+
+  border-radius: 100%;
+
+  transform: rotate(-9deg);
+}
+
+.lr-bottom-right-copy {
+  position: absolute;
+
+  right: 5px;
+  bottom: 2px;
+
+  width: 315px;
+  height: 172px;
+
+  border-radius:
+    57% 43% 51% 49% /
+    49% 52% 48% 51%;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(199, 233, 222, 0.76),
+      rgba(231, 247, 240, 0.20) 74%,
+      transparent 75%
+    );
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  color: #145b56;
+
+  text-align: center;
+
+  transform: rotate(-4deg);
+}
+
+.lr-bottom-right-copy strong {
+  font-family:
+    "Brush Script MT",
+    "Segoe Script",
+    cursive;
+
+  font-size: 28px;
+  line-height: 1.02;
+
+  font-weight: 500;
+}
+
+/* =========================================================
+   PDF SAFETY
+========================================================= */
+
+.pdf-export-mode .leader-report,
+.leader-report.pdf-export-mode {
+  width: 1055px !important;
+  height: 1491px !important;
+}
+
+/* =========================================================
+   PDF SAFETY
+========================================================= */
+
+.pdf-export-mode .leader-report-wrapper {
+  width: 1055px !important;
+  height: 1491px !important;
+  max-width: none !important;
+  overflow: visible !important;
+}
+
+.pdf-export-mode .leader-report {
+  width: 1055px !important;
+  height: 1491px !important;
+  transform: none !important;
+}
+
+/* =========================================================
+   RESPONSIVE / MOBILE
+   The report keeps its A4 proportions and scales down to
+   the available viewer width. The print/PDF class above
+   restores the original 1055 × 1491 canvas for export.
+========================================================= */
+
+@media (max-width: 900px) {
+  .leader-report-wrapper {
+    max-width: 100%;
+  }
+}
+
+
+/* =========================================================
+   REMOVE OLD BOTTOM DECORATION
+========================================================= */
+
+.lr-bottom-leaves,
+.lr-bottom-message,
+.lr-footer-watercolor,
+.lr-footer::after {
+  display: none !important;
+}
+
+
+/* =========================================================
+   CLEAN SINGLE-LINE CONTACT FOOTER
+========================================================= */
+
+.lr-footer {
+  position: absolute;
+
+  left: 45px;
+  right: 45px;
+  bottom: 18px;
+
+  height: 72px;
+
+  border-top: 1.5px solid #0b5f57;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
+  padding-bottom: 14px;
+
+  background: transparent;
+
+  z-index: 20;
+}
+
+.lr-footer-contact {
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  flex-wrap: nowrap;
+
+  white-space: nowrap;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  color: #123d58;
+}
+
+.lr-footer-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  white-space: nowrap;
+
+  flex-shrink: 0;
+}
+
+.lr-footer-item svg {
+  width: 17px;
+  height: 17px;
+
+  color: #075f57;
+
+  stroke-width: 1.8;
+
+  flex-shrink: 0;
+}
+
+.lr-footer-separator {
+  width: 1px;
+  height: 23px;
+
+  background: #a9c8c2;
+
+  flex-shrink: 0;
+
+  margin: 0 16px;
+}

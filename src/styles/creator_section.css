@@ -34,8 +34,8 @@
   font-family: var(--font-mono);
   font-size: 14px;
   letter-spacing: 2.2px;
-
-  color: var(--color-text-muted);
+  font-weight: bolder;
+  color: #bd6549;
 
   margin-bottom: 38px;
 }
@@ -44,9 +44,9 @@
 .creator-heading {
   margin: 0;
 
-  font-family: var(--font-serif);
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: clamp(58px, 5vw, 82px);
-  font-weight: 400;
+  font-weight: bolder;
   line-height: 0.94;
   letter-spacing: -3px;
 
@@ -83,13 +83,13 @@
 .creator-photo-caption {
   display: block;
 
-  margin-top: 16px;
-
+  margin-top: 18px;
+  font-weight: bolder;
   font-family: var(--font-mono);
   font-size: 14px;
   letter-spacing: 1.6px;
 
-  color: var(--color-text-muted);
+  color: #bd6549;
 }
 
 
@@ -116,7 +116,7 @@
 
   font-family: var(--font-serif);
   font-size: clamp(34px, 3.1vw, 52px);
-  font-weight: 400;
+  font-weight: bolder;
   line-height: 1.08;
   letter-spacing: -1.8px;
 
@@ -149,8 +149,8 @@
 .creator-bio p {
   margin: 0 0 24px;
 
-  font-family: var(--font-sans);
-  font-size: 16px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 18px;
   line-height: 1.65;
 
   color: var(--color-text-soft);
@@ -219,10 +219,10 @@
   margin-top: 14px;
 
   font-family: var(--font-mono);
-  font-size: 14px;
+  font-size: 18px;
   letter-spacing: 1.8px;
-
-  color: var(--color-text-muted);
+  font-weight: bolder;
+  color: #bd6549;
 }
 
 

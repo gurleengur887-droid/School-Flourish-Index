@@ -87,16 +87,7 @@ const HowitWorks = () => {
 
           <div className="how-sfi-intro-right">
 
-            <div className="how-sfi-description">
-
-              <p>
-                SFI does not begin with a score.
-                It begins with listening — bringing
-                different experiences together so a
-                school can see more of itself.
-              </p>
-
-            </div>
+           
 
 
             {/* CIRCLE */}
