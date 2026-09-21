@@ -1622,17 +1622,31 @@
    Keep all 4 cards fully visible
 ========================================= */
 
+/* =========================================
+   FILTERED VOICES — DESKTOP
+   Keep the same composition as All Voices
+========================================= */
+
 @media (min-width: 701px) {
-  .sfi-filtered-grid .sfi-testimonial-card {
-    left: 0 !important;
-    transform: none !important;
+
+  .sfi-filtered-grid .sfi-card-position-1 {
+    left: -45px !important;
+    transform: translateY(17px) !important;
   }
 
-  .sfi-filtered-grid .sfi-card-position-1,
-  .sfi-filtered-grid .sfi-card-position-2,
-  .sfi-filtered-grid .sfi-card-position-3,
-  .sfi-filtered-grid .sfi-card-position-4 {
-    left: 0 !important;
-    transform: none !important;
+  .sfi-filtered-grid .sfi-card-position-2 {
+    left: -55px !important;
+    transform: translateY(0) !important;
   }
+
+  .sfi-filtered-grid .sfi-card-position-3 {
+    left: 55px !important;
+    transform: translateY(25px) !important;
+  }
+
+  .sfi-filtered-grid .sfi-card-position-4 {
+    left: 45px !important;
+    transform: translateY(7px) !important;
+  }
+
 }
