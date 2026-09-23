@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./StudentReport.css";
 import {
   FiGlobe,
@@ -295,7 +295,45 @@ function getObservationText(report) {
    MAIN STUDENT REPORT
 ========================================================= */
 
-export default function StudentReport({ report }) {
+ export default function StudentReport({ report }) {
+  const wrapperRef = useRef(null);
+  const [reportScale, setReportScale] = useState(1);
+
+  useEffect(() => {
+    const wrapper = wrapperRef.current;
+    if (!wrapper) return;
+
+    const updateScale = () => {
+      const availableWidth =
+        wrapper.parentElement?.clientWidth || window.innerWidth;
+
+      const nextScale = Math.min(
+        1,
+        Math.max(320, availableWidth - 8) / 1055
+      );
+
+      setReportScale(Number(nextScale.toFixed(4)));
+    };
+
+    updateScale();
+
+    const resizeObserver =
+      typeof ResizeObserver !== "undefined"
+        ? new ResizeObserver(updateScale)
+        : null;
+
+    if (resizeObserver && wrapper.parentElement) {
+      resizeObserver.observe(wrapper.parentElement);
+    }
+
+    window.addEventListener("resize", updateScale);
+
+    return () => {
+      resizeObserver?.disconnect();
+      window.removeEventListener("resize", updateScale);
+    };
+  }, []);
+
   if (!report) {
     return null;
   }
@@ -323,7 +361,9 @@ export default function StudentReport({ report }) {
   const school =
     report.respondent?.school ||
     "School";
-
+const studentName =
+  report.respondent?.name ||
+  "Student";
   const respondents =
     typeof report.respondents === "number"
       ? report.respondents
@@ -349,8 +389,21 @@ export default function StudentReport({ report }) {
   ];
 
   return (
-    <div className="student-report-wrapper">
-      <div className="student-report">
+   <div
+  className="student-report-wrapper"
+  ref={wrapperRef}
+  style={{
+    width: `${1055 * reportScale}px`,
+    height: `${1491 * reportScale}px`,
+  }}
+>
+  <div
+    className="student-report"
+    style={{
+      transform: `scale(${reportScale})`,
+      transformOrigin: "top left",
+    }}
+  >
 
         {/* =================================================
             HEADER
@@ -403,47 +456,47 @@ export default function StudentReport({ report }) {
             INFORMATION BAR
         ================================================= */}
 
-        <section className="sr-info">
+       <section className="sr-info">
 
-          <div className="sr-info-field">
-            <span className="sr-info-label">
-              School:
-            </span>
+  <div className="sr-info-field">
+    <span className="sr-info-label">
+      School:
+    </span>
 
-            <strong>
-              {school}
-            </strong>
+    <strong>
+      {school}
+    </strong>
 
-            <div className="sr-info-line" />
-          </div>
-
-
-          <div className="sr-info-field sr-date-field">
-            <span className="sr-info-label">
-              Date:
-            </span>
-
-            <strong>
-              {formatDate(generatedDate)}
-            </strong>
-
-            <div className="sr-info-line" />
-          </div>
+    <div className="sr-info-line" />
+  </div>
 
 
-          <div className="sr-info-field">
-            <span className="sr-info-label">
-              Respondents (Students):
-            </span>
+  <div className="sr-info-field">
+    <span className="sr-info-label">
+      Student Name:
+    </span>
 
-            <strong>
-              {respondents}
-            </strong>
+    <strong>
+      {studentName}
+    </strong>
 
-            <div className="sr-info-line" />
-          </div>
+    <div className="sr-info-line" />
+  </div>
 
-        </section>
+
+  <div className="sr-info-field sr-date-field">
+    <span className="sr-info-label">
+      Date:
+    </span>
+
+    <strong>
+      {formatDate(generatedDate)}
+    </strong>
+
+    <div className="sr-info-line" />
+  </div>
+
+</section>
 
 
         {/* =================================================

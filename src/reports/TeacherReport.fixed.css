@@ -970,64 +970,9 @@
 }
 
 
-/* -----------------------------------------
-   MOBILE / TABLET
------------------------------------------ */
-
-@media screen and (max-width: 1055px) {
-
-  .teacher-report-wrapper {
-    width: 100vw;
-    max-width: 100vw;
-
-    display: block;
-
-    /* scaled report height */
-    height: calc(100vw * 1491 / 1055);
-
-    overflow: hidden;
-  }
-
-.teacher-report {
-  width: 1055px;
-  height: 1491px;
-
-  --sfi-report-scale: calc(100vw / 1055);
-
-  transform-origin: top left;
-
-  transform: scale(var(--sfi-report-scale));
-}
-}
 
 
-/* -----------------------------------------
-   VERY SMALL PHONES
------------------------------------------ */
 
-@media screen and (max-width: 600px) {
-
-  .teacher-report-wrapper {
-    width: 100vw;
-    max-width: 100vw;
-
-    margin: 0;
-    padding: 0;
-
-    display: block;
-    overflow: hidden;
-
-    height: calc(100vw * 1491 / 1055);
-  }
-
-  .teacher-report {
-  --sfi-report-scale: calc(100vw / 1055);
-
-  transform-origin: top left;
-
-  transform: scale(var(--sfi-report-scale));
-}
-}
 /* =========================================================
    REPORT WRAPPER
    Keep the wrapper inside its parent on desktop/export.
@@ -1041,3 +986,39 @@
   margin-right: 0;
 }
 
+
+.pdf-export-mode .teacher-report-wrapper {
+  width: 1055px !important;
+  max-width: 1055px !important;
+  height: 1491px !important;
+  overflow: hidden !important;
+  display: block !important;
+}
+
+.pdf-export-mode .teacher-report {
+  width: 1055px !important;
+  height: 1491px !important;
+  flex: 0 0 1055px !important;
+  transform: none !important;
+  transform-origin: top left !important;
+}
+
+/* =========================================================
+   MOBILE REPORT VIEW
+   JS handles scaling — this only prevents flex-centering
+   from clipping the scaled report.
+========================================================= */
+
+@media screen and (max-width: 1055px) {
+  .teacher-report-wrapper {
+    width: 100%;
+    max-width: 100%;
+    display: block;
+    overflow: hidden;
+    margin: 0;
+  }
+
+  .teacher-report {
+    flex: 0 0 1055px;
+  }
+}

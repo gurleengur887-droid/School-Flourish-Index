@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./ParentReport.css";
 import {
   FiGlobe,
@@ -144,6 +144,44 @@ function getObservationText(report) {
 ========================================================= */
 
 export default function ParentReport({ report }) {
+  const wrapperRef = useRef(null);
+  const [reportScale, setReportScale] = useState(1);
+
+  useEffect(() => {
+    const wrapper = wrapperRef.current;
+    if (!wrapper) return;
+
+    const updateScale = () => {
+      const availableWidth =
+        wrapper.parentElement?.clientWidth || window.innerWidth;
+
+      const nextScale = Math.min(
+        1,
+        Math.max(320, availableWidth - 8) / 1055
+      );
+
+      setReportScale(Number(nextScale.toFixed(4)));
+    };
+
+    updateScale();
+
+    const resizeObserver =
+      typeof ResizeObserver !== "undefined"
+        ? new ResizeObserver(updateScale)
+        : null;
+
+    if (resizeObserver && wrapper.parentElement) {
+      resizeObserver.observe(wrapper.parentElement);
+    }
+
+    window.addEventListener("resize", updateScale);
+
+    return () => {
+      resizeObserver?.disconnect();
+      window.removeEventListener("resize", updateScale);
+    };
+  }, []);
+
   if (!report) return null;
 
   const parameters = Array.isArray(report.parameters)
@@ -174,9 +212,21 @@ export default function ParentReport({ report }) {
   ];
 
   return (
-    <div className="parent-report-wrapper">
-      <div className="parent-report">
-
+   <div
+  className="parent-report-wrapper"
+  ref={wrapperRef}
+  style={{
+    width: `${1055 * reportScale}px`,
+    height: `${1491 * reportScale}px`,
+  }}
+>
+  <div
+    className="parent-report"
+    style={{
+      transform: `scale(${reportScale})`,
+      transformOrigin: "top left",
+    }}
+  >
         <section className="pr-header">
           <div className="pr-header-watercolor" />
 

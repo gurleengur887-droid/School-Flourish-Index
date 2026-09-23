@@ -922,18 +922,8 @@
   transform: none !important;
 }
 
-/* =========================================================
-   RESPONSIVE / MOBILE
-   The report keeps its A4 proportions and scales down to
-   the available viewer width. The print/PDF class above
-   restores the original 1055 × 1491 canvas for export.
-========================================================= */
 
-@media (max-width: 900px) {
-  .leader-report-wrapper {
-    max-width: 100%;
-  }
-}
+
 
 
 /* =========================================================

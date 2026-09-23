@@ -9,6 +9,7 @@ import {
   GraduationCap,
   BriefcaseBusiness,
     FileText,
+    Inbox,
 } from "lucide-react";
 import { useParams, useNavigate } from "react-router-dom";
 import { supabase } from "../lib/supabase";
@@ -257,6 +258,18 @@ function AdminSchoolDetails() {
 >
   <FileText size={18} />
   <span>Insights / Reports</span>
+</button>
+<button
+  className="admin-nav-item"
+  onClick={() =>
+    navigate("/admin/requested-insights")
+  }
+>
+  <Inbox size={18} />
+
+  <span>
+    Requested Insights
+  </span>
 </button>
           <div className="admin-nav-divider" />
 

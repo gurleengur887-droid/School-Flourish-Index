@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./TeacherReport.fixed.css";
 import {
   FiGlobe,
@@ -151,6 +151,44 @@ function getScore(parameter) {
 ========================================================= */
 
 export default function TeacherReport({ report }) {
+  const wrapperRef = useRef(null);
+  const [reportScale, setReportScale] = useState(1);
+
+  useEffect(() => {
+    const wrapper = wrapperRef.current;
+    if (!wrapper) return;
+
+    const updateScale = () => {
+      const availableWidth =
+        wrapper.parentElement?.clientWidth || window.innerWidth;
+
+      const nextScale = Math.min(
+        1,
+        Math.max(320, availableWidth - 8) / 1055
+      );
+
+      setReportScale(Number(nextScale.toFixed(4)));
+    };
+
+    updateScale();
+
+    const resizeObserver =
+      typeof ResizeObserver !== "undefined"
+        ? new ResizeObserver(updateScale)
+        : null;
+
+    if (resizeObserver && wrapper.parentElement) {
+      resizeObserver.observe(wrapper.parentElement);
+    }
+
+    window.addEventListener("resize", updateScale);
+
+    return () => {
+      resizeObserver?.disconnect();
+      window.removeEventListener("resize", updateScale);
+    };
+  }, []);
+
   if (!report) {
     return null;
   }
@@ -193,8 +231,21 @@ export default function TeacherReport({ report }) {
   const weakest = focusAreas.slice(0, 2);
 
   return (
-  <div className="teacher-report-wrapper">
-    <div className="teacher-report">
+ <div
+  className="teacher-report-wrapper"
+  ref={wrapperRef}
+  style={{
+    width: `${1055 * reportScale}px`,
+    height: `${1491 * reportScale}px`,
+  }}
+>
+  <div
+    className="teacher-report"
+    style={{
+      transform: `scale(${reportScale})`,
+      transformOrigin: "top left",
+    }}
+  >
       {/* =====================================================
           HEADER
       ===================================================== */}

@@ -13,6 +13,7 @@ import {
   Save,
   Sparkles,
     FileText,
+    Inbox,
 } from "lucide-react";
 
 import SEO from "../components/SEO";
@@ -572,7 +573,18 @@ function AdminSidebar({ navigate }) {
   <FileText size={18} />
   <span>Insights / Reports</span>
 </button>
+<button
+  className="admin-nav-item"
+  onClick={() =>
+    navigate("/admin/requested-insights")
+  }
+>
+  <Inbox size={18} />
 
+  <span>
+    Requested Insights
+  </span>
+</button>
 
         <div className="admin-nav-divider" />
 

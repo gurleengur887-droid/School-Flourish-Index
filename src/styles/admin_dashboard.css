@@ -4902,3 +4902,79 @@ font-weight: bolder;
   font-weight: 700 !important;
   color: #19342b !important;
 }
+
+/* =========================================================
+   SCHOOLS FILTERS — FINAL MOBILE FIX
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .admin-header {
+    display: block !important;
+  }
+
+  /* Outer filter container */
+  .admin-header .admin-school-selector {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    height: auto !important;
+
+    margin-top: 24px !important;
+    padding: 14px !important;
+
+    box-sizing: border-box !important;
+  }
+
+  /* Stack all filters */
+  .admin-header .admin-view-filter {
+    width: 100% !important;
+
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+
+    gap: 10px !important;
+    padding: 0 !important;
+
+    box-sizing: border-box !important;
+    position: relative !important;
+  }
+
+  /* VIEWING label */
+  .admin-header .admin-view-filter > span {
+    position: static !important;
+
+    display: block !important;
+    width: 100% !important;
+
+    margin: 0 0 2px 0 !important;
+
+    font-size: 9px !important;
+  }
+
+  /* Each dropdown */
+  .admin-header .admin-view-filter select {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+
+    height: 48px !important;
+
+    padding: 0 40px 0 14px !important;
+
+    border: 1px solid var(--color-border) !important;
+    border-right: 1px solid var(--color-border) !important;
+
+    border-radius: 12px !important;
+
+    background: var(--color-white) !important;
+    color: var(--color-green-dark) !important;
+
+    box-sizing: border-box !important;
+  }
+
+  .admin-header .admin-view-filter select:last-child {
+    border-right: 1px solid var(--color-border) !important;
+  }
+
+}

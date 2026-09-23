@@ -251,9 +251,9 @@
   display: grid;
 
   grid-template-columns:
-    1.35fr
-    0.72fr
-    1.15fr;
+  1.75fr
+  1.7fr
+  1fr;
 
   gap: 25px;
 
@@ -1046,52 +1046,13 @@
    MOBILE / TABLET
 ========================================================= */
 
-@media screen and (max-width: 1055px) {
-  .student-report-wrapper {
-    width: 100vw;
-    max-width: 100vw;
-
-    height:
-      calc(
-        100vw * 1491 / 1055
-      );
-
-    display: block;
-
-    overflow: hidden;
-  }
-
- .student-report {
-  --sfi-report-scale: calc(100vw / 1055);
-
-  transform: scale(var(--sfi-report-scale));
-}
-}
-
-@media screen and (max-width: 600px) {
-  .student-report-wrapper {
-    width: 100vw;
-    max-width: 100vw;
-
-    height:
-      calc(
-        100vw * 1491 / 1055
-      );
-
-    margin: 0;
-    padding: 0;
-
-    display: block;
-    overflow: hidden;
-  }
-
-  .student-report {
-  --sfi-report-scale: calc(100vw / 1055);
-
-  transform-origin: top left;
-
-  transform: scale(var(--sfi-report-scale));
-}
+.student-report-wrapper {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  display: block;
+  margin: 0 auto;
+  position: relative;
 }
 
 

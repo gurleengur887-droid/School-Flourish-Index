@@ -14,6 +14,7 @@ import {
   BriefcaseBusiness,
   Search,
     FileText,
+    Inbox
 } from "lucide-react";
 import {
   useNavigate,
@@ -369,6 +370,18 @@ function AdminPerspectiveResponses() {
 >
   <FileText size={18} />
   <span>Insights / Reports</span>
+</button>
+<button
+  className="admin-nav-item"
+  onClick={() =>
+    navigate("/admin/requested-insights")
+  }
+>
+  <Inbox size={18} />
+
+  <span>
+    Requested Insights
+  </span>
 </button>
           <div className="admin-nav-divider" />
 

@@ -8,6 +8,7 @@ import {
   Settings,
   Search,
     FileText,
+    Inbox,
 } from "lucide-react";
 import { supabase } from "../lib/supabase";
 import "../styles/admin_dashboard.css";
@@ -261,6 +262,18 @@ function AdminSchools() {
 >
   <FileText size={18} />
   <span>Insights / Reports</span>
+</button>
+<button
+  className="admin-nav-item"
+  onClick={() =>
+    (window.location.href = "/admin/requested-insights")
+  }
+>
+  <Inbox size={18} />
+
+  <span>
+    Requested Insights
+  </span>
 </button>
 
           <div className="admin-nav-divider" />

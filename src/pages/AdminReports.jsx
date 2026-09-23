@@ -12,6 +12,7 @@ import {
   X,
   Download,
   ArrowLeft,
+  Inbox,
 } from "lucide-react";
 
 import { useNavigate } from "react-router-dom";
@@ -478,7 +479,18 @@ if (result?.role !== selectedPerspective) {
             </span>
           </button>
 
+<button
+  className="admin-nav-item"
+  onClick={() =>
+    navigate("/admin/requested-insights")
+  }
+>
+  <Inbox size={18} />
 
+  <span>
+    Requested Insights
+  </span>
+</button>
           <div className="admin-nav-divider" />
 
 
