@@ -1181,3 +1181,75 @@
 
   transform: translateY(-50%);
 }
+
+/* =========================================================
+   STUDENT FOOTER — VIEW / PDF ALIGNMENT
+========================================================= */
+
+.sr-footer-item {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+
+  height: 18px !important;
+  line-height: 18px !important;
+
+  white-space: nowrap !important;
+}
+
+.sr-footer-item span {
+  display: block !important;
+  height: 18px !important;
+  line-height: 18px !important;
+}
+
+.sr-footer-item svg {
+  display: block !important;
+  width: 17px !important;
+  height: 17px !important;
+
+  flex: 0 0 17px !important;
+  margin: 0 !important;
+}
+
+.pdf-export-mode .sr-footer-contact {
+  align-items: center !important;
+}
+
+.pdf-export-mode .sr-footer-item {
+  display: flex !important;
+  align-items: center !important;
+  height: 18px !important;
+  line-height: 18px !important;
+}
+
+.pdf-export-mode .sr-footer-item span {
+  display: block !important;
+  height: 18px !important;
+  line-height: 18px !important;
+}
+
+.pdf-export-mode .sr-footer-item svg {
+  display: block !important;
+  width: 17px !important;
+  height: 17px !important;
+  flex: 0 0 17px !important;
+  margin: 0 !important;
+}
+
+/* FINAL STUDENT PDF ICON ALIGNMENT */
+
+.pdf-export-mode .sr-footer-item svg,
+.pdf-export-mode .sr-footer-contact svg {
+  position: static !important;
+  top: auto !important;
+  display: block !important;
+  transform: translateY(1.5px) !important;
+}
+/* FINAL STUDENT PDF LABEL ALIGNMENT */
+
+.pdf-export-mode .sr-info-label {
+  position: relative !important;
+  top: -2px !important;
+}

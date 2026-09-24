@@ -288,56 +288,41 @@
 
 .tr-info-field {
   position: relative;
-
   height: 52px;
-
   display: flex;
-
-  align-items: center;
-
+  align-items: flex-end;
   gap: 7px;
-
   min-width: 0;
+  padding-bottom: 7px;
+  box-sizing: border-box;
 }
 
 .tr-info-label {
   flex-shrink: 0;
-
   font-size: 17px;
-
+  line-height: 1;
   font-weight: 500;
-
   color: #153e58;
 }
 
 .tr-info-field strong {
   min-width: 0;
-
   max-width: none;
-
   overflow: visible;
-
   text-overflow: clip;
-
   white-space: nowrap;
-
   font-size: 15px;
-
+  line-height: 1;
   font-weight: 800;
-
   color: #123e58;
 }
 
 .tr-info-line {
   position: absolute;
-
   left: 0;
   right: 0;
-
-  bottom: 3px;
-
+  bottom: 0;
   height: 1.5px;
-
   background: #183f59;
 }
 .tr-school-value {
@@ -879,29 +864,37 @@
   justify-content: center;
   gap: 10px;
 
+  height: 18px;
+
   color: #123e58;
 
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
-
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 15px;
   font-weight: 500;
 
+  line-height: 18px;
   white-space: nowrap;
 }
 
+.tr-footer-item span {
+  display: block;
+
+  height: 18px;
+
+  line-height: 18px;
+}
+
 .tr-footer-icon {
+  display: block;
+
   width: 18px;
   height: 18px;
 
-  flex-shrink: 0;
+  flex: 0 0 18px;
 
   color: #075f57;
   stroke-width: 1.8;
 }
-
 .tr-footer-separator {
   width: 1px;
   height: 24px;
@@ -1021,4 +1014,95 @@
   .teacher-report {
     flex: 0 0 1055px;
   }
+}
+
+
+.pdf-export-mode .tr-footer-contact {
+  align-items: center !important;
+}
+
+.pdf-export-mode .tr-footer-item {
+  height: 18px !important;
+  line-height: 18px !important;
+  align-items: center !important;
+}
+
+.pdf-export-mode .tr-footer-item span {
+  display: block !important;
+  height: 18px !important;
+  line-height: 18px !important;
+}
+
+.pdf-export-mode .tr-footer-icon {
+  display: block !important;
+  width: 18px !important;
+  height: 18px !important;
+  flex: 0 0 18px !important;
+}
+/* =========================================================
+   TEACHER PDF FOOTER — OPTICAL ICON ALIGNMENT
+========================================================= */
+
+.pdf-export-mode .tr-footer-item {
+  align-items: center !important;
+}
+
+.pdf-export-mode .tr-footer-icon {
+  position: relative !important;
+  top: 1px !important;
+
+  display: block !important;
+  width: 18px !important;
+  height: 18px !important;
+
+  flex: 0 0 18px !important;
+}
+
+.pdf-export-mode .tr-footer-item span {
+  display: block !important;
+  line-height: 18px !important;
+  height: 18px !important;
+}
+
+/* =========================================================
+   FINAL TEACHER PDF FOOTER ALIGNMENT
+========================================================= */
+
+.pdf-export-mode .tr-footer {
+  padding-top: 18px !important;
+  padding-bottom: 14px !important;
+  align-items: center !important;
+}
+
+.pdf-export-mode .tr-footer-contact {
+  width: 100% !important;
+  align-items: center !important;
+}
+
+.pdf-export-mode .tr-footer-item {
+  height: 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  line-height: 20px !important;
+}
+
+.pdf-export-mode .tr-footer-item span {
+  display: block !important;
+  height: 20px !important;
+  line-height: 20px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.pdf-export-mode .tr-footer-icon {
+  position: static !important;
+  top: auto !important;
+  display: block !important;
+  width: 18px !important;
+  height: 18px !important;
+  flex: 0 0 18px !important;
+  margin: 0 !important;
+  transform: translateY(1.5px) !important;
 }

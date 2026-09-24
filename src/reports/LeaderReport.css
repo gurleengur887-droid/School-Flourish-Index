@@ -248,8 +248,11 @@
 ========================================================= */
 
 .lr-info {
-  height: 80px;
-  margin: -1px 25px 0;
+  height: 68px;
+
+  margin: 0 25px;
+
+  padding: 0 14px;
 
   border-radius: 11px;
 
@@ -260,53 +263,72 @@
   );
 
   display: grid;
-  grid-template-columns: 1fr 1.15fr 0.72fr;
-  gap: 30px;
 
-  padding: 20px 16px 12px;
+  grid-template-columns:
+    1.25fr
+    1.25fr
+    0.72fr;
+
+  gap: 25px;
+
+  align-items: center;
 
   position: relative;
-  z-index: 4;
+
+  z-index: 10;
 }
-
 .lr-info-field {
-  min-width: 0;
   position: relative;
+
+  height: 52px;
 
   display: flex;
-  align-items: flex-start;
-  gap: 8px;
+
+  align-items: flex-end;
+
+  gap: 7px;
+
+  min-width: 0;
+
+  padding-bottom: 7px;
+
+  box-sizing: border-box;
 }
 
 .lr-info-label {
   flex-shrink: 0;
   color: #153e58;
-
   font-size: 18px;
-  line-height: 1.1;
+  line-height: 1;
   font-weight: 500;
 }
-
 .lr-info-field strong {
   min-width: 0;
 
   color: #163f58;
 
   font-size: 15px;
-  line-height: 1.2;
+
+  line-height: 1;
+
   font-weight: 800;
+
   white-space: nowrap;
+
   overflow: hidden;
+
   text-overflow: ellipsis;
 }
-
 .lr-info-line {
   position: absolute;
+
   left: 0;
   right: 0;
-  bottom: 1px;
+
+  bottom: 0;
 
   height: 1.5px;
+
   background: #163f58;
 }
 
@@ -1016,4 +1038,148 @@
   flex-shrink: 0;
 
   margin: 0 16px;
+}
+
+/* =========================================================
+   LEADER FOOTER — VIEW / PDF ALIGNMENT
+========================================================= */
+
+.lr-footer-item {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+
+  height: 18px !important;
+  line-height: 18px !important;
+
+  white-space: nowrap !important;
+}
+
+.lr-footer-item span {
+  display: block !important;
+  height: 18px !important;
+  line-height: 18px !important;
+}
+
+.lr-footer-item svg {
+  display: block !important;
+  width: 17px !important;
+  height: 17px !important;
+
+  flex: 0 0 17px !important;
+  margin: 0 !important;
+}
+
+.pdf-export-mode .lr-footer-contact {
+  align-items: center !important;
+}
+
+.pdf-export-mode .lr-footer-item {
+  display: flex !important;
+  align-items: center !important;
+  height: 18px !important;
+  line-height: 18px !important;
+}
+
+.pdf-export-mode .lr-footer-item span {
+  display: block !important;
+  height: 18px !important;
+  line-height: 18px !important;
+}
+
+.pdf-export-mode .lr-footer-item svg {
+  display: block !important;
+  width: 17px !important;
+  height: 17px !important;
+  flex: 0 0 17px !important;
+  margin: 0 !important;
+}
+/* FINAL LEADER PDF ICON ALIGNMENT */
+
+.pdf-export-mode .lr-footer-item svg,
+.pdf-export-mode .lr-footer-contact svg {
+  position: static !important;
+  top: auto !important;
+  display: block !important;
+  transform: translateY(1.5px) !important;
+}
+
+/* =========================================================
+   LEADER PDF ONLY — MATCH VIEW INFO BAR
+========================================================= */
+
+.pdf-export-mode .lr-info {
+  height: 68px !important;
+  margin: 0 25px !important;
+  padding: 0 14px !important;
+
+  grid-template-columns:
+    1.25fr
+    1.25fr
+    0.72fr !important;
+
+  gap: 25px !important;
+  align-items: center !important;
+}
+
+.pdf-export-mode .lr-info-field {
+  height: 52px !important;
+
+  display: flex !important;
+  align-items: center !important;
+
+  gap: 7px !important;
+
+  min-width: 0 !important;
+
+  padding: 0 !important;
+
+  overflow: visible !important;
+  box-sizing: border-box !important;
+}
+
+.pdf-export-mode .lr-info-label {
+  flex-shrink: 0 !important;
+
+  font-size: 17px !important;
+  line-height: 1 !important;
+  font-weight: 500 !important;
+
+  white-space: nowrap !important;
+}
+
+.pdf-export-mode .lr-info-field strong {
+  min-width: 0 !important;
+
+  font-size: 15px !important;
+  line-height: 1 !important;
+  font-weight: 800 !important;
+
+  white-space: nowrap !important;
+
+  overflow: visible !important;
+  text-overflow: clip !important;
+}
+
+.pdf-export-mode .lr-date-field strong {
+  font-size: 14px !important;
+
+  overflow: visible !important;
+  text-overflow: clip !important;
+}
+
+.pdf-export-mode .lr-info-line {
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 3px !important;
+
+  height: 1.5px !important;
+}
+
+
+
+/* PDF: lower the actual info values slightly */
+.pdf-export-mode .lr-info-field strong {
+  transform: translateY(2px) !important;
 }
