@@ -24,6 +24,9 @@ import {
 
 import { supabase } from "../lib/supabase";
 import { calculateSchoolResult } from "../reports/schoolResultsCalculator";
+import {
+  calculatePerspectiveAggregate,
+} from "../reports/perspectiveAggregateCalculator";
 
 import "../styles/admin_dashboard.css";
 import "../styles/admin_results.css";
@@ -268,6 +271,24 @@ function AdminResults() {
     ]);
 
 
+
+    const schoolProfileResponses = useMemo(() => {
+  return responseData.filter((response) => {
+    const matchesState =
+      selectedState === "all" ||
+      response.school?.state === selectedState;
+
+    const matchesCity =
+      selectedCity === "all" ||
+      response.school?.city === selectedCity;
+
+    return matchesState && matchesCity;
+  });
+}, [
+  responseData,
+  selectedState,
+  selectedCity,
+]);
   /* =======================================================
      SCHOOL PROFILES
   ======================================================= */
@@ -302,7 +323,7 @@ function AdminResults() {
 
       const responsesBySchool = new Map();
 
-      filteredResponses.forEach((response) => {
+    schoolProfileResponses.forEach((response) => {
         if (!response.school_id) {
           return;
         }
@@ -378,12 +399,12 @@ function AdminResults() {
             )
         );
 
-    }, [
-      schools,
-      filteredResponses,
-      selectedState,
-      selectedCity,
-    ]);
+   }, [
+  schools,
+  schoolProfileResponses,
+  selectedState,
+  selectedCity,
+]);
 
 
   /* =======================================================
@@ -467,6 +488,49 @@ function AdminResults() {
         selectedSchoolId
     ) || null;
 
+
+  /* =======================================================
+     ADDITIONAL PERSPECTIVE AGGREGATE
+  =======================================================
+
+  The existing seven school-level dimensions remain unchanged.
+  This additional calculation looks at the selected school only
+  and aggregates the selected perspective's individual parameters
+  across all matching respondents.
+  ======================================================= */
+
+  const selectedPerspectiveAggregate =
+    useMemo(() => {
+      if (
+        selectedPerspective === "all" ||
+        !selectedSchoolId
+      ) {
+        return null;
+      }
+
+      const selectedSchoolResponses =
+        responseData.filter(
+          (response) =>
+            response.school_id ===
+            selectedSchoolId
+        );
+
+      return calculatePerspectiveAggregate(
+        selectedSchoolResponses,
+        selectedPerspective
+      );
+    }, [
+      responseData,
+      selectedSchoolId,
+      selectedPerspective,
+    ]);
+const isPerspectiveView =
+  selectedPerspective !== "all";
+
+const displayedResults =
+  isPerspectiveView
+    ? selectedPerspectiveAggregate?.parameters || []
+    : selectedSchoolProfile?.dimensions || [];
 
   /* =======================================================
      OVERVIEW
@@ -1316,16 +1380,23 @@ function AdminResults() {
 
                   <div>
 
-                    <span>
-                      DIMENSIONS AVAILABLE
-                    </span>
+                  <span>
+  {isPerspectiveView
+    ? "PARAMETERS AVAILABLE"
+    : "DIMENSIONS AVAILABLE"}
+</span>
 
-                    <strong>
-                      {
-                        selectedSchoolProfile
-                          .availableDimensionCount
-                      }/7
-                    </strong>
+<strong>
+  {isPerspectiveView
+    ? `${
+        selectedPerspectiveAggregate?.availableParameterCount || 0
+      }/${
+        selectedPerspectiveAggregate?.totalParameterCount || 0
+      }`
+    : `${
+        selectedSchoolProfile.availableDimensionCount
+      }/7`}
+</strong>
 
                   </div>
 
@@ -1336,45 +1407,53 @@ function AdminResults() {
 
                   <Clock3 size={16} />
 
-                  <span>
-                    This live profile updates from the
-                    school's currently available survey
-                    responses. Dimensions without a
-                    contributing response remain blank.
-                  </span>
+                <span>
+  {isPerspectiveView
+    ? `This aggregate uses all available ${formatPerspective(
+        selectedPerspective
+      ).toLowerCase()} responses for this school. Each respondent contributes equally to each individual parameter.`
+    : "This live profile updates from the school's currently available survey responses. Dimensions without a contributing response remain blank."}
+</span>
 
                 </div>
 
 
-                <div className="admin-results-dimension-profile">
+<div
+  className={`admin-results-dimension-profile ${
+    isPerspectiveView ? "is-perspective-view" : ""
+  }`}
+>
 
                   <div className="admin-results-dimension-profile-header">
 
                     <div>
-                      <span className="admin-panel-label">
-                        DIMENSION PROFILE
-                      </span>
+                     <span className="admin-panel-label">
+  {isPerspectiveView
+    ? "PERSPECTIVE PROFILE"
+    : "DIMENSION PROFILE"}
+</span>
 
-                      <h4>
-                        School Flourish Dimensions
-                      </h4>
-                    </div>
-
-                    <span className="admin-results-dimension-profile-scale">
-                      Average school response · 0–100%
-                    </span>
+<h4>
+  {isPerspectiveView
+    ? `${formatPerspective(selectedPerspective)} Parameters`
+    : "School Flourish Dimensions"}
+</h4>
+</div>
+<span className="admin-results-dimension-profile-scale">
+  {isPerspectiveView
+    ? "Aggregated respondent average · 0–100%"
+    : "Average school response · 0–100%"}
+</span>
 
                   </div>
 
 
                   <div className="admin-results-dimension-list">
 
-                    {selectedSchoolProfile.dimensions.map(
-                      (dimension, index) => {
-
-                        const hasScore =
-                          typeof dimension.average ===
-                          "number";
+                  {displayedResults.map(
+  (item, index) => {
+                       const hasScore =
+  typeof item.average === "number";
 
                         const width =
                           hasScore
@@ -1382,14 +1461,14 @@ function AdminResults() {
                                 0,
                                 Math.min(
                                   100,
-                                  dimension.percentage
+                                  item.percentage
                                 )
                               )
                             : 0;
 
                         return (
                           <div
-                            key={dimension.key}
+                            key={item.key}
                             className="admin-results-dimension-row"
                           >
 
@@ -1401,7 +1480,7 @@ function AdminResults() {
                                 </span>
 
                                 <strong>
-                                  {dimension.name}
+                                  {item.name}
                                 </strong>
                               </div>
 
@@ -1409,11 +1488,11 @@ function AdminResults() {
                                 {hasScore ? (
                                   <>
                                     <strong>
-                                      {dimension.percentage}%
+                                      {item.percentage}%
                                     </strong>
 
                                     <span>
-                                      {dimension.average.toFixed(2)} / 5
+                                      {item.average.toFixed(2)} / 5
                                     </span>
                                   </>
                                 ) : (
@@ -1438,30 +1517,47 @@ function AdminResults() {
 
                             <div className="admin-results-dimension-row-footer">
 
-                              {hasScore ? (
-                                <>
-                                  <strong>
-                                    {dimension.performance}
-                                  </strong>
+                             {hasScore ? (
+  <>
+    <strong>
+      {item.performance}
+    </strong>
 
-                                  <span>
-                                    {dimension.responseCount}{" "}
-                                    contributing response
-                                    {dimension.responseCount !== 1 ? "s" : ""}
-                                  </span>
+    {isPerspectiveView ? (
+      <>
+        {typeof item.weightPercentage === "number" && (
+          <span>
+            Weight {item.weightPercentage}%
+          </span>
+        )}
 
-                                  <span>
-                                    {dimension.contributingPerspectives
-                                      .map((role) => formatPerspective(role))
-                                      .join(" · ")}
-                                  </span>
-                                </>
-                              ) : (
-                                <span>
-                                  Waiting for a contributing perspective
-                                </span>
-                              )}
+        <span>
+          {item.respondentCount} contributing response
+          {item.respondentCount !== 1 ? "s" : ""}
+        </span>
+      </>
+    ) : (
+      <>
+        <span>
+          {item.responseCount} contributing response
+          {item.responseCount !== 1 ? "s" : ""}
+        </span>
 
+        <span>
+          {item.contributingPerspectives
+            .map((role) => formatPerspective(role))
+            .join(" · ")}
+        </span>
+      </>
+    )}
+  </>
+) : (
+  <span>
+    {isPerspectiveView
+      ? "Waiting for a contributing response"
+      : "Waiting for a contributing perspective"}
+  </span>
+)}
                             </div>
 
                           </div>
@@ -1472,7 +1568,6 @@ function AdminResults() {
                   </div>
 
                 </div>
-
 
               </>
 

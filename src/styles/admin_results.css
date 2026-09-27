@@ -1067,3 +1067,73 @@
   color: #355444 !important;
   flex: 0 0 auto;
 }
+
+/* =========================================================
+   PERSPECTIVE VIEW - PARAMETER BAR COLORS
+========================================================= */
+
+.admin-results-dimension-profile.is-perspective-view
+.admin-results-dimension-row:nth-child(1)
+.admin-results-dimension-fill {
+  background: #4f86c6 !important;
+}
+
+.admin-results-dimension-profile.is-perspective-view
+.admin-results-dimension-row:nth-child(2)
+.admin-results-dimension-fill {
+  background: #65a96f !important;
+}
+
+.admin-results-dimension-profile.is-perspective-view
+.admin-results-dimension-row:nth-child(3)
+.admin-results-dimension-fill {
+  background: #8d6cc8 !important;
+}
+
+.admin-results-dimension-profile.is-perspective-view
+.admin-results-dimension-row:nth-child(4)
+.admin-results-dimension-fill {
+  background: #e47c63 !important;
+}
+
+.admin-results-dimension-profile.is-perspective-view
+.admin-results-dimension-row:nth-child(5)
+.admin-results-dimension-fill {
+  background: #d4a13f !important;
+}
+
+.admin-results-dimension-profile.is-perspective-view
+.admin-results-dimension-row:nth-child(6)
+.admin-results-dimension-fill {
+  background: #3e9b91 !important;
+}
+
+.admin-results-dimension-profile.is-perspective-view
+.admin-results-dimension-row:nth-child(7)
+.admin-results-dimension-fill {
+  background: #c56aa6 !important;
+}
+
+.admin-results-dimension-profile.is-perspective-view
+.admin-results-dimension-row:nth-child(8)
+.admin-results-dimension-fill {
+  background: #6f8fce !important;
+}
+
+.admin-results-dimension-profile.is-perspective-view
+.admin-results-dimension-row:nth-child(9)
+.admin-results-dimension-fill {
+  background: #82a65d !important;
+}
+
+.admin-results-dimension-profile.is-perspective-view
+.admin-results-dimension-row:nth-child(10)
+.admin-results-dimension-fill {
+  background: #c47a9d !important;
+}
+
+.admin-results-dimension-profile.is-perspective-view
+.admin-results-dimension-row:nth-child(11)
+.admin-results-dimension-fill {
+  background: #7a9f9a !important;
+}
