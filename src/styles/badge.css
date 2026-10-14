@@ -1960,3 +1960,60 @@
   font-size: clamp(18px, 3.8vw, 30px) !important;
   font-weight: 700 !important;
 }
+
+/* =========================================
+   FIX: PARENT & STUDENT BADGE NAME POSITION
+========================================= */
+
+.badge-preview-parent .badge-name,
+.badge-preview-student .badge-name {
+  position: absolute !important;
+
+  top: 32% !important;
+  left: 50% !important;
+
+  transform: translate(-50%, -50%) !important;
+
+  width: 65% !important;
+
+  font-size: clamp(14px, 2.5vw, 22px) !important;
+  font-weight: 700 !important;
+
+  line-height: 1.2;
+  text-align: center;
+
+  color: #263d35 !important;
+  text-transform: uppercase;
+
+  white-space: normal;
+  overflow-wrap: anywhere;
+
+  z-index: 5;
+}
+
+/* =========================================================
+   ROLE-SPECIFIC NAME POSITIONING
+   Keep preview coordinates aligned with canvas download.
+========================================================= */
+
+/* Educator and Leader: place the name a little lower, below the ribbon. */
+.badge-preview-teacher .badge-name,
+.badge-preview-leader .badge-name {
+  top: 51.5% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 80% !important;
+  text-align: center;
+  color: #263d35 !important;
+  text-transform: uppercase;
+  line-height: 1.15;
+  z-index: 5;
+}
+
+/* Parent and Student: align preview with the matching canvas coordinates. */
+.badge-preview-parent .badge-name,
+.badge-preview-student .badge-name {
+  top: 32% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+}

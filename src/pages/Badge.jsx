@@ -2,60 +2,124 @@ import React, { useRef, useState } from "react";
 import "../styles/badge.css";
 import { supabase } from "../lib/supabase";
 import { FaInstagram, FaLinkedinIn } from "react-icons/fa";
-/*
- * =========================================================
- * TEACHER + LEADER BADGE
- * =========================================================
- */
+
+/* =========================================================
+   BADGE TEMPLATES
+   Database roles remain unchanged:
+   teacher, leader, parent, student
+========================================================= */
 
 const BADGE_TEMPLATES = {
   teacher: {
-    image: "/assets/teacher_leader_badge.jpeg",
-    alt: "SFI Teacher Participation Badge",
+    image: "/assets/educator_badge.jpeg",
+    alt: "SFI Educator Participation Badge",
+
+    namePosition: {
+      x: 0.5,
+      y: 0.515,
+      color: "#263d35",
+      fontSize: 42,
+      maxWidth: 0.8,
+    },
   },
 
   leader: {
-    image: "/assets/teacher_leader_badge.jpeg",
+    image: "/assets/leader_badge.jpeg",
     alt: "SFI School Leader Participation Badge",
+
+    namePosition: {
+      x: 0.5,
+      y: 0.515,
+      color: "#263d35",
+      fontSize: 42,
+      maxWidth: 0.8,
+    },
   },
 
   parent: {
-    image: "/assets/student_parent_badge.png",
+    image: "/assets/parent_badge.jpeg",
     alt: "SFI Parent Participation Badge",
+
+  namePosition: {
+  x: 0.5,
+  y: 0.32,
+  color: "#263d35",
+  fontSize: 52,
+  maxWidth: 0.65,
+},
   },
 
   student: {
-    image: "/assets/student_parent_badge.png",
+    image: "/assets/student_badge.jpeg",
     alt: "SFI Student Participation Badge",
+
+   namePosition: {
+  x: 0.5,
+  y: 0.32,
+  color: "#263d35",
+  fontSize: 52,
+  maxWidth: 0.65,
+},
   },
 };
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+const normalizeRole = (role) => {
+  return String(role || "").trim().toLowerCase();
+};
+
+const safeFilename = (name) => {
+  return (
+    String(name || "SFI")
+      .trim()
+      .replace(/[^a-z0-9]+/gi, "-")
+      .replace(/^-+|-+$/g, "") || "SFI"
+  );
+};
+
+/* =========================================================
+   BADGE COMPONENT
+========================================================= */
+
 const Badge = () => {
   const [email, setEmail] = useState("");
   const [badgeData, setBadgeData] = useState(null);
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-const [downloadMessage, setDownloadMessage] = useState("");
-  const badgeRef = useRef(null);
-const [insightForm, setInsightForm] = useState({
-  email: "",
-  whatsapp: "",
-  role: "",
-});
+  const [downloadMessage, setDownloadMessage] = useState("");
+  const [downloading, setDownloading] = useState(false);
 
-const [insightLoading, setInsightLoading] = useState(false);
-const [insightMessage, setInsightMessage] = useState("");
-const [insightError, setInsightError] = useState("");
-  /*
-   * =========================================================
-   * FIND BADGE
-   * =========================================================
-   */
+  const badgeRef = useRef(null);
+  const downloadMessageTimer = useRef(null);
+
+  /* =======================================================
+     INSIGHTS REQUEST STATE
+  ======================================================= */
+
+  const [insightForm, setInsightForm] = useState({
+    email: "",
+    whatsapp: "",
+    role: "",
+  });
+
+  const [insightLoading, setInsightLoading] = useState(false);
+  const [insightMessage, setInsightMessage] = useState("");
+  const [insightError, setInsightError] = useState("");
+
+  /* =======================================================
+     FIND BADGE
+  ======================================================= */
 
   const findBadge = async (e) => {
     e.preventDefault();
 
     setError("");
     setBadgeData(null);
+    setDownloadMessage("");
 
     const cleanEmail = email.trim().toLowerCase();
 
@@ -68,31 +132,23 @@ const [insightError, setInsightError] = useState("");
 
     try {
       const { data, error: functionError } =
-        await supabase.functions.invoke(
-          "badge-lookup",
-          {
-            body: {
-              email: cleanEmail,
-            },
-          }
-        );
+        await supabase.functions.invoke("badge-lookup", {
+          body: {
+            email: cleanEmail,
+          },
+        });
 
       if (functionError) {
-        console.error(
-          "Badge function error:",
-          functionError
-        );
+        console.error("Badge function error:", functionError);
 
         throw new Error(
-          functionError.message ||
-            "Failed to fetch your badge."
+          functionError.message || "Failed to fetch your badge."
         );
       }
 
       if (!data?.success) {
         throw new Error(
-          data?.message ||
-            "We couldn't find your SFI response."
+          data?.message || "We couldn't find your SFI response."
         );
       }
 
@@ -102,266 +158,269 @@ const [insightError, setInsightError] = useState("");
         );
       }
 
-      /*
-       * The Edge Function already returns:
-       * badge.role
-       *
-       * This page is currently ONLY for:
-       * - teacher
-       * - leader
-       */
-
-      const role = data.badge.role
-        ?.toString()
-        .trim()
-        .toLowerCase();
+      const role = normalizeRole(data.badge.role);
 
       if (!role) {
+        throw new Error("We couldn't identify your survey role.");
+      }
+
+      if (!BADGE_TEMPLATES[role]) {
         throw new Error(
-          "We couldn't identify your survey role."
+          "We couldn't identify a supported SFI badge for your survey role."
         );
       }
 
-    if (!BADGE_TEMPLATES[role]) {
-  throw new Error(
-    "We couldn't identify a supported SFI badge for your survey role."
-  );
-}
-
       setBadgeData({
         ...data.badge,
+        name: String(data.badge.name).trim(),
         role,
       });
-
     } catch (err) {
-      console.error(
-        "Badge lookup error:",
-        err
-      );
+      console.error("Badge lookup error:", err);
 
       setError(
-        err.message ||
-          "Something went wrong. Please try again."
+        err.message || "Something went wrong. Please try again."
       );
-
     } finally {
       setLoading(false);
     }
   };
 
-  /*
-   * =========================================================
-   * DOWNLOAD BADGE
-   * =========================================================
-   */
+  /* =======================================================
+     DOWNLOAD BADGE
+  ======================================================= */
 
-  const downloadBadge = () => {
-    if (!badgeData) return;
+  const downloadBadge = async () => {
+    if (!badgeData || downloading) return;
 
-   const template = BADGE_TEMPLATES[badgeData.role];
+    const template = BADGE_TEMPLATES[badgeData.role];
 
-if (!template) return;
+    if (!template) {
+      setError("The badge template could not be found.");
+      return;
+    }
 
-const image = new Image();
-image.src = template.image;
-    image.onload = () => {
-      const canvas =
-        document.createElement("canvas");
+    setError("");
+    setDownloadMessage("");
+    setDownloading(true);
 
-      const ctx =
-        canvas.getContext("2d");
+    try {
+      const image = new Image();
+
+      image.src = template.image;
+
+      await new Promise((resolve, reject) => {
+        image.onload = resolve;
+
+        image.onerror = () => {
+          reject(
+            new Error(
+              "Unable to load your badge template. Please check the image filename."
+            )
+          );
+        };
+      });
+
+      const canvas = document.createElement("canvas");
 
       canvas.width = image.naturalWidth;
       canvas.height = image.naturalHeight;
 
-      /*
-       * Draw the new Teacher / Leader badge
-       */
+      const ctx = canvas.getContext("2d");
 
-      ctx.drawImage(
-        image,
-        0,
-        0
+      if (!ctx) {
+        throw new Error("Unable to prepare your badge for download.");
+      }
+
+      /* Draw the original badge design. */
+      ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+      /* ================================================
+         DRAW RESPONDENT NAME
+      ================================================ */
+
+      const position = template.namePosition;
+      const name = badgeData.name.toUpperCase();
+
+      const x = canvas.width * position.x;
+      const y = canvas.height * position.y;
+
+      const maxWidth = canvas.width * position.maxWidth;
+
+      let fontSize = position.fontSize;
+
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillStyle = position.color;
+
+      /* Reduce font size for longer names. */
+      ctx.font = `700 ${fontSize}px Arial, sans-serif`;
+
+      while (
+        ctx.measureText(name).width > maxWidth &&
+        fontSize > 14
+      ) {
+        fontSize -= 1;
+        ctx.font = `700 ${fontSize}px Arial, sans-serif`;
+      }
+
+      ctx.fillText(name, x, y, maxWidth);
+
+      /* ================================================
+         CREATE DOWNLOAD
+      ================================================ */
+
+      const link = document.createElement("a");
+
+      link.download = `${safeFilename(
+        badgeData.name
+      )}-SFI-${badgeData.role}-Badge.png`;
+
+      link.href = canvas.toDataURL("image/png");
+
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+
+      setDownloadMessage(
+        "Your SFI badge has been downloaded successfully!"
       );
 
-      /*
-       * =====================================================
-       * NAME
-       * =====================================================
-       *
-       * We will fine-tune the position after checking
-       * exactly where the name looks best on the new badge.
-       */
-ctx.textAlign = "center";
-ctx.textBaseline = "middle";
+      if (downloadMessageTimer.current) {
+        clearTimeout(downloadMessageTimer.current);
+      }
 
-const isParentStudent =
-  badgeData.role === "parent" ||
-  badgeData.role === "student";
+      downloadMessageTimer.current = setTimeout(() => {
+        setDownloadMessage("");
+      }, 4000);
+    } catch (err) {
+      console.error("Badge download error:", err);
 
-if (isParentStudent) {
-  // Parent + Student badge
-  ctx.fillStyle = "#263d35";
-  ctx.font = "700 50px Arial, sans-serif";
-
-  ctx.fillText(
-    badgeData.name.toUpperCase(),
-    canvas.width * 0.505,
-    canvas.height * 0.32
-  );
-} else {
-  // Teacher + Leader badge
-  // KEEP THE ORIGINAL POSITION
-  ctx.fillStyle = "#263d35";
-  ctx.font = "700 50px Arial, sans-serif";
-
-  ctx.fillText(
-    badgeData.name.toUpperCase(),
-    canvas.width / 2,
-    690
-  );
-}
-      /*
-       * =====================================================
-       * CREATE DOWNLOAD
-       * =====================================================
-       */
-
-      const link =
-        document.createElement("a");
-
-      link.download =
-        `${badgeData.name.replace(
-          /[^a-z0-9]/gi,
-          "-"
-        )}-SFI-Badge.png`;
-
-     link.href =
-  canvas.toDataURL("image/png");
-
-link.click();
-
-setDownloadMessage("Your SFI badge has been downloaded successfully!");
-
-setTimeout(() => {
-  setDownloadMessage("");
-}, 4000);
-    };
-
-    image.onerror = () => {
       setError(
-        "Unable to load your SFI badge template."
+        err.message || "Unable to download your badge. Please try again."
       );
-    };
+    } finally {
+      setDownloading(false);
+    }
   };
-const requestInsights = async (e) => {
-  e.preventDefault();
 
-  setInsightMessage("");
-  setInsightError("");
+  /* =======================================================
+     REQUEST INSIGHTS
+  ======================================================= */
 
-  const cleanEmail = insightForm.email.trim().toLowerCase();
-  const cleanWhatsapp = insightForm.whatsapp.trim();
-  const cleanRole = insightForm.role.trim().toLowerCase();
+  const requestInsights = async (e) => {
+    e.preventDefault();
 
-  if (!cleanEmail) {
-    setInsightError("Please enter the email you used for the SFI survey.");
-    return;
-  }
+    setInsightMessage("");
+    setInsightError("");
 
-  if (!cleanWhatsapp) {
-    setInsightError("Please enter your WhatsApp number.");
-    return;
-  }
+    const cleanEmail = insightForm.email.trim().toLowerCase();
+    const cleanWhatsapp = insightForm.whatsapp.trim();
+    const cleanRole = normalizeRole(insightForm.role);
 
-  if (!cleanRole) {
-    setInsightError("Please select the perspective you completed.");
-    return;
-  }
-
-  setInsightLoading(true);
-
-  try {
-   const { error } = await supabase
-  .from("report_requests")
-  .insert({
-    email: cleanEmail,
-    whatsapp: cleanWhatsapp,
-    role: cleanRole,
-    status: "pending",
-  });
-
-    if (error) {
-      console.error("Insight request error:", error);
-      throw new Error(
-        error.message || "Unable to submit your insight request."
+    if (!cleanEmail) {
+      setInsightError(
+        "Please enter the email you used for the SFI survey."
       );
+      return;
     }
 
-    setInsightMessage(
-      "Your request has been received. We’ll prepare your SFI insights and send them to you."
-    );
+    if (!cleanWhatsapp) {
+      setInsightError("Please enter your WhatsApp number.");
+      return;
+    }
 
-    setInsightForm({
-      email: "",
-      whatsapp: "",
-      role: "",
-    });
-  } catch (err) {
-    console.error("Insight request submission failed:", err);
+    if (!cleanRole) {
+      setInsightError("Please select the perspective you completed.");
+      return;
+    }
 
-    setInsightError(
-      err.message || "Something went wrong. Please try again."
-    );
-  } finally {
-    setInsightLoading(false);
-  }
-};
-  /*
-   * =========================================================
-   * RESET
-   * =========================================================
-   */
+    setInsightLoading(true);
+
+    try {
+      const { error: insertError } = await supabase
+        .from("report_requests")
+        .insert({
+          email: cleanEmail,
+          whatsapp: cleanWhatsapp,
+          role: cleanRole,
+          status: "pending",
+        });
+
+      if (insertError) {
+        console.error("Insight request error:", insertError);
+
+        throw new Error(
+          insertError.message ||
+            "Unable to submit your insight request."
+        );
+      }
+
+      setInsightMessage(
+        "Your request has been received. We'll prepare your SFI insights and send them to you."
+      );
+
+      setInsightForm({
+        email: "",
+        whatsapp: "",
+        role: "",
+      });
+    } catch (err) {
+      console.error("Insight request submission failed:", err);
+
+      setInsightError(
+        err.message || "Something went wrong. Please try again."
+      );
+    } finally {
+      setInsightLoading(false);
+    }
+  };
+
+  /* =======================================================
+     RESET / SEARCH AGAIN
+  ======================================================= */
 
   const searchAgain = () => {
     setBadgeData(null);
     setEmail("");
     setError("");
+    setDownloadMessage("");
   };
-const badgeTemplate = badgeData
-  ? BADGE_TEMPLATES[badgeData.role]
-  : null;
+
+  /* =======================================================
+     ACTIVE TEMPLATE
+  ======================================================= */
+
+  const badgeTemplate = badgeData
+    ? BADGE_TEMPLATES[badgeData.role]
+    : null;
+
+  /* =======================================================
+     RENDER
+  ======================================================= */
+
   return (
     <main className="badge-page">
-
       <section className="badge-container">
 
-        {/* =================================================
+        {/* ===============================================
             EMAIL / INTRO
-        ================================================= */}
+        =============================================== */}
 
         {!badgeData && (
           <div className="badge-intro">
-
             <span className="badge-eyebrow">
               SCHOOL FLOURISH INDEX
             </span>
 
-            <h1>
-              Get Your SFI Badge
-            </h1>
+            <h1>Get Your SFI Badge</h1>
 
             <p>
-             Enter the email address you used while
-completing the SFI survey to access your
-personalized badge.
+              Enter the email address you used while completing
+              the SFI survey to access your personalized badge.
             </p>
 
-            <form
-              onSubmit={findBadge}
-              className="badge-form"
-            >
-
+            <form onSubmit={findBadge} className="badge-form">
               <label htmlFor="badge-email">
                 Email Address
               </label>
@@ -371,320 +430,286 @@ personalized badge.
                 type="email"
                 placeholder="Enter your email"
                 value={email}
-                onChange={(e) =>
-                  setEmail(e.target.value)
-                }
+                onChange={(e) => setEmail(e.target.value)}
                 autoComplete="email"
+                required
               />
 
-              <button
-                type="submit"
-                disabled={loading}
-              >
+              <button type="submit" disabled={loading}>
                 {loading
                   ? "Finding Your Badge..."
                   : "See My Badge"}
               </button>
-
             </form>
 
             {error && (
-              <div className="badge-error">
+              <div className="badge-error" role="alert">
                 {error}
               </div>
             )}
-
           </div>
         )}
 
-        {/* =================================================
+        {/* ===============================================
             BADGE RESULT
-        ================================================= */}
+        =============================================== */}
 
-        {badgeData && (
+        {badgeData && badgeTemplate && (
           <div className="badge-result">
 
-            <div className="badge-heading">
+            {/* BADGE HEADING */}
 
+            <div className="badge-heading">
               <span className="badge-eyebrow">
                 YOUR BADGE IS READY
               </span>
 
               <h1>
-                Thank you,{" "}
-                {badgeData.name.split(" ")[0]}!
+                Thank you, {badgeData.name.split(" ")[0]}!
               </h1>
 
               <p>
-                Your SFI Survey 2026 participation
-                badge is ready to download.
+                Your SFI Survey 2026 participation badge is ready
+                to download.
               </p>
-
             </div>
 
-            {/* =================================================
-                BADGE PREVIEW
-            ================================================= */}
+            {/* BADGE PREVIEW */}
 
             <div className="badge-preview-wrapper">
-
-            <div
-  className={`badge-preview ${
-    badgeData.role === "parent" || badgeData.role === "student"
-      ? "badge-preview-parent-student"
-      : ""
-  }`}
-  ref={badgeRef}
->
-
-               <img
-  src={badgeTemplate.image}
-  alt={badgeTemplate.alt}
-/>
+              <div
+                className={`badge-preview badge-preview-${badgeData.role}`}
+                ref={badgeRef}
+              >
+                <img
+                  src={badgeTemplate.image}
+                  alt={badgeTemplate.alt}
+                />
 
                 <div className="badge-name">
                   {badgeData.name}
                 </div>
-
               </div>
-
             </div>
 
-            {/* =================================================
-                ACTIONS
-            ================================================= */}
+            {/* ACTIONS */}
 
             <div className="badge-actions">
-
               <button
+                type="button"
                 className="download-badge-btn"
                 onClick={downloadBadge}
+                disabled={downloading}
               >
-                Download My Badge
+                {downloading
+                  ? "Preparing Your Badge..."
+                  : "Download My Badge"}
               </button>
 
               <button
+                type="button"
                 className="back-badge-btn"
                 onClick={searchAgain}
               >
                 Search Again
               </button>
-
             </div>
-{downloadMessage && (
-  <div className="badge-download-success">
-    {downloadMessage}
-  </div>
-)}
-           {/* =================================================
-    SHARE + INSIGHTS
-================================================= */}
 
-<div className="badge-bottom-grid">
+            {error && (
+              <div className="badge-error" role="alert">
+                {error}
+              </div>
+            )}
 
-  {/* =================================================
-      SOCIAL / FLAUNT YOUR BADGE
-  ================================================= */}
+            {downloadMessage && (
+              <div
+                className="badge-download-success"
+                role="status"
+              >
+                {downloadMessage}
+              </div>
+            )}
 
-  <div className="badge-social">
+            {/* ==========================================
+                SOCIAL + INSIGHTS
+            ========================================== */}
 
-    <span className="badge-social-eyebrow">
-      FLAUNT YOUR BADGE
-    </span>
+            <div className="badge-bottom-grid">
 
-    <h2>
-      Share your SFI journey
-    </h2>
+              {/* SOCIAL / SHARE BADGE */}
 
-    <p>
-      Proud to be part of the School Flourish Index?
-      Share your badge and let your network know.
-    </p>
+              <div className="badge-social">
+                <span className="badge-social-eyebrow">
+                  FLAUNT YOUR BADGE
+                </span>
 
-    <div className="badge-social-links">
+                <h2>Share your SFI journey</h2>
 
-      <a
-        href="https://www.instagram.com/skillsphereflourish?igsi=NHhudWV0amNiMjl3"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="badge-social-icon"
-        aria-label="Instagram"
-      >
-        <FaInstagram />
-      </a>
+                <p>
+                  Proud to be part of the School Flourish Index?
+                  Share your badge and let your network know.
+                </p>
 
-      <a
-        href="YOUR_LINKEDIN_LINK"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="badge-social-icon"
-        aria-label="LinkedIn"
-      >
-        <FaLinkedinIn />
-      </a>
+                <div className="badge-social-links">
+                  <a
+                    href="https://www.instagram.com/skillsphereflourish?igsi=NHhudWV0amNiMjl3"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="badge-social-icon"
+                    aria-label="Instagram"
+                  >
+                    <FaInstagram />
+                  </a>
 
-    </div>
+                  <a
+                    href="YOUR_LINKEDIN_LINK"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="badge-social-icon"
+                    aria-label="LinkedIn"
+                  >
+                    <FaLinkedinIn />
+                  </a>
+                </div>
 
-    <p className="badge-tag-text">
-      Tag us when you share your badge 💚
-    </p>
+                <p className="badge-tag-text">
+                  Tag us when you share your badge 💚
+                </p>
+              </div>
 
-  </div>
+              {/* REQUEST INSIGHTS */}
 
+              <div className="badge-insights">
+                <span className="badge-insights-eyebrow">
+                  YOUR SFI INSIGHTS
+                </span>
 
-  {/* =================================================
-      REQUEST INSIGHTS
-  ================================================= */}
+                <h2>Request your insights</h2>
 
-  <div className="badge-insights">
+                <p>
+                  Want to see what your SFI responses reveal?
+                  Share the details below and we'll prepare your
+                  personalised report.
+                </p>
 
-    <span className="badge-insights-eyebrow">
-      YOUR SFI INSIGHTS
-    </span>
+                <form
+                  className="badge-insights-form"
+                  onSubmit={requestInsights}
+                >
+                  <div className="badge-insights-field">
+                    <label htmlFor="insight-email">
+                      Survey Email
+                    </label>
 
-    <h2>
-      Request your insights
-    </h2>
+                    <input
+                      id="insight-email"
+                      type="email"
+                      placeholder="Email used for the SFI survey"
+                      value={insightForm.email}
+                      onChange={(e) =>
+                        setInsightForm({
+                          ...insightForm,
+                          email: e.target.value,
+                        })
+                      }
+                      autoComplete="email"
+                      required
+                    />
+                  </div>
 
-    <p>
-      Want to see what your SFI responses reveal?
-      Share the details below and we’ll prepare your
-      personalised report.
-    </p>
+                  <div className="badge-insights-field">
+                    <label htmlFor="insight-whatsapp">
+                      WhatsApp Number
+                    </label>
 
-    <form
-      className="badge-insights-form"
-      onSubmit={requestInsights}
-    >
+                    <input
+                      id="insight-whatsapp"
+                      type="tel"
+                      placeholder="Enter your WhatsApp number"
+                      value={insightForm.whatsapp}
+                      onChange={(e) =>
+                        setInsightForm({
+                          ...insightForm,
+                          whatsapp: e.target.value,
+                        })
+                      }
+                      inputMode="tel"
+                      autoComplete="tel"
+                      required
+                    />
+                  </div>
 
-      <div className="badge-insights-field">
+                  <div className="badge-insights-field">
+                    <label htmlFor="insight-role">
+                      Your Voice
+                    </label>
 
-        <label htmlFor="insight-email">
-          Survey Email
-        </label>
+                    <select
+                      id="insight-role"
+                      value={insightForm.role}
+                      onChange={(e) =>
+                        setInsightForm({
+                          ...insightForm,
+                          role: e.target.value,
+                        })
+                      }
+                      required
+                    >
+                      <option value="">
+                        Select your Voice
+                      </option>
 
-        <input
-          id="insight-email"
-          type="email"
-          placeholder="Email used for the SFI survey"
-          value={insightForm.email}
-          onChange={(e) =>
-            setInsightForm({
-              ...insightForm,
-              email: e.target.value,
-            })
-          }
-          autoComplete="email"
-          required
-        />
+                      <option value="teacher">
+                        Educator
+                      </option>
 
-      </div>
+                      <option value="leader">
+                        Leader
+                      </option>
 
+                      <option value="parent">
+                        Parent
+                      </option>
 
-      <div className="badge-insights-field">
+                      <option value="student">
+                        Student
+                      </option>
+                    </select>
+                  </div>
 
-        <label htmlFor="insight-whatsapp">
-          WhatsApp Number
-        </label>
+                  <button
+                    type="submit"
+                    className="badge-insights-btn"
+                    disabled={insightLoading}
+                  >
+                    {insightLoading
+                      ? "Submitting Request..."
+                      : "Request My Insights"}
+                  </button>
+                </form>
 
-        <input
-          id="insight-whatsapp"
-          type="tel"
-          placeholder="Enter your WhatsApp number"
-          value={insightForm.whatsapp}
-          onChange={(e) =>
-            setInsightForm({
-              ...insightForm,
-              whatsapp: e.target.value,
-            })
-          }
-          inputMode="tel"
-          autoComplete="tel"
-          required
-        />
+                {insightError && (
+                  <div
+                    className="badge-insights-error"
+                    role="alert"
+                  >
+                    {insightError}
+                  </div>
+                )}
 
-      </div>
-
-
-      <div className="badge-insights-field">
-
-        <label htmlFor="insight-role">
-          Your Voice
-        </label>
-
-        <select
-          id="insight-role"
-          value={insightForm.role}
-          onChange={(e) =>
-            setInsightForm({
-              ...insightForm,
-              role: e.target.value,
-            })
-          }
-          required
-        >
-
-          <option value="">
-            Select your Voice
-          </option>
-
-          <option value="teacher">
-            Teacher
-          </option>
-
-          <option value="parent">
-            Parent
-          </option>
-
-          <option value="student">
-            Student
-          </option>
-
-          <option value="leader">
-            Leader
-          </option>
-
-        </select>
-
-      </div>
-
-
-      <button
-        type="submit"
-        className="badge-insights-btn"
-        disabled={insightLoading}
-      >
-        {insightLoading
-          ? "Submitting Request..."
-          : "Request My Insights"}
-      </button>
-
-    </form>
-
-
-    {insightError && (
-      <div className="badge-insights-error">
-        {insightError}
-      </div>
-    )}
-
-
-    {insightMessage && (
-      <div className="badge-insights-success">
-        {insightMessage}
-      </div>
-    )}
-
-  </div>
-
-</div>
-           
-
+                {insightMessage && (
+                  <div
+                    className="badge-insights-success"
+                    role="status"
+                  >
+                    {insightMessage}
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         )}
-
       </section>
-
     </main>
   );
 };

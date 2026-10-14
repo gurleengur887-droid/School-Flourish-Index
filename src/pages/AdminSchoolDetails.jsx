@@ -664,29 +664,7 @@ function AdminSchoolDetails() {
 
         {/* RESULTS PLACEHOLDER */}
 
-        <section className="admin-section">
-
-          <div className="admin-panel admin-results-placeholder">
-
-            <p className="admin-eyebrow">
-              RESULTS
-            </p>
-
-            <h3>
-              Flourishing results will appear
-              here
-            </h3>
-
-            <p>
-              Once the SFI scoring methodology
-              is finalized, processed school
-              results, dimensions and insights
-              will appear in this section.
-            </p>
-
-          </div>
-
-        </section>
+      
 
       </main>
 
